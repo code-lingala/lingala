@@ -569,3 +569,38 @@ main { flex: 1; }
 ::-webkit-scrollbar-thumb:horizontal { background-image: linear-gradient(90deg, #1455A4 0%, #1455A4 30%, #F4C81E 35%, #F4C81E 65%, #C8202A 70%, #C8202A 100%); }
 ::-webkit-scrollbar-corner { background-color: rgba(0,0,0,0.2); }
 html { scrollbar-color: #1455A4 rgba(244,200,30,0.25); scrollbar-width: thin; }
+
+/* ----- Site-nav port (ported from css/site.css) -----
+   Lets card.html ship the canonical top navigation without loading the full
+   site.css, whose universal `* { padding: 0 }` reset would strip the card's
+   internal padding and break the layout. */
+.site-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; gap: 20px; background: linear-gradient(to bottom, var(--base) 65%, transparent); }
+@media (min-width: 720px) { .site-nav { padding: 20px 48px; } }
+.site-logo { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+.nav-toggle { position: relative; z-index: 110; display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; padding: 0 8px; background: transparent; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; transition: border-color .15s, background .15s; }
+.nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (min-width: 720px) { .nav-toggle { display: none; } }
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-links a { font-family: var(--body); font-size: 0.88rem; color: var(--ink-soft); text-decoration: none; transition: color .15s; white-space: nowrap; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.active { color: var(--accent); }
+@media (max-width: 719px) {
+  .nav-right { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: var(--base); padding: 88px 28px 32px; flex-direction: column; align-items: flex-start; gap: 28px; transform: translateY(-100%); transition: transform .25s ease; z-index: 90; overflow-y: auto; }
+  .nav-right.open { transform: translateY(0); }
+  .nav-links { flex-direction: column; align-items: flex-start; gap: 18px; width: 100%; }
+  .nav-links a { font-size: 1.4rem; font-family: var(--serif); }
+  .site-nav { z-index: 100; }
+}
+.theme-dots { display: flex; gap: 8px; }
+.theme-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid transparent; padding: 0; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
+.theme-dot:hover { transform: scale(1.15); }
+.theme-dot.active { border-color: var(--ink); }
+.t-blue   { background: #1455A4; }
+.t-red    { background: #C8202A; }
+.lang-switch { display: flex; align-items: center; gap: 4px; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink); }
+.lang-switch button { background: none; border: 0; color: inherit; cursor: pointer; font-family: inherit; font-size: inherit; padding: 2px 4px; }
+.lang-switch span { opacity: 0.35; }
