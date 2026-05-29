@@ -16,6 +16,9 @@
   --drc-gold: #C8202A;
 }
 html[data-theme='red']    { --page:#1C0A0A; --panel:#2A1413; --ink:#FAF0EE; --ink-soft:rgba(250,236,232,0.80); --line:rgba(255,255,255,0.10); --accent:#C8202A; --drc-gold:#C8202A; }
+/* Paper — editorial black-and-white: cream field, near-black ink, with the
+   three DRC flag colours (blue / yellow / red) as spot accents. */
+html[data-theme='paper']  { --page:#FAF7F0; --panel:#ECE5D2; --ink:#0E0E12; --ink-soft:rgba(14,14,18,0.72); --line:rgba(14,14,18,0.10); --accent:#1455A4; --drc-gold:#E0AF1E; --accent-warm:#E0AF1E; --accent-red:#C8202A; }
 
 * { box-sizing: border-box; }
 
@@ -601,6 +604,7 @@ html { scrollbar-color: #1455A4 rgba(244,200,30,0.25); scrollbar-width: thin; }
 .theme-dot.active { border-color: var(--ink); }
 .t-blue   { background: #1455A4; }
 .t-red    { background: #C8202A; }
+.t-paper  { background: conic-gradient(from 0deg, #FAF7F0 0% 50%, #1455A4 50% 67%, #E0AF1E 67% 84%, #C8202A 84% 100%); border-color: rgba(255,255,255,0.4); }
 .lang-switch { display: flex; align-items: center; gap: 4px; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink); }
 .lang-switch button { background: none; border: 0; color: inherit; cursor: pointer; font-family: inherit; font-size: inherit; padding: 2px 4px; }
 .lang-switch span { opacity: 0.35; }

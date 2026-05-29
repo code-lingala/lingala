@@ -1,14 +1,16 @@
-// Lingala — site-wide colour theme (blue / red). Green + yellow retired.
+// Lingala — site-wide colour theme (blue / red / paper). Green + yellow retired.
 //
-// The page's dominant field changes per theme; text/“ink” tokens flip with it
-// so copy stays readable (yellow is a light field with dark ink). Choice is
-// remembered and shared across every page. To avoid a flash of the wrong
-// theme, set data-theme inline in <head> before paint, then this wires the
-// switcher.
+// Paper is an editorial black-and-white palette: cream field, near-black ink,
+// with the three DRC flag colours (blue / yellow / red) used as spot accents.
+//
+// The page's dominant field changes per theme; text/"ink" tokens flip with it
+// so copy stays readable. Choice is remembered and shared across every page.
+// To avoid a flash of the wrong theme, set data-theme inline in <head> before
+// paint, then this wires the switcher.
 
 (function () {
   const KEY = 'lingala.theme';
-  const THEMES = ['blue', 'red'];
+  const THEMES = ['blue', 'red', 'paper'];
 
   function current() {
     const t = localStorage.getItem(KEY);

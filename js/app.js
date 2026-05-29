@@ -45,7 +45,7 @@ const T = {
     suggestOffline: 'You’re offline. Try again once you’re connected.',
     langLabel: 'Interface language', themeLabel: 'Card colour', formatLabel: 'Default download',
     notifyLabel: 'Daily reminder', wipe: 'Clear all data on this device',
-    sq: 'Square', st: 'Story', green: 'Green', blue: 'Blue', yellow: 'Yellow', red: 'Red',
+    sq: 'Square', st: 'Story', green: 'Green', blue: 'Blue', yellow: 'Yellow', red: 'Red', paper: 'Paper',
     pronGuide: 'CAPITALS show the stressed syllable. A hyphen splits syllables; say them evenly and let the vowels ring — Lingala vowels are pure and never swallowed.',
     flip: 'Flip direction',
     slideHint: 'Slide to explore more words',
@@ -66,7 +66,7 @@ const T = {
     suggestOffline: 'Vous êtes hors ligne. Réessayez une fois connecté.',
     langLabel: 'Langue de l’interface', themeLabel: 'Couleur de la carte', formatLabel: 'Téléchargement par défaut',
     notifyLabel: 'Rappel quotidien', wipe: 'Effacer toutes les données de cet appareil',
-    sq: 'Carré', st: 'Story', green: 'Vert', blue: 'Bleu', yellow: 'Jaune', red: 'Rouge',
+    sq: 'Carré', st: 'Story', green: 'Vert', blue: 'Bleu', yellow: 'Jaune', red: 'Rouge', paper: 'Papier',
     pronGuide: 'Les MAJUSCULES indiquent la syllabe accentuée. Le tiret sépare les syllabes ; prononcez-les régulièrement et faites sonner les voyelles — en lingala elles sont pures.',
     flip: 'Inverser le sens',
     slideHint: 'Glissez pour découvrir d’autres mots',
@@ -87,7 +87,7 @@ const T = {
     suggestOffline: 'Ozali na internet te. Meka lisusu ntango okozala connecté.',
     langLabel: 'Monoko ya interface', themeLabel: 'Langi ya karte', formatLabel: 'Téléchargement ya solo',
     notifyLabel: 'Bondimisi ya mokolo', wipe: 'Longola makambo nyonso na esaleli oyo',
-    sq: 'Karre', st: 'Story', green: 'Vert', blue: 'Bleu', yellow: 'Saune', red: 'Motane',
+    sq: 'Karre', st: 'Story', green: 'Vert', blue: 'Bleu', yellow: 'Saune', red: 'Motane', paper: 'Lokasa',
     pronGuide: 'BANTOTE eyebisi syllabe oyo eyekoli. Tiret ekaboli syllabes; loba yango na bondende mpe pesa vowels ya Lingala bonzenga — ezalaka peto mpe etondi.',
     flip: 'Bongola direction',
     slideHint: 'Banda kotambolisa mpo na komona maloba mosusu',
@@ -446,9 +446,9 @@ function screenSettings() {
   ]);
   wrap.appendChild(group('langLabel', langSel));
 
-  // Card colour theme. Green and yellow were retired site-wide; the only
-  // active themes are blue (default) and red.
-  const themes = [['blue', 'blue'], ['red', 'red']];
+  // Card colour theme. Green and yellow were retired site-wide; the active
+  // themes are blue (default), red, and paper (editorial b/w with DRC accents).
+  const themes = [['blue', 'blue'], ['red', 'red'], ['paper', 'paper']];
   const themeRow = el('div', { class: 'theme-row' },
     themes.map(([val, key]) => {
       const g = gradientFor(val, indexForDate(state.now));

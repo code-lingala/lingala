@@ -29,6 +29,21 @@ html[data-theme='red'] {
   --ink-soft: rgba(250,236,232,0.80); --muted: #BE918C;
   --line: rgba(255,255,255,0.10); --surface: rgba(255,255,255,0.04); --accent: #C8202A;
 }
+/* Paper — editorial black-and-white theme: cream field, near-black ink,
+   with the three DRC flag colours (blue / yellow / red) used as spot accents
+   where they're meaningful (CTAs, highlights, attention). */
+html[data-theme='paper'] {
+  --base: #FAF7F0;        /* warm cream */
+  --base-mid: #ECE5D2;    /* slightly toasted variant */
+  --ink: #0E0E12;         /* near-black */
+  --ink-soft: rgba(14,14,18,0.72);
+  --muted: #6B6660;       /* warm grey */
+  --line: rgba(14,14,18,0.10);
+  --surface: rgba(14,14,18,0.03);
+  --accent: #1455A4;      /* DRC flag blue — primary CTA */
+  --accent-warm: #E0AF1E; /* DRC flag yellow — decorative + pulse-heart */
+  --accent-red: #C8202A;  /* DRC flag red — links, attention */
+}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
 html, body { overflow-x: hidden; max-width: 100vw; width: 100%; }
 
@@ -196,6 +211,7 @@ body::before {
 .theme-dot.active { border-color: var(--ink); }
 .t-blue   { background: #1455A4; }
 .t-red    { background: #C8202A; }
+.t-paper  { background: conic-gradient(from 0deg, #FAF7F0 0% 50%, #1455A4 50% 67%, #E0AF1E 67% 84%, #C8202A 84% 100%); border-color: rgba(255,255,255,0.4); }
 .lang-switch {
   display: flex; align-items: center; gap: 4px;
   font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink);

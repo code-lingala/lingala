@@ -13,10 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lingala — Keep the language alive for Congolese everywhere</title>
 <meta name="description" content="One Lingala phrase every day, wrapped in a beautiful culture card you can download and share. Free, no login, works offline. Built by Congolese, for Congolese everywhere.">
-<meta name="theme-color" content="#0C1A10">
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icon-180.png">
-<meta name="apple-mobile-web-app-title" content="Lingala">
+<meta name="theme-color" content="#0C1A10"><meta name="apple-mobile-web-app-title" content="Lingala">
 <meta property="og:title" content="Lingala — Keep the language alive">
 <meta property="og:description" content="A beautiful Lingala culture card every day, made to download and share. Free, no login, offline-ready.">
 <meta property="og:type" content="website">
@@ -163,6 +160,7 @@
   .t-green  { background: #1F5B33; }
   .t-blue   { background: #1455A4; }
   .t-red    { background: #C8202A; }
+  .t-paper  { background: conic-gradient(from 0deg, #FAF7F0 0% 50%, #1455A4 50% 67%, #E0AF1E 67% 84%, #C8202A 84% 100%); border-color: rgba(255,255,255,0.4); }
 
   .lang-switch {
     display: flex; align-items: center; gap: 4px;
@@ -555,36 +553,16 @@
     background: linear-gradient(to bottom, transparent, var(--muted));
   }
 
-  /* —— STATEMENT STRIP (cerulean island) —— */
+  /* —— VERB BANNER (gradient ribbon with serif-italic pills) —— */
   .statement-strip {
-    background: var(--cerulean);
-    padding: 24px 0;
+    background: linear-gradient(90deg, #08182E 0%, #0F2238 30%, var(--cerulean) 50%, #0F2238 70%, #08182E 100%);
+    padding: 28px 0;
     overflow: hidden;
     position: relative;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .strip-track {
-    display: flex;
-    width: max-content;
-    animation: stripscroll 32s linear infinite;
-  }
-  /* Each group spans at least the viewport, so only ONE group is ever visible;
-     the 2nd is just the seamless-loop copy, off to the side (no visible dup). */
-  .strip-group {
-    flex-shrink: 0;
-    min-width: 100vw;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 32px;
-    padding: 0 36px;
-  }
-  .strip-text::after { content: '•'; color: var(--gold); margin-left: 16px; opacity: 0.7; }
-  .statement-strip:hover .strip-track { animation-play-state: paused; }
-  /* left-to-right: track starts shifted one group left, slides back to 0 */
-  @keyframes stripscroll { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-  @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; transform: none; } }
-
+  /* Subtle film grain over the gradient. */
   .statement-strip::before {
     content: '';
     position: absolute;
@@ -592,20 +570,77 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
     pointer-events: none;
   }
-
+  /* Edge fades so verbs dissolve into the dark gradient instead of cutting hard. */
+  .statement-strip::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--base) 0%, transparent 7%, transparent 93%, var(--base) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .strip-track {
+    display: flex;
+    width: max-content;
+    animation: stripscroll 70s linear infinite;
+    position: relative;
+    z-index: 1;
+  }
+  .strip-group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 7px;
+  }
+  /* Each verb is a soft serif-italic pill. Stays lowercase per brand voice. */
   .strip-text {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.9);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.18rem;
+    letter-spacing: 0.005em;
+    text-transform: none;
+    color: rgba(255,255,255,0.94);
     white-space: nowrap;
     flex-shrink: 0;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: transform 0.18s, background 0.18s, border-color 0.18s, color 0.18s;
   }
-  a.strip-text:hover { color: var(--gold); }
+  .strip-text .strip-en {
+    font-family: var(--body);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.78;
+  }
+  a.strip-text:hover {
+    transform: translateY(-1px);
+    background: rgba(255,255,255,0.08);
+    border-color: var(--gold);
+    color: #fff;
+  }
+  a.strip-text:hover .strip-en { opacity: 1; }
+  /* Tiny DRC-gold dot separator between pills. */
+  .strip-sep {
+    flex-shrink: 0;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .statement-strip:hover .strip-track { animation-play-state: paused; }
+  @keyframes stripscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } }
 
   .strip-dot {
     width: 5px;
@@ -1251,6 +1286,26 @@
 <link rel="alternate" hreflang="x-default" href="https://lingala.artivicolab.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://lingala.artivicolab.com/#site","url":"https://lingala.artivicolab.com","name":"Losako · Lingala","inLanguage":["en","fr","ln"],"publisher":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"Organization","@id":"https://lingala.artivicolab.com/#org","name":"Artivicolab","url":"https://artivicolab.com","founder":{"@type":"Person","name":"Gradi Kayamba"}},{"@type":"Person","@id":"https://lingala.artivicolab.com/#author","name":"Gradi Kayamba","affiliation":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"WebPage","@id":"https://lingala.artivicolab.com/#page","url":"https://lingala.artivicolab.com/","name":"Home — Lingala","description":"Lingala — keep the language alive for Congolese everywhere. One phrase a day, free, offline.","inLanguage":"en","isPartOf":{"@id":"https://lingala.artivicolab.com/#site"},"author":{"@id":"https://lingala.artivicolab.com/#author"}},{"@type":"WebApplication","@id":"https://lingala.artivicolab.com/#app","url":"https://lingala.artivicolab.com/","name":"Lingala — Home","description":"Lingala — keep the language alive for Congolese everywhere. One phrase a day, free, offline.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","fr","ln"],"creator":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"LearningResource","@id":"https://lingala.artivicolab.com/#learn","url":"https://lingala.artivicolab.com/","name":"Learn Lingala — Home","description":"Lingala — keep the language alive for Congolese everywhere. One phrase a day, free, offline.","inLanguage":"ln","teaches":"Lingala language (Bantu, Democratic Republic of Congo)","learningResourceType":"Interactive resource","educationalLevel":"Beginner to intermediate","isAccessibleForFree":true,"audience":{"@type":"EducationalAudience","educationalRole":"student"}}]}</script>
 <!-- SEO:end -->
+<!-- favicons:start -->
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#08182E">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="msapplication-config" content="/browserconfig.xml">
+<!-- favicons:end -->
 </head>
 <body data-title-i18n="title.home">
 
@@ -1262,6 +1317,7 @@
     <div class="theme-dots" role="group" aria-label="Colour theme" data-i18n-attr="aria-label:aria.theme">
       <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue" data-i18n-attr="aria-label:aria.blue"></button>
       <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red" data-i18n-attr="aria-label:aria.red"></button>
+      <button class="theme-dot t-paper" data-theme-btn="paper" type="button" aria-label="Paper — DRC flag accents"></button>
     </div>
     <div class="lang-switch" role="group" aria-label="Language" data-i18n-attr="aria-label:aria.lang">
       <button data-lang-btn="en" type="button">EN</button>
@@ -1315,32 +1371,56 @@
 <div class="statement-strip">
   <div class="strip-track">
     <div class="strip-group">
-      <a class="strip-text" href="/verbs/kolingana.html">kolingana</a>
-      <a class="strip-text" href="/verbs/kolia.html">kolia</a>
-      <a class="strip-text" href="/verbs/kosala.html">kosala</a>
-      <a class="strip-text" href="/verbs/koyeba.html">koyeba</a>
-      <a class="strip-text" href="/verbs/kozala.html">kozala</a>
-      <a class="strip-text" href="/verbs/koya.html">koya</a>
-      <a class="strip-text" href="/verbs/kokende.html">kokende</a>
-      <a class="strip-text" href="/verbs/kolata.html">kolata</a>
-      <a class="strip-text" href="/verbs/kosomba.html">kosomba</a>
-      <a class="strip-text" href="/verbs/koteka.html">koteka</a>
-      <a class="strip-text" href="/verbs/kotanga.html">kotanga</a>
-      <a class="strip-text" href="/verbs/koma.html">koma</a>
+      <a class="strip-text" href="/verbs/kolingana.html">kolingana <span class="strip-en">to love</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kolia.html">kolia <span class="strip-en">to eat</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kosala.html">kosala <span class="strip-en">to do</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koyeba.html">koyeba <span class="strip-en">to know</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kozala.html">kozala <span class="strip-en">to be</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koya.html">koya <span class="strip-en">to come</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kokende.html">kokende <span class="strip-en">to go</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kolata.html">kolata <span class="strip-en">to wear</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kosomba.html">kosomba <span class="strip-en">to buy</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koteka.html">koteka <span class="strip-en">to sell</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kotanga.html">kotanga <span class="strip-en">to read</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koma.html">koma <span class="strip-en">to write</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
     </div>
     <div class="strip-group" aria-hidden="true">
-      <a class="strip-text" href="/verbs/kolingana.html">kolingana</a>
-      <a class="strip-text" href="/verbs/kolia.html">kolia</a>
-      <a class="strip-text" href="/verbs/kosala.html">kosala</a>
-      <a class="strip-text" href="/verbs/koyeba.html">koyeba</a>
-      <a class="strip-text" href="/verbs/kozala.html">kozala</a>
-      <a class="strip-text" href="/verbs/koya.html">koya</a>
-      <a class="strip-text" href="/verbs/kokende.html">kokende</a>
-      <a class="strip-text" href="/verbs/kolata.html">kolata</a>
-      <a class="strip-text" href="/verbs/kosomba.html">kosomba</a>
-      <a class="strip-text" href="/verbs/koteka.html">koteka</a>
-      <a class="strip-text" href="/verbs/kotanga.html">kotanga</a>
-      <a class="strip-text" href="/verbs/koma.html">koma</a>
+      <a class="strip-text" href="/verbs/kolingana.html">kolingana <span class="strip-en">to love</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kolia.html">kolia <span class="strip-en">to eat</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kosala.html">kosala <span class="strip-en">to do</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koyeba.html">koyeba <span class="strip-en">to know</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kozala.html">kozala <span class="strip-en">to be</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koya.html">koya <span class="strip-en">to come</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kokende.html">kokende <span class="strip-en">to go</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kolata.html">kolata <span class="strip-en">to wear</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kosomba.html">kosomba <span class="strip-en">to buy</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koteka.html">koteka <span class="strip-en">to sell</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/kotanga.html">kotanga <span class="strip-en">to read</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
+      <a class="strip-text" href="/verbs/koma.html">koma <span class="strip-en">to write</span></a>
+      <span class="strip-sep" aria-hidden="true"></span>
     </div>
   </div>
 </div>
@@ -1580,7 +1660,7 @@
     <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
     <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
   </div>
-  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.66</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.69</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
 </footer>
 
 <!-- Ambient sticky footer: a warm Lingala welcome + the Likembe ambient piece. -->
