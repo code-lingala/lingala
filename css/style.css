@@ -5,7 +5,7 @@
 :root {
   --display: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --serif: 'Fraunces', Georgia, serif;
-  --body: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* theme: blue (default) — same tokens/values as the homepage + site.css */
   --page: #08182E;
   --panel: #0F2238;
@@ -18,7 +18,7 @@
 html[data-theme='red']    { --page:#1C0A0A; --panel:#2A1413; --ink:#FAF0EE; --ink-soft:rgba(250,236,232,0.80); --line:rgba(255,255,255,0.10); --accent:#C8202A; --drc-gold:#C8202A; }
 /* Paper — editorial black-and-white: cream field, near-black ink, with the
    three DRC flag colours (blue / yellow / red) as spot accents. */
-html[data-theme='paper']  { --page:#FAF7F0; --panel:#ECE5D2; --ink:#0E0E12; --ink-soft:rgba(14,14,18,0.72); --line:rgba(14,14,18,0.10); --accent:#1455A4; --drc-gold:#E0AF1E; --accent-warm:#E0AF1E; --accent-red:#C8202A; }
+html[data-theme='paper']  { --page:#FFFFFF; --panel:#F4F4F4; --ink:#000000; --ink-soft:rgba(0,0,0,0.72); --line:rgba(0,0,0,0.10); --accent:#1455A4; --drc-gold:#E0AF1E; --accent-warm:#E0AF1E; --accent-red:#C8202A; }
 
 * { box-sizing: border-box; }
 
