@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="blue">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4C44NPN87W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4C44NPN87W');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lingala — Keep the language alive for Congolese everywhere</title>
@@ -594,7 +602,10 @@
     color: rgba(255,255,255,0.9);
     white-space: nowrap;
     flex-shrink: 0;
+    text-decoration: none;
+    transition: color 0.2s;
   }
+  a.strip-text:hover { color: var(--gold); }
 
   .strip-dot {
     width: 5px;
@@ -1569,7 +1580,7 @@
     <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
     <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
   </div>
-  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.64</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.66</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
 </footer>
 
 <!-- Ambient sticky footer: a warm Lingala welcome + the Likembe ambient piece. -->
@@ -1595,9 +1606,8 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
 
-  // Double the statement strip so the row reads as continuous.
-  const strip = document.querySelector('.statement-strip');
-  if (strip) strip.innerHTML += strip.innerHTML;
+  // The statement strip already has two .strip-group children in the
+  // markup for the seamless marquee loop; no runtime doubling needed.
 
   // Background equalizer bars for the hero — they share the .vbar class, so the
   // ambient player animates them in sync; faint, behind the text.
