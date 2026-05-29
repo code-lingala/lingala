@@ -111,7 +111,10 @@ const t = (k) => (T[state.settings?.lang] || T.en)[k] || k;
 // English. `direction` is "from-to"; the non-Lingala side is the foreign gloss
 // shown on the card. Interface language (chrome/note) is a separate setting.
 const DIR_NAMES = { ln: 'Lingala', fr: 'Français', en: 'English' };
-const DEFAULT_DIR = { en: 'en-ln', fr: 'fr-ln', ln: 'ln-fr' };
+// Lingala is the source of truth — users want to read it and learn the
+// foreign meaning, not the other way. Default to ln→foreign for every
+// interface language. The flip button still lets them reverse to practice.
+const DEFAULT_DIR = { en: 'ln-en', fr: 'ln-fr', ln: 'ln-fr' };
 
 const foreignOf = (direction) => {
   const [from, to] = direction.split('-');
