@@ -229,7 +229,6 @@ export function renderCard(phrase, opts = {}) {
   ctx.fillStyle = pal.muted;
   ctx.font = `400 34px ${BODY}`;
   // Pick the cultural note in the active interface language with EN fallback.
-  const lang = opts.lang;
   const noteText = (lang === 'fr' && phrase.noteFr) ? phrase.noteFr
                  : (lang === 'ln' && phrase.noteLn) ? phrase.noteLn
                  : phrase.note;
