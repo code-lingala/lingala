@@ -179,12 +179,13 @@ export function renderCard(phrase, opts = {}) {
   diamondStrip(ctx, cx - 110, y, 220, pal.accent, 7);
   y += format === 'story' ? 90 : 70;
 
-  // Lingala phrase — the hero.
+  // Lingala phrase — the hero. Cap at 2 lines so multi-word phrases don't
+  // stack one word per line and shove the cultural note off the canvas.
   const phraseFit = fitText(ctx, phrase.lingala, {
     maxWidth: W - M * 2,
-    maxLines: 3,
-    start: 150,
-    min: 64,
+    maxLines: 2,
+    start: 130,
+    min: 56,
     weight: '900',
     family: DISPLAY,
   });
