@@ -60,10 +60,12 @@ body {
 }
 .brand {
   font-family: var(--display);
-  font-weight: 900;
-  letter-spacing: 0.22em;
-  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  font-size: 1.1rem;
+  text-transform: uppercase;
   color: var(--ink);
+  text-decoration: none;
 }
 .streak-badge {
   font-size: 14px;

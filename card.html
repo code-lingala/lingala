@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/site.css">
 <script>try{var _t=localStorage.getItem('lingala.theme');if(_t==='green'||_t==='yellow'||!_t)_t='blue';document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
 <meta property="og:title" content="Lingala — A phrase a day">
 <meta property="og:description" content="A beautiful Lingala culture card every day, made to download and share. Free, no login, offline-ready.">
@@ -43,24 +44,31 @@
 <!-- The "Suggest a phrase" form opens the visitor's email app (mailto), so no
      server/host form handling is needed. See suggestForm() in js/app.js. -->
 
-<header class="topbar">
-  <a class="brand" href="/" style="text-decoration:none">LINGALA</a>
-  <div class="streak-badge" id="streakBadge" aria-live="polite"></div>
-  <div class="topbar-lang" role="group" aria-label="Language">
-    <button data-lang-btn="en" type="button">EN</button>
-    <span aria-hidden="true">/</span>
-    <button data-lang-btn="fr" type="button">FR</button>
-    <span aria-hidden="true">/</span>
-    <button data-lang-btn="ln" type="button">LN</button>
+<nav class="site-nav">
+  <a class="site-logo" href="/">Lingala</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right" id="navRight">
+    <div class="nav-links">
+      <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a>
+      <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a>
+      <a href="/name.html" data-i18n="nav.name">Find your name</a>
+      <a href="/count.html" data-i18n="nav.count">Count</a>
+      <a href="/about.html" data-i18n="nav.about">About</a>
+    </div>
+    <div class="theme-dots" role="group" aria-label="Colour theme">
+      <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue"></button>
+      <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red"></button>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang-btn="en" type="button">EN</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="fr" type="button">FR</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="ln" type="button">LN</button>
+    </div>
+    <div class="streak-badge" id="streakBadge" aria-live="polite"></div>
   </div>
-</header>
-<style>
-  .topbar { display: flex; align-items: center; gap: 14px; }
-  .topbar .topbar-lang { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-family: var(--body, system-ui, sans-serif); font-size: 0.78rem; letter-spacing: 0.06em; }
-  .topbar .topbar-lang button { background: transparent; border: 0; color: inherit; padding: 4px 8px; cursor: pointer; font: inherit; opacity: 0.55; transition: opacity 0.15s; }
-  .topbar .topbar-lang button:hover { opacity: 1; }
-  .topbar .topbar-lang span { opacity: 0.4; }
-</style>
+</nav>
 
 <nav id="nav" class="nav" aria-label="screens"></nav>
 
@@ -77,7 +85,7 @@
     <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
     <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
   </div>
-  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.55</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.56</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
 </footer>
 
 <!-- Ambient sticky footer: a warm Lingala welcome + the Likembe ambient piece. -->

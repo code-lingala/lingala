@@ -72,6 +72,27 @@ const T = {
     slideHint: 'Glissez pour découvrir d’autres mots',
     emptyArchive: 'Vos archives se remplissent au fil des jours. Revenez demain pour une nouvelle carte.',
   },
+  ln: {
+    today: 'Lelo', archive: 'Bobombi', settings: 'Bibongiseli',
+    download: 'Kokitisa karte', copy: 'Kopaka kopia liloba', caption: 'Kopia maloba ya likolo',
+    story: 'Format story', whatsapp: 'Mpo na WhatsApp', readMore: 'Tanga mosusu',
+    readLess: 'Bomba', yesterday: 'Karte ya lobi', sayIt: 'Ndenge ya kolobela yango',
+    spotlight: 'Liloba ya poso', share: 'Kabola', copied: 'Esili kopiama!',
+    saved: 'Esili kobombama!', streakOne: 'mikolo na molongo', streakDoneToday: 'okaboli lelo',
+    suggestTitle: 'Oyebi liloba oyo ezangi?',
+    suggestBody: 'Kabola liloba, masese to maloba ya libota na yo. Totalaka maloba nyonso na motema.',
+    suggestPhrase: 'Liloba (na Lingala)', suggestMeaning: 'Ndimbola na yango',
+    suggestName: 'Nkombo na yo (eboteli te)', suggestContext: 'Bonkonde na ya bonkoko (eboteli te)',
+    suggestSend: 'Tinda', suggestThanks: 'Email na yo esili kobongama — fina tinda. Matondi!',
+    suggestOffline: 'Ozali na internet te. Meka lisusu ntango okozala connecté.',
+    langLabel: 'Monoko ya interface', themeLabel: 'Langi ya karte', formatLabel: 'Téléchargement ya solo',
+    notifyLabel: 'Bondimisi ya mokolo', wipe: 'Longola makambo nyonso na esaleli oyo',
+    sq: 'Karre', st: 'Story', green: 'Vert', blue: 'Bleu', yellow: 'Saune', red: 'Motane',
+    pronGuide: 'BANTOTE eyebisi syllabe oyo eyekoli. Tiret ekaboli syllabes; loba yango na bondende mpe pesa vowels ya Lingala bonzenga — ezalaka peto mpe etondi.',
+    flip: 'Bongola direction',
+    slideHint: 'Banda kotambolisa mpo na komona maloba mosusu',
+    emptyArchive: 'Bobombi na yo etondaka mokolo na mokolo. Zonga lobi mpo na karte ya sika.',
+  },
 };
 
 const HASHTAGS = '#Lingala #Congo #RDC #CongoleseEverywhere #Kinshasa';
@@ -392,6 +413,7 @@ function screenSettings() {
   } }, [
     el('option', { value: 'en', text: 'English', ...(state.settings.lang === 'en' ? { selected: '' } : {}) }),
     el('option', { value: 'fr', text: 'Français', ...(state.settings.lang === 'fr' ? { selected: '' } : {}) }),
+    el('option', { value: 'ln', text: 'Lingala', ...(state.settings.lang === 'ln' ? { selected: '' } : {}) }),
   ]);
   wrap.appendChild(group('langLabel', langSel));
 
@@ -527,14 +549,11 @@ async function init() {
   else localStorage.setItem('lingala.theme', state.settings.theme);
 
   // Sync with the site-wide language picker (?lang= URL param or topbar
-  // EN/FR/LN buttons via i18n-site.js). The card app only authors chrome
-  // for EN and FR, so clamp LN → EN for app strings; meanwhile the page's
-  // data-i18n elements (footer) still translate to LN correctly.
+  // EN/FR/LN buttons via i18n-site.js).
   if (window.LingalaI18n && window.LingalaI18n.detect) {
     const siteLang = window.LingalaI18n.detect();
-    const appLang = siteLang === 'fr' ? 'fr' : 'en';
-    if (appLang !== state.settings.lang) {
-      state.settings = await saveSettings({ lang: appLang });
+    if (siteLang !== state.settings.lang && (siteLang === 'en' || siteLang === 'fr' || siteLang === 'ln')) {
+      state.settings = await saveSettings({ lang: siteLang });
     }
   }
 
@@ -547,10 +566,10 @@ async function init() {
   // topbar EN/FR/LN switcher.
   window.addEventListener('lingala:lang', async (e) => {
     const lang = (e && e.detail) || (window.LingalaI18n && window.LingalaI18n.detect && window.LingalaI18n.detect()) || 'en';
-    const appLang = lang === 'fr' ? 'fr' : 'en';
-    if (appLang === state.settings.lang) return;
-    state.settings = await saveSettings({ lang: appLang });
-    state.direction = localStorage.getItem('lingala.direction') || DEFAULT_DIR[appLang] || 'fr-ln';
+    if (lang === state.settings.lang) return;
+    if (lang !== 'en' && lang !== 'fr' && lang !== 'ln') return;
+    state.settings = await saveSettings({ lang });
+    state.direction = localStorage.getItem('lingala.direction') || DEFAULT_DIR[lang] || 'fr-ln';
     render();
   });
 
