@@ -4,9 +4,9 @@
    but uses the same theme token names + values. */
 
 :root {
-  --display: 'Outfit', sans-serif;
-  --serif: 'Fraunces', serif;
-  --body: 'Outfit', sans-serif;
+  --display: 'Fraunces', Georgia, serif;
+  --serif: 'Fraunces', Georgia, serif;
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --terracotta: #C8202A;
   --terracotta-hover: #D62A34;
@@ -154,6 +154,9 @@ body::before {
 }
 @media (min-width: 720px) { .site-nav { padding: 20px 48px; } }
 .site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--display);
   font-weight: 800;
   font-size: 1.1rem;
@@ -161,6 +164,12 @@ body::before {
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
+}
+.site-logo-mark {
+  width: 28px; height: 28px;
+  display: block;
+  border-radius: 6px;
+  flex-shrink: 0;
 }
 .nav-right { display: flex; align-items: center; gap: 22px; }
 
@@ -284,6 +293,7 @@ body::before {
   border-top: 1px solid var(--line);
   text-align: center;
 }
+.site-footer .footer-logo { width: 52px; height: 52px; display: block; margin: 0 auto 18px; border-radius: 10px; opacity: 0.9; }
 .site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--muted); margin-bottom: 14px; }
 .site-footer .footer-links { font-size: 0.85rem; line-height: 1.9; }
 .site-footer .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }

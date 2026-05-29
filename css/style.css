@@ -529,6 +529,7 @@ main { flex: 1; }
 
 /* --- shared site footer (consistent across all pages) --- */
 .site-footer { border-top: 1px solid var(--line); padding: 40px 24px calc(40px + env(safe-area-inset-bottom)); text-align: center; }
+.site-footer .footer-logo { width: 52px; height: 52px; display: block; margin: 0 auto 18px; border-radius: 10px; opacity: 0.9; }
 .site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 14px; }
 .site-footer .footer-links { font-family: var(--body); font-size: 0.85rem; line-height: 1.9; }
 .site-footer .footer-links a { color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
@@ -579,7 +580,8 @@ html { scrollbar-color: #1455A4 rgba(244,200,30,0.25); scrollbar-width: thin; }
    internal padding and break the layout. */
 .site-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; gap: 20px; background: linear-gradient(to bottom, var(--base) 65%, transparent); }
 @media (min-width: 720px) { .site-nav { padding: 20px 48px; } }
-.site-logo { font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.site-logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.site-logo-mark { width: 28px; height: 28px; display: block; border-radius: 6px; flex-shrink: 0; }
 .nav-right { display: flex; align-items: center; gap: 22px; }
 .nav-toggle { position: relative; z-index: 110; display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; padding: 0 8px; background: transparent; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; transition: border-color .15s, background .15s; }
 .nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s, opacity .2s; }
