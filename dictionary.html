@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="blue">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dictionary — Lingala</title>
+<meta name="description" content="Browse the Lingala dictionary — every word with its English and French meaning, pronunciation, and the Congolese cultural note behind it. Free, works offline.">
+<meta name="theme-color" content="#0C1A10">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Lingala">
+<meta property="og:title" content="The Lingala dictionary">
+<meta property="og:description" content="Every word, with its story — meaning, pronunciation and the culture it carries.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lingala.artivicolab.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var _t=localStorage.getItem('lingala.theme');if(_t==='green'||_t==='yellow'||!_t)_t='blue';document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<style>
+  /* Mobile-first: tight padding, full-bleed feel; widen on larger viewports. */
+  .dict-page { max-width: 1400px; margin: 0 auto; padding: 20px 16px 140px; width: 100%; overflow-wrap: anywhere; word-wrap: break-word; }
+  .dict-page * { max-width: 100%; }
+  @media (min-width: 640px) { .dict-page { padding: 36px 24px 130px; } }
+  @media (min-width: 980px) { .dict-page { padding: 48px 32px 120px; } }
+  .dict-eyebrow { font-family: var(--body); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .dict-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+  .dict-title { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; font-size: clamp(1.7rem, 7vw, 2.8rem); line-height: 1.1; color: var(--ink); margin-bottom: 8px; }
+  .dict-title em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .dict-count { font-size: 0.85rem; color: var(--ink); margin-bottom: 8px; }
+  .dict-note { font-size: 0.82rem; line-height: 1.55; color: var(--ink); font-style: italic; margin: 0 0 20px; border-left: 2px solid var(--line); padding-left: 12px; }
+  .dict-note b { font-style: normal; color: var(--ink); }
+
+  /* Controls — stack on phone, single row on tablet+ */
+  .dict-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+  .d-search { position: relative; }
+  .d-search input { width: 100%; padding: 13px 14px 13px 42px; background: var(--surface-2, rgba(255,255,255,0.05)); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font-family: var(--body); font-size: 16px; outline: none; transition: border-color 0.2s, background 0.2s; }
+  .d-search input:focus { border-color: var(--accent); }
+  .d-search input::placeholder { color: var(--ink); opacity: 0.65; }
+  .d-search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink); pointer-events: none; }
+  /* On phone: filters get their own row (full-bleed scroll), sort cluster below. */
+  .d-row { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+  @media (min-width: 720px) { .d-row { flex-direction: row; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: space-between; } }
+  .d-filters-wrap { position: relative; min-width: 0; width: 100%; }
+  @media (min-width: 720px) { .d-filters-wrap { flex: 1; } }
+  .d-filters { display: flex; gap: 8px; overflow-x: auto; padding: 0 28px 4px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; min-width: 0; scroll-behavior: smooth; }
+  .d-filters::-webkit-scrollbar { display: none; }
+  /* Animated "more →" hint sitting on top of the right edge fade. */
+  .d-filters-hint {
+    position: absolute; right: 0; top: 0; bottom: 4px;
+    display: flex; align-items: center; justify-content: flex-end;
+    width: 40px; padding-right: 4px; pointer-events: none;
+    color: var(--accent);
+    background: linear-gradient(to right, transparent, var(--base) 60%);
+    opacity: 1; transition: opacity .2s ease;
+  }
+  .d-filters-wrap.at-end .d-filters-hint { opacity: 0; }
+  .d-filters-hint svg { animation: filterNudge 1.2s ease-in-out infinite; }
+  @keyframes filterNudge {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(4px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .d-filters-hint svg { animation: none; }
+  }
+  .d-chip { flex-shrink: 0; padding: 9px 16px; background: var(--surface-2, rgba(255,255,255,0.04)); border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.84rem; border-radius: 100px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .d-chip:hover:not(.active) { border-color: var(--accent); }
+  .d-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .d-chip-count { display: inline-block; margin-left: 6px; padding: 1px 7px; font-size: 0.72rem; font-weight: 600; background: rgba(255,255,255,0.08); border-radius: 100px; opacity: 0.85; }
+  .d-chip.active .d-chip-count { background: rgba(255,255,255,0.22); opacity: 1; }
+  .d-explicit { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: transparent; border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.78rem; border-radius: 100px; cursor: pointer; transition: all .2s; user-select: none; white-space: nowrap; }
+  .d-explicit:hover { border-color: var(--accent); }
+  .d-explicit.on { background: rgba(200,32,42,0.12); border-color: var(--accent); color: var(--accent); }
+  .d-explicit .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); transition: background .2s; }
+  .d-explicit.on .dot { background: var(--accent); }
+  /* Phone: sort cluster on its own row, label hidden to save space. */
+  .d-sort { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+  @media (min-width: 720px) { .d-sort { flex-shrink: 0; justify-content: flex-start; } }
+  .d-sort-label { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); display: none; }
+  @media (min-width: 720px) { .d-sort-label { display: inline; } }
+  .d-seg { display: flex; border: 1px solid var(--line); border-radius: 100px; overflow: hidden; }
+  .d-seg button { padding: 9px 16px; background: transparent; border: none; color: var(--ink); font-family: var(--body); font-size: 0.82rem; cursor: pointer; white-space: nowrap; }
+  .d-seg button.active { background: var(--accent); color: #fff; }
+
+  /* A–Z letter strip — scrolls horizontally on phone, wraps on wide screens. */
+  .d-letters { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+  @media (min-width: 980px) { .d-letters { flex-wrap: wrap; overflow-x: visible; } }
+  .d-letters::-webkit-scrollbar { display: none; }
+  .d-letter { flex-shrink: 0; min-width: 36px; height: 36px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--line); border-radius: 8px;
+    color: var(--ink); font-family: var(--body); font-size: 0.82rem; font-weight: 600;
+    text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
+  .d-letter:hover:not(.active):not(:disabled) { border-color: var(--accent); }
+  .d-letter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .d-letter:disabled { opacity: 0.3; cursor: not-allowed; }
+  .d-letter-count { display: inline-block; margin-left: 4px; padding: 0 5px; font-size: 0.66rem; font-weight: 500; background: rgba(255,255,255,0.08); border-radius: 100px; opacity: 0.7; line-height: 1.6; }
+  .d-letter.active .d-letter-count { background: rgba(255,255,255,0.22); opacity: 1; }
+
+  /* Grid — responsive, fills the screen; cards size to their own content. */
+  .dict-grid { display: grid; grid-template-columns: 1fr; gap: 14px; align-items: start; }
+  @media (min-width: 620px)  { .dict-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px)  { .dict-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1280px) { .dict-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .d-entry { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+  @media (min-width: 640px) { .d-entry { padding: 18px 18px; } }
+  .d-entry:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .d-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .d-main { min-width: 0; flex: 1; }
+  .d-word { font-family: var(--display); font-weight: 800; font-size: 1.35rem; color: var(--ink); line-height: 1.05; word-break: break-word; }
+  @media (min-width: 640px) { .d-word { font-size: 1.45rem; } }
+  .d-phon { font-family: var(--body); font-weight: 300; font-style: italic; font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .d-en { font-family: var(--serif); font-weight: 600; font-size: 0.98rem; color: var(--ink); margin-top: 8px; line-height: 1.35; }
+  .d-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+  .d-cat { font-family: var(--body); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--line); border-radius: 100px; padding: 4px 9px; white-space: nowrap; }
+  .d-chev { color: var(--ink); font-size: 1rem; }
+
+  /* —— Modal solid backgrounds (--surface is near-transparent; modal needs opaque) —— */
+  :root { --modal-bg: #0F2238; }
+  html[data-theme='red'] { --modal-bg: #2A1413; }
+
+  /* —— Modal —— Mobile-first: near-fullscreen sheet; centered card on tablet+. */
+  .d-modal-back { position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 500; display: flex; align-items: flex-end; justify-content: center; padding: 0; }
+  @media (min-width: 640px) { .d-modal-back { align-items: center; padding: 16px; } }
+  .d-modal-back.open { opacity: 1; pointer-events: auto; }
+  .d-modal { background: var(--modal-bg, #142318); border: 1px solid var(--line); border-radius: 20px 20px 0 0; max-width: 580px; width: 100%; max-height: 92vh; overflow-y: auto; padding: 22px 20px 24px; transform: translateY(20px); transition: transform .25s; box-shadow: 0 -16px 60px rgba(0,0,0,0.7); }
+  @media (min-width: 640px) { .d-modal { border-radius: 20px; padding: 32px 32px 28px; transform: translateY(14px) scale(.97); box-shadow: 0 32px 90px rgba(0,0,0,0.7); } }
+  .d-modal-back.open .d-modal { transform: translateY(0) scale(1); }
+  /* Top nav row: prev | counter | next | close */
+  .d-modal-nav-row { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+  .d-modal-nav { background: rgba(255,255,255,0.08); border: none; color: var(--ink); cursor: pointer; padding: 0; border-radius: 100px; transition: background .15s, opacity .15s; min-width: 40px; min-height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+  .d-modal-nav:hover:not(:disabled) { background: rgba(255,255,255,0.18); }
+  .d-modal-nav:disabled { opacity: 0.25; cursor: not-allowed; }
+  .d-modal-counter { flex: 1; text-align: center; font-family: var(--body); font-size: 0.78rem; color: var(--ink); opacity: 0.75; letter-spacing: 0.06em; }
+  .d-modal-close { background: rgba(255,255,255,0.08); border: none; color: var(--ink); font-size: 1.8rem; line-height: 1; cursor: pointer; padding: 4px 12px; border-radius: 100px; transition: background .15s; min-width: 40px; min-height: 40px; }
+  .d-modal-close:hover { background: rgba(255,255,255,0.15); }
+  .d-modal-head { position: relative; padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 16px; }
+  .d-modal-word-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 6px 0; }
+  .d-modal-word { font-family: var(--display, var(--body)); font-size: clamp(2rem, 9vw, 2.8rem); font-weight: 800; color: var(--ink); margin: 0; line-height: 1.05; word-break: break-word; flex: 1; min-width: 0; }
+  /* Shared speaker-button style — used by headword + example. */
+  .d-speak {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 100px;
+    background: transparent; border: 1px solid var(--line);
+    color: var(--ink); cursor: pointer; padding: 0;
+    transition: all 0.15s;
+  }
+  .d-speak:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,32,42,0.08); }
+  .d-speak:active { transform: scale(0.96); }
+  .d-speak-word { width: 44px; height: 44px; }
+  .d-speak-ex { width: 32px; height: 32px; margin-top: 8px; opacity: 0.75; }
+  .d-speak-ex:hover { opacity: 1; }
+  .d-speak-ex svg { width: 14px; height: 14px; }
+  .d-modal-phon { color: var(--muted); font-size: 1.02rem; font-family: var(--body); font-style: italic; margin: 0 0 8px 0; }
+  .d-modal-en { color: var(--ink); font-size: 1.25rem; font-weight: 500; margin: 0; line-height: 1.35; }
+  @media (min-width: 640px) { .d-modal-en { font-size: 1.45rem; } }
+  .d-modal-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .d-modal-meta .d-cat, .d-modal-meta .d-pos-pill { font-size: 0.82rem; padding: 5px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--ink); }
+
+  /* —— Search highlight —— */
+  .d-hl { background: transparent; color: #F4C81E; font-weight: 800; text-decoration: underline; text-decoration-color: #F4C81E; text-underline-offset: 2px; }
+
+  .d-detail { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease; }
+  .d-entry.open .d-detail { max-height: 720px; opacity: 1; margin-top: 15px; }
+  .d-fr { font-size: 1.05rem; color: var(--ink); margin-bottom: 14px; }
+  .d-fr b { color: var(--ink); font-weight: 600; }
+  .d-note { font-family: var(--serif); font-weight: 400; font-size: 1.12rem; line-height: 1.72; color: var(--ink); margin-bottom: 14px; white-space: pre-line; }
+  .d-long { font-size: 1.02rem; line-height: 1.72; color: var(--ink); margin-bottom: 16px; }
+  .d-actions { display: flex; gap: 8px; margin-top: 6px; }
+  .d-btn { padding: 12px 18px; background: transparent; border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.88rem; border-radius: 10px; cursor: pointer; transition: all 0.2s; min-height: 44px; }
+  .d-btn:hover { border-color: var(--accent); }
+  .d-btn.primary { background: var(--terracotta); border-color: var(--terracotta); color: #FAF7F0; }
+  .d-btn.primary:hover { background: var(--terracotta-hover); }
+
+  .d-empty { grid-column: 1 / -1; text-align: center; padding: 60px 24px; color: var(--ink); font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
+
+  .d-more { display: flex; flex-direction: column; justify-content: center; gap: 10px; margin-top: 26px; }
+  @media (min-width: 640px) { .d-more { flex-direction: row; gap: 12px; margin-top: 30px; } }
+  .d-more button { padding: 14px 28px; background: transparent; border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.92rem; border-radius: 10px; cursor: pointer; transition: all 0.2s; min-height: 48px; }
+  .d-more button:hover { border-color: var(--accent); }
+  .d-more button.primary { background: var(--terracotta); border-color: var(--terracotta); color: #FAF7F0; }
+  .d-more button.primary:hover { background: var(--terracotta-hover); }
+
+  /* Word-bank (basic) tier */
+  .d-cat.muted { color: var(--ink); }
+  .d-pos { font-style: italic; color: var(--ink); font-size: 0.8rem; margin-bottom: 10px; }
+  .d-srcnote { font-size: 0.82rem; line-height: 1.55; color: var(--ink); margin: 4px 0 20px; }
+  .d-ex { background: var(--surface-2, rgba(255,255,255,0.06)); border-left: 3px solid var(--cerulean); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 12px; }
+  .d-ex-ln { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.28rem; color: var(--ink); line-height: 1.45; }
+  .d-ex-en { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); margin-top: 8px; }
+  .d-ex-fr { font-family: var(--serif); font-size: 1rem; font-weight: 400; color: var(--ink); margin-top: 4px; opacity: 0.85; font-style: italic; }
+</style>
+<!-- SEO:start -->
+<link rel="canonical" href="https://lingala.artivicolab.com/dictionary.html">
+<link rel="alternate" hreflang="en" href="https://lingala.artivicolab.com/dictionary.html">
+<link rel="alternate" hreflang="fr" href="https://lingala.artivicolab.com/dictionary.html?lang=fr">
+<link rel="alternate" hreflang="ln" href="https://lingala.artivicolab.com/dictionary.html?lang=ln">
+<link rel="alternate" hreflang="x-default" href="https://lingala.artivicolab.com/dictionary.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://lingala.artivicolab.com/#site","url":"https://lingala.artivicolab.com","name":"Losako · Lingala","inLanguage":["en","fr","ln"],"publisher":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"Organization","@id":"https://lingala.artivicolab.com/#org","name":"Artivicolab","url":"https://artivicolab.com","founder":{"@type":"Person","name":"Gradi Kayamba"}},{"@type":"Person","@id":"https://lingala.artivicolab.com/#author","name":"Gradi Kayamba","affiliation":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"WebPage","@id":"https://lingala.artivicolab.com/dictionary.html#page","url":"https://lingala.artivicolab.com/dictionary.html","name":"Dictionary — Lingala","description":"The Lingala dictionary — every word with its meaning, pronunciation, and cultural story. 1,200+ verified entries.","inLanguage":"en","isPartOf":{"@id":"https://lingala.artivicolab.com/#site"},"author":{"@id":"https://lingala.artivicolab.com/#author"}},{"@type":"WebApplication","@id":"https://lingala.artivicolab.com/dictionary.html#app","url":"https://lingala.artivicolab.com/dictionary.html","name":"Lingala — Dictionary","description":"The Lingala dictionary — every word with its meaning, pronunciation, and cultural story. 1,200+ verified entries.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","fr","ln"],"creator":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"LearningResource","@id":"https://lingala.artivicolab.com/dictionary.html#learn","url":"https://lingala.artivicolab.com/dictionary.html","name":"Learn Lingala — Dictionary","description":"The Lingala dictionary — every word with its meaning, pronunciation, and cultural story. 1,200+ verified entries.","inLanguage":"ln","teaches":"Lingala language (Bantu, Democratic Republic of Congo)","learningResourceType":"Interactive resource","educationalLevel":"Beginner to intermediate","isAccessibleForFree":true,"audience":{"@type":"EducationalAudience","educationalRole":"student"}}]}</script>
+<!-- SEO:end -->
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-logo" href="/">Lingala</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html">Dictionary</a><a href="/name.html">Find your name</a><a href="/verbs.html">Verbs</a><a href="/count.html">Count</a><a href="/about.html">About</a></div>
+    <div class="theme-dots" role="group" aria-label="Colour theme" data-i18n-attr="aria-label:aria.theme">
+      <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue" data-i18n-attr="aria-label:aria.blue"></button>
+      <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red" data-i18n-attr="aria-label:aria.red"></button>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language" data-i18n-attr="aria-label:aria.lang">
+      <button data-lang-btn="en" type="button">EN</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="fr" type="button">FR</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="ln" type="button">LN</button>
+    </div>
+    <a class="site-cta" href="/card.html" data-i18n="nav.cta">Open today's card</a>
+  </div>
+</nav>
+
+<main class="dict-page">
+  <p class="dict-eyebrow">The dictionary</p>
+  <h1 class="dict-title">Every word, <em>with its story.</em></h1>
+  <p class="dict-count" id="dictCount">—</p>
+  <p class="dict-note">Lingala has no native <b>c, j, q or x</b> — those sounds are written with k, s and sh. So the list skips straight from <b>b</b> to <b>d</b> (no C section), and on past <b>i</b> to <b>k</b>.</p>
+
+  <div class="dict-controls">
+    <div class="d-search">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+      <input id="searchInput" type="text" placeholder="Search a word, meaning, or category…" autocomplete="off">
+    </div>
+    <div class="d-row">
+      <div class="d-filters-wrap" id="filterWrap">
+        <div class="d-filters" id="filterRow"></div>
+        <div class="d-filters-hint" id="filterHint" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+        </div>
+      </div>
+      <div class="d-sort">
+        <button id="explicitToggle" class="d-explicit" type="button" aria-pressed="false" title="Show vulgar / explicit entries">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="explicitLabel">Show 🔞</span>
+        </button>
+        <span class="d-sort-label">Sort</span>
+        <div class="d-seg" id="sortSeg">
+          <button data-sort="alpha" class="active" type="button">A–Z</button>
+          <button data-sort="length" type="button">By length</button>
+        </div>
+      </div>
+    </div>
+    <div class="d-letters" id="letterRow" role="tablist" aria-label="Jump to letter"></div>
+  </div>
+
+  <div class="dict-grid" id="dictList"></div>
+  <div class="d-more" id="moreRow"></div>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-tagline" data-i18n="footer.tagline">Keep Lingala alive — for Congolese everywhere · 🇨🇩</p>
+  <div class="footer-links">
+    <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
+    <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span>
+    <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span>
+    <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
+    <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
+    <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
+  </div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.53</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+</footer>
+
+<!-- Ambient sticky footer: a warm Lingala welcome + the sebene ambient piece. -->
+<div class="ambient" aria-label="Sebene rumba music">
+  <div class="ambient-prog"><div id="ambientProg"></div></div>
+  <span class="ambient-phrase">Boyei malamu</span>
+  <span class="ambient-viz" id="ambientViz" aria-hidden="true"></span>
+  <span class="ambient-spacer"></span>
+  <button class="ambient-btn" id="ambientBtn" type="button" aria-label="Play music"><span id="ambientGlyph">►</span></button>
+</div>
+
+<div class="toast" id="toast" style="position:fixed;bottom:86px;left:50%;transform:translateX(-50%) translateY(20px);background:#fff;color:#111;font-weight:600;font-size:14px;padding:12px 22px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:300;"></div>
+
+<script src="/js/theme-site.js"></script>
+<script src="/js/site-nav.js" defer></script>
+<script src="/js/i18n-site.js"></script>
+<script src="/js/speech.js"></script>
+<script src="/js/ambient.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script type="module">
+  import { PHRASES, CATEGORIES } from '/js/data/phrases.js';
+
+  const $ = (id) => document.getElementById(id);
+  const uiLang = () => document.documentElement.lang || 'en';
+  const BATCH = 24;
+
+  // Tiny DOM helper (project convention: build nodes, don't inject HTML).
+  function el(tag, props = {}, kids = []) {
+    const n = document.createElement(tag);
+    for (const k in props) {
+      if (k === 'class') n.className = props[k];
+      else if (k === 'text') n.textContent = props[k];
+      else if (k.slice(0, 2) === 'on' && typeof props[k] === 'function') n.addEventListener(k.slice(2), props[k]);
+      else n.setAttribute(k, props[k]);
+    }
+    (Array.isArray(kids) ? kids : [kids]).forEach((c) => { if (c != null) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return n;
+  }
+
+  // Speaker-button factory — uses the shared LingalaSpeech utility. Shared
+  // by openModal (for headword) and buildDetail (for example block).
+  function speakBtn(text, klass) {
+    const b = el('button', {
+      class: 'd-speak ' + (klass || ''),
+      type: 'button',
+      'aria-label': 'Hear: ' + text,
+      title: 'Hear: ' + text,
+      onclick: (e) => { e.stopPropagation(); if (window.LingalaSpeech) LingalaSpeech.speak(text); },
+    });
+    b.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+    return b;
+  }
+
+  let toastTimer;
+  function toast(msg) {
+    const t = $('toast');
+    t.textContent = msg; t.style.opacity = '1'; t.style.transform = 'translateX(-50%) translateY(0)';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, 2200);
+  }
+
+  const norm = (s) => String(s || '').trim().toLowerCase();
+
+  // Highlight occurrences of `term` inside `text` with .d-hl marks.
+  function highlight(text, term) {
+    if (!term || !text) return [document.createTextNode(text || '')];
+    const esc = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(esc, 'gi');
+    const nodes = []; let last = 0; let m;
+    while ((m = re.exec(text)) !== null) {
+      if (m.index > last) nodes.push(document.createTextNode(text.slice(last, m.index)));
+      const mark = document.createElement('mark');
+      mark.className = 'd-hl';
+      mark.textContent = m[0];
+      nodes.push(mark);
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) nodes.push(document.createTextNode(text.slice(last)));
+    return nodes;
+  }
+
+  // Relevance rank: exact > lingala-prefix > english-prefix > lingala-contains > other.
+  function matchScore(w, t) {
+    if (!t) return 99;
+    const ln = w.lingala.toLowerCase();
+    const en = (w.en || '').toLowerCase();
+    if (ln === t) return 0;
+    if (ln.startsWith(t)) return 1;
+    if (en.startsWith(t)) return 2;
+    if (ln.includes(t)) return 3;
+    return 4;
+  }
+
+  // Category labels: curated CATEGORIES keys + the word-bank-only keys below.
+  const WB_CAT = { 'General': 'general', 'Food': 'food', 'Travel': 'travel', 'Family': 'family', 'Time': 'time', 'Celebration': 'celebration', 'Daily Life': 'daily', 'Nature': 'nature', 'Body': 'body', 'Greetings': 'greetings', 'Comfort': 'comfort', 'Essentials': 'essentials' };
+  const EXTRA = { general: { en: 'General', fr: 'Général' }, travel: { en: 'Travel', fr: 'Voyage' }, daily: { en: 'Daily life', fr: 'Vie quotidienne' }, nature: { en: 'Nature', fr: 'Nature' }, body: { en: 'Body', fr: 'Corps' }, comfort: { en: 'Comfort', fr: 'Réconfort' }, essentials: { en: 'Essentials', fr: 'Essentiels' }, vulgar: { en: 'Vulgar', fr: 'Vulgaire', ln: 'Masókó' }, slang: { en: 'Slang', fr: 'Argot', ln: 'Lingomba' }, Animal: { en: 'Animal', fr: 'Animal', ln: 'Nyama' }, Number: { en: 'Number', fr: 'Nombre', ln: 'Motángó' } };
+  const catLabel = (key) => {
+    if (key === 'Animal') { const c = EXTRA.Animal; return c[uiLang()] || c.en; }
+    if (key === 'Number') { const c = EXTRA.Number; return c[uiLang()] || c.en; }
+    const c = CATEGORIES[key] || EXTRA[key];
+    return c ? (c[uiLang()] || c.en) : key;
+  };
+
+  // Persist filters across sessions.
+  const LS_KEY = 'lingala.showTaboo';
+  const LS_FILTER = 'lingala.activeFilter';
+  const LS_SORT = 'lingala.sortMode';
+  const LS_LETTER = 'lingala.activeLetter';
+  const lsGet = (k, fallback) => { try { return localStorage.getItem(k) ?? fallback; } catch { return fallback; } };
+  const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+
+  let WORDS = [];
+  let currentList = [];   // last filtered+sorted result — used by modal nav
+  let activeFilter = lsGet(LS_FILTER, 'All');
+  let activeLetter = lsGet(LS_LETTER, 'All');
+  let searchTerm = '';
+  let sortMode = lsGet(LS_SORT, 'alpha');
+  let shown = BATCH;
+
+  let showTaboo = lsGet(LS_KEY, '0') === '1';
+
+  // —— Explicit toggle ——
+  function syncExplicitLabel() {
+    const lang = uiLang();
+    const onLabel = { en: 'Hide 🔞', fr: 'Masquer 🔞', ln: 'Bomba 🔞' };
+    const offLabel = { en: 'Show 🔞', fr: 'Afficher 🔞', ln: 'Lakisa 🔞' };
+    const btn = $('explicitToggle');
+    if (!btn) return;
+    btn.classList.toggle('on', showTaboo);
+    btn.setAttribute('aria-pressed', showTaboo ? 'true' : 'false');
+    $('explicitLabel').textContent = (showTaboo ? onLabel[lang] : offLabel[lang]) || (showTaboo ? onLabel.en : offLabel.en);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = $('explicitToggle');
+    if (!btn) return;
+    syncExplicitLabel();
+    btn.addEventListener('click', () => {
+      showTaboo = !showTaboo;
+      lsSet(LS_KEY, showTaboo ? '1' : '0');
+      if (!showTaboo && (activeFilter === 'vulgar' || activeFilter === 'slang')) { activeFilter = 'All'; lsSet(LS_FILTER, 'All'); }
+      shown = BATCH;
+      syncExplicitLabel();
+      buildChips();
+      buildLetters();
+      render();
+    });
+  });
+
+  // —— Animal filter ——
+  // Cross-cutting filter (orthogonal to category): the chip "Animal" picks any
+  // entry whose lingala (or english) names a living creature, regardless of
+  // whether the bank classified it under Nature, Food, or General.
+  const ANIMAL_LN = new Set([
+    // Core animals (original set, now tone-stripped to match bank headwords)
+    'mbwa','taba','ngombe','nkosi','nkoi','mboloko','kiboko','mbulu','nguma',
+    'nkoba','ngulu','mbisi','nsoso','nsoso mwasi','niau','pusi','nkoso',
+    'ndeke','ndeke','mwa mpata','mpunda','nkondoko','mongongo','nzinzi',
+    'nkungi','mombemba','tomson','mpiodi','ngolu','monzombo','kanga',
+    // Batch 14 — insects, crawlers, birds, mammals (o/e are IPA base chars, kept after tone strip)
+    'mpese','lipekapeka','liyoyo','kanga-nkando','nsingo','mafundo',
+    'monguna-ya-nzinzi','nioka','makaku','ngando','nzamba','nzoku','pakasa',
+    'ligbanga','makanga','ndongondongo','nzinzi-ya-lolemo','kimbwa',
+    'esele','elulu','mpongo','ganga','elondo','limfumbe','kigwa','nsili',
+    'ndamba','liyebe',
+    // Batch 15 — insects, birds, aquatic
+    'linyongo','mpilo','mwasi-ya-nzoi','mofoti','mongongoliko',
+    'ngando-ya-mai','ngulu-ya-zamba','nkoi-ya-mai','mbwa-ya-zamba',
+    'mboloko-mwasi','ebenge','nsoso-ya-zamba','nkoo','mpongo-moke',
+    'mbila-ndeke','nsinga-mayi','mbisi-mumpende','kanga-ya-mai',
+    'mumpulu','liyoyo-ya-elanga','ndongondongo-moindo','nzinzi-mabe',
+    'nzoloko','esele-ya-ndako','lokonga','ganga-pembe','monzombo-moke',
+    'liyebe-ya-nzete',
+  ].map(s => s.toLowerCase()));
+  function isAnimal(w) {
+    const ln = (w.lingala || '').toLowerCase();
+    return ANIMAL_LN.has(ln);
+  }
+
+  // —— Numbers filter ——
+  // Cross-cutting filter like Animal: any cardinal number, in singular form or
+  // in compound (ntuku misato = thirty, nkama mitano = five hundred, zomi na
+  // moko = eleven, etc.). Closed set, no native ambiguity.
+  const NUMBER_LN = new Set([
+    'eloko te',          // zero (idiomatic)
+    'moko',              // one
+    'mibale','mbale',    // two
+    'misato','satu',     // three
+    'minei','nei',       // four
+    'mitano','tano',     // five
+    'motoba','toba',     // six
+    'nsambo','sambo',    // seven
+    'mwambe','nane',     // eight
+    'libwa',             // nine
+    'zomi',              // ten
+    // teens (zomi na X)
+    'zomi na moko','zomi na mibale','zomi na misato','zomi na minei',
+    'zomi na mitano','zomi na motoba','zomi na nsambo','zomi na mwambe','zomi na libwa',
+    // tens
+    'ntuku mibale','ntuku misato','ntuku minei','ntuku mitano',
+    'ntuku motoba','ntuku nsambo','ntuku mwambe','ntuku libwa',
+    // hundreds + thousands
+    'nkama','nkama mibale','nkama misato','nkama minei','nkama mitano',
+    'nkama motoba','nkama nsambo','nkama mwambe','nkama libwa',
+    'nkoto','milio','milio moko',
+  ].map(s => s.toLowerCase()));
+  function isNumber(w) {
+    const ln = (w.lingala || '').toLowerCase();
+    return NUMBER_LN.has(ln);
+  }
+
+  // —— Sort toggle ——
+  $('sortSeg').querySelectorAll('button').forEach((b) => {
+    b.classList.toggle('active', b.dataset.sort === sortMode);
+    b.addEventListener('click', () => {
+      sortMode = b.dataset.sort; lsSet(LS_SORT, sortMode); shown = BATCH;
+      $('sortSeg').querySelectorAll('button').forEach((x) => x.classList.remove('active'));
+      b.classList.add('active');
+      render();
+    });
+  });
+
+  $('searchInput').addEventListener('input', (e) => { searchTerm = e.target.value; shown = BATCH; render(); });
+
+  function copyWord(w) {
+    navigator.clipboard.writeText(`${w.lingala} — ${w.en}${w.phonetic ? ' (' + w.phonetic + ')' : ''}`).then(() => toast('Copied ✓')).catch(() => {});
+  }
+  function shareWord(w) {
+    const text = `${w.lingala} — ${w.en}\nLearn Lingala, one word a day 🇨🇩`;
+    if (navigator.share) navigator.share({ text }).catch(() => {});
+    else navigator.clipboard.writeText(text).then(() => toast('Copied to share ✓')).catch(() => {});
+  }
+
+  // Build the inner content shared between modal and (formerly) inline detail.
+  function buildDetail(w) {
+    const lang = uiLang();
+    const kids = [];
+    if (w.tier === 'phrase') {
+      if (w.fr || w.en) kids.push(el('p', { class: 'd-fr' }, [el('b', { text: lang === 'fr' ? 'Anglais : ' : 'French: ' }), (lang === 'fr' ? w.en : w.fr)]));
+      if (w.note) kids.push(el('p', { class: 'd-note', text: w.note }));
+      if (w.long) kids.push(el('p', { class: 'd-long', text: w.long }));
+    } else {
+      if (w.fr) kids.push(el('p', { class: 'd-fr' }, [el('b', { text: lang === 'fr' ? 'Anglais : ' : 'French: ' }), (lang === 'fr' ? w.en : w.fr)]));
+      if (w.example && (w.example.lingala || w.example.ln)) {
+        const exLn = w.example.lingala || w.example.ln;
+        const exKids = [
+          el('p', { class: 'd-ex-ln', text: exLn }),
+          el('p', { class: 'd-ex-en', text: w.example.english || w.example.en || '' }),
+        ];
+        const exFr = w.example.french || w.example.fr;
+        if (exFr) exKids.push(el('p', { class: 'd-ex-fr', text: exFr }));
+        exKids.push(speakBtn(exLn, 'd-speak-ex'));
+        kids.push(el('div', { class: 'd-ex' }, exKids));
+      }
+      if (w.note) kids.push(el('p', { class: 'd-note', text: w.note }));
+    }
+    kids.push(el('div', { class: 'd-actions' }, [
+      el('button', { class: 'd-btn primary', type: 'button', text: 'Copy', onclick: (e) => { e.stopPropagation(); copyWord(w); } }),
+      el('button', { class: 'd-btn', type: 'button', text: 'Share', onclick: (e) => { e.stopPropagation(); shareWord(w); } }),
+    ]));
+    return kids;
+  }
+
+  // —— Modal ——
+  function ensureModal() {
+    let back = document.getElementById('dictModal');
+    if (back) return back;
+    back = el('div', { class: 'd-modal-back', id: 'dictModal', role: 'dialog', 'aria-modal': 'true', 'aria-hidden': 'true' });
+    back.addEventListener('click', (e) => { if (e.target === back) closeModal(); });
+    document.body.appendChild(back);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    return back;
+  }
+  function closeModal() {
+    const back = document.getElementById('dictModal');
+    if (!back) return;
+    back.classList.remove('open');
+    back.setAttribute('aria-hidden', 'true');
+    setTimeout(() => { back.innerHTML = ''; }, 260);
+  }
+  // Find the index of a word in the currently-visible list (respects all active
+  // filters). If the word isn't in currentList (e.g., modal opened before render
+  // caught up), we fall back to WORDS so we don't crash.
+  function modalIndex(w) {
+    const list = currentList.length ? currentList : WORDS;
+    return list.findIndex((x) => x.lingala === w.lingala && x.en === w.en);
+  }
+  function modalNeighbor(w, dir) {
+    const list = currentList.length ? currentList : WORDS;
+    const i = modalIndex(w);
+    if (i < 0) return null;
+    const j = i + dir;
+    return (j >= 0 && j < list.length) ? list[j] : null;
+  }
+
+  function openModal(w) {
+    const lang = uiLang();
+    const back = ensureModal();
+    back.innerHTML = '';
+
+    const list = currentList.length ? currentList : WORDS;
+    const idx = modalIndex(w);
+    const prev = idx > 0 ? list[idx - 1] : null;
+    const next = (idx >= 0 && idx < list.length - 1) ? list[idx + 1] : null;
+
+    // Top action row: prev | position counter | next | close
+    const prevBtn = el('button', {
+      class: 'd-modal-nav prev', type: 'button',
+      'aria-label': prev ? 'Previous word: ' + prev.lingala : 'No previous word',
+      title: prev ? prev.lingala : '',
+      onclick: prev ? (e) => { e.stopPropagation(); openModal(prev); } : null,
+    });
+    prevBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"></polyline></svg>';
+    if (!prev) prevBtn.disabled = true;
+
+    const nextBtn = el('button', {
+      class: 'd-modal-nav next', type: 'button',
+      'aria-label': next ? 'Next word: ' + next.lingala : 'No next word',
+      title: next ? next.lingala : '',
+      onclick: next ? (e) => { e.stopPropagation(); openModal(next); } : null,
+    });
+    nextBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>';
+    if (!next) nextBtn.disabled = true;
+
+    const counter = el('span', {
+      class: 'd-modal-counter',
+      text: idx >= 0 ? `${idx + 1} / ${list.length}` : '',
+    });
+
+    const navRow = el('div', { class: 'd-modal-nav-row' }, [
+      prevBtn, counter, nextBtn,
+      el('button', { class: 'd-modal-close', type: 'button', 'aria-label': 'Close', onclick: closeModal, text: '×' }),
+    ]);
+
+    const wordRow = el('div', { class: 'd-modal-word-row' }, [
+      el('h2', { class: 'd-modal-word', text: w.lingala }),
+      speakBtn(w.lingala, 'd-speak-word'),
+    ]);
+
+    const headKids = [
+      navRow,
+      wordRow,
+    ];
+    if (w.phonetic) headKids.push(el('p', { class: 'd-modal-phon', text: w.phonetic }));
+    headKids.push(el('p', { class: 'd-modal-en', text: (lang === 'fr' && w.fr) ? w.fr : w.en }));
+    const meta = el('div', { class: 'd-modal-meta' });
+    meta.appendChild(el('span', { class: 'd-cat', text: catLabel(w.catKey) }));
+    if (w.pos) meta.appendChild(el('span', { class: 'd-pos-pill', text: w.pos }));
+    headKids.push(meta);
+    const modal = el('div', { class: 'd-modal' }, [
+      el('div', { class: 'd-modal-head' }, headKids),
+      ...buildDetail(w),
+    ]);
+    back.appendChild(modal);
+    // Scroll modal content back to top on each step
+    modal.scrollTop = 0;
+    requestAnimationFrame(() => { back.classList.add('open'); back.setAttribute('aria-hidden', 'false'); });
+
+    // Keyboard navigation while this modal is open
+    back._currentWord = w;
+  }
+
+  // Single keyboard handler (attached once via ensureModal) — checks the
+  // current word stored on the backdrop so prev/next walk the live list.
+  document.addEventListener('keydown', (e) => {
+    const back = document.getElementById('dictModal');
+    if (!back || back.getAttribute('aria-hidden') !== 'false' || !back._currentWord) return;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      const dir = e.key === 'ArrowLeft' ? -1 : 1;
+      const n = modalNeighbor(back._currentWord, dir);
+      if (n) { e.preventDefault(); openModal(n); }
+    }
+  });
+
+  function entryNode(w) {
+    const lang = uiLang();
+    const t = searchTerm.trim().toLowerCase();
+
+    const wordEl = el('div', { class: 'd-word' });
+    highlight(w.lingala, t).forEach((n) => wordEl.appendChild(n));
+
+    const main = [wordEl];
+    if (w.phonetic) main.push(el('div', { class: 'd-phon', text: w.phonetic }));
+
+    const enText = (lang === 'fr' && w.fr) ? w.fr : w.en;
+    const enLine = el('div', { class: 'd-en' });
+    highlight(enText, t).forEach((n) => enLine.appendChild(n));
+    main.push(enLine);
+
+    const entry = el('div', { class: 'd-entry' }, [
+      el('div', { class: 'd-head' }, [
+        el('div', { class: 'd-main' }, main),
+        el('div', { class: 'd-right' }, [
+          el('span', { class: 'd-cat' + (w.tier === 'word' ? ' muted' : ''), text: catLabel(w.catKey) }),
+          el('span', { class: 'd-chev', text: '›' }),
+        ]),
+      ]),
+    ]);
+    entry.addEventListener('click', () => openModal(w));
+    return entry;
+  }
+
+  function render() {
+    const t = searchTerm.trim().toLowerCase();
+    let rows = WORDS.filter((w) => {
+      const matchCat = activeFilter === 'All'
+        ? true
+        : activeFilter === 'Animal'
+        ? isAnimal(w)
+        : activeFilter === 'Number'
+        ? isNumber(w)
+        : w.catKey === activeFilter;
+      const matchLetter = activeLetter === 'All' || (w.lingala || '').charAt(0).toLowerCase() === activeLetter;
+      const matchSearch = !t ||
+        w.lingala.toLowerCase().includes(t) ||
+        (w.en || '').toLowerCase().includes(t) ||
+        (w.fr || '').toLowerCase().includes(t) ||
+        (w.phonetic || '').toLowerCase().includes(t) ||
+        (w.pos || '').toLowerCase().includes(t) ||
+        catLabel(w.catKey).toLowerCase().includes(t);
+      const matchTaboo = showTaboo || !w.taboo;
+      return matchCat && matchLetter && matchSearch && matchTaboo;
+    });
+
+    if (t && sortMode !== 'length') {
+      rows.sort((a, b) => {
+        const sa = matchScore(a, t), sb = matchScore(b, t);
+        if (sa !== sb) return sa - sb;
+        return a.lingala.localeCompare(b.lingala);
+      });
+    } else {
+      rows.sort(sortMode === 'length'
+        ? (a, b) => a.lingala.length - b.lingala.length || a.lingala.localeCompare(b.lingala)
+        : (a, b) => a.lingala.localeCompare(b.lingala));
+    }
+
+    currentList = rows;  // cache so modal prev/next can walk it
+    const total = rows.length;
+    $('dictCount').textContent = `${total.toLocaleString()} ${total === 1 ? 'word' : 'words'}${activeFilter !== 'All' ? ' in ' + catLabel(activeFilter) : ''}`;
+
+    const list = $('dictList');
+    list.innerHTML = '';
+    if (total === 0) {
+      list.appendChild(el('div', { class: 'd-empty', text: 'No words match your search yet.' }));
+      $('moreRow').innerHTML = '';
+      return;
+    }
+    rows.slice(0, shown).forEach((w) => list.appendChild(entryNode(w)));
+
+    const more = $('moreRow');
+    more.innerHTML = '';
+    if (shown < total) {
+      const remaining = total - shown;
+      more.appendChild(el('button', { class: 'primary', type: 'button', text: `Show more (${Math.min(BATCH, remaining)} of ${remaining.toLocaleString()})`, onclick: () => { shown += BATCH; render(); } }));
+    }
+    if (shown > BATCH) {
+      more.appendChild(el('button', { type: 'button', text: 'Show less', onclick: () => { shown = BATCH; render(); document.querySelector('.dict-page').scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
+    }
+  }
+
+  function buildChips() {
+    // Always count all words so Vulgar / Slang chips are always visible.
+    // Clicking a taboo chip auto-enables the 🔞 toggle.
+    const counts = {};
+    WORDS.forEach((w) => { counts[w.catKey] = (counts[w.catKey] || 0) + 1; });
+    const animalCount = WORDS.filter(isAnimal).length;
+    const numberCount = WORDS.filter(isNumber).length;
+    let keys = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    // Hide vulgar / slang chips entirely until the user opts into explicit content.
+    if (!showTaboo) keys = keys.filter((k) => k !== 'vulgar' && k !== 'slang');
+    const row = $('filterRow');
+    row.innerHTML = '';
+    const chipKeys = [
+      'All',
+      ...(animalCount ? ['Animal'] : []),
+      ...(numberCount ? ['Number'] : []),
+      ...keys,
+    ];
+    if (!chipKeys.includes(activeFilter)) { activeFilter = 'All'; lsSet(LS_FILTER, 'All'); }
+    const allCount = WORDS.filter((w) => showTaboo || !w.taboo).length;
+    const countFor = (key) => {
+      if (key === 'All') return allCount;
+      if (key === 'Animal') return animalCount;
+      if (key === 'Number') return numberCount;
+      return counts[key] || 0;
+    };
+    chipKeys.forEach((key) => {
+      const chip = el('button', {
+        class: 'd-chip' + (key === activeFilter ? ' active' : ''), type: 'button',
+        onclick: () => {
+          activeFilter = key; lsSet(LS_FILTER, key); shown = BATCH;
+          // Clicking Vulgar / Slang auto-unlocks explicit content
+          if ((key === 'vulgar' || key === 'slang') && !showTaboo) {
+            showTaboo = true;
+            lsSet(LS_KEY, '1');
+            syncExplicitLabel();
+          }
+          row.querySelectorAll('.d-chip').forEach((c) => c.classList.remove('active'));
+          chip.classList.add('active');
+          render();
+        },
+      });
+      chip.dataset.key = key;
+      const label = key === 'All' ? 'All' : catLabel(key);
+      chip.appendChild(document.createTextNode(label + ' '));
+      chip.appendChild(el('span', { class: 'd-chip-count', text: String(countFor(key)) }));
+      row.appendChild(chip);
+    });
+    syncFilterHint();
+  }
+
+  // —— A–Z letter strip ——
+  // Builds the alphabet row from whatever letters the bank actually has, plus
+  // an "All" button. Lingala has no native c/h/j/q/u/x — those letters are
+  // simply absent from the bank, so they're absent from the row too (the dict
+  // note above already tells the reader why).
+  function buildLetters() {
+    const row = $('letterRow');
+    if (!row) return;
+    const taboo = (w) => showTaboo || !w.taboo;
+    const counts = {};
+    WORDS.forEach((w) => {
+      if (!taboo(w) || !w.lingala) return;
+      const c = w.lingala.charAt(0).toLowerCase();
+      counts[c] = (counts[c] || 0) + 1;
+    });
+    const present = Object.keys(counts).sort();
+    const letters = ['All', ...present];
+    if (!letters.includes(activeLetter)) { activeLetter = 'All'; lsSet(LS_LETTER, 'All'); }
+    const allCount = WORDS.filter(taboo).length;
+    row.innerHTML = '';
+    letters.forEach((L) => {
+      const btn = el('button', {
+        class: 'd-letter' + (L === activeLetter ? ' active' : ''),
+        type: 'button', role: 'tab',
+        'aria-selected': L === activeLetter ? 'true' : 'false',
+        onclick: () => {
+          activeLetter = L; lsSet(LS_LETTER, L); shown = BATCH;
+          row.querySelectorAll('.d-letter').forEach((b) => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+          btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+          render();
+        },
+      });
+      btn.dataset.letter = L;
+      btn.appendChild(document.createTextNode(L === 'All' ? 'All' : L.toUpperCase()));
+      const n = L === 'All' ? allCount : (counts[L] || 0);
+      btn.appendChild(el('span', { class: 'd-letter-count', text: String(n) }));
+      row.appendChild(btn);
+    });
+  }
+
+  // Hide the bouncing right-arrow hint once the user has scrolled to the end
+  // (or when there's nothing to scroll to).
+  function syncFilterHint() {
+    const row = $('filterRow');
+    const wrap = $('filterWrap');
+    if (!row || !wrap) return;
+    const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+    const noOverflow = row.scrollWidth <= row.clientWidth + 1;
+    wrap.classList.toggle('at-end', atEnd || noOverflow);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const row = $('filterRow');
+    if (row) row.addEventListener('scroll', syncFilterHint, { passive: true });
+    window.addEventListener('resize', syncFilterHint);
+  });
+
+  // Map a raw word-bank row to a unified entry.
+  // Vulgar / slang entries get their own catKey so they don't appear under General.
+  const mapBank = (w) => {
+    let catKey = WB_CAT[w.category] || 'general';
+    if (w.register === 'vulgar') catKey = 'vulgar';
+    else if (w.register === 'slang') catKey = 'slang';
+    return {
+      tier: 'word', lingala: w.lingala, en: w.english, fr: w.french || '', phonetic: w.phonetic || '',
+      catKey, pos: w.partOfSpeech || '',
+      note: w.culturalNote || '', example: (w.examples && w.examples[0]) || null, verified: !!w.verified,
+      taboo: !!w.taboo, register: w.register || '',
+    };
+  };
+
+  async function init() {
+    // 1) Curated phrases (rich) — always win on a duplicate Lingala word.
+    const curated = PHRASES.map((p) => ({ tier: 'phrase', lingala: p.lingala, en: p.en, fr: p.fr, phonetic: p.phonetic, catKey: p.category, note: p.note, long: p.long }));
+
+    // 2) Word bank. wordbank-2.json is a superset of wordbank.json, but we load
+    //    both and dedupe by Lingala headword so there are NO duplicate words
+    //    regardless of overlap. One card per word; curated detail is preserved.
+    const byLN = new Map();
+    curated.forEach((w) => byLN.set(norm(w.lingala), w));
+    // An entry is "rich" enough to surface only if it carries real editorial
+    // content — an example sentence, a cultural note, a French translation, or
+    // the verified flag. A bare phonetic is NOT enough: those are OCR placeholders
+    // that read as glossary stubs ("kwivre / copper / GENERAL / noun"). The data
+    // stays in the JSON so it can be enriched into v2 later.
+    const isRich = (w) => !!(
+      w.verified ||
+      (w.examples && w.examples.length) ||
+      w.culturalNote ||
+      w.french
+    );
+
+    let loaded = false;
+    for (const src of ['/lingala-wordbank-2.json', '/lingala-wordbank.json']) {
+      try {
+        const data = await (await fetch(src)).json();
+        const isLegacy = src.includes('lingala-wordbank.json') && !src.includes('wordbank-2');
+        (data.words || []).forEach((w) => {
+          const k = norm(w.lingala);
+          if (!k || /\.$/.test(k)) return;
+          // Skip skeletal legacy entries (no phonetic, no examples, no note, unverified).
+          if (isLegacy && !isRich(w)) return;
+          if (!byLN.has(k)) byLN.set(k, mapBank(w));
+        });
+        loaded = true;
+      } catch (e) { /* try the next source */ }
+    }
+    if (!loaded) toast('Word bank failed to load');
+    else {
+      const note = el('p', { class: 'd-srcnote', text: 'Word-bank entries are sourced vocabulary awaiting community review; the curated phrases carry the full cultural notes.' });
+      $('dictCount').insertAdjacentElement('afterend', note);
+    }
+
+    WORDS = [...byLN.values()];
+    buildChips();
+    buildLetters();
+    render();
+  }
+
+  // Re-render (and relabel chips + explicit toggle) on language switch.
+  window.addEventListener('lingala:lang', () => {
+    $('filterRow').querySelectorAll('.d-chip').forEach((c) => { c.textContent = c.dataset.key === 'All' ? 'All' : catLabel(c.dataset.key); });
+    syncExplicitLabel();
+    render();
+  });
+
+  init();
+</script>
+</body>
+</html>

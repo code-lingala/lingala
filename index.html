@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="blue">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lingala — Keep the language alive for Congolese everywhere</title>
+<meta name="description" content="One Lingala phrase every day, wrapped in a beautiful culture card you can download and share. Free, no login, works offline. Built by Congolese, for Congolese everywhere.">
+<meta name="theme-color" content="#0C1A10">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Lingala">
+<meta property="og:title" content="Lingala — Keep the language alive">
+<meta property="og:description" content="A beautiful Lingala culture card every day, made to download and share. Free, no login, offline-ready.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lingala.artivicolab.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Set the saved theme before paint to avoid a flash of the wrong colour. -->
+<script>try{var _t=localStorage.getItem('lingala.theme');if(_t==='green'||_t==='yellow'||!_t)_t='blue';document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+
+<style>
+  :root {
+    --display: 'Outfit', sans-serif;
+    --serif: 'Fraunces', serif;
+    --body: 'Outfit', sans-serif;
+
+    /* Constant DRC-flag accents (used as "islands" on any theme) */
+    --terracotta: #C8202A;
+    --terracotta-hover: #D62A34;
+    --gold: #C8202A;
+    --cerulean: #1455A4;
+    --cream: #F0EAD6;
+
+    /* Theme tokens — default = GREEN. Overridden per [data-theme] below. */
+    --base: #0C1A10;
+    --base-mid: #142318;
+    --ink: #FAF7F0;
+    --ink-soft: rgba(240,234,214,0.78);
+    --muted: #8A9E8D;
+    --ink-faint: rgba(255,255,255,0.06);
+    --accent: #C8202A;
+    --line: rgba(255,255,255,0.08);
+    --surface: rgba(255,255,255,0.03);
+    --surface-2: rgba(255,255,255,0.05);
+  }
+
+  /* DRC flag themes. Text/ink tokens flip so copy stays readable;
+     yellow is a light field and takes dark ink. */
+  html[data-theme='blue'] {
+    --base: #08182E; --base-mid: #0F2238;
+    --ink: #F0F4FA; --ink-soft: rgba(230,238,250,0.80); --muted: #8298B4;
+    --ink-faint: rgba(255,255,255,0.06); --accent: #C8202A;
+    --line: rgba(255,255,255,0.08); --surface: rgba(255,255,255,0.03); --surface-2: rgba(255,255,255,0.05);
+  }
+  html[data-theme='red'] {
+    --base: #1C0A0A; --base-mid: #2A1413;
+    --ink: #FAF0EE; --ink-soft: rgba(250,236,232,0.80); --muted: #BE918C;
+    --ink-faint: rgba(255,255,255,0.06); --accent: #C8202A;
+    --line: rgba(255,255,255,0.08); --surface: rgba(255,255,255,0.03); --surface-2: rgba(255,255,255,0.05);
+  }
+  html[data-theme='yellow'] {
+    --base: #F4C81E; --base-mid: #EBBE16;
+    --ink: #1A1305; --ink-soft: rgba(26,19,5,0.82); --muted: #6B591A;
+    --ink-faint: rgba(0,0,0,0.07); --accent: #9A3B12;
+    --line: rgba(0,0,0,0.12); --surface: rgba(0,0,0,0.05); --surface-2: rgba(0,0,0,0.09);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--base);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    overflow-x: hidden;
+    padding-bottom: 64px;            /* room for the ambient sticky footer */
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* —— GRAIN OVERLAY —— */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* —— NAV —— */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: linear-gradient(to bottom, var(--base) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+
+  .theme-dots { display: flex; gap: 8px; }
+  .theme-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid transparent; padding: 0; cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .theme-dot:hover { transform: scale(1.15); }
+  .theme-dot.active { border-color: var(--ink); }
+  .t-green  { background: #1F5B33; }
+  .t-blue   { background: #1455A4; }
+  .t-red    { background: #C8202A; }
+
+  .lang-switch {
+    display: flex; align-items: center; gap: 4px;
+    font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+  .lang-switch button {
+    background: none; border: 0; color: inherit; cursor: pointer;
+    font-family: inherit; font-size: inherit; padding: 2px 4px;
+  }
+  .lang-switch span { opacity: 0.35; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--terracotta) !important;
+    color: #FAF7F0 !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--terracotta-hover) !important; }
+
+  /* —— HERO —— */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20,85,164,0.18) 0%, transparent 70%);
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  /* Background equalizer — fades in only while the ambient piece plays, kept
+     very light so the hero text and card stay perfectly readable. */
+  .hero-viz {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 62%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 24px;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  html.sound-playing .hero-viz { opacity: 0.1; }
+  .hero-viz .vbar {
+    flex: 1 1 0;
+    max-width: 24px;
+    background: var(--accent);
+    border-radius: 5px 5px 0 0;
+  }
+
+  .hero-text {
+    padding: 0 48px 0 72px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 2.5vw, 2.0rem);
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.3;
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: #FAF7F0;
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--terracotta-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--ink-soft);
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--muted);
+    padding-bottom: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  /* —— CARD COLUMN —— */
+  .hero-card-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 72px 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* —— THE CARD (a dark-blue "island"; intentionally fixed across themes) —— */
+  .card-wrapper {
+    position: relative;
+    width: 340px;
+  }
+
+  .card-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: var(--cerulean);
+    top: 12px;
+    left: 12px;
+    opacity: 0.4;
+  }
+
+  .card {
+    background: linear-gradient(160deg, #1A65C8 0%, #0D47A0 45%, #0A3880 100%);
+    border-radius: 20px;
+    padding: 36px 32px 28px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.45);
+    animation: cardFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes cardFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .card-category {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .card-phrase {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 2.7rem;            /* JS shrinks longer phrases to fit */
+    line-height: 1.02;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+    overflow-wrap: break-word;
+  }
+  /* Rotating content for the auto-carousel — the intro/outro. */
+  .card-rot { transition: opacity 0.5s ease, transform 0.5s ease; }
+  .card-rot.out { opacity: 0; transform: translateY(10px) scale(0.985); }
+  /* Clamp the note so the card height stays steady as phrases change. */
+  .card-rot .card-note {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 6.4em;
+  }
+
+  .card-translation {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.9);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .card-phonetic {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .card-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(212,160,23,0.5);
+    margin: 0 auto 20px;
+  }
+
+  .card-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .card-footer {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+  }
+
+  .card-date-tag {
+    position: absolute;
+    top: -16px;
+    right: 24px;
+    background: var(--terracotta);
+    color: #FAF7F0;
+    font-family: var(--body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 72px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+  }
+
+  /* —— STATEMENT STRIP (cerulean island) —— */
+  .statement-strip {
+    background: var(--cerulean);
+    padding: 24px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .strip-track {
+    display: flex;
+    width: max-content;
+    animation: stripscroll 32s linear infinite;
+  }
+  /* Each group spans at least the viewport, so only ONE group is ever visible;
+     the 2nd is just the seamless-loop copy, off to the side (no visible dup). */
+  .strip-group {
+    flex-shrink: 0;
+    min-width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 32px;
+    padding: 0 36px;
+  }
+  .strip-text::after { content: '•'; color: var(--gold); margin-left: 16px; opacity: 0.7; }
+  .statement-strip:hover .strip-track { animation-play-state: paused; }
+  /* left-to-right: track starts shifted one group left, slides back to 0 */
+  @keyframes stripscroll { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; transform: none; } }
+
+  .statement-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .strip-text {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .strip-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* —— SECTION SHARED —— */
+  section { padding: 120px 72px; }
+
+  .section-eyebrow {
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  /* —— ABOUT —— */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+
+  .about-body strong { color: var(--ink); font-weight: 500; }
+
+  .about-right { padding-top: 60px; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .stat {
+    padding: 28px 24px;
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:nth-child(2n) { border-right: none; }
+  .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+
+  .stat-number {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 2.4rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-number span { color: var(--accent); font-size: 1.6rem; }
+
+  .stat-label {
+    font-family: var(--body);
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* —— HOW IT WORKS —— */
+  .how {
+    background: var(--base-mid);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .how-step {
+    padding: 48px 36px;
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+    transition: background 0.3s;
+  }
+
+  .how-step:last-child { border-right: none; }
+  .how-step:hover { background: var(--surface-2); }
+
+  .step-number {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 4rem;
+    color: var(--ink-faint);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(20,85,164,0.3);
+    border: 1px solid rgba(20,85,164,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+  }
+
+  .step-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .step-body {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* —— CULTURE NOTES —— */
+  .culture {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .culture-card-demo {
+    background: linear-gradient(160deg, #1A65C8 0%, #0D47A0 50%, #0A3880 100%);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+
+  .culture-card-demo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .demo-label {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .demo-phrase-lg {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .demo-translation {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .demo-phonetic {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .demo-note-box {
+    background: rgba(0,0,0,0.2);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+
+  .demo-note-title {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .demo-note-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .demo-read-more {
+    font-family: var(--body);
+    font-size: 0.8rem;
+    color: var(--gold);
+    cursor: pointer;
+  }
+
+  .culture-right .section-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+
+  .culture-right .section-body strong { color: var(--ink); font-weight: 500; }
+
+  .pull-quote {
+    border-left: 2px solid var(--terracotta);
+    padding: 16px 24px;
+    margin: 32px 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* —— COMMUNITY (terracotta island) —— */
+  .community {
+    background: var(--terracotta);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .community::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .community-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .community .section-eyebrow { color: rgba(255,255,255,0.6); }
+  .community .section-title { color: #fff; }
+  .community .section-title em { color: rgba(255,255,255,0.6); }
+
+  .community-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+  }
+
+  .btn-white {
+    background: #fff;
+    color: var(--terracotta);
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s, opacity 0.2s;
+  }
+
+  .btn-white:hover { transform: translateY(-1px); opacity: 0.92; }
+
+  .floating-phrases { display: flex; flex-direction: column; gap: 12px; }
+
+  .float-phrase {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: floatIn 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .float-phrase:nth-child(1) { animation-delay: 0.1s; }
+  .float-phrase:nth-child(2) { animation-delay: 0.25s; }
+  .float-phrase:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .float-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .float-name {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2px;
+  }
+
+  .float-text {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .float-text span {
+    font-family: var(--body);
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    margin-left: 6px;
+  }
+
+  /* —— PROMISE / CTA —— */
+  .promise {
+    text-align: center;
+    padding: 100px 72px;
+    border-top: 1px solid var(--line);
+  }
+
+  .promise-title {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--ink);
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+
+  .promise-title em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+  .promise-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto 48px;
+  }
+
+  .promise-pills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .pill {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-family: var(--body);
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* —— FOOTER (shared .site-footer — consistent across every page) —— */
+  .site-footer { border-top: 1px solid var(--line); padding: 40px 24px calc(40px + env(safe-area-inset-bottom)); text-align: center; }
+  .site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--muted); margin-bottom: 14px; }
+  .site-footer .footer-links { font-family: var(--body); font-size: 0.85rem; line-height: 1.9; }
+  .site-footer .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .site-footer .footer-links a:hover { color: var(--ink); }
+  .site-footer .sep { color: var(--line); margin: 0 8px; }
+  .site-footer .footer-copyright { font-family: var(--body); font-size: 0.78rem; color: var(--muted); opacity: 0.7; margin-top: 12px; }
+
+  /* —— AMBIENT STICKY FOOTER —— */
+  @keyframes barAnim { 0% { transform: scaleY(0.25); } 100% { transform: scaleY(1); } }
+  .ambient {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 9px 24px calc(9px + env(safe-area-inset-bottom));
+    background: var(--base);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.28);
+  }
+  .ambient-prog { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--line); }
+  .ambient-prog > div { height: 100%; width: 0; background: var(--accent); transition: width 0.12s linear; }
+  .ambient-phrase {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .ambient-viz { display: flex; align-items: flex-end; gap: 2px; height: 24px; }
+  .vbar {
+    display: inline-block;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    transform-origin: bottom;
+    animation: barAnim 0.5s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+  .ambient-spacer { flex: 1; }
+  .ambient-btn {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ambient-btn:active { transform: translateY(1px); }
+  @media (max-width: 600px) {
+    .ambient { gap: 12px; padding-left: 16px; padding-right: 16px; }
+    .ambient-viz { display: none; }
+  }
+
+  /* —— ANIMATIONS —— */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  .fade-up-delay-1 { transition-delay: 0.1s; }
+  .fade-up-delay-2 { transition-delay: 0.2s; }
+  .fade-up-delay-3 { transition-delay: 0.3s; }
+  .fade-up-delay-4 { transition-delay: 0.4s; }
+
+  .hero-text > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroReveal 0.7s ease forwards;
+  }
+
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-headline { animation-delay: 0.25s; }
+  .hero-sub { animation-delay: 0.35s; }
+  .hero-body { animation-delay: 0.45s; }
+  .hero-actions { animation-delay: 0.55s; }
+
+  @keyframes heroReveal { to { opacity: 1; transform: translateY(0); } }
+
+  .card-wrapper {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: cardReveal 0.8s ease 0.4s forwards;
+  }
+
+  @keyframes cardReveal { to { opacity: 1; transform: translateX(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .fade-up { opacity: 1; transform: none; }
+    .hero-text > *, .card-wrapper, .float-phrase { opacity: 1; transform: none; }
+  }
+
+  /* —— RESPONSIVE —— */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-right { gap: 16px; }
+    .nav-links { display: none; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 100px 24px 60px;
+      text-align: center;
+    }
+
+    .hero-text { padding: 0; }
+    .hero-eyebrow { justify-content: center; }
+    .hero-actions { justify-content: center; }
+    .hero-body { margin-left: auto; margin-right: auto; }
+
+    .hero-card-col { padding: 40px 24px 0; }
+    .card-wrapper { width: 280px; margin: 0 auto; }
+    .hero-scroll { display: none; }
+
+    .statement-strip { padding: 18px 0; }
+    .strip-group { gap: 22px; padding: 0 18px; }
+
+    section { padding: 80px 24px; }
+
+    .about, .culture, .community-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about-right { padding-top: 0; }
+
+    .how-grid { grid-template-columns: 1fr; }
+    .how-step { border-right: none; border-bottom: 1px solid var(--line); }
+    .how-step:last-child { border-bottom: none; }
+
+    .site-footer { padding-left: 20px; padding-right: 20px; }
+  }
+
+  /* TOOLS / WHAT'S INSIDE — added section showcasing dictionary, verbs, count, name */
+  .tools-section { max-width: 1200px; margin: 0 auto; padding: 90px 24px 60px; }
+  .tools-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 44px; }
+  @media (min-width: 720px) { .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+  @media (min-width: 1080px) { .tools-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+  .tool-card { display: flex; flex-direction: column; padding: 28px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; color: inherit; text-decoration: none; transition: transform 0.2s, border-color 0.2s; }
+  .tool-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .tool-icon { font-size: 2rem; line-height: 1; margin-bottom: 18px; }
+  .tool-name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; color: var(--ink); margin: 0 0 8px; }
+  .tool-count { font-family: var(--body); font-size: 0.84rem; color: var(--ink); opacity: 0.72; margin: 0 0 16px; }
+  .tool-count strong { font-size: 1.12rem; color: var(--accent); font-weight: 800; letter-spacing: 0.02em; }
+  .tool-desc { font-family: var(--serif); font-size: 0.95rem; line-height: 1.55; color: var(--ink); opacity: 0.85; flex: 1; margin: 0 0 18px; }
+  .tool-cta { font-family: var(--body); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+
+  /* DEEP LINKS — quick jumps into the most useful content */
+  .deeplinks-section { max-width: 1200px; margin: 0 auto; padding: 30px 24px 90px; }
+  .deeplinks-eyebrow { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .deeplinks-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; color: var(--ink); margin: 0 0 28px; }
+  .deeplinks-title em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .deeplinks-grid { display: grid; grid-template-columns: 1fr; gap: 24px 32px; }
+  @media (min-width: 720px) { .deeplinks-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1080px) { .deeplinks-grid { grid-template-columns: repeat(3, 1fr); } }
+  .deeplinks-col h3 { font-family: var(--body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); opacity: 0.55; margin: 0 0 14px; }
+  .deeplinks-col ul { list-style: none; padding: 0; margin: 0; }
+  .deeplinks-col li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .deeplinks-col li:last-child { border-bottom: 0; }
+  .deeplinks-col a { font-family: var(--serif); font-size: 0.98rem; color: var(--ink); text-decoration: none; opacity: 0.85; transition: opacity 0.15s, color 0.15s; }
+  .deeplinks-col a:hover { opacity: 1; color: var(--accent); }
+  .deeplinks-col a em { font-style: italic; color: var(--accent); opacity: 0.9; font-size: 0.9rem; margin-left: 6px; }
+</style>
+<style>@keyframes heartpulse{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.28);opacity:1}}.pulse-heart{display:inline-block;margin-left:5px;color:var(--terracotta,#C8202A);animation:heartpulse 1.15s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.pulse-heart{animation:none}}</style>
+<!-- SEO:start -->
+<link rel="canonical" href="https://lingala.artivicolab.com/">
+<link rel="alternate" hreflang="en" href="https://lingala.artivicolab.com/">
+<link rel="alternate" hreflang="fr" href="https://lingala.artivicolab.com/?lang=fr">
+<link rel="alternate" hreflang="ln" href="https://lingala.artivicolab.com/?lang=ln">
+<link rel="alternate" hreflang="x-default" href="https://lingala.artivicolab.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://lingala.artivicolab.com/#site","url":"https://lingala.artivicolab.com","name":"Losako · Lingala","inLanguage":["en","fr","ln"],"publisher":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"Organization","@id":"https://lingala.artivicolab.com/#org","name":"Artivicolab","url":"https://artivicolab.com","founder":{"@type":"Person","name":"Gradi Kayamba"}},{"@type":"Person","@id":"https://lingala.artivicolab.com/#author","name":"Gradi Kayamba","affiliation":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"WebPage","@id":"https://lingala.artivicolab.com/#page","url":"https://lingala.artivicolab.com/","name":"Home — Lingala","description":"Lingala — keep the language alive for Congolese everywhere. One phrase a day, free, offline.","inLanguage":"en","isPartOf":{"@id":"https://lingala.artivicolab.com/#site"},"author":{"@id":"https://lingala.artivicolab.com/#author"}},{"@type":"WebApplication","@id":"https://lingala.artivicolab.com/#app","url":"https://lingala.artivicolab.com/","name":"Lingala — Home","description":"Lingala — keep the language alive for Congolese everywhere. One phrase a day, free, offline.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","fr","ln"],"creator":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"LearningResource","@id":"https://lingala.artivicolab.com/#learn","url":"https://lingala.artivicolab.com/","name":"Learn Lingala — Home","description":"Lingala — keep the language alive for Congolese everywhere. One phrase a day, free, offline.","inLanguage":"ln","teaches":"Lingala language (Bantu, Democratic Republic of Congo)","learningResourceType":"Interactive resource","educationalLevel":"Beginner to intermediate","isAccessibleForFree":true,"audience":{"@type":"EducationalAudience","educationalRole":"student"}}]}</script>
+<!-- SEO:end -->
+</head>
+<body data-title-i18n="title.home">
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">Lingala</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right" id="navRight">
+    <div class="theme-dots" role="group" aria-label="Colour theme" data-i18n-attr="aria-label:aria.theme">
+      <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue" data-i18n-attr="aria-label:aria.blue"></button>
+      <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red" data-i18n-attr="aria-label:aria.red"></button>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language" data-i18n-attr="aria-label:aria.lang">
+      <button data-lang-btn="en" type="button">EN</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="fr" type="button">FR</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="ln" type="button">LN</button>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#how" data-i18n="nav.how">How it works</a></li>
+      <li><a href="#community" data-i18n="nav.community">Community</a></li>
+      <li><a href="/name.html" data-i18n="nav.name">Find your name</a></li>
+      <li><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a></li>
+      <li><a href="/card.html" class="nav-cta" data-i18n="nav.cta">Open today's  card</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-viz" id="heroViz" aria-hidden="true"></div>
+
+  <div class="hero-text">
+    <p class="hero-eyebrow" data-i18n="hero.eyebrow">Lingala · DRC · Everywhere</p>
+    <h1 class="hero-headline" data-i18n="hero.headline">Your language.<br><em>Your identity.</em><br>One phrase a day.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">Free. Beautiful. Yours to share.</p>
+    <p class="hero-body" data-i18n="hero.body">Lingala gives Congolese everywhere a daily phrase from home, wrapped in a beautifully designed culture card — ready to download and post on Instagram, TikTok, or WhatsApp in under thirty seconds.</p>
+    <div class="hero-actions">
+      <a href="/card.html" class="btn-primary" data-i18n="hero.btnPrimary">See today's card →</a>
+      <a href="#about" class="btn-ghost" data-i18n="hero.btnGhost">Learn more</a>
+    </div>
+  </div>
+
+  <div class="hero-card-col">
+    <div class="card-wrapper">
+      <div class="card-shadow"></div>
+      <div class="card">
+        <span class="card-date-tag" data-i18n="card.dateTag">Today</span>
+        <div class="card-rot" id="heroRot">
+          <p class="card-category">Greetings</p>
+          <h2 class="card-phrase">Losako</h2>
+          <p class="card-translation">A respectful greeting</p>
+          <p class="card-phonetic">lo-SA-ko</p>
+          <div class="card-divider"></div>
+          <p class="card-note">Losako is the warm, respectful way to announce yourself and greet — the gesture of someone genuinely glad to be in front of you.</p>
+        </div>
+        <p class="card-footer">LINGALA</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" data-i18n="hero.scroll">Scroll to explore</div>
+</section>
+
+<!-- STATEMENT STRIP -->
+<div class="statement-strip">
+  <div class="strip-track">
+    <div class="strip-group">
+      <span class="strip-text" data-i18n="strip.nologin">No login</span>
+      <span class="strip-text" data-i18n="strip.noads">No ads</span>
+      <span class="strip-text" data-i18n="strip.nodata">No data collected</span>
+      <span class="strip-text" data-i18n="strip.free">Free forever</span>
+      <span class="strip-text" data-i18n="strip.offline">Works offline</span>
+      <span class="strip-text" data-i18n="strip.made">Congolese-made</span>
+    </div>
+    <div class="strip-group" aria-hidden="true">
+      <span class="strip-text" data-i18n="strip.nologin">No login</span>
+      <span class="strip-text" data-i18n="strip.noads">No ads</span>
+      <span class="strip-text" data-i18n="strip.nodata">No data collected</span>
+      <span class="strip-text" data-i18n="strip.free">Free forever</span>
+      <span class="strip-text" data-i18n="strip.offline">Works offline</span>
+      <span class="strip-text" data-i18n="strip.made">Congolese-made</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS / WHAT'S INSIDE -->
+<section id="tools" class="tools-section">
+  <p class="section-eyebrow fade-up" data-i18n="tools.eyebrow">What's inside</p>
+  <h2 class="section-title fade-up fade-up-delay-1" data-i18n="tools.title">Beyond the daily card.<br><em>A living language.</em></h2>
+
+  <div class="tools-grid">
+    <a href="/dictionary.html" class="tool-card fade-up">
+      <div class="tool-icon">📖</div>
+      <h3 class="tool-name" data-i18n="tools.dict.name">Dictionary</h3>
+      <p class="tool-count"><strong>1,207</strong> <span data-i18n="tools.dict.unit">words</span></p>
+      <p class="tool-desc" data-i18n="tools.dict.desc">A searchable Lingala dictionary with audio, examples, and a cultural note on every entry.</p>
+      <span class="tool-cta" data-i18n="tools.dict.cta">Open dictionary →</span>
+    </a>
+
+    <a href="/verbs.html" class="tool-card fade-up fade-up-delay-1">
+      <div class="tool-icon">🔤</div>
+      <h3 class="tool-name" data-i18n="tools.verbs.name">Verbs</h3>
+      <p class="tool-count"><strong>126</strong> <span data-i18n="tools.verbs.unit">verbs · all conjugations</span></p>
+      <p class="tool-desc" data-i18n="tools.verbs.desc">Every verb across six tenses and six subject prefixes, with color-coded morphology and audio for every form.</p>
+      <span class="tool-cta" data-i18n="tools.verbs.cta">Browse verbs →</span>
+    </a>
+
+    <a href="/count.html" class="tool-card fade-up fade-up-delay-2">
+      <div class="tool-icon">🔢</div>
+      <h3 class="tool-name" data-i18n="tools.count.name">Count</h3>
+      <p class="tool-count"><strong>1 → 1M+</strong></p>
+      <p class="tool-desc" data-i18n="tools.count.desc">Learn to count from one to a million in Lingala — seven modes, audio, quizzes, mastery tracking.</p>
+      <span class="tool-cta" data-i18n="tools.count.cta">Start counting →</span>
+    </a>
+
+    <a href="/name.html" class="tool-card fade-up fade-up-delay-3">
+      <div class="tool-icon">👤</div>
+      <h3 class="tool-name" data-i18n="tools.name.name">Find your name</h3>
+      <p class="tool-count"><span data-i18n="tools.name.unit">Congolese names &amp; meanings</span></p>
+      <p class="tool-desc" data-i18n="tools.name.desc">Discover the Lingala name that fits you. Search by meaning, sound, or family tradition.</p>
+      <span class="tool-cta" data-i18n="tools.name.cta">Find your name →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div class="about-left">
+      <p class="section-eyebrow fade-up" data-i18n="about.eyebrow">What Lingala is</p>
+      <h2 class="section-title fade-up fade-up-delay-1" data-i18n="about.title">Not a language app.<br><em>A cultural object.</em></h2>
+      <p class="about-body fade-up fade-up-delay-2" data-i18n="about.body1">The person who uses Lingala is not trying to learn the language. They are trying to express <strong>something about who they are.</strong></p>
+      <p class="about-body fade-up fade-up-delay-3" data-i18n="about.body2">A second-generation Congolese person in Brussels, London, Montreal, or Atlanta doesn't open an app to study vocabulary. They open it because they are proud of where their family is from — and they have never had a beautiful, ready-made object to express that pride with.</p>
+      <p class="about-body fade-up fade-up-delay-4" data-i18n="about.body3"><strong>Lingala gives them that object.</strong> The language is the packaging. The identity is the gift.</p>
+    </div>
+
+    <div class="about-right fade-up fade-up-delay-2">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number" id="statPhrases">56</div>
+          <div class="stat-label" data-i18n="stat.phrases">Lingala phrases so far · growing to 365</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" id="statCategories">12</div>
+          <div class="stat-label" data-i18n="stat.categories">Cultural categories</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0<span>€</span></div>
+          <div class="stat-label" data-i18n="stat.cost">Cost to use, forever</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">&lt;30<span>s</span></div>
+          <div class="stat-label" data-i18n="stat.speed">From open to shared</div>
+        </div>
+      </div>
+
+      <div class="pull-quote" data-i18n="about.quote">“When someone in my family says this word, it carries thirty years of history. Now I can share that.”</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <p class="section-eyebrow fade-up" data-i18n="how.eyebrow">How it works</p>
+  <h2 class="section-title fade-up fade-up-delay-1" style="max-width: 500px;" data-i18n="how.title">Open. Download. <em>Share your roots.</em></h2>
+
+  <div class="how-grid">
+    <div class="how-step fade-up">
+      <div class="step-number">01</div>
+      <div class="step-icon">📅</div>
+      <h3 class="step-title" data-i18n="how.s1title">Today's card appears</h3>
+      <p class="step-body" data-i18n="how.s1body">No loading. No login. No onboarding. The card is there the moment you open the app — a new Lingala phrase every day, the same one for every Congolese person worldwide.</p>
+    </div>
+
+    <div class="how-step fade-up fade-up-delay-1">
+      <div class="step-number">02</div>
+      <div class="step-icon">📖</div>
+      <h3 class="step-title" data-i18n="how.s2title">Read the culture</h3>
+      <p class="step-body" data-i18n="how.s2body">Every phrase comes with a cultural note written with warmth and depth — not a dictionary definition. Where it comes from, when elders use it, what it carries emotionally.</p>
+    </div>
+
+    <div class="how-step fade-up fade-up-delay-2">
+      <div class="step-number">03</div>
+      <div class="step-icon">✨</div>
+      <h3 class="step-title" data-i18n="how.s3title">Download &amp; post</h3>
+      <p class="step-body" data-i18n="how.s3body">One tap renders a professional 1080×1080 image to your camera roll. Post it on Instagram, TikTok, or send it in your family WhatsApp group. No watermark that embarrasses. No screenshot required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE NOTES -->
+<section>
+  <div class="culture">
+    <div class="culture-card-demo fade-up">
+      <p class="demo-label" data-i18n="demo.label">Cultural context</p>
+      <h3 class="demo-phrase-lg">Mbote</h3>
+      <p class="demo-translation" data-i18n="demo.translation">Hello</p>
+      <p class="demo-phonetic">MM-bo-te</p>
+
+      <div class="demo-note-box">
+        <p class="demo-note-title" data-i18n="demo.noteTitle">Cultural note</p>
+        <p class="demo-note-text" data-i18n="demo.noteText">Mbote is the first word most people learn in Lingala, and the one you will use most. It works morning, noon and night, to one person or a crowd. Say “Mbote” with a small nod and you are already speaking the language of home.</p>
+      </div>
+      <p class="demo-read-more" data-i18n="demo.readMore">Read more about this phrase →</p>
+    </div>
+
+    <div class="culture-right">
+      <p class="section-eyebrow fade-up" data-i18n="culture.eyebrow">The cultural notes</p>
+      <h2 class="section-title fade-up fade-up-delay-1" data-i18n="culture.title">The soul of <em>the product.</em></h2>
+      <p class="section-body fade-up fade-up-delay-2" data-i18n="culture.body1">Every other language tool tells you what a word means. Lingala tells you <strong>what a word carries.</strong></p>
+      <p class="section-body fade-up fade-up-delay-3" data-i18n="culture.body2">The cultural notes are written not as textbook definitions but as a Congolese elder talking to you about their language — with pride, warmth, and humor. They connect phrases to history, to music, to the specific social contexts that give language its meaning.</p>
+
+      <div class="pull-quote fade-up fade-up-delay-4" data-i18n="culture.quote">This is what separates a phrase from a piece of culture — and a piece of culture is what's worth sharing.</div>
+
+      <p class="section-body fade-up" data-i18n="culture.body3">Each card has a short note for the card itself, and a deeper expanded note for anyone who wants to go further. One is for Instagram. The other is for the person who remembers their grandmother saying it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="community">
+  <div class="community-inner">
+    <div>
+      <p class="section-eyebrow" data-i18n="comm.eyebrow">Community</p>
+      <h2 class="section-title" data-i18n="comm.title">Built by Congolese.<br><em>For Congolese.</em></h2>
+      <p class="community-body" data-i18n="comm.body">The phrase database grows with contributions from Congolese communities worldwide. Know a proverb your grandmother uses? A phrase from your neighborhood in Kinshasa that no textbook has ever captured? Submit it. Every addition that makes it into the rotation is credited to the person who shared it.</p>
+      <a href="/card.html" class="btn-white" data-i18n="comm.btn">Suggest a phrase</a>
+    </div>
+
+    <div class="floating-phrases">
+      <div class="float-phrase">
+        <div class="float-avatar">🇨🇩</div>
+        <div class="float-content">
+          <p class="float-name" data-i18n="comm.from1">Submitted from Brussels</p>
+          <p class="float-text" data-i18n="comm.t1">Nalingi yo <span>· I love you</span></p>
+        </div>
+      </div>
+      <div class="float-phrase">
+        <div class="float-avatar">🇨🇩</div>
+        <div class="float-content">
+          <p class="float-name" data-i18n="comm.from2">Submitted from Montreal</p>
+          <p class="float-text" data-i18n="comm.t2">Tokomonana <span>· We'll meet again</span></p>
+        </div>
+      </div>
+      <div class="float-phrase">
+        <div class="float-avatar">🇨🇩</div>
+        <div class="float-content">
+          <p class="float-name" data-i18n="comm.from3">Submitted from Atlanta</p>
+          <p class="float-text" data-i18n="comm.t3">Bolingo <span>· Love</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE / CTA -->
+<!-- DEEP LINKS — jump straight into popular entries -->
+<section class="deeplinks-section">
+  <p class="deeplinks-eyebrow" data-i18n="deeplinks.eyebrow">Jump in</p>
+  <h2 class="deeplinks-title" data-i18n="deeplinks.title">Try a <em>word, verb,</em> or number.</h2>
+  <div class="deeplinks-grid">
+    <div class="deeplinks-col">
+      <h3 data-i18n="deeplinks.greetings">Greetings &amp; everyday</h3>
+      <ul>
+        <li><a href="/dictionary/mbote.html">mbote <em>— hello</em></a></li>
+        <li><a href="/dictionary/matondi.html">matondi <em>— thank you</em></a></li>
+        <li><a href="/dictionary/boyei.html">boyei <em>— coming, arrival</em></a></li>
+        <li><a href="/dictionary/sango.html">sango <em>— news, greeting</em></a></li>
+        <li><a href="/dictionary/mama.html">mama <em>— mother</em></a></li>
+      </ul>
+    </div>
+    <div class="deeplinks-col">
+      <h3 data-i18n="deeplinks.verbs">Everyday verbs</h3>
+      <ul>
+        <li><a href="/verbs/kolingana.html">kolingana <em>— to love one another</em></a></li>
+        <li><a href="/verbs/kolia.html">kolia <em>— to eat</em></a></li>
+        <li><a href="/verbs/kosala.html">kosala <em>— to do / work</em></a></li>
+        <li><a href="/verbs/koyeba.html">koyeba <em>— to know</em></a></li>
+        <li><a href="/verbs/kozala.html">kozala <em>— to be</em></a></li>
+      </ul>
+    </div>
+    <div class="deeplinks-col">
+      <h3 data-i18n="deeplinks.tools">Tools</h3>
+      <ul>
+        <li><a href="/count.html"><em>Count</em> from 1 to 1M+</a></li>
+        <li><a href="/verbs.html">All <em>verbs</em></a></li>
+        <li><a href="/dictionary.html">Full <em>dictionary</em></a></li>
+        <li><a href="/name.html"><em>Find</em> your name</a></li>
+        <li><a href="/card.html">Today's <em>card</em></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <p class="section-eyebrow" style="text-align:center; margin-bottom:16px;" data-i18n="promise.eyebrow">No catch. No paywall. No account.</p>
+  <h2 class="promise-title fade-up" data-i18n="promise.title">Keep Lingala alive<br><em>for Congolese everywhere.</em></h2>
+  <p class="promise-body fade-up" data-i18n="promise.body">Open it now. See today's phrase. Download the card. Share it with someone who knows where that language comes from.</p>
+  <div class="promise-pills fade-up">
+    <span class="pill" data-i18n="pill1">🌍 Works in any browser</span>
+    <span class="pill" data-i18n="pill2">📱 Installs as an app</span>
+    <span class="pill" data-i18n="pill3">✈️ Works offline</span>
+    <span class="pill" data-i18n="pill4">🔒 Zero data collected</span>
+    <span class="pill" data-i18n="pill5">🆓 Free forever</span>
+  </div>
+  <a href="/card.html" class="btn-primary fade-up" style="font-size:1.05rem; padding:18px 48px;" data-i18n="promise.cta">Open Lingala →</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p class="footer-tagline" data-i18n="footer.tagline">Keep Lingala alive — for Congolese everywhere · 🇨🇩</p>
+  <div class="footer-links">
+    <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
+    <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span>
+    <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span>
+    <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
+    <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
+    <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
+  </div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.53</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+</footer>
+
+<!-- Ambient sticky footer: a warm Lingala welcome + the Likembe ambient piece. -->
+<div class="ambient" aria-label="Sebene rumba music">
+  <div class="ambient-prog"><div id="ambientProg"></div></div>
+  <span class="ambient-phrase">Boyei malamu</span>
+  <span class="ambient-viz" id="ambientViz" aria-hidden="true"></span>
+  <span class="ambient-spacer"></span>
+  <button class="ambient-btn" id="ambientBtn" type="button" aria-label="Play ambient music"><span id="ambientGlyph">►</span></button>
+</div>
+
+<script src="/js/theme-site.js"></script>
+<script src="/js/site-nav.js" defer></script>
+<script src="/js/i18n-site.js"></script>
+<script src="/js/speech.js"></script>
+<script src="/js/ambient.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal sections on scroll.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+
+  // Double the statement strip so the row reads as continuous.
+  const strip = document.querySelector('.statement-strip');
+  if (strip) strip.innerHTML += strip.innerHTML;
+
+  // Background equalizer bars for the hero — they share the .vbar class, so the
+  // ambient player animates them in sync; faint, behind the text.
+  const heroViz = document.getElementById('heroViz');
+  if (heroViz) {
+    for (let n = 0; n < 32; n++) {
+      const b = document.createElement('span');
+      b.className = 'vbar';
+      const h = 28 + Math.round(Math.abs(Math.sin(n * 1.7)) * 130);
+      b.style.cssText = `height:${h}px; animation-delay:${(n * 0.07).toFixed(2)}s; animation-duration:${(0.5 + (n % 6) * 0.07).toFixed(2)}s;`;
+      heroViz.appendChild(b);
+    }
+  }
+</script>
+
+<!-- Live counts from the phrase database, so the stats never go stale. -->
+<script type="module">
+  import { PHRASES, CATEGORIES } from '/js/data/phrases.js';
+  const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
+  set('statPhrases', PHRASES.length);
+  set('statCategories', Object.keys(CATEGORIES).length);
+</script>
+
+<!-- Hero carousel — auto-cycles real phrases with an intro/outro. No buttons,
+     no arrows: it runs on its own and respects the chosen interface language. -->
+<script type="module">
+  import { PHRASES, CATEGORIES } from '/js/data/phrases.js';
+  const rot = document.getElementById('heroRot');
+  if (rot) {
+    // Use the whole phrase bank, in a random order (reshuffled each loop).
+    const shuffle = (a) => {
+      for (let k = a.length - 1; k > 0; k--) {
+        const j = Math.floor(Math.random() * (k + 1));
+        [a[k], a[j]] = [a[j], a[k]];
+      }
+      return a;
+    };
+    const deck = shuffle([...PHRASES]);
+
+    const $cat = rot.querySelector('.card-category');
+    const $phrase = rot.querySelector('.card-phrase');
+    const $trans = rot.querySelector('.card-translation');
+    const $phon = rot.querySelector('.card-phonetic');
+    const $note = rot.querySelector('.card-note');
+    const uiLang = () => document.documentElement.lang || 'en';
+
+    // Shrink the phrase until it fits the card; wrap only as a last resort.
+    const fit = () => {
+      $phrase.style.whiteSpace = 'nowrap';
+      $phrase.style.fontSize = '';
+      let size = parseFloat(getComputedStyle($phrase).fontSize) || 43;
+      while ($phrase.scrollWidth > $phrase.clientWidth && size > 22) {
+        size -= 2;
+        $phrase.style.fontSize = size + 'px';
+      }
+      if ($phrase.scrollWidth > $phrase.clientWidth) $phrase.style.whiteSpace = 'normal';
+    };
+    const render = (p) => {
+      const l = uiLang();
+      const cat = CATEGORIES[p.category];
+      $cat.textContent = ((cat && (l === 'fr' ? cat.fr : cat.en)) || p.category).toUpperCase();
+      $phrase.textContent = p.lingala;
+      $trans.textContent = l === 'fr' ? p.fr : p.en;
+      $phon.textContent = p.phonetic;
+      $note.textContent = p.note;
+      fit();
+    };
+
+    let i = 0;
+    render(deck[0]);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener('resize', fit);
+    window.addEventListener('lingala:lang', () => render(deck[i]));
+
+    const advance = () => {
+      rot.classList.add('out');                 // outro
+      setTimeout(() => {
+        i += 1;
+        if (i >= deck.length) { shuffle(deck); i = 0; } // reshuffle on each loop
+        render(deck[i]);
+        rot.classList.remove('out');            // intro
+      }, 520);
+    };
+    const INTERVAL = 6000;          // slower — 3.8s read too fast
+    let timer = null;
+    const start = () => { if (!timer && !document.hidden) timer = setInterval(advance, INTERVAL); };
+    const stop = () => { clearInterval(timer); timer = null; };
+    start();
+
+    // Pause while the visitor is reading: hover (mouse) or finger on the card.
+    const card = rot.closest('.card-wrapper') || rot.closest('.card') || rot;
+    card.addEventListener('mouseenter', stop);
+    card.addEventListener('mouseleave', start);
+    card.addEventListener('touchstart', stop, { passive: true });
+    card.addEventListener('touchend', start);
+    card.addEventListener('touchcancel', start);
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+  }
+</script>
+</body>
+</html>

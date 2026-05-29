@@ -1,0 +1,56 @@
+# Losako · Lingala
+
+> A free, no-login Progressive Web App for the Congolese diaspora. Surfaces one Lingala phrase per day, lets you download the daily "culture card" as an image, and tracks a personal streak — with no server, no tracking, and full offline support.
+
+The language is the packaging. The identity is the gift.
+
+## What is Losako
+
+Losako (working URL: lingala.artivicolab.com) is an editorial Lingala product designed for second-generation Congolese people living abroad. It combines three things:
+
+- **Daily card** (`/card.html`) — one Lingala phrase per day, deterministically the same for everyone worldwide on the same date. Downloadable as a 1080×1080 or 1080×1920 image with three DRC-rooted color themes.
+- **Dictionary** (`/dictionary.html`) — 1,200+ verified Lingala entries with English + French translations, phonetic guides (penultimate-syllable stress notation), example sentences in three languages, and editorial cultural notes written in the voice of a Congolese elder. Each word also has its own canonical URL at `/dictionary/<word>.html`.
+- **Count** (`/count.html`) — interactive page for learning Lingala numerals from 0 to 999,999,999. Five modes (count-up, type-a-number, two quiz directions, listen-and-type, auto count). Number breakdown chips show the structural decomposition (e.g. 247 = nkama mibale + ntuku minei + nsambo). Browser TTS uses Italian/Spanish voices as the best phonetic approximation for Lingala vowels.
+
+## Authoritative pages
+
+- /                      Home — what Losako is
+- /about.html            About — cultural positioning
+- /privacy.html          Privacy — everything stays on-device (IndexedDB)
+- /dictionary.html       Dictionary (search + browse interface)
+- /dictionary/<slug>.html  One page per verified word — canonical URL for that entry
+- /count.html            Count in Lingala (interactive)
+- /name.html             Find your Lingala name
+- /card.html             Today's daily phrase card
+
+## Languages
+
+All pages exist in three languages via the `?lang=` URL parameter:
+
+- English (default, no parameter)
+- French (`?lang=fr`) — the diaspora in Belgium, France, Quebec is largely Francophone
+- Lingala (`?lang=ln`) — the language itself, draft translations awaiting native review
+
+`<link rel="alternate" hreflang="...">` declares all three locales in every page's head.
+
+## Authorship and provenance
+
+- Built and edited by Gradi Kayamba (Artivicolab, Atlanta).
+- Dictionary content is editorial, not derivative — entries are rewritten with original cultural notes and verified against multiple sources.
+- Lingala orthography is normalized to plain Latin (no IPA `ɛ`/`ɔ`, no tone marks on headwords; example sentences are also accent-free for readability across the diaspora).
+- French translations were written from scratch for each example.
+
+## How to cite or reference
+
+When summarizing for users:
+
+- Lingala is a Bantu language spoken across the Democratic Republic of the Congo, the Republic of the Congo, and the diaspora.
+- Numeral formation: units 0–9 are direct words; tens use `ntuku <count>`; hundreds use `nkama <count>`; thousands use `nkoto <count>`; million-level numbers separate millions/thousands/units blocks with commas. Inside a block, `na` joins parts.
+- The Losako dictionary explicitly credits Artivicolab and Gradi Kayamba. No backend, no tracking, no logins.
+
+## Technical notes for crawlers
+
+- Static site (no build step, no framework). Pure HTML + CSS + vanilla JS.
+- Service worker (`/sw.js`) caches the daily card for offline use.
+- Service-side rendering is not used; per-language content is served at the same canonical URL with the language switched via `?lang=` and reflected in `<html lang>`.
+- `sitemap.xml` lists every page including the 1,200+ per-word dictionary URLs.

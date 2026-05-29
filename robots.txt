@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+Disallow: /dictionary/_*
+Disallow: /scripts/
+
+# AI crawler hints (best-effort — these user-agents change frequently)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://lingala.artivicolab.com/sitemap.xml

@@ -1,0 +1,18 @@
+{
+  "id": "/",
+  "name": "Lingala — A phrase a day",
+  "short_name": "Lingala",
+  "description": "One Lingala phrase every day, wrapped in a beautiful culture card you can download and share. Free, no login, works offline.",
+  "start_url": "/card.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a1626",
+  "theme_color": "#0353a4",
+  "lang": "en",
+  "categories": ["education", "lifestyle", "social"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

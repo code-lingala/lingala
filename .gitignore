@@ -1,0 +1,17 @@
+.DS_Store
+*.log
+node_modules/
+.netlify/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Python build helpers
+__pycache__/
+*.pyc
+scripts/_*.py
+
+# Local-only review artifacts
+VERB_CULTURAL_NOTES_REVIEW.md

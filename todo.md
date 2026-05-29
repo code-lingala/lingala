@@ -1,0 +1,64 @@
+# Lingala — working TODO
+
+Brand = **Lingala**, by Artivicolab. ("Losako" survives only as the greeting *phrase* in the database.)
+
+## ✅ Done
+- [x] CLAUDE.md (project guide)
+- [x] Phrase DB → 56 entries (dictionary batch) — ⚠️ needs native review
+- [x] Dictionary JSON by letter (`dictionary/by-english.json`, `by-lingala.json`)
+- [x] Editorial homepage (`index.html`)
+- [x] 4 DRC-flag themes (green/blue/yellow/red) + readable text per theme — on **all** pages
+- [x] Shared theme engine (`js/theme-site.js`) + shared design system (`css/site.css`); theme synced site-wide via `localStorage('lingala.theme')`
+- [x] EN/FR auto-detect + toggle (`js/i18n-site.js`) on homepage + about + privacy
+- [x] Rename app → `card.html`; manifest, links
+- [x] Full rebrand → LINGALA (wordmarks, titles, body copy EN+FR, app.js runtime/keys); collisions rephrased
+- [x] about.html + privacy.html → editorial design + themes + bilingual
+- [x] Card app (`card.html`): editorial fonts, 4 themes in `style.css` + `card.js`, Settings picker green/blue/yellow/red
+- [x] Dev caching fixed — service-worker kill-switch (changes now visible)
+- [x] **Trilingual EN/FR/LN** switch on homepage + about + privacy (`js/i18n-site.js`); Lingala = DRAFT, checked vs the dictionary word bank, ⚠️ needs native review
+
+## 🎯 Product model (confirmed)
+Two-way learner serving **4 directions**: FR→LN, LN→FR, EN→LN, LN→EN. The card should serve all four (show Lingala + both EN & FR), not just one gloss.
+
+- [x] **Find-your-name generator** (`name.html` + `js/name-engine.js`) — pure-JS, no API: birth-circumstance fixed names, theme + action sentence names, vowel-elision word blending (3-syllable/8-letter cap), and a modern French–Lingala hybrid style toggle. Downloadable name card (canvas), linked from the homepage nav. ⚠️ names/meanings need native review.
+- [x] **Curated names DB + gender filter** — `NAMES[]` in `name-engine.js`: 20 pre-blended names tagged `gender` (f/m/u) + `theme` + `style`, with **bilingual EN/FR** `meaning`/`note`. Form has a girl/boy/any selector; girl/boy draws gendered curated names, any/unisex keeps the generative blender + folds in the unisex set. ⚠️ Per owner decision, "Merdi" is **kept** despite reading as *merde* in French — revisit before launch.
+- [x] **Word-blender toy** (`fuseWords()` + the `#fuseTool` section) — mashes any two Lingala words into one coinage: first 2 syllables of A + (leading-vowel-dropped) first 2 syllables of B, nasal n/m seam glue, doubled-consonant collapse, ≤12-letter safety trim. Preset chips (nature/life roots × virtue blessings) + free typing + 🎲 Surprise me. **Reframed as an explicit "just for fun" toy, NOT real names** — owner's call after the algorithmic output didn't sound like authentic Lingala names. Copy says so plainly.
+
+## ⚠️ Names feature — authenticity problem (open, important)
+Algorithmic syllable-mashing can't produce names that sound real to a Lingala ear. The **blender is now labelled "for fun."** But the **finder above (`generateName`) still presents coined blends as traditional names** — `Zalmia, Elikyam, Kuminza, Netonza, Kembonza, Keto` and the dynamic `generateBlended()` output are invented, not attested. Only a handful (`Matondo, Apesami, Alingami`, the circumstance/twin names) are real. Decide before launch:
+- [ ] Replace the finder's invented entries with **real attested Congolese/Lingala first names** (with real meanings + gender), OR fall back to **real meaning-words used as names** (Esengo, Bolingo, Kimia, Bondeko…) from the verified word bank. Either way needs native review.
+- [ ] Re-examine the curated `NAMES[]` (esp. `Zalmia, Elikyam, Kuminza, Netonza, Kembonza, Keto`) and `Merdi` (kept by owner despite the French *merde* reading).
+
+- [x] **Dictionary page** (`dictionary.html`) — **960 entries**: the 56 curated `PHRASES` (rich: FR + note + long) merged with the word bank `lingala-wordbank-2.json` (917 rows; a superset of the now-redundant `lingala-wordbank.json` 900), **deduped by Lingala headword** (curated wins) so there are no duplicate words. Full-width responsive grid (1→4 cols), search across LN/EN/FR/phonetic/category, category chips unified across curated keys + word-bank categories (General/Food/Travel/Nature/Body…) ordered by count, **A–Z / By-length sort**, expandable entries (rich phrases show notes; word-bank entries show part-of-speech + example/note slots when present), **Show more / Show less** (24/batch). In every footer + the homepage nav menu; re-renders + relabels chips on EN/FR/LN switch.
+  - **Example sentences (owner-reviewed build):** going through the word bank alphabetically, ~50/screen via per-word yes/no/fix prompts, writing approved `examples` + `verified:true` into `lingala-wordbank-2.json`. Source of truth = `lingala.txt` (CVO dictionary). **Batch 1 done: A–B words #1–50** — each now has an example sentence **+ French (`french`) + a full cultural description (`culturalNote`: headline + paragraph)**, `verified:true`, rendered on the dictionary word cards. Gloss fixes applied: balabala→street, bansantu→saints, "be"→**mabe**, raw→**mobesu**. Grammar note saved to memory: `nalingi`=want(now) vs `nalingaka`=like(habitual).
+  - **Batch 2 done: #51–100** (bi-/bo- words, bisika→bosoto) — example + French + full description + `verified:true` each; fixes: bokumisi→worship, boso→**liboso** (front). All 50 approved on the first pass.
+  - **Batch 4 done: #151–200** (botolo→esika) + **Batch 5 done: #201–250** (esika esusu→kakola). Fixes: house→**tana** (shine), iyo→"yes", esika moko→"same place/together", fufu example uses *toliaki* (we ate), engwongolo→drum/canister, bokumisi→worship, boso→liboso. Dups kept: febuary, elikya. Vocab from owner: **toliaki**=we ate, **tolambi**=we cooked, **kotana**=shine.
+  - **Batch 3 done: #101–150** (bosoto→ekeke) — 48 written with example + French + description + `verified`; **dropped the `bosoto:` duplicate** (bank now 916); **`botolo` pending** (owner to confirm meaning — "undress" looks off, reads as "snatch").
+  - **Batch 6 done: #251–300** (the `ka-`/`ke-` words). Fixes from owner: #281 ko→**bongo** (therefore), #290 kobola→**kobete** (knock vs bruise), #292 kobondo→**kobondisa** (comfort/causative), #298 kobowa→**kobikisa** (heal; kobowa is archaic).
+  - **Batch 7 done: #301–600** (300 entries, the `ke-`→`mo-` stretch). Major owner fixes applied to #395–600: lemon→**ndímo** (not libazi); letter→**nkandá** (not letele); bald→**libandi**; shoulder→**lipeka**; hole→**libúlú**; potato→**mbala** (sweet potato, not libenge); crowd→**ebele ya bato**; single→**monzemba**; broom→**kombá**; witchcraft→**kindoki**; bread→**mampa** (not lipa); horn→**ngomolo**; wild animal→**nyama ya mpoka**; deaf→**ayokaka te**; lunch→**bilei ya midi**; beef→**nyama ya ngombé**; cheap→**ntalo moke**; mistake (#410)→**pete** (soft); street/road→**balabala**; widow→**mwasi-mokufeli**; blind→**mokufa-miso**; itch→**kosakwa**; electricity→**monini**; "ko" (therefore) variants resolved. Owner override **"do not drop any words"** — every entry kept and fixed in place.
+  - **Batch 9 done: #901–#915** (15 `z-` words, owner-reviewed). Fixes: heavy→**zito** (not kilo); injure→**kozokisa** (causative). All ≤915 core entries now at 100% verified.
+  - **Supplemental batches done: #916–#1007** (92 new entries from owner-supplied lists with dedup against the bank). Coverage: iconic Kongo foods (kwánga, kamundele, makemba, mpiodi, bilolo, pilipíli, liboke, fufu, ngólu, ntaba ya kotumba, mayi ya banyama, tomson, masángó, mafúta, mbabula, fúlo), modern slang (mfioti, kosíba, mpámba, kásá, lobóbó), full anatomical set (likósi, likófi, ebángá, eboló, likata, mofáti, lobebú, ebekú, ebelo, ebóbó, edádá, esóngó, lifuni, libolongo, lisásámbá, mbunzu, moyoyo, mongóngó voice, mupende, pótá, mposo, nkóngi, lomoso, mwásí, makelélé), spatial/relational (pembeni, mopenzi, pembele, pene, singa, ebimelo, ekotelo), abstract/descriptive (kotôndô, losambo, mpíkó, ngólu grace, kofungola, makasi, bwanya, mopepe, nzeté, mbalasá, lopango, motuka, kobíka, kokanisa, koyengela, ebendé, molóngó, ekólo, nkóndo, mondélé, bondóki, kotóndisa, kiboko, mbulu, kelási, nyangó, nkúte, kopasola, kobwaka, fingo, mayele, minói, mái ya mpóndú, nzeté ya mái). **Owner-submitted batches 8, 9, and 10 were 100% duplicates and skipped.** Bank now: **1,007 entries / 100% verified / 100% examples / 100% French / 100% cultural notes / 68.8% phonetic.**
+  - **Batch 8 done: #601–#900** (300 entries, the `mo-`→`zanga` stretch). Major owner fixes: carving→**loyémbo** (motende = stripe); lame→**kiyúngúlu**; stove→**fúlo** (fwa is ghost); lamb→**mwana ya mpata**; beard→**mandefu** (only plural); ceremony→**féti**; tower→**tour**; concert→**féti ya mizíki**; nkese→**grief/sorrow** (not million); cat→**niau** (nkondoko = wild genet); half→**katikáti / ntei**; door→**ekuke**, closed = **ekangami**; watch broken→**epasuki** (kopasuka, not kokata); helped→**nasalisi** (not nasaleli); comb→**kisanola**; toothache phrasing→**Lino na ngai esalí pasi**; straight→**sembo**; sock torn→**epasuki**; mirror on **efelo** (wall, not lopango); went→**akendé** (not akoyaka); soft→**pete** (not tatu); TV watching→**bazali kotala** progressive; thanks (noun)→**botóndi**; smoke→**komela tumbako** (drink the tobacco); multiply→**kokolisa / kobakisa** (not koyikinya); devil→**diabolo / satana** (not zabulu); because→**mpo** (zambi archaic). Anatomy body-part pain uses **esalí pasi** consistently. Totals now: **901 examples / 896 French / 902 verified out of 915**. **Next: final batch 9 (#901–#915, the `z-` words — 13 entries to lock the whole bank).**
+  - ⚠️ Word-bank data is mostly **unverified** (meta: 20/917 verified, ~585 phonetics, **no French**, example/`culturalNote` slots empty) — flagged on-page via a source note; needs community review. `lingala-wordbank.json` (v1, 900) is now redundant; `dictionary/by-english.json`+`by-lingala.json` (Faith Mbudo, 1069) are no longer used by the page. Dict UI chrome labels still English-only.
+
+## ⏳ Next
+- [x] Consistent footer on ALL pages — one `.site-footer` (tagline + About/Privacy/Find your name/Contact/artivicolab.com + © · made-with-care) on home, card, about, privacy, name
+- [x] Consistent nav — marketing pages (home/about/privacy/name) share logo + theme dots + EN/FR/LN + CTA, now sticky/persistent. (Card app keeps its functional topbar = LINGALA + streak + Today/Archive/Settings tabs, which is right for an app; it shares the same footer + brand.)
+- [ ] name.html form labels are English-only (results localize EN/FR/LN via the engine; form chrome + headings still need i18n)
+- [x] Pair picker in the card app — choose Français/English + ⇄ flip → FR→LN, LN→FR, EN→LN, LN→EN; card + download show the chosen pair (`js/app.js` directionBar, `js/card.js`)
+- [ ] Add `ln` to the app's `T` object (`js/app.js`) + Lingala option in Settings, so the card app chrome is trilingual too (autonyms work now; labels like Download/Settings still EN/FR)
+- [ ] Make the homepage demo card reflect the pair picker (it's currently a static marketing card)
+- [ ] Native-speaker review of all Lingala UI strings (verify against the word bank)
+- [ ] Card renderer: bundle Fraunces/Syne so the downloaded PNG matches the editorial card
+- [ ] Card renderer (`card.js`): the downloaded PNG still uses system fonts (Arial Black/Helvetica). Bundle Fraunces/Syne + `await document.fonts.ready` so the export matches the editorial on-screen card. Retune canvas font sizes for the new faces.
+- [ ] Bilingual cultural notes in the app — DB `note`/`long` are English-only; add French (`noteFr`/`longFr`) + native review.
+- [ ] Re-enable real offline support in `sw.js` before launch (currently a dev kill-switch).
+
+## 🪧 Backlog / flagged
+- [x] **Ambient footer audio → Congolese sebene** (`js/ambient.js`) — replaced the likembe drone piece with an original Web Audio *sebene* (~1:39, BPM 116): 3-2 son clave, walking pentatonic bass, cavacha groove, mi-solo rhythm guitar, interlocking lead/2nd-guitar arpeggios, horn stabs → full-band peak → fade. Same click-to-play + 5-min loop + cross-page localStorage. "Likembe ambient music" aria-label → "Sebene rumba music" on all 5 pages.
+- [ ] **Audio step-up:** synth triangle/saw waves only approximate a real Congolese guitar tone. If audio becomes the app's identity, commission/license a short recorded sebene loop from a Congolese guitarist.
+- [ ] Native-speaker review of all phrase content (esp. dictionary batch + traditional month names)
+- [ ] App icons (`icon-192/512/512-maskable.png`, `icon-180.png`) + `og-image.png` — referenced but missing
+- [x] "Suggest a phrase" mails to artivicolab@gmail.com via `mailto:` (works on static GitHub Pages; arrives as an email/phone push)
+- [ ] Decide on the `losako.app` domain now that the brand is Lingala
+- [ ] Nothing committed to git yet

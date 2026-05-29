@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="blue">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Count in Lingala — Lingala</title>
+<meta name="description" content="Learn to count in Lingala from moko to nkoto — pronunciation, quiz modes, and auto-count practice. Free, works offline.">
+<meta name="theme-color" content="#08182E">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Lingala">
+<meta property="og:title" content="Count in Lingala">
+<meta property="og:description" content="Learn the Lingala numbers — count up, quiz yourself, or let the app count out loud.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lingala.artivicolab.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+<script>try{var _t=localStorage.getItem('lingala.theme');if(_t==='green'||_t==='yellow'||!_t)_t='blue';document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<style>
+  /* Single-column hero-card layout — the card IS the page. Controls condense
+     into compact toolbars above (modes) and below (filters / voice / speed). */
+  .count-page { max-width: 760px; margin: 0 auto; padding: 24px 16px 90px; overflow-x: clip; }
+  .count-page > * { max-width: 100%; min-width: 0; }
+  .c-card { max-width: 100%; }
+  @media (min-width: 640px) { .count-page { padding: 36px 28px 90px; } }
+  @media (min-width: 980px) { .count-page { max-width: 880px; padding: 36px 32px 80px; } }
+  /* Wide screens — 2-column grid. Card on the left, teaching content (derivation
+     panel + saved + mastery) on the right rail so horizontal space teaches
+     rather than sits empty. grid-auto-flow: dense lets the right-col items
+     fill the gap beside the card instead of stacking below it. */
+  /* ── Wide-screen dashboard layout (≥1200px) ──────────────────────────
+     Pure 3-column grid: 240px / 1fr / 300px.
+     Each column flows independently via grid-column + auto-row placement.
+     Header + footer span all columns. */
+  /* Optional larger max-width on big screens so the centered column has room
+     to breathe — but no 3-column dashboard. The page stays as a clean single
+     column at all widths. */
+  @media (min-width: 1200px) {
+    .count-page { max-width: 1080px; padding: 48px 32px 100px; }
+  }
+
+  /* .c-rail wraps Mastery + Saved + Derivation in DOM, but renders
+     transparently — children flow as normal siblings in the page. */
+  .c-rail { display: contents; }
+
+  .count-header { text-align: center; margin-bottom: 22px; }
+  .count-eyebrow { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: inline-flex; align-items: center; gap: 10px; }
+  .count-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+  .count-title { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; font-size: clamp(1.5rem, 4.2vw, 2rem); line-height: 1.15; color: var(--ink); margin-bottom: 4px; }
+  .count-title em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .count-sub { font-size: 0.88rem; line-height: 1.55; color: var(--ink); opacity: 0.75; margin: 0 auto; max-width: 560px; }
+  @media (min-width: 980px) { .count-sub { display: none; } }
+
+  /* Mode tab groups — inline layout: Learn: [tabs] · Practice: [tabs]
+     all on one wrapping row, divided by a subtle separator. */
+  .c-modes-groups {
+    display: flex; flex-wrap: wrap;
+    gap: 8px 14px;
+    justify-content: center; align-items: center;
+    margin-bottom: 10px;
+  }
+  .c-modes-group {
+    display: inline-flex; flex-wrap: wrap;
+    align-items: center; gap: 6px;
+  }
+  .c-modes-group + .c-modes-group {
+    border-left: 1px solid var(--line);
+    padding-left: 14px; margin-left: 4px;
+  }
+  .c-modes-label {
+    font-family: var(--body); font-size: 0.62rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); opacity: 0.75;
+    margin-right: 4px;
+  }
+  @media (max-width: 540px) {
+    /* On phone, drop the visual divider so wrapping reads cleanly */
+    .c-modes-group + .c-modes-group { border-left: 0; padding-left: 0; margin-left: 0; }
+  }
+
+  /* More options toggle — reveals advanced controls (Step, etc.) */
+  .c-more-toggle { display: inline-flex; align-items: center; gap: 6px; margin: 0; padding: 6px 14px; background: transparent; border: 1px solid transparent; border-radius: 100px; color: var(--ink); opacity: 0.7; font-family: var(--body); font-size: 0.78rem; cursor: pointer; transition: all 0.15s; }
+  .c-more-toggle:hover { opacity: 1; border-color: var(--line); }
+  .c-more-toggle[aria-expanded="true"] .c-more-chev { transform: rotate(180deg); display: inline-block; }
+  .c-more-chev { display: inline-block; transition: transform 0.2s; }
+  /* When toggle is open, the [hidden] attribute is removed on the controls */
+  .c-advanced[hidden] { display: none !important; }
+
+  /* Mode tabs — centered on the page above the card */
+  .c-modes { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 16px; justify-content: center; flex-wrap: wrap; }
+  .c-modes::-webkit-scrollbar { display: none; }
+  .c-mode { flex-shrink: 0; padding: 6px 13px; background: transparent; border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.8rem; border-radius: 100px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .c-mode:hover:not(.active) { border-color: var(--accent); }
+  .c-mode.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Range + Step on one centered row */
+  .c-filters-row { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: center; align-items: center; margin-bottom: 20px; }
+  .c-range { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; margin: 0; }
+  .c-range-label { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.55; }
+  .c-seg { display: flex; border: 1px solid var(--line); border-radius: 100px; overflow: hidden; }
+  .c-seg button { padding: 7px 12px; background: transparent; border: none; color: var(--ink); font-family: var(--body); font-size: 0.78rem; cursor: pointer; white-space: nowrap; }
+  .c-seg button.active { background: var(--accent); color: #fff; }
+
+  /* Main card — the page hero. Prev/Next live as flanking arrow buttons. */
+  .c-card-wrap { position: relative; margin-bottom: 18px; }
+  .c-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 42px 28px 32px;
+    text-align: center;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.18s, opacity 0.18s;
+  }
+  /* Kuba-cloth motif — central DRC textile tradition. The current pattern is
+     held in the --kuba CSS var, swapped by JS every 10 counts so the card
+     visibly evolves as you walk through the numbers. */
+  .c-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--kuba);
+    background-size: 110px 110px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.075;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.3s, background-image 0.3s;
+  }
+  /* Lift content above the pattern */
+  .c-card > * { position: relative; z-index: 1; }
+  /* On the sponsor interstitial, dim the pattern further so it doesn't fight the message */
+  .c-card.ad::before { opacity: 0.04; }
+  /* Card-level milestone pulse — every 10 a quick glow */
+  @keyframes milestonePulse {
+    0%   { box-shadow: 0 0 0 0 rgba(244,200,30,0.55), inset 0 0 0 0 rgba(244,200,30,0); }
+    40%  { box-shadow: 0 0 0 14px rgba(244,200,30,0), inset 0 0 28px 4px rgba(244,200,30,0.25); }
+    100% { box-shadow: 0 0 0 0 rgba(244,200,30,0), inset 0 0 0 0 rgba(244,200,30,0); }
+  }
+  .c-card.milestone { animation: milestonePulse 0.8s ease; }
+  .c-card.milestone-big { animation: milestonePulse 1.4s ease; }
+
+  /* Confetti — DRC flag colors falling from the top of the card on milestones */
+  .confetti {
+    position: absolute;
+    top: -14px;
+    width: 8px;
+    height: 14px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 5;
+    animation: confettiFall 1.6s ease-out forwards;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(0) rotate(0deg);   opacity: 1; }
+    100% { transform: translateY(360px) rotate(720deg); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .c-card.milestone, .c-card.milestone-big { animation: none; }
+    .confetti { display: none; }
+  }
+  @media (min-width: 980px) {
+    .c-card { padding: 56px 32px 44px; min-height: 340px; }
+  }
+  /* Flanking Prev/Next arrows for count-up + auto. Hidden by default; the
+     JS toggles classes on the page root so each mode shows its own controls. */
+  .c-card-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 100px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+    color: var(--ink); cursor: pointer; display: none;
+    align-items: center; justify-content: center;
+    font-size: 1.4rem; transition: all 0.15s;
+  }
+  .c-card-arrow:hover:not(:disabled) { border-color: var(--accent); background: rgba(255,255,255,0.08); }
+  .c-card-arrow:disabled { opacity: 0.25; cursor: not-allowed; }
+  .c-card-arrow.prev { left: -8px; }
+  .c-card-arrow.next { right: -8px; }
+  @media (min-width: 600px) {
+    .c-card-arrow.prev { left: -24px; }
+    .c-card-arrow.next { right: -24px; }
+  }
+  .c-mode-count .c-card-arrow { display: inline-flex; }
+
+  /* "Sponsor" interstitial — fires after each multiple of 30 in auto mode. */
+  .c-card.ad .c-digit { color: var(--accent); font-size: clamp(3.6rem, 12vw, 5rem); letter-spacing: -0.04em; }
+  .c-card.ad .c-ln { font-family: var(--display); font-style: normal; font-weight: 800; letter-spacing: 0.02em; color: var(--ink); font-size: clamp(1.5rem, 4vw, 2rem); }
+  .c-card.ad .c-phon { letter-spacing: 0.24em; text-transform: uppercase; font-style: normal; font-size: 0.74rem; opacity: 0.65; }
+  .c-card.flash { animation: cardFlash 0.45s ease; }
+  @keyframes cardFlash {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(0.98); }
+  }
+  .c-card.wrong { animation: cardShake 0.35s ease; }
+  @keyframes cardShake {
+    0%, 100% { transform: translateX(0); }
+    25%      { transform: translateX(-8px); }
+    75%      { transform: translateX(8px); }
+  }
+
+  .c-digit { font-family: var(--display); font-weight: 800; font-size: clamp(4.5rem, 18vw, 7rem); line-height: 1; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em; }
+  .c-ln { font-family: var(--serif); font-weight: 600; font-style: italic; font-size: clamp(1.6rem, 5vw, 2.2rem); color: var(--accent); margin-bottom: 8px; line-height: 1.2; }
+  .ln-w { display: inline; transition: color 0.12s, text-shadow 0.12s; }
+  .ln-w.say { color: var(--ink); text-shadow: 0 0 24px rgba(244,200,30,0.5); }
+  .c-phon { font-family: var(--body); font-style: italic; font-size: 0.92rem; color: var(--ink); opacity: 0.7; margin-bottom: 18px; }
+  .c-pos { font-family: var(--body); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); opacity: 0.5; }
+
+  /* Quiz options */
+  .c-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 420px; margin: 8px auto 0; }
+  .c-option {
+    padding: 16px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 56px;
+  }
+  .c-option:hover:not(:disabled) { border-color: var(--accent); }
+  .c-option.correct { background: rgba(80,180,100,0.18); border-color: #4FAE5E; color: #B7F0BD; }
+  .c-option.incorrect { background: rgba(200,32,42,0.18); border-color: var(--accent); }
+  .c-option:disabled { cursor: not-allowed; }
+
+  /* Mastery row — dot grid for small ranges, percent bar for large */
+  .c-mastery { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .c-mastery:empty { display: none; }
+  .c-mastery-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.6; }
+  .c-mastery-label strong { color: var(--accent); font-weight: 700; opacity: 1; margin-left: 4px; }
+  .c-mastery-dots { display: grid; gap: 4px; max-width: 100%; }
+  .c-mastery-dot { width: 8px; height: 8px; border-radius: 100px; background: rgba(255,255,255,0.08); transition: background 0.2s; }
+  .c-mastery-dot.done { background: var(--accent); }
+  .c-mastery-dot.cur { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .c-mastery-bar { width: 100%; max-width: 360px; height: 6px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+  .c-mastery-bar > div { height: 100%; background: var(--accent); transition: width 0.3s; }
+
+  /* Card utility actions (Copy / Share) — sits just under the card */
+  .c-card-actions { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+  .c-mode-quiz-ln .c-card-actions, .c-mode-quiz-digit .c-card-actions, .c-mode-quiz-listen .c-card-actions { display: none; }
+  .c-card-act {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px; background: transparent;
+    border: 1px solid var(--line); border-radius: 100px;
+    color: var(--ink); font-family: var(--body); font-size: 0.78rem; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .c-card-act:hover { border-color: var(--accent); color: var(--accent); }
+  .c-card-act.copied { border-color: #4FAE5E; color: #B7F0BD; }
+  .c-card-act.saved { background: rgba(244,200,30,0.12); border-color: #F4C81E; color: #F4C81E; }
+  .c-card-act.saved svg { fill: currentColor; }
+
+  /* Saved numbers row — horizontal scrolling list of bookmarks */
+  .c-saved { display: flex; gap: 6px; overflow-x: auto; padding: 0 4px 4px; margin-bottom: 14px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .c-saved::-webkit-scrollbar { display: none; }
+  .c-saved:empty { display: none; }
+  .c-saved-label { flex-shrink: 0; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.55; align-self: center; margin-right: 6px; }
+  .c-saved-chip { flex-shrink: 0; padding: 5px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 100px; color: var(--ink); font-family: var(--body); font-size: 0.82rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+  .c-saved-chip:hover { border-color: var(--accent); }
+  .c-saved-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .c-saved-chip-x { background: transparent; border: 0; color: inherit; opacity: 0.5; cursor: pointer; padding: 0; font-size: 1rem; line-height: 1; }
+  .c-saved-chip-x:hover { opacity: 1; }
+
+  /* Daily challenge banner — sits above the first-run hint when shown */
+  .c-challenge {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; margin: -4px 0 12px;
+    background: rgba(244, 200, 30, 0.10); border: 1px solid rgba(244, 200, 30, 0.42);
+    border-radius: 12px;
+    font-family: var(--body); font-size: 0.88rem; color: var(--ink);
+    animation: hintIn 0.4s ease;
+  }
+  .c-challenge-icon { flex-shrink: 0; font-size: 1.1rem; }
+  .c-challenge-text { flex: 1; }
+  .c-challenge-text strong { color: var(--accent); font-weight: 700; }
+  .c-challenge-go {
+    flex-shrink: 0; padding: 5px 12px;
+    background: var(--accent); color: #fff; border: 0; border-radius: 100px;
+    font-family: var(--body); font-size: 0.78rem; cursor: pointer;
+  }
+  .c-challenge-go:hover { opacity: 0.92; }
+  .c-challenge-x { flex-shrink: 0; background: transparent; border: 0; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0 4px; line-height: 1; opacity: 0.6; }
+  .c-challenge-x:hover { opacity: 1; }
+
+  /* First-run hint banner */
+  .c-hint {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; margin: -4px 0 14px;
+    background: rgba(20, 85, 164, 0.14); border: 1px solid rgba(20, 85, 164, 0.4);
+    border-radius: 12px;
+    font-family: var(--body); font-size: 0.88rem; color: var(--ink);
+    animation: hintIn 0.4s ease;
+  }
+  .c-hint strong { color: var(--accent); font-weight: 700; }
+  @keyframes hintIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .c-hint-icon { flex-shrink: 0; font-size: 1.1rem; }
+  .c-hint-x { flex-shrink: 0; background: transparent; border: 0; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0 4px; line-height: 1; opacity: 0.6; }
+  .c-hint-x:hover { opacity: 1; }
+
+  /* Printable cheat sheet — hidden on screen, full layout when printing */
+  #printSheet { display: none; }
+  @media print {
+    body * { visibility: hidden; }
+    #printSheet, #printSheet * { visibility: visible; }
+    #printSheet {
+      display: block; position: absolute; inset: 0;
+      background: #fff; color: #111;
+      padding: 20mm 18mm; font-family: Georgia, serif; font-size: 11pt; line-height: 1.45;
+    }
+    #printSheet header { border-bottom: 2px solid #C8202A; padding-bottom: 8mm; margin-bottom: 8mm; }
+    #printSheet h1 { font-size: 24pt; margin: 0 0 4mm; color: #08182E; }
+    #printSheet header p { margin: 0; color: #555; font-style: italic; }
+    #printSheet h2 { font-size: 13pt; color: #C8202A; margin: 0 0 2mm; }
+    #printSheet ol { list-style: none; padding: 0; counter-reset: r; }
+    #printSheet ol > li { counter-increment: r; padding: 5mm 0 5mm 14mm; position: relative; border-bottom: 1px solid #E5E5E5; }
+    #printSheet ol > li:last-child { border-bottom: 0; }
+    #printSheet ol > li::before { content: counter(r); position: absolute; left: 0; top: 5mm; width: 9mm; height: 9mm; border-radius: 100px; background: #F4C81E; color: #08182E; font-family: Arial, sans-serif; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 11pt; }
+    #printSheet p { margin: 0 0 2mm; }
+    #printSheet em { color: #C8202A; font-style: italic; font-weight: 600; }
+    #printSheet table { border-collapse: collapse; margin-top: 3mm; }
+    #printSheet table td { padding: 1mm 4mm 1mm 0; font-family: Arial, sans-serif; }
+    #printSheet table td:first-child { font-weight: 700; color: #08182E; }
+    #printSheet table td:last-child { font-style: italic; }
+    .c-print-eg { font-family: Georgia, serif; font-style: italic; color: #08182E; background: #F8F4E0; padding: 2mm 4mm; border-left: 3px solid #F4C81E; border-radius: 0 2mm 2mm 0; }
+    #printSheet footer { margin-top: 10mm; padding-top: 5mm; border-top: 1px solid #E5E5E5; text-align: center; color: #777; font-size: 9pt; }
+  }
+
+  /* Keyboard shortcuts overlay */
+  .c-kbd-back { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 600; padding: 20px; }
+  .c-kbd-back[hidden] { display: none; }
+  .c-kbd { background: #0F2238; border: 1px solid var(--line); border-radius: 16px; padding: 28px 26px 24px; max-width: 420px; width: 100%; position: relative; }
+  .c-kbd h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--ink); margin: 0 0 18px; font-weight: 600; }
+  .c-kbd dl { margin: 0; }
+  .c-kbd dl > div { display: flex; gap: 14px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .c-kbd dl > div:last-child { border-bottom: 0; }
+  .c-kbd dt { flex-shrink: 0; min-width: 64px; font-family: var(--body); font-weight: 700; color: var(--accent); }
+  .c-kbd dd { margin: 0; color: var(--ink); font-size: 0.92rem; }
+  .c-kbd-close { position: absolute; top: 8px; right: 10px; background: transparent; border: 0; color: var(--ink); font-size: 1.6rem; cursor: pointer; opacity: 0.6; }
+  .c-kbd-close:hover { opacity: 1; }
+
+  /* "How is this formed?" — derivation panel */
+  .c-deriv-wrap { margin-bottom: 18px; text-align: center; }
+  .c-mode-quiz-ln .c-deriv-wrap, .c-mode-quiz-digit .c-deriv-wrap, .c-mode-quiz-listen .c-deriv-wrap { display: none; }
+  .c-deriv-toggle {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; background: transparent;
+    border: 1px solid var(--line); border-radius: 100px;
+    color: var(--ink); font-family: var(--body); font-size: 0.84rem;
+    cursor: pointer; transition: all 0.15s; opacity: 0.78;
+  }
+  .c-deriv-toggle:hover { opacity: 1; border-color: var(--accent); }
+  .c-deriv-q {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 100px;
+    background: var(--accent); color: #fff; font-weight: 800; font-size: 0.78rem;
+  }
+  .c-deriv-chev { display: inline-block; transition: transform 0.2s; opacity: 0.6; }
+  .c-deriv-toggle[aria-expanded="true"] .c-deriv-chev { transform: rotate(180deg); }
+  .c-deriv {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 14px auto 0; max-width: 580px; text-align: left;
+  }
+  .c-deriv[hidden] { display: none; }
+  .c-deriv-step {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .c-deriv-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .c-deriv-num {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 100px;
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 0.78rem;
+  }
+  .c-deriv-rule { font-family: var(--body); font-weight: 600; font-size: 0.86rem; color: var(--ink); }
+  .c-deriv-pat {
+    font-family: var(--body); font-size: 0.74rem;
+    color: var(--ink); opacity: 0.55;
+    border: 1px solid var(--line); border-radius: 100px;
+    padding: 2px 9px; margin-left: auto;
+  }
+  .c-deriv-pat code, .c-deriv-expl code, .c-deriv-rule code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em; padding: 1px 4px; background: rgba(255,255,255,0.06); border-radius: 4px;
+  }
+  .c-deriv-expl { font-family: var(--body); font-size: 0.84rem; line-height: 1.5; color: var(--ink); opacity: 0.85; margin: 0 0 8px; }
+  .c-deriv-expl em { color: var(--accent); font-style: italic; font-weight: 600; }
+  .c-deriv-piece {
+    background: rgba(244,200,30,0.08);
+    border: 1px solid rgba(244,200,30,0.3);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-family: var(--serif); font-style: italic; font-size: 1rem;
+    color: var(--accent); cursor: pointer;
+    transition: all 0.15s;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .c-deriv-piece:hover { background: rgba(244,200,30,0.14); }
+  .c-deriv-step { max-width: 100%; overflow-wrap: anywhere; }
+  .c-deriv-rule, .c-deriv-expl, .c-deriv-pat { overflow-wrap: anywhere; min-width: 0; }
+  .c-deriv-pat { max-width: 100%; }
+
+  /* Number story — small editorial italic line under the breakdown */
+  .c-story { font-family: var(--serif); font-style: italic; font-size: 0.92rem; color: var(--ink); opacity: 0.78; text-align: center; max-width: 560px; margin: -6px auto 18px; line-height: 1.5; }
+  .c-story:empty { display: none; }
+  .c-mode-quiz-ln .c-story, .c-mode-quiz-digit .c-story, .c-mode-quiz-listen .c-story { display: none; }
+
+  /* Number breakdown chips — only shown in count-up / type / auto when there
+     are 2+ addends. Click a chip to hear that part spoken. */
+  .c-breakdown { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; padding: 0 4px; }
+  .c-breakdown:empty { display: none; }
+  .c-mode-quiz-ln .c-breakdown, .c-mode-quiz-digit .c-breakdown, .c-mode-quiz-listen .c-breakdown { display: none; }
+  .c-chip-bd {
+    display: inline-flex; flex-direction: column; align-items: center;
+    padding: 8px 12px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 12px;
+    color: var(--ink); cursor: pointer; transition: all 0.15s;
+    min-width: 64px;
+  }
+  .c-chip-bd:hover { border-color: var(--accent); }
+  .c-chip-bd .v { font-family: var(--display); font-weight: 700; font-size: 0.92rem; color: var(--accent); letter-spacing: -0.01em; }
+  .c-chip-bd .w { font-family: var(--serif); font-style: italic; font-size: 0.88rem; margin-top: 1px; }
+  .c-chip-bd-sep { color: var(--ink); opacity: 0.4; font-size: 1.1rem; align-self: center; user-select: none; }
+  /* Place-value color band — left edge stripe reflects the magnitude tier.
+     DRC flag triad: blue=million, gold=thousand/hundred, red=tens, neutral=units. */
+  .c-chip-bd[data-tier="m"]  { border-left: 4px solid #1455A4; }
+  .c-chip-bd[data-tier="k"]  { border-left: 4px solid #2576C8; }
+  .c-chip-bd[data-tier="h"]  { border-left: 4px solid #F4C81E; }
+  .c-chip-bd[data-tier="t"]  { border-left: 4px solid #C8202A; }
+  .c-chip-bd[data-tier="u"]  { border-left: 4px solid var(--ink); }
+  .c-chip-bd[data-tier="m"] .v { color: #4E8FD3; }
+  .c-chip-bd[data-tier="k"] .v { color: #5BA0E0; }
+  .c-chip-bd[data-tier="h"] .v { color: #F4C81E; }
+  .c-chip-bd[data-tier="t"] .v { color: #E04545; }
+  .c-chip-bd[data-tier="u"] .v { color: var(--ink); }
+
+  /* Streak — only used by quiz modes */
+  .c-streak { display: none; justify-content: center; gap: 22px; padding: 0 4px; margin-bottom: 14px; font-size: 0.82rem; color: var(--ink); opacity: 0.8; }
+  .c-streak strong { color: var(--accent); font-weight: 700; }
+
+  /* Controls below the card (Start/Pause/Reset for auto, Reset for count, Skip for quiz) */
+  .c-controls { display: flex; gap: 10px; justify-content: center; margin-top: 4px; }
+  /* In count mode the Prev/Next arrows live ON the card, but we still show a
+     small Reset button in this row so the user can jump back to zero. */
+  .c-btn {
+    padding: 13px 22px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 48px;
+    min-width: 90px;
+  }
+  .c-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .c-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .c-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .c-btn.primary:hover { background: var(--terracotta-hover, var(--accent)); }
+
+  /* Footer toolbar — Speed (auto only) + Voice always; same compact row. */
+  .c-footbar { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: center; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .c-speed { display: none; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--ink); opacity: 0.78; margin: 0; }
+  .c-mode-auto .c-speed { display: inline-flex; }
+  .c-speed select { padding: 5px 10px; background: var(--surface-2, rgba(255,255,255,0.05)); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-family: var(--body); font-size: 0.82rem; }
+
+  /* Voice toggle — sits inline in the footbar */
+  .c-speech { display: inline-flex; align-items: center; gap: 10px; margin: 0; }
+  .c-mode-quiz-ln .c-speech, .c-mode-quiz-digit .c-speech { display: none; }
+  .c-speech-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; background: transparent; border: 1px solid var(--line);
+    border-radius: 100px; color: var(--ink); cursor: pointer;
+    font-family: var(--body); font-size: 0.86rem; transition: all 0.15s;
+  }
+  .c-speech-btn:hover { border-color: var(--accent); }
+  .c-speech-btn[aria-pressed="true"] { background: rgba(20,85,164,0.18); border-color: var(--accent); }
+  .c-speech-icon { font-size: 1rem; }
+  .c-speech-note { font-size: 0.72rem; color: var(--ink); opacity: 0.55; max-width: 340px; line-height: 1.4; }
+  .c-speech-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .c-speech-btn:disabled + .c-speech-note { opacity: 0.4; }
+
+  /* Hide quiz options when not in quiz */
+  .c-options { display: none; }
+  .c-mode-quiz-ln .c-options,
+  .c-mode-quiz-digit .c-options { display: grid; }
+  .c-mode-quiz-ln .c-streak,
+  .c-mode-quiz-digit .c-streak { display: flex; }
+
+  /* Type-a-number input — only visible in type mode */
+  .c-type-input { display: none; margin-bottom: 22px; }
+  .c-mode-type .c-type-input { display: block; }
+  .c-type-input input {
+    width: 100%; padding: 16px 18px;
+    background: var(--surface-2, rgba(255,255,255,0.05));
+    border: 1px solid var(--line); border-radius: 12px;
+    color: var(--ink); font-family: var(--display); font-weight: 700;
+    font-size: 1.4rem; outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+  .c-type-input input:focus { border-color: var(--accent); }
+  .c-type-input input::placeholder { color: var(--ink); opacity: 0.45; font-weight: 400; font-size: 1rem; font-family: var(--body); }
+  /* Hide the range selector in type mode (the input takes any number 0-1000) */
+  .c-mode-type .c-range { display: none; }
+
+  /* Compose mode UI */
+  .c-compose { display: none; flex-direction: column; gap: 16px; margin-bottom: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 20px; }
+  .c-mode-compose .c-compose { display: flex; }
+  /* In compose mode the c-compose IS the working area — hide the main card + chrome */
+  .c-mode-compose .c-card-wrap, .c-mode-compose .c-card-actions, .c-mode-compose .c-breakdown, .c-mode-compose .c-story, .c-mode-compose .c-deriv-wrap { display: none; }
+  /* In quiz-rule mode hide the breakdown + story (would give the answer away) */
+  .c-mode-quiz-rule .c-breakdown, .c-mode-quiz-rule .c-story, .c-mode-quiz-rule .c-deriv-wrap, .c-mode-quiz-rule .c-card-actions { display: none; }
+  .c-mode-quiz-rule .c-options { display: grid; }
+  .c-mode-quiz-rule .c-streak { display: flex; }
+  .c-compose-target { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .c-compose-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.65; }
+  .c-compose-digit { font-family: var(--display); font-weight: 800; font-size: 2.2rem; color: var(--accent); letter-spacing: -0.02em; flex: 1; }
+  .c-compose-new { background: transparent; border: 1px solid var(--line); border-radius: 100px; padding: 6px 14px; color: var(--ink); font-size: 0.78rem; cursor: pointer; }
+  .c-compose-new:hover { border-color: var(--accent); }
+  .c-compose-built { min-height: 60px; padding: 14px; background: var(--base); border: 1px dashed var(--line); border-radius: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .c-compose-built:empty::after { content: attr(data-empty); color: var(--ink); opacity: 0.4; font-style: italic; font-size: 0.86rem; }
+  .c-compose-built.correct { border-color: #4FAE5E; background: rgba(80,180,100,0.08); }
+  .c-compose-built.incorrect { border-color: var(--accent); background: rgba(200,32,42,0.08); }
+  .c-compose-pool { display: flex; flex-wrap: wrap; gap: 6px; }
+  .c-compose-pool .c-pool-chip {
+    padding: 8px 14px; background: var(--surface-2, rgba(255,255,255,0.05));
+    border: 1px solid var(--line); border-radius: 100px;
+    color: var(--ink); font-family: var(--serif); font-style: italic; font-size: 0.94rem; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .c-compose-pool .c-pool-chip:hover { border-color: var(--accent); }
+  .c-compose-pool .c-pool-chip:disabled { opacity: 0.3; cursor: not-allowed; }
+  .c-compose-built .c-built-chip { padding: 6px 12px; background: rgba(244,200,30,0.14); border: 1px solid rgba(244,200,30,0.4); color: var(--ink); border-radius: 100px; font-family: var(--serif); font-style: italic; font-size: 0.94rem; cursor: pointer; }
+  .c-compose-built .c-built-chip:hover { background: rgba(244,200,30,0.22); }
+  .c-compose-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* Listen → Type quiz UI — only shown in that mode */
+  .c-listen-quiz { display: none; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .c-mode-quiz-listen .c-listen-quiz { display: flex; }
+  .c-listen-quiz input {
+    width: 100%; max-width: 360px; padding: 14px 16px;
+    background: var(--surface-2, rgba(255,255,255,0.05));
+    border: 1px solid var(--line); border-radius: 12px;
+    color: var(--ink); font-family: var(--display); font-weight: 700;
+    font-size: 1.3rem; outline: none; text-align: center;
+  }
+  .c-listen-quiz input:focus { border-color: var(--accent); }
+  .c-listen-quiz input::placeholder { color: var(--ink); opacity: 0.45; font-weight: 400; font-size: 0.95rem; font-family: var(--body); }
+  .c-listen-quiz input.correct { border-color: #4FAE5E; background: rgba(80,180,100,0.12); }
+  .c-listen-quiz input.incorrect { border-color: var(--accent); background: rgba(200,32,42,0.12); }
+  /* Step is only meaningful for count-up + auto (sequential walks) */
+  .c-mode-quiz-ln #stepRow,
+  .c-mode-quiz-digit #stepRow,
+  .c-mode-type #stepRow { display: none; }
+</style>
+<!-- SEO:start -->
+<link rel="canonical" href="https://lingala.artivicolab.com/count.html">
+<link rel="alternate" hreflang="en" href="https://lingala.artivicolab.com/count.html">
+<link rel="alternate" hreflang="fr" href="https://lingala.artivicolab.com/count.html?lang=fr">
+<link rel="alternate" hreflang="ln" href="https://lingala.artivicolab.com/count.html?lang=ln">
+<link rel="alternate" hreflang="x-default" href="https://lingala.artivicolab.com/count.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://lingala.artivicolab.com/#site","url":"https://lingala.artivicolab.com","name":"Losako · Lingala","inLanguage":["en","fr","ln"],"publisher":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"Organization","@id":"https://lingala.artivicolab.com/#org","name":"Artivicolab","url":"https://artivicolab.com","founder":{"@type":"Person","name":"Gradi Kayamba"}},{"@type":"Person","@id":"https://lingala.artivicolab.com/#author","name":"Gradi Kayamba","affiliation":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"WebPage","@id":"https://lingala.artivicolab.com/count.html#page","url":"https://lingala.artivicolab.com/count.html","name":"Count — Lingala","description":"Count in Lingala from moko to nkoto — pronunciation, quiz modes, and auto-count practice.","inLanguage":"en","isPartOf":{"@id":"https://lingala.artivicolab.com/#site"},"author":{"@id":"https://lingala.artivicolab.com/#author"}},{"@type":"WebApplication","@id":"https://lingala.artivicolab.com/count.html#app","url":"https://lingala.artivicolab.com/count.html","name":"Lingala — Count","description":"Count in Lingala from moko to nkoto — pronunciation, quiz modes, and auto-count practice.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["en","fr","ln"],"creator":{"@id":"https://lingala.artivicolab.com/#org"}},{"@type":"LearningResource","@id":"https://lingala.artivicolab.com/count.html#learn","url":"https://lingala.artivicolab.com/count.html","name":"Learn Lingala — Count","description":"Count in Lingala from moko to nkoto — pronunciation, quiz modes, and auto-count practice.","inLanguage":"ln","teaches":"Lingala language (Bantu, Democratic Republic of Congo)","learningResourceType":"Interactive resource","educationalLevel":"Beginner to intermediate","isAccessibleForFree":true,"audience":{"@type":"EducationalAudience","educationalRole":"student"}},{"@type":"HowTo","name":"How to count in Lingala","description":"Step-by-step formation of Lingala numbers from 0 to 1,000,000.","step":[{"@type":"HowToStep","name":"Units 0–9","text":"moko (1), mibale (2), misato (3), minei (4), mitano (5), motoba (6), nsambo (7), mwambe (8), libwa (9). Zero is eloko te."},{"@type":"HowToStep","name":"Tens","text":"zomi is 10. 11–19 use zomi na <unit>. 20+ uses ntuku <count> (ntuku mibale = 20). Compounds use na (ntuku mitano na nsambo = 57)."},{"@type":"HowToStep","name":"Hundreds","text":"100 is nkama. 200–900 use nkama <count> (nkama mibale = 200). Compounds with units use na (nkama mibale na nsambo = 207)."},{"@type":"HowToStep","name":"Thousands","text":"1000 is nkoto. 2000+ uses nkoto <count> (nkoto mitano = 5000)."},{"@type":"HowToStep","name":"Millions","text":"Million moko = 1,000,000. Large numbers separate the millions, thousands, and units blocks with commas (e.g. 1,123,456 = million moko, nkoto nkama moko na ntuku mibale na misato, na nkama minei na ntuku mitano na motoba)."}],"inLanguage":"en"}]}</script>
+<!-- SEO:end -->
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-logo" href="/">Lingala</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html">Dictionary</a><a href="/name.html">Find your name</a><a href="/verbs.html">Verbs</a><a href="/count.html">Count</a><a href="/about.html">About</a></div>
+    <div class="theme-dots" role="group" aria-label="Colour theme">
+      <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue"></button>
+      <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red"></button>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang-btn="en" type="button">EN</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="fr" type="button">FR</button>
+      <span aria-hidden="true">/</span>
+      <button data-lang-btn="ln" type="button">LN</button>
+    </div>
+    <a class="site-cta" href="/card.html">Open today's card</a>
+  </div>
+</nav>
+
+<main class="count-page" id="countRoot">
+  <div class="count-header">
+    <p class="count-eyebrow" data-i18n="count.eyebrow">Numbers · Motango</p>
+    <h1 class="count-title" data-i18n="count.title">Count in Lingala. <em>From moko to nkoto.</em></h1>
+    <p class="count-sub" data-i18n="count.sub">Four ways to learn: walk through the numbers, quiz yourself in either direction, or let the app count out loud to you.</p>
+  </div>
+
+  <div class="c-modes-groups" id="modeTabs" role="tablist">
+    <div class="c-modes-group">
+      <span class="c-modes-label" data-i18n="count.group.learn">Learn</span>
+      <div class="c-modes">
+        <button class="c-mode active" data-mode="count" type="button" data-i18n="count.mode.count">Count up</button>
+        <button class="c-mode" data-mode="type" type="button" data-i18n="count.mode.type">Type a number</button>
+        <button class="c-mode" data-mode="auto" type="button" data-i18n="count.mode.auto">Auto count</button>
+        <button class="c-mode" data-mode="compose" type="button" data-i18n="count.mode.compose">Build it</button>
+      </div>
+    </div>
+    <div class="c-modes-group">
+      <span class="c-modes-label" data-i18n="count.group.practice">Practice</span>
+      <div class="c-modes">
+        <button class="c-mode" data-mode="quiz-ln" type="button" data-i18n="count.mode.quizLn">LN → digit</button>
+        <button class="c-mode" data-mode="quiz-digit" type="button" data-i18n="count.mode.quizDigit">Digit → LN</button>
+        <button class="c-mode" data-mode="quiz-listen" type="button" data-i18n="count.mode.quizListen">Listen → type</button>
+        <button class="c-mode" data-mode="quiz-rule" type="button" data-i18n="count.mode.quizRule">Which rule?</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-type-input" id="typeInputWrap">
+    <input id="typeInput" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="Type any number from 0 to 999,999,999…" data-i18n-attr="placeholder:count.typePlaceholder" autocomplete="off">
+  </div>
+
+  <!-- Compose mode: build the Lingala form by tapping place-value chips -->
+  <div class="c-compose" id="composeWrap">
+    <div class="c-compose-target">
+      <span class="c-compose-label" data-i18n="count.composeTarget">Build this:</span>
+      <span class="c-compose-digit" id="composeDigit">—</span>
+      <button class="c-compose-new" type="button" id="composeNew" data-i18n="count.composeNew">New</button>
+    </div>
+    <div class="c-compose-built" id="composeBuilt" aria-live="polite"></div>
+    <div class="c-compose-pool" id="composePool"></div>
+    <div class="c-compose-actions">
+      <button class="c-btn" type="button" id="composeBack" data-i18n="count.composeBack">↶ Undo</button>
+      <button class="c-btn primary" type="button" id="composeCheck" data-i18n="count.composeCheck">Check</button>
+    </div>
+  </div>
+
+  <!-- Listen → Type quiz: voice plays the Lingala, user types the digit -->
+  <div class="c-listen-quiz" id="listenQuizWrap">
+    <button id="listenReplay" class="c-btn" type="button">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <span data-i18n="count.replay">Play again</span>
+    </button>
+    <input id="listenInput" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="Type what you hear…" autocomplete="off">
+  </div>
+
+  <div class="c-filters-row">
+    <div class="c-range">
+      <span class="c-range-label" data-i18n="count.range">Range</span>
+      <div class="c-seg" id="rangeSeg">
+        <button data-max="10" class="active" type="button">0–10</button>
+        <button data-max="100" type="button">0–100</button>
+        <button data-max="1000" type="button">0–1k</button>
+        <button data-max="10000" type="button">0–10k</button>
+        <button data-max="100000" type="button">0–100k</button>
+        <button data-max="1000000" type="button">0–1M</button>
+      </div>
+    </div>
+    <div class="c-range c-advanced" id="stepRow" hidden>
+      <span class="c-range-label" data-i18n="count.step">Step</span>
+      <div class="c-seg" id="stepSeg">
+        <button data-step="1" class="active" type="button">×1</button>
+        <button data-step="10" type="button">×10</button>
+        <button data-step="100" type="button">×100</button>
+        <button data-step="1000" type="button">×1k</button>
+        <button data-step="10000" type="button">×10k</button>
+      </div>
+    </div>
+    <button class="c-more-toggle" id="moreToggle" type="button" aria-expanded="false" aria-controls="stepRow">
+      <span data-i18n="count.more">More options</span><span class="c-more-chev" aria-hidden="true"> ▾</span>
+    </button>
+  </div>
+
+  <div class="c-streak" id="streakRow">
+    <span><span data-i18n="count.streak">Streak</span> <strong id="streak">0</strong></span>
+    <span><span data-i18n="count.best">Best</span> <strong id="best">0</strong></span>
+  </div>
+
+  <div class="c-card-wrap">
+    <button id="cardPrev" class="c-card-arrow prev" type="button" aria-label="Previous">‹</button>
+    <div class="c-card" id="card">
+      <div class="c-digit" id="digit">1</div>
+      <div class="c-ln" id="ln">moko</div>
+      <div class="c-phon" id="phon">MO-ko</div>
+      <div class="c-pos" id="pos">1 / 11</div>
+    </div>
+    <button id="cardNext" class="c-card-arrow next" type="button" aria-label="Next">›</button>
+  </div>
+
+  <!-- Daily challenge — deterministic by date, same for everyone today -->
+  <div class="c-challenge" id="challengeBanner" hidden>
+    <span class="c-challenge-icon" aria-hidden="true">🌅</span>
+    <span class="c-challenge-text" id="challengeText"></span>
+    <button class="c-challenge-go" type="button" id="challengeGo" data-i18n="count.challengeGo">Start</button>
+    <button class="c-challenge-x" type="button" id="challengeX" aria-label="Dismiss">×</button>
+  </div>
+
+  <!-- First-run hint — shown once, then dismissed forever -->
+  <div class="c-hint" id="firstHint" hidden>
+    <span class="c-hint-icon" aria-hidden="true">✨</span>
+    <span data-i18n="count.firstHint">Five ways to learn — try <strong>Auto count</strong> to hear them all aloud, or <strong>Listen → type</strong> to test yourself.</span>
+    <button class="c-hint-x" type="button" id="firstHintClose" aria-label="Dismiss">×</button>
+  </div>
+
+  <!-- Printable cheat sheet — hidden on screen, shown only when printing -->
+  <div class="c-print" id="printSheet" aria-hidden="true">
+    <header>
+      <h1>Count in Lingala</h1>
+      <p>The six rules of Lingala numeral formation. Print and keep.</p>
+    </header>
+    <ol class="c-print-rules">
+      <li>
+        <h2>Units (0–9)</h2>
+        <p>Memorize the nine base words. Everything else is built from these.</p>
+        <table><tr><td>0</td><td>eloko te</td></tr><tr><td>1</td><td>moko</td></tr><tr><td>2</td><td>mibale</td></tr><tr><td>3</td><td>misato</td></tr><tr><td>4</td><td>minei</td></tr><tr><td>5</td><td>mitano</td></tr><tr><td>6</td><td>motoba</td></tr><tr><td>7</td><td>nsambo</td></tr><tr><td>8</td><td>mwambe</td></tr><tr><td>9</td><td>libwa</td></tr></table>
+      </li>
+      <li>
+        <h2>Ten &amp; teens (10–19)</h2>
+        <p>Ten is <em>zomi</em>. For 11–19, say <em>zomi na &lt;unit&gt;</em>.</p>
+        <p class="c-print-eg">12 = zomi na mibale · 17 = zomi na nsambo</p>
+      </li>
+      <li>
+        <h2>Tens (20–99)</h2>
+        <p>Multiples of ten use <em>ntuku &lt;count&gt;</em>. Compounds add <em>na &lt;unit&gt;</em>.</p>
+        <p class="c-print-eg">20 = ntuku mibale · 47 = ntuku minei na nsambo · 99 = ntuku libwa na libwa</p>
+      </li>
+      <li>
+        <h2>Hundreds (100–999)</h2>
+        <p>100 alone is bare <em>nkama</em>. Otherwise <em>nkama &lt;count&gt;</em>, plus <em>na &lt;rest&gt;</em> for remainders. When h=1 and there's a remainder, you must say <em>nkama moko</em>.</p>
+        <p class="c-print-eg">100 = nkama · 247 = nkama mibale na ntuku minei na nsambo · 105 = nkama moko na mitano</p>
+      </li>
+      <li>
+        <h2>Thousands (1,000–999,999)</h2>
+        <p>1000 alone is bare <em>nkoto</em>. Otherwise <em>nkoto &lt;count&gt;</em>, plus <em>na &lt;rest&gt;</em> for remainders.</p>
+        <p class="c-print-eg">1000 = nkoto · 1200 = nkoto moko na nkama mibale · 5000 = nkoto mitano</p>
+      </li>
+      <li>
+        <h2>Millions (1,000,000+)</h2>
+        <p>Three structural blocks separated by <strong>commas</strong>, not <em>na</em>: <em>million &lt;count&gt;</em>, then <em>nkoto &lt;count&gt;</em>, then under-1000. Inside each block, <em>na</em> joins parts.</p>
+        <p class="c-print-eg">1,000,000 = million moko<br>1,123,456 = million moko, nkoto nkama moko na ntuku mibale na misato, na nkama minei na ntuku mitano na motoba</p>
+      </li>
+    </ol>
+    <footer>
+      <p>Losako · Lingala — lingala.artivicolab.com · by Gradi Kayamba (Artivicolab)</p>
+    </footer>
+  </div>
+
+  <!-- Keyboard shortcuts overlay — toggled by `?` key -->
+  <div class="c-kbd-back" id="kbdBack" hidden>
+    <div class="c-kbd">
+      <button class="c-kbd-close" type="button" id="kbdClose" aria-label="Close">×</button>
+      <h3 data-i18n="count.kbdTitle">Keyboard shortcuts</h3>
+      <dl>
+        <div><dt>← / →</dt><dd data-i18n="count.kbdNav">Previous / Next number</dd></div>
+        <div><dt>Space</dt><dd data-i18n="count.kbdPlay">Start / Pause auto count</dd></div>
+        <div><dt>Enter</dt><dd data-i18n="count.kbdEnter">Submit quiz answer</dd></div>
+        <div><dt>?</dt><dd data-i18n="count.kbdHelp">Toggle this overlay</dd></div>
+        <div><dt>Esc</dt><dd data-i18n="count.kbdEsc">Close overlays</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Right-rail wrapper. On narrow it's display:contents (invisible to layout,
+       children flow normally). On wide it's a single grid-column-3 item that
+       owns a tight flex stack of Mastery → Saved → How is this formed?. -->
+  <aside class="c-rail" id="rail">
+    <div class="c-mastery" id="masteryRow" aria-label="Mastery"></div>
+    <div class="c-saved" id="savedRow" aria-label="Saved numbers"></div>
+    <!-- "How is this formed?" — derivation steps for the current number -->
+    <div class="c-deriv-wrap" id="derivWrap">
+      <button class="c-deriv-toggle" type="button" id="derivToggle" aria-expanded="false" aria-controls="derivation">
+        <span class="c-deriv-q">?</span>
+        <span data-i18n="count.howFormed">How is this formed?</span>
+        <span class="c-deriv-chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="c-deriv" id="derivation" hidden></div>
+    </div>
+  </aside>
+
+  <!-- Copy + Share + Save — utility actions on the current card -->
+  <div class="c-card-actions">
+    <button id="saveBtn" class="c-card-act" type="button" aria-label="Save">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <span data-i18n="count.save">Save</span>
+    </button>
+    <button id="copyBtn" class="c-card-act" type="button" aria-label="Copy">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span>Copy</span>
+    </button>
+    <button id="shareBtn" class="c-card-act" type="button" aria-label="Share">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <span>Share</span>
+    </button>
+  </div>
+
+  <!-- Breakdown chips — shows how a compound number decomposes (200 + 40 + 7) -->
+  <div class="c-breakdown" id="breakdown" aria-label="Number breakdown"></div>
+  <p class="c-story" id="story" aria-live="polite"></p>
+
+  <div class="c-options" id="options"></div>
+
+  <div class="c-controls" id="controls"></div>
+
+  <div class="c-footbar">
+    <div class="c-speed">
+      <span data-i18n="count.speed">Speed</span>
+      <select id="speed">
+        <option value="700" data-i18n="count.speedFast">Fast (0.7s)</option>
+        <option value="1100" selected data-i18n="count.speedSteady">Steady (1.1s)</option>
+        <option value="1700" data-i18n="count.speedSlow">Slow (1.7s)</option>
+      </select>
+    </div>
+    <button id="printBtn" class="c-speech-btn" type="button" title="Print the rules as a one-page cheat sheet">
+      <span aria-hidden="true">🖨</span>
+      <span data-i18n="count.printRules">Print rules</span>
+    </button>
+    <div class="c-speech" id="speechRow">
+      <button id="speechToggle" class="c-speech-btn" type="button" aria-pressed="false" title="Toggle voice (approximate Lingala using an Italian/Spanish voice)">
+        <span class="c-speech-icon" aria-hidden="true">🔈</span>
+        <span id="speechLabel">Voice off</span>
+      </button>
+      <span class="c-speech-note" data-i18n="count.voiceNote">Approximation using your system's Italian or Spanish voice — closer to Lingala's vowel sounds than French. Not a native Lingala speaker.</span>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-tagline" data-i18n="footer.tagline">Keep Lingala alive — for Congolese everywhere · 🇨🇩</p>
+  <div class="footer-links">
+    <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
+    <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span>
+    <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span>
+    <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
+    <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
+    <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
+  </div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.53</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+</footer>
+
+<!-- Ambient sticky footer -->
+<div class="ambient" aria-label="Sebene rumba music">
+  <div class="ambient-prog"><div id="ambientProg"></div></div>
+  <span class="ambient-phrase">Boyei malamu</span>
+  <span class="ambient-viz" id="ambientViz" aria-hidden="true"></span>
+  <span class="ambient-spacer"></span>
+  <button class="ambient-btn" id="ambientBtn" type="button" aria-label="Play music"><span id="ambientGlyph">►</span></button>
+</div>
+
+<script src="/js/theme-site.js"></script>
+<script src="/js/site-nav.js" defer></script>
+<script src="/js/i18n-site.js"></script>
+<script src="/js/speech.js"></script>
+<script src="/js/ambient.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script>
+(function () {
+  // ——— Lingala number formation rules ———
+  // 0:   eloko te
+  // 1-9: lookup
+  // 10:  zomi
+  // 11-19: zomi na <unit>
+  // 20-99: ntuku <tens> [na <unit>]
+  // 100: nkama (alone), 200-900: nkama <hundreds>
+  // 100-999 with rest: nkama [<h>] na <rest>
+  // 1000: nkoto
+  const W = {
+    0: { ln: 'eloko te', phon: 'e-LO-ko te' },
+    1: { ln: 'moko',     phon: 'MO-ko' },
+    2: { ln: 'mibale',   phon: 'mi-BA-le' },
+    3: { ln: 'misato',   phon: 'mi-SA-to' },
+    4: { ln: 'minei',    phon: 'mi-NE-i' },
+    5: { ln: 'mitano',   phon: 'mi-TA-no' },
+    6: { ln: 'motoba',   phon: 'mo-TO-ba' },
+    7: { ln: 'nsambo',   phon: 'NSA-mbo' },
+    8: { ln: 'mwambe',   phon: 'MWA-mbe' },
+    9: { ln: 'libwa',    phon: 'LI-bwa' },
+  };
+  const ZOMI = { ln: 'zomi', phon: 'ZO-mi' };
+  const NTUKU = { ln: 'ntuku', phon: 'NTU-ku' };
+  const NKAMA = { ln: 'nkama', phon: 'NKA-ma' };
+  const NKOTO = { ln: 'nkoto', phon: 'NKO-to' };
+
+  // Per the canonical rules: nkama/nkoto with a remainder REQUIRE the explicit
+  // "moko" when the multiplier is 1 (e.g., 101 = "nkama moko na moko", not
+  // "nkama na moko"). Bare "nkama" / "nkoto" only stand alone for 100 / 1000
+  // exactly. For multipliers > 1 the multiplier word is always present.
+  function lingala(n) {
+    if (n === 0) return { ln: W[0].ln, phon: W[0].phon };
+    if (n < 10) return W[n];
+    if (n === 10) return ZOMI;
+    if (n < 20) {
+      const u = W[n - 10];
+      return { ln: `${ZOMI.ln} na ${u.ln}`, phon: `${ZOMI.phon} na ${u.phon}` };
+    }
+    if (n < 100) {
+      const t = Math.floor(n / 10), r = n % 10;
+      const tn = W[t];
+      let ln = `${NTUKU.ln} ${tn.ln}`, phon = `${NTUKU.phon} ${tn.phon}`;
+      if (r) { ln += ` na ${W[r].ln}`; phon += ` na ${W[r].phon}`; }
+      return { ln, phon };
+    }
+    if (n < 1000) {
+      const h = Math.floor(n / 100), r = n % 100;
+      let ln, phon;
+      if (h === 1 && r === 0) {
+        ln = NKAMA.ln; phon = NKAMA.phon;                  // 100 → "nkama"
+      } else {
+        const hw = W[h];
+        ln = `${NKAMA.ln} ${hw.ln}`; phon = `${NKAMA.phon} ${hw.phon}`;
+      }
+      if (r > 0) {
+        const sub = lingala(r);
+        ln += ` na ${sub.ln}`; phon += ` na ${sub.phon}`;
+      }
+      return { ln, phon };
+    }
+    if (n < 1000000) {
+      const k = Math.floor(n / 1000), r = n % 1000;
+      let ln, phon;
+      if (k === 1 && r === 0) {
+        ln = NKOTO.ln; phon = NKOTO.phon;                  // 1000 → "nkoto"
+      } else {
+        // For compound k like 10 → "zomi", 20 → "ntuku mibale", etc.
+        const kw = lingala(k);
+        ln = `${NKOTO.ln} ${kw.ln}`; phon = `${NKOTO.phon} ${kw.phon}`;
+      }
+      if (r > 0) {
+        const sub = lingala(r);
+        ln += ` na ${sub.ln}`; phon += ` na ${sub.phon}`;
+      }
+      return { ln, phon };
+    }
+    // ≥ 1,000,000 — million-level. The grammar here is structural: each major
+    // block is its OWN comma-separated phrase, not joined by "na". The thousand
+    // block also always takes the explicit "nkoto moko" form when k=1 (bare
+    // "nkoto" is reserved for the standalone 1000). The under-1000 remainder
+    // gets a "na" prefix INSIDE its block.
+    //
+    // Example for 1,123,456:
+    //   "million moko, nkoto nkama moko na ntuku mibale na misato,
+    //    na nkama minei na ntuku mitano na motoba"
+    if (n < 1000000000) {
+      const m = Math.floor(n / 1000000), r = n % 1000000;
+      const lnParts = [], phonParts = [];
+
+      // —— millions block ——
+      if (m === 1) { lnParts.push('million moko'); phonParts.push('mi-LYO-n MO-ko'); }
+      else {
+        const mw = lingala(m);
+        lnParts.push(`million ${mw.ln}`); phonParts.push(`mi-LYO-n ${mw.phon}`);
+      }
+
+      if (r > 0) {
+        const k = Math.floor(r / 1000), rr = r % 1000;
+
+        // —— thousands block (just nkoto + thousand-count, NOT the rr remainder) ——
+        if (k > 0) {
+          let kln, kphon;
+          if (k === 1) {
+            // Always "nkoto moko" in a million-level rendering, never bare nkoto
+            kln = `${NKOTO.ln} moko`; kphon = `${NKOTO.phon} MO-ko`;
+          } else {
+            const kw = lingala(k);
+            kln = `${NKOTO.ln} ${kw.ln}`; kphon = `${NKOTO.phon} ${kw.phon}`;
+          }
+          lnParts.push(kln); phonParts.push(kphon);
+        }
+
+        // —— under-1000 block (prefix "na" when a thousand block precedes it) ——
+        if (rr > 0) {
+          const sub = lingala(rr);
+          if (k > 0) {
+            lnParts.push(`na ${sub.ln}`); phonParts.push(`na ${sub.phon}`);
+          } else {
+            lnParts.push(sub.ln); phonParts.push(sub.phon);
+          }
+        }
+      }
+
+      return { ln: lnParts.join(', '), phon: phonParts.join(', ') };
+    }
+    return { ln: String(n), phon: String(n) };
+  }
+
+  // —— Kuba pattern rotation ——
+  // Six classic Kuba-cloth motif families compressed into 110×110 SVG tiles.
+  // Each motif belongs to a real Kuba tradition: diamond fields (imbol),
+  // royal hatching (nyim), zigzag (bombwa), woven cross-band, basket weave,
+  // and the radiant star (mwoom). Pattern index = floor(n / 10) % 6.
+  // Pattern stroke rotates through DRC flag colors instead of all gold — each
+  // decade gets a different flag color (blue / yellow / red) to feel like the
+  // card is wearing different cloth as you count. Muted hex values keep the
+  // lines from being too bright over the dark base.
+  const KUBA_COLORS = ['%231A4A8A', '%23B89817', '%23A02530'];   // muted blue / yellow / red
+  const SVG_PREFIX = (color) => "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Cg fill='none' stroke='" + color + "' stroke-width='1.1'%3E";
+  const SVG_SUFFIX = "%3C/g%3E%3C/svg%3E\")";
+  const KUBA = [
+    // 0 — Imbol: concentric diamonds + diagonal cross + corner T-hatches
+    "%3Crect x='0.5' y='0.5' width='109' height='109'/%3E%3Cpath d='M0 0 L110 110 M110 0 L0 110'/%3E%3Cpath d='M55 12 L98 55 L55 98 L12 55 Z'/%3E%3Cpath d='M55 26 L84 55 L55 84 L26 55 Z'/%3E%3Cpath d='M55 40 L70 55 L55 70 L40 55 Z'/%3E%3Cpath d='M12 0 L12 12 L0 12'/%3E%3Cpath d='M98 0 L98 12 L110 12'/%3E%3Cpath d='M12 110 L12 98 L0 98'/%3E%3Cpath d='M98 110 L98 98 L110 98'/%3E",
+    // 1 — Nyim: nested squares + dense royal hatching
+    "%3Crect x='0.5' y='0.5' width='109' height='109'/%3E%3Crect x='15' y='15' width='80' height='80'/%3E%3Crect x='30' y='30' width='50' height='50'/%3E%3Crect x='45' y='45' width='20' height='20'/%3E%3Cpath d='M15 15 L30 30 M95 15 L80 30 M15 95 L30 80 M95 95 L80 80'/%3E%3Cpath d='M0 0 L15 15 M110 0 L95 15 M0 110 L15 95 M110 110 L95 95'/%3E",
+    // 2 — Bombwa: zigzag wave bands stacked vertically
+    "%3Cpath d='M0 15 L13 5 L26 15 L39 5 L52 15 L65 5 L78 15 L91 5 L104 15 L110 10'/%3E%3Cpath d='M0 35 L13 25 L26 35 L39 25 L52 35 L65 25 L78 35 L91 25 L104 35 L110 30'/%3E%3Cpath d='M0 55 L13 45 L26 55 L39 45 L52 55 L65 45 L78 55 L91 45 L104 55 L110 50'/%3E%3Cpath d='M0 75 L13 65 L26 75 L39 65 L52 75 L65 65 L78 75 L91 65 L104 75 L110 70'/%3E%3Cpath d='M0 95 L13 85 L26 95 L39 85 L52 95 L65 85 L78 95 L91 85 L104 95 L110 90'/%3E",
+    // 3 — Cross band: woven plus-signs in a grid
+    "%3Crect x='0.5' y='0.5' width='109' height='109'/%3E%3Cpath d='M55 18 L55 38 M45 28 L65 28 M55 72 L55 92 M45 82 L65 82'/%3E%3Cpath d='M18 55 L38 55 M28 45 L28 65 M72 55 L92 55 M82 45 L82 65'/%3E%3Ccircle cx='55' cy='55' r='10'/%3E%3Cpath d='M0 28 L18 28 M92 28 L110 28 M0 82 L18 82 M92 82 L110 82'/%3E%3Cpath d='M28 0 L28 18 M28 92 L28 110 M82 0 L82 18 M82 92 L82 110'/%3E",
+    // 4 — Basket weave: interlocking right-angle braids
+    "%3Cpath d='M0 0 L20 0 L20 20 M20 0 L40 0 L40 20 M40 0 L60 0 L60 20 M60 0 L80 0 L80 20 M80 0 L100 0 L100 20'/%3E%3Cpath d='M0 30 L20 30 L20 50 M20 30 L40 30 L40 50 M40 30 L60 30 L60 50 M60 30 L80 30 L80 50 M80 30 L100 30 L100 50'/%3E%3Cpath d='M0 60 L20 60 L20 80 M20 60 L40 60 L40 80 M40 60 L60 60 L60 80 M60 60 L80 60 L80 80 M80 60 L100 60 L100 80'/%3E%3Cpath d='M0 90 L20 90 L20 110 M20 90 L40 90 L40 110 M40 90 L60 90 L60 110 M60 90 L80 90 L80 110 M80 90 L100 90 L100 110'/%3E",
+    // 5 — Mwoom (star): radiating spokes from a central diamond
+    "%3Cpath d='M55 12 L98 55 L55 98 L12 55 Z'/%3E%3Cpath d='M55 0 L55 12 M55 98 L55 110 M0 55 L12 55 M98 55 L110 55'/%3E%3Cpath d='M0 0 L55 55 L110 0 M0 110 L55 55 L110 110'/%3E%3Cpath d='M25 25 L40 40 M85 25 L70 40 M25 85 L40 70 M85 85 L70 70'/%3E%3Ccircle cx='55' cy='55' r='4'/%3E",
+  ];
+  const KUBA_NAMES = ['imbol', 'nyim', 'bombwa', 'cross-band', 'basket weave', 'mwoom'];
+  function setKubaPattern(n) {
+    const idx = Math.max(0, Math.floor(Math.max(0, n) / 10)) % KUBA.length;
+    // Color rotates independently of motif: every 10 also picks the next flag
+    // color, so blue → yellow → red → blue …
+    const color = KUBA_COLORS[Math.max(0, Math.floor(Math.max(0, n) / 10)) % KUBA_COLORS.length];
+    card.style.setProperty('--kuba', SVG_PREFIX(color) + KUBA[idx] + SVG_SUFFIX);
+    card.dataset.kuba = KUBA_NAMES[idx];
+  }
+
+  // —— Milestone celebration ——
+  // Every multiple of 10 in count-up / auto fires a confetti burst and a glow
+  // pulse. Bigger numbers (100, 1000, 10000, 1M) get a bigger burst.
+  function celebrate(n) {
+    if (mode !== 'count' && mode !== 'auto') return;
+    if (n === 0) return;
+    const big = (n % 100 === 0) || n === 1000 || n === 10000 || n === 100000 || n === 1000000;
+    card.classList.remove('milestone', 'milestone-big');
+    void card.offsetWidth;
+    card.classList.add(big ? 'milestone-big' : 'milestone');
+    const flagColors = ['#1455A4', '#F4C81E', '#C8202A'];
+    const pieces = big ? 28 : 12;
+    for (let i = 0; i < pieces; i++) {
+      const d = document.createElement('span');
+      d.className = 'confetti';
+      d.style.left = (5 + Math.random() * 90).toFixed(1) + '%';
+      d.style.background = flagColors[i % flagColors.length];
+      d.style.animationDelay = (Math.random() * 0.25).toFixed(2) + 's';
+      d.style.animationDuration = (1.2 + Math.random() * 0.6).toFixed(2) + 's';
+      d.style.width = (5 + Math.random() * 6).toFixed(1) + 'px';
+      d.style.height = (10 + Math.random() * 8).toFixed(1) + 'px';
+      card.appendChild(d);
+      setTimeout(() => d.remove(), 2200);
+    }
+  }
+
+  // —— Derivation engine ——
+  // For any number n, return a step-by-step explanation of HOW the Lingala
+  // form is constructed — the rule being applied, the piece it produces, and
+  // what's left for the next step. Pedagogy over output: a learner who reads
+  // through three derivations can build their own numbers.
+  function derivationFor(n) {
+    const steps = [];
+    if (n === 0) return [{ rule: 'Zero', pattern: '`eloko te`', expl: '“no thing.” The Lingala way to say zero.', piece: 'eloko te' }];
+    if (n < 10) return [{ rule: 'Units (0–9)', pattern: 'direct word', expl: `${n} is one of the nine base units — direct lookup.`, piece: W[n].ln }];
+
+    if (n >= 1000000) {
+      const m = Math.floor(n / 1000000), rest = n % 1000000;
+      const mPiece = (m === 1) ? 'million moko' : ('million ' + lingala(m).ln);
+      steps.push({ rule: 'Millions block', pattern: '`million <count>`', expl: `n is ≥ 1,000,000 — start with the millions: ${m.toLocaleString()} million.`, piece: mPiece });
+      if (rest >= 1000) {
+        const k = Math.floor(rest / 1000);
+        const kPiece = (k === 1) ? 'nkoto moko' : ('nkoto ' + lingala(k).ln);
+        steps.push({ rule: 'Thousands block', pattern: '`nkoto <count>`', expl: `${k.toLocaleString()} thousand — even when k=1 you must say <em>nkoto moko</em> inside a millions number.`, piece: kPiece });
+      }
+      const rr = rest % 1000;
+      if (rr > 0) {
+        const sub = lingala(rr);
+        const prefix = (rest >= 1000) ? 'na ' : '';
+        steps.push({ rule: 'Under-1000 block', pattern: prefix ? '`na <sub>`' : '`<sub>`', expl: `Remaining ${rr} — prefix with <em>na</em> only when a thousands block precedes it.`, piece: prefix + sub.ln });
+      }
+      steps.push({ rule: 'Join with commas', pattern: 'block , block , block', expl: 'Million-level numbers separate the three blocks with commas — NOT with <em>na</em>.', piece: lingala(n).ln });
+      return steps;
+    }
+
+    if (n >= 1000) {
+      const k = Math.floor(n / 1000), rest = n % 1000;
+      const kPiece = (k === 1 && rest === 0) ? 'nkoto' : ((k === 1) ? 'nkoto moko' : ('nkoto ' + lingala(k).ln));
+      steps.push({ rule: 'Thousands rule', pattern: (k === 1 && rest === 0) ? '`nkoto` (alone)' : '`nkoto <count>`', expl: `n is between 1,000 and 999,999. ${k === 1 && rest === 0 ? 'Bare <em>nkoto</em> when standing alone.' : `${k} thousand → ${kPiece}.`}`, piece: kPiece });
+      if (rest > 0) {
+        const subSteps = derivationFor(rest);
+        subSteps.forEach((s) => steps.push({ ...s, rule: 'Remainder · ' + s.rule, piece: 'na ' + s.piece }));
+        steps.push({ rule: 'Join with “na”', pattern: '<thousand> na <rest>', expl: 'Inside a thousand-level number, join parts with <em>na</em>.', piece: lingala(n).ln });
+      }
+      return steps;
+    }
+
+    if (n >= 100) {
+      const h = Math.floor(n / 100), rest = n % 100;
+      const hPiece = (h === 1 && rest === 0) ? 'nkama' : ((h === 1) ? 'nkama moko' : ('nkama ' + W[h].ln));
+      steps.push({ rule: 'Hundreds rule', pattern: (h === 1 && rest === 0) ? '`nkama` (alone)' : '`nkama <count>`', expl: `n is between 100 and 999. ${h === 1 && rest === 0 ? 'Bare <em>nkama</em> when standing alone — but when followed by a remainder, you must say <em>nkama moko</em>.' : `${h} hundred → ${hPiece}.`}`, piece: hPiece });
+      if (rest > 0) {
+        const subSteps = derivationFor(rest);
+        subSteps.forEach((s) => steps.push({ ...s, rule: 'Remainder · ' + s.rule, piece: 'na ' + s.piece }));
+        steps.push({ rule: 'Join with “na”', pattern: '<hundred> na <rest>', expl: 'Hundred + remainder are joined with <em>na</em>.', piece: lingala(n).ln });
+      }
+      return steps;
+    }
+
+    if (n >= 20) {
+      const t = Math.floor(n / 10), u = n % 10;
+      const tPiece = 'ntuku ' + W[t].ln;
+      steps.push({ rule: 'Tens rule', pattern: '`ntuku <count>`', expl: `n is 20–99. For multiples of ten, prepend <em>ntuku</em>: ${t}0 → ${tPiece}.`, piece: tPiece });
+      if (u > 0) {
+        steps.push({ rule: 'Units add-on', pattern: '`na <unit>`', expl: `Add the units digit with <em>na</em>: ${u} → na ${W[u].ln}.`, piece: 'na ' + W[u].ln });
+        steps.push({ rule: 'Combine', pattern: 'ntuku <count> na <unit>', expl: '', piece: lingala(n).ln });
+      }
+      return steps;
+    }
+
+    if (n === 10) return [{ rule: 'Ten', pattern: '`zomi`', expl: 'Ten is its own word — the base on which all higher counting builds.', piece: 'zomi' }];
+    if (n < 20) {
+      const u = n - 10;
+      steps.push({ rule: 'Teens (11–19)', pattern: '`zomi na <unit>`', expl: 'For 11–19, say ten plus the unit, joined by <em>na</em>.', piece: 'zomi na ' + W[u].ln });
+      return steps;
+    }
+    return steps;
+  }
+
+  function renderDerivation(n) {
+    const wrap = document.getElementById('derivation');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    const steps = derivationFor(n);
+    steps.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'c-deriv-step';
+      card.innerHTML =
+        '<div class="c-deriv-head"><span class="c-deriv-num">' + (i + 1) + '</span>' +
+        '<span class="c-deriv-rule">' + s.rule + '</span>' +
+        '<span class="c-deriv-pat">' + s.pattern + '</span></div>' +
+        (s.expl ? '<p class="c-deriv-expl">' + s.expl + '</p>' : '') +
+        '<button class="c-deriv-piece" type="button" aria-label="Hear: ' + s.piece + '">' + s.piece + '</button>';
+      card.querySelector('.c-deriv-piece').addEventListener('click', (e) => { e.stopPropagation(); speak(s.piece); });
+      wrap.appendChild(card);
+    });
+  }
+
+  // —— Number stories ——
+  // A small editorial layer: certain numbers carry cultural weight. Shown as
+  // a single italic line below the breakdown chips. Kept warm, never preachy.
+  const NUMBER_STORIES = {
+    0:    'eloko te — “nothing.” Also a slang way to say “no big deal.”',
+    1:    'moko — also the word for “alone” in some compounds (moto moko = one person).',
+    2:    'mibale — the number of the pair (mabota mibale = two families joined by marriage).',
+    3:    'misato — the three regions of the Congo basin\'s great river system.',
+    4:    'minei — the four cardinal directions a Congolese elder names when giving a blessing.',
+    5:    'mitano — the five fingers of mosapi (the hand).',
+    6:    'motoba — six. Often appears in proverbs about completing labor.',
+    7:    'nsambo — the seven days of mposo (the week).',
+    8:    'mwambe — eight. Often closes a counted set in Congolese proverbs.',
+    9:    'libwa — nine. The last single-digit number before the round zomi.',
+    10:   'zomi — ten. The base from which all Lingala counting builds.',
+    12:   'zomi na mibale — twelve months of the year (sanza ya mobu).',
+    20:   'ntuku mibale — twenty.',
+    24:   'ntuku mibale na minei — the twenty-four hours of a Congolese day.',
+    30:   'ntuku misato — about one month (sanza moko ezali na mikolo ntuku misato).',
+    50:   'ntuku mitano — fifty. A milestone birthday across DRC families.',
+    60:   'ntuku motoba — sixty. The honored elder\'s birthday — children gather.',
+    100:  'nkama — one hundred. The base of all hundreds (nkama mibale = 200, etc.).',
+    365:  'nkama misato na ntuku motoba na mitano — the days of a year (mobu).',
+    1000: 'nkoto — one thousand. The base of all thousands.',
+    1960: 'nkoto moko na nkama libwa na ntuku motoba — Year of independence (June 30, 1960).',
+    2026: 'nkoto mibale na ntuku mibale na motoba — this year.',
+    1000000: 'million moko — one million.',
+  };
+
+  // Decompose a number into its structural Lingala addends — so a learner sees
+  // 247 not as one opaque string but as nkama mibale (200) · ntuku minei (40) ·
+  // nsambo (7). For million-level numbers the three blocks (million / thousand
+  // / units) are returned as three chunks; their inner "na" joins are kept.
+  function decompose(n) {
+    if (n === 0) return [{ value: 0, ln: 'eloko te', phon: 'e-LO-ko te' }];
+    if (n < 10) return [{ value: n, ...W[n] }];
+
+    // ≥ 1,000,000 — return the three structural blocks (with their inner joins)
+    if (n >= 1000000 && n < 1000000000) {
+      const m = Math.floor(n / 1000000), r = n % 1000000;
+      const parts = [];
+      if (m === 1) parts.push({ value: m * 1000000, ln: 'million moko', phon: 'mi-LYO-n MO-ko' });
+      else { const mw = lingala(m); parts.push({ value: m * 1000000, ln: 'million ' + mw.ln, phon: 'mi-LYO-n ' + mw.phon }); }
+      if (r > 0) {
+        const k = Math.floor(r / 1000), rr = r % 1000;
+        if (k > 0) {
+          let kln, kphon;
+          if (k === 1) { kln = NKOTO.ln + ' moko'; kphon = NKOTO.phon + ' MO-ko'; }
+          else { const kw = lingala(k); kln = NKOTO.ln + ' ' + kw.ln; kphon = NKOTO.phon + ' ' + kw.phon; }
+          parts.push({ value: k * 1000, ln: kln, phon: kphon });
+        }
+        if (rr > 0) {
+          const sub = lingala(rr);
+          parts.push({ value: rr, ln: sub.ln, phon: sub.phon });
+        }
+      }
+      return parts;
+    }
+
+    // Sub-million additive decomposition: thousands · hundreds · tens · units
+    const parts = [];
+    let rest = n;
+    if (rest >= 1000) {
+      const k = Math.floor(rest / 1000);
+      let kln, kphon;
+      if (k === 1) { kln = NKOTO.ln + ' moko'; kphon = NKOTO.phon + ' MO-ko'; }
+      else { const kw = lingala(k); kln = NKOTO.ln + ' ' + kw.ln; kphon = NKOTO.phon + ' ' + kw.phon; }
+      parts.push({ value: k * 1000, ln: kln, phon: kphon });
+      rest = rest % 1000;
+    }
+    if (rest >= 100) {
+      const h = Math.floor(rest / 100);
+      let hln, hphon;
+      if (h === 1) { hln = NKAMA.ln + ' moko'; hphon = NKAMA.phon + ' MO-ko'; }
+      else { hln = NKAMA.ln + ' ' + W[h].ln; hphon = NKAMA.phon + ' ' + W[h].phon; }
+      parts.push({ value: h * 100, ln: hln, phon: hphon });
+      rest = rest % 100;
+    }
+    if (rest >= 20) {
+      const t = Math.floor(rest / 10);
+      parts.push({ value: t * 10, ln: NTUKU.ln + ' ' + W[t].ln, phon: NTUKU.phon + ' ' + W[t].phon });
+      rest = rest % 10;
+    } else if (rest >= 10) {
+      if (rest === 10) { parts.push({ value: 10, ln: ZOMI.ln, phon: ZOMI.phon }); rest = 0; }
+      else {
+        const u = rest - 10;
+        parts.push({ value: 10, ln: ZOMI.ln, phon: ZOMI.phon });
+        parts.push({ value: u, ...W[u] });
+        rest = 0;
+      }
+    }
+    if (rest > 0) parts.push({ value: rest, ...W[rest] });
+    return parts;
+  }
+
+  // ——— State ———
+  const LS_MODE = 'lingala.countMode';
+  const LS_RANGE = 'lingala.countRange';
+  const LS_STEP = 'lingala.countStep';
+  const LS_BEST = 'lingala.countBest';
+  const LS_SPEECH = 'lingala.countSpeech';
+  const LS_MASTERY = 'lingala.countMastery';   // { "100": [0,1,2,...], "1000": [...] }
+  const lsGet = (k, d) => { try { return localStorage.getItem(k) ?? d; } catch { return d; } };
+  const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+
+  let mode = lsGet(LS_MODE, 'count');
+  let max = parseInt(lsGet(LS_RANGE, '10'), 10);
+  let step = parseInt(lsGet(LS_STEP, '1'), 10);
+  let cur = 1;
+  let streak = 0;
+  let best = parseInt(lsGet(LS_BEST, '0'), 10);
+  let autoTimer = null;
+  let answered = false;
+  let speechOn = lsGet(LS_SPEECH, '0') === '1';
+
+  // Mastery: per-range Set of mastered values. Lazy-loaded from localStorage.
+  function masteryKey() { return String(max); }
+  function loadMastery() {
+    try {
+      const raw = localStorage.getItem(LS_MASTERY);
+      return raw ? JSON.parse(raw) : {};
+    } catch { return {}; }
+  }
+  let masteryStore = loadMastery();
+  function masteredSet() {
+    const k = masteryKey();
+    if (!masteryStore[k]) masteryStore[k] = [];
+    return new Set(masteryStore[k]);
+  }
+  function markMastered(n) {
+    if (n < 0 || n > max) return;
+    const k = masteryKey();
+    const set = masteredSet();
+    if (set.has(n)) return;
+    set.add(n);
+    masteryStore[k] = Array.from(set).sort((a, b) => a - b);
+    try { localStorage.setItem(LS_MASTERY, JSON.stringify(masteryStore)); } catch {}
+  }
+  function renderMastery() {
+    const wrap = document.getElementById('masteryRow');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    const set = masteredSet();
+    const total = max + 1;
+    // Label
+    const lbl = document.createElement('div');
+    lbl.className = 'c-mastery-label';
+    lbl.innerHTML = (window.LingalaI18n ? LingalaI18n.t('count.mastery') : 'Mastery')
+      + ' <strong>' + set.size + ' / ' + total.toLocaleString() + '</strong>';
+    wrap.appendChild(lbl);
+    // Dot grid for ≤ 101 entries; bar otherwise
+    if (total <= 101) {
+      const grid = document.createElement('div');
+      grid.className = 'c-mastery-dots';
+      // Wide screens get a wider grid (the row has room to breathe).
+      const wide = window.matchMedia && window.matchMedia('(min-width: 1200px)').matches;
+      const maxCols = wide ? 50 : 25;
+      const cols = Math.min(total, maxCols);
+      const cellSize = wide ? 10 : 8;
+      grid.style.gridTemplateColumns = 'repeat(' + cols + ', ' + cellSize + 'px)';
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('span');
+        d.className = 'c-mastery-dot';
+        if (set.has(i)) d.classList.add('done');
+        if (i === cur) d.classList.add('cur');
+        d.title = String(i);
+        grid.appendChild(d);
+      }
+      wrap.appendChild(grid);
+    } else {
+      const bar = document.createElement('div');
+      bar.className = 'c-mastery-bar';
+      const fill = document.createElement('div');
+      fill.style.width = ((set.size / total) * 100).toFixed(1) + '%';
+      bar.appendChild(fill);
+      wrap.appendChild(bar);
+    }
+  }
+  let frenchVoice = null;   // (kept var name for compat; actually any best-fit voice)
+
+  // —— Speech (Web Speech API, approximate Lingala) ——
+  // Lingala has pure five-vowel phonology much closer to Italian/Spanish than
+  // French. We pick voices in this order: Italian → Spanish → Portuguese (BR)
+  // → French → any.  Voices load async on some browsers (Chrome especially),
+  // hence the onvoiceschanged hook below.
+  function loadVoices() {
+    if (!('speechSynthesis' in window)) return;
+    const voices = speechSynthesis.getVoices();
+    if (!voices.length) return;
+    const pick = (test) => voices.find(test);
+    frenchVoice =
+      pick((v) => v.lang === 'it-IT') ||
+      pick((v) => v.lang && v.lang.startsWith('it-')) ||
+      pick((v) => v.lang === 'es-ES') ||
+      pick((v) => v.lang && v.lang.startsWith('es-')) ||
+      pick((v) => v.lang === 'pt-BR') ||
+      pick((v) => v.lang && v.lang.startsWith('pt-')) ||
+      pick((v) => v.lang === 'fr-FR') ||
+      pick((v) => v.lang && v.lang.startsWith('fr-')) ||
+      voices[0] || null;
+    syncSpeechButton();
+  }
+  if ('speechSynthesis' in window) {
+    loadVoices();
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  function speak(text) {
+    if (!speechOn || !('speechSynthesis' in window) || !text) return;
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      if (frenchVoice) { u.voice = frenchVoice; u.lang = frenchVoice.lang; }
+      else u.lang = 'it-IT';
+      u.rate = 0.85; u.pitch = 1;
+
+      // Word-by-word highlight — onboundary fires at each word start. Highlights
+      // the matching <span class="ln-w"> in the card's Lingala line.
+      const spans = Array.from(ln.querySelectorAll('.ln-w'));
+      if (spans.length === text.split(' ').length) {
+        let wIdx = 0;
+        u.onboundary = (ev) => {
+          if (ev.name !== 'word' && ev.name !== undefined) return;
+          spans.forEach((s) => s.classList.remove('say'));
+          if (spans[wIdx]) spans[wIdx].classList.add('say');
+          wIdx++;
+        };
+        u.onend = () => spans.forEach((s) => s.classList.remove('say'));
+        u.onerror = () => spans.forEach((s) => s.classList.remove('say'));
+      }
+      speechSynthesis.speak(u);
+    } catch (e) { /* ignore */ }
+  }
+  function syncSpeechButton() {
+    const btn = document.getElementById('speechToggle');
+    if (!btn) return;   // called before DOM is ready — init() will call again
+    const supported = 'speechSynthesis' in window;
+    btn.disabled = !supported;
+    btn.setAttribute('aria-pressed', speechOn ? 'true' : 'false');
+    const icon = btn.querySelector('.c-speech-icon');
+    const label = document.getElementById('speechLabel');
+    if (icon) icon.textContent = speechOn ? '🔊' : '🔈';
+    if (label) {
+      const tx = (k, f) => (window.LingalaI18n && window.LingalaI18n.t ? window.LingalaI18n.t(k) : f);
+      label.textContent = !supported
+        ? tx('count.voiceNA', 'Voice not available')
+        : (speechOn
+            ? (frenchVoice ? tx('count.voiceOn', 'Voice on') + ' · ' + (frenchVoice.lang || frenchVoice.name || '?') : tx('count.voiceOn', 'Voice on'))
+            : tx('count.voiceOff', 'Voice off'));
+    }
+  }
+
+  // ——— DOM ———
+  const $ = (id) => document.getElementById(id);
+  const root = $('countRoot');
+  const card = $('card');
+  const digit = $('digit');
+  const ln = $('ln');
+  const phon = $('phon');
+  const pos = $('pos');
+  const options = $('options');
+  const controls = $('controls');
+  const streakEl = $('streak');
+  const bestEl = $('best');
+
+  function setModeClass() {
+    root.className = 'count-page c-mode-' + mode;
+    document.querySelectorAll('#modeTabs .c-mode').forEach((b) => {
+      b.classList.toggle('active', b.dataset.mode === mode);
+    });
+  }
+
+  function setRangeClass() {
+    document.querySelectorAll('#rangeSeg button').forEach((b) => {
+      b.classList.toggle('active', parseInt(b.dataset.max, 10) === max);
+    });
+  }
+
+  function setStepClass() {
+    document.querySelectorAll('#stepSeg button').forEach((b) => {
+      const s = parseInt(b.dataset.step, 10);
+      b.classList.toggle('active', s === step);
+      // Hide step buttons larger than the range (e.g. ×1000 with range 100)
+      b.style.display = (s > max) ? 'none' : '';
+    });
+    // If current step is larger than range, fall back to 1
+    if (step > max) { step = 1; lsSet(LS_STEP, '1'); }
+  }
+
+  function showNumber(n, opts = {}) {
+    const w = lingala(n);
+    digit.textContent = n.toLocaleString();
+    renderLnHighlighted(w.ln);
+    phon.textContent = w.phon;
+    pos.textContent = `${n.toLocaleString()} / ${max.toLocaleString()}`;
+    renderBreakdown(n);
+    setKubaPattern(n);
+    markMastered(n);
+    renderMastery();
+    syncSaveButton();
+    renderSaved();
+    if (opts.flash) {
+      card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+    }
+    // Milestone celebration — every multiple of 10 (in count-up and auto).
+    if (opts.celebrate !== false && n > 0 && n % 10 === 0) celebrate(n);
+    if (opts.speak !== false) speak(w.ln);
+  }
+
+  // Lingala line — wrap each word in a <span> so we can sync-highlight as the
+  // TTS voice reaches each one (see speak()'s onboundary handler).
+  function renderLnHighlighted(text) {
+    ln.innerHTML = '';
+    text.split(' ').forEach((wd, i) => {
+      const s = document.createElement('span');
+      s.className = 'ln-w'; s.dataset.i = String(i);
+      s.textContent = wd;
+      ln.appendChild(s);
+      ln.appendChild(document.createTextNode(' '));
+    });
+  }
+
+  function renderStory(n) {
+    const el = document.getElementById('story');
+    if (!el) return;
+    el.textContent = NUMBER_STORIES[n] || '';
+  }
+
+  function renderBreakdown(n) {
+    renderStory(n);
+    // Always re-render the derivation panel content too (visible or not).
+    renderDerivation(n);
+    const wrap = document.getElementById('breakdown');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    const parts = decompose(n);
+    if (parts.length < 2) return;   // nothing to break down
+    parts.forEach((p, i) => {
+      if (i > 0) {
+        const sep = document.createElement('span');
+        sep.className = 'c-chip-bd-sep';
+        sep.textContent = '+';
+        wrap.appendChild(sep);
+      }
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'c-chip-bd';
+      // Tier by magnitude — drives the color band
+      const v = p.value;
+      const tier = v >= 1000000 ? 'm' : v >= 1000 ? 'k' : v >= 100 ? 'h' : v >= 10 ? 't' : 'u';
+      chip.dataset.tier = tier;
+      chip.setAttribute('aria-label', 'Hear: ' + p.ln);
+      chip.innerHTML = '<span class="v">' + p.value.toLocaleString() + '</span><span class="w">' + p.ln + '</span>';
+      chip.addEventListener('click', (e) => { e.stopPropagation(); speak(p.ln); });
+      wrap.appendChild(chip);
+    });
+  }
+
+  function pickRandom() {
+    const n = Math.floor(Math.random() * (max + 1));   // 0..max
+    return n;
+  }
+
+  function pickWrongOptions(correct, count) {
+    const out = new Set([correct]);
+    let safety = 30;
+    while (out.size < count + 1 && safety-- > 0) {
+      out.add(Math.floor(Math.random() * (max + 1)));
+    }
+    out.delete(correct);
+    return [...out].slice(0, count);
+  }
+
+  const T = (key, fallback) => (window.LingalaI18n && window.LingalaI18n.t ? window.LingalaI18n.t(key) : fallback);
+
+  function renderControls() {
+    controls.innerHTML = '';
+    if (mode === 'type') {
+      return;  // no controls — the input itself is the interaction
+    }
+    if (mode === 'count') {
+      // Count-up's prev/next arrows are persistent on the card itself; sync their state.
+      const prev = document.getElementById('cardPrev');
+      const next = document.getElementById('cardNext');
+      if (prev) prev.disabled = cur <= 0;
+      if (next) next.disabled = cur >= max;
+      // Reset button below the card so the user can jump back to zero at any step.
+      const reset = document.createElement('button');
+      reset.className = 'c-btn'; reset.type = 'button';
+      reset.textContent = T('count.reset', 'Reset');
+      reset.disabled = cur === 0;
+      reset.onclick = () => { cur = 0; showNumber(cur, { flash: true }); renderControls(); };
+      controls.appendChild(reset);
+      return;
+    } else if (mode === 'auto') {
+      const btn = document.createElement('button');
+      btn.className = 'c-btn primary'; btn.type = 'button';
+      btn.textContent = autoRunning ? T('count.pause', 'Pause') : T('count.start', 'Start');
+      btn.onclick = () => autoRunning ? stopAuto() : startAuto();
+      const reset = document.createElement('button');
+      reset.className = 'c-btn'; reset.type = 'button'; reset.textContent = T('count.reset', 'Reset');
+      reset.onclick = () => { stopAuto(); cur = 0; showNumber(cur); renderControls(); };
+      controls.appendChild(btn); controls.appendChild(reset);
+    } else {
+      // quiz: a single "skip" / "next" appears after answering
+      const skip = document.createElement('button');
+      skip.className = 'c-btn'; skip.type = 'button';
+      skip.textContent = answered ? T('count.next', 'Next →') : T('count.skip', 'Skip');
+      skip.onclick = () => {
+        answered = false;
+        if (mode === 'quiz-listen') {
+          newListenQuiz();
+          setTimeout(() => $('listenInput').focus(), 10);
+        } else if (mode === 'quiz-rule') {
+          newRuleQuiz();
+        } else newQuiz();
+      };
+      controls.appendChild(skip);
+    }
+  }
+
+  function newQuiz() {
+    answered = false;
+    cur = pickRandom();
+    const w = lingala(cur);
+    options.innerHTML = '';
+    const wrongs = pickWrongOptions(cur, 3);
+    const optList = [cur, ...wrongs].sort(() => Math.random() - 0.5);
+
+    if (mode === 'quiz-ln') {
+      // Show Lingala, options are digits
+      digit.textContent = '?';
+      ln.textContent = w.ln;
+      phon.textContent = w.phon;
+      pos.textContent = '';
+      optList.forEach((n) => {
+        const btn = document.createElement('button');
+        btn.className = 'c-option'; btn.type = 'button'; btn.textContent = n;
+        btn.onclick = () => answerQuiz(btn, n === cur, n);
+        options.appendChild(btn);
+      });
+    } else if (mode === 'quiz-digit') {
+      // Show digit, options are Lingala
+      digit.textContent = cur;
+      ln.textContent = '?';
+      phon.textContent = '';
+      pos.textContent = '';
+      optList.forEach((n) => {
+        const sub = lingala(n);
+        const btn = document.createElement('button');
+        btn.className = 'c-option'; btn.type = 'button'; btn.textContent = sub.ln;
+        btn.onclick = () => answerQuiz(btn, n === cur, n);
+        options.appendChild(btn);
+      });
+    }
+    renderControls();
+  }
+
+  function answerQuiz(btn, isCorrect, chosenNum) {
+    if (answered) return;
+    answered = true;
+    options.querySelectorAll('.c-option').forEach((b) => b.disabled = true);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      streak++;
+      if (streak > best) { best = streak; lsSet(LS_BEST, String(best)); }
+      markMastered(cur);
+      renderMastery();
+    } else {
+      btn.classList.add('incorrect');
+      card.classList.remove('wrong'); void card.offsetWidth; card.classList.add('wrong');
+      // Reveal the correct option
+      options.querySelectorAll('.c-option').forEach((b) => {
+        const v = b.textContent;
+        const correctText = mode === 'quiz-ln' ? String(cur) : lingala(cur).ln;
+        if (v === correctText) b.classList.add('correct');
+      });
+      streak = 0;
+    }
+    updateStreak();
+    // Also fill in the previously-hidden side
+    if (mode === 'quiz-ln') digit.textContent = cur;
+    else if (mode === 'quiz-digit') { const w = lingala(cur); ln.textContent = w.ln; phon.textContent = w.phon; }
+    renderControls();
+  }
+
+  function updateStreak() {
+    streakEl.textContent = streak;
+    bestEl.textContent = best;
+  }
+
+  // Auto-count: when speech is ON, wait for the utterance to finish before
+  // advancing so long compound numbers (e.g., 999 = "nkama libwa na ntuku
+  // libwa na libwa") don't get cut off by the next tick. When speech is off,
+  // just use the speed value directly.
+  let autoRunning = false;
+  let adIndex = 0;
+
+  // Ad rotation — at every multiple of 30 in auto mode, one of these cards
+  // shows for a single tick before the count resumes. References the
+  // Facebook "can you count to 30?" campaign and credits Gradi Kayamba.
+  const AD_MESSAGES = [
+    { digit: '30?', ln: 'Can you count to 30?', sub: 'Share on Facebook · @artivicolab', say: 'Can you count to 30?' },
+    { digit: '🇨🇩', ln: 'Gradi Kayamba', sub: 'Made for Congolese everywhere · artivicolab.com', say: 'Gradi Kayamba' },
+    { digit: '30', ln: 'ntuku misato', sub: 'That is 30 in Lingala · Tag a friend', say: 'ntuku misato' },
+  ];
+
+  function showInterstitial() {
+    const m = AD_MESSAGES[adIndex % AD_MESSAGES.length];
+    adIndex++;
+    digit.textContent = m.digit;
+    ln.textContent = m.ln;
+    phon.textContent = m.sub;
+    pos.textContent = '';
+    document.getElementById('breakdown').innerHTML = '';
+    card.classList.add('ad');
+    card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+    speak(m.say);
+  }
+  function clearInterstitialStyle() {
+    card.classList.remove('ad');
+  }
+  function startAuto() {
+    if (autoRunning) return;
+    if (cur >= max) cur = 0;
+    clearInterstitialStyle();
+    autoRunning = true;
+    showNumber(cur);  // speaks the starting number
+    scheduleNextAuto();
+    renderControls();
+  }
+  function stopAuto() {
+    autoRunning = false;
+    clearInterstitialStyle();
+    if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+    try { if ('speechSynthesis' in window) speechSynthesis.cancel(); } catch (e) {}
+    renderControls();
+  }
+  function scheduleNextAuto() {
+    if (!autoRunning) return;
+    const base = parseInt(document.getElementById('speed').value, 10) || 1100;
+    // Adaptive pacing: longer Lingala names need more time to read. The base
+    // value from the dropdown is the floor; we add ~30ms per character of the
+    // CURRENT number's Lingala form so "999" (35 chars) takes much longer than
+    // "moko" (4 chars).
+    const chars = lingala(cur).ln.length;
+    const adaptive = base + chars * 30;
+    const waitForVoice = speechOn && ('speechSynthesis' in window) && speechSynthesis.speaking;
+    if (waitForVoice) {
+      // Poll for end of speech, then wait a short gap before advancing.
+      const poll = () => {
+        if (!autoRunning) return;
+        if (!speechSynthesis.speaking) {
+          autoTimer = setTimeout(advanceAuto, Math.min(base, 400));
+        } else {
+          autoTimer = setTimeout(poll, 60);
+        }
+      };
+      autoTimer = setTimeout(poll, 60);
+    } else {
+      autoTimer = setTimeout(advanceAuto, adaptive);
+    }
+  }
+  function advanceAuto() {
+    if (!autoRunning) return;
+    clearInterstitialStyle();
+    cur += step;
+    if (cur > max) { stopAuto(); return; }
+    showNumber(cur, { flash: true });   // speaks the new number
+    scheduleNextAuto();
+  }
+
+  function setMode(m) {
+    stopAuto();
+    mode = m;
+    lsSet(LS_MODE, m);
+    streak = 0;
+    answered = false;
+    setModeClass();
+    if (m === 'count') {
+      cur = 1;
+      showNumber(cur);
+    } else if (m === 'auto') {
+      cur = 0;
+      showNumber(cur);
+    } else if (m === 'type') {
+      const v = parseInt($('typeInput').value, 10);
+      cur = (Number.isFinite(v) && v >= 0 && v <= 1000000) ? v : 0;
+      showTypeResult(cur);
+      setTimeout(() => $('typeInput').focus(), 50);
+    } else if (m === 'quiz-listen') {
+      newListenQuiz();
+      setTimeout(() => $('listenInput').focus(), 50);
+    } else if (m === 'compose') {
+      newCompose();
+    } else if (m === 'quiz-rule') {
+      newRuleQuiz();
+    } else {
+      newQuiz();
+    }
+    updateStreak();
+    renderControls();
+  }
+
+  // —— Compose mode ——
+  // Pool of place-value chips + connectors; user builds the Lingala form of a
+  // target digit. Validation: built sequence must equal lingala(target).ln.
+  let composeBuilt = [];
+  let composeTarget = 0;
+  function newCompose() {
+    // Pick a target sized to the current range — but cap at 999 for v1 so the
+    // chip pool stays manageable.
+    const cap = Math.min(max, 999);
+    composeTarget = Math.max(1, Math.floor(Math.random() * cap));
+    composeBuilt = [];
+    document.getElementById('composeDigit').textContent = composeTarget.toLocaleString();
+    const parts = decompose(composeTarget);
+    // Build a chip pool: the correct parts + a few distractors, shuffled.
+    const correctTokens = lingala(composeTarget).ln.split(' ');
+    const pool = new Set(correctTokens);
+    // Add the parts themselves as single chips for convenience
+    parts.forEach((p) => p.ln.split(' ').forEach((t) => pool.add(t)));
+    // Distractors — common words from the bank to keep the pool from giving the answer away
+    const distractors = ['moko', 'mibale', 'misato', 'minei', 'mitano', 'motoba', 'nsambo', 'mwambe', 'libwa', 'zomi', 'ntuku', 'nkama', 'nkoto', 'na'];
+    distractors.forEach((d) => { if (pool.size < 12) pool.add(d); });
+    const poolArr = [...pool].sort(() => Math.random() - 0.5);
+    const poolEl = document.getElementById('composePool');
+    poolEl.innerHTML = '';
+    poolArr.forEach((tok) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'c-pool-chip'; b.textContent = tok;
+      b.addEventListener('click', () => {
+        composeBuilt.push(tok);
+        renderComposeBuilt();
+      });
+      poolEl.appendChild(b);
+    });
+    renderComposeBuilt();
+  }
+  function renderComposeBuilt() {
+    const wrap = document.getElementById('composeBuilt');
+    wrap.classList.remove('correct', 'incorrect');
+    wrap.setAttribute('data-empty', 'Tap chips below to build the Lingala form.');
+    wrap.innerHTML = '';
+    composeBuilt.forEach((tok, i) => {
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = 'c-built-chip'; c.textContent = tok;
+      c.addEventListener('click', () => { composeBuilt.splice(i, 1); renderComposeBuilt(); });
+      wrap.appendChild(c);
+    });
+  }
+  function checkCompose() {
+    const expected = lingala(composeTarget).ln;
+    const got = composeBuilt.join(' ');
+    const wrap = document.getElementById('composeBuilt');
+    if (got === expected) {
+      wrap.classList.add('correct');
+      speak(expected);
+      celebrate(composeTarget);
+      markMastered(composeTarget); renderMastery();
+      setTimeout(newCompose, 1400);
+    } else {
+      wrap.classList.add('incorrect');
+      card.classList.remove('wrong'); void card.offsetWidth; card.classList.add('wrong');
+    }
+  }
+  document.getElementById('composeBack').addEventListener('click', () => { composeBuilt.pop(); renderComposeBuilt(); });
+  document.getElementById('composeCheck').addEventListener('click', checkCompose);
+  document.getElementById('composeNew').addEventListener('click', newCompose);
+
+  // —— Rule quiz ——
+  // Show a number, ask which formation rule(s) apply. Multiple choice 4-up.
+  const RULE_OPTIONS = [
+    { key: 'units', label: 'Units (0–9)', test: (n) => n < 10 },
+    { key: 'teens', label: 'Teens (zomi na X)', test: (n) => n >= 10 && n < 20 },
+    { key: 'tens', label: 'Tens (ntuku X)', test: (n) => n >= 20 && n < 100 },
+    { key: 'hundreds', label: 'Hundreds (nkama X)', test: (n) => n >= 100 && n < 1000 },
+    { key: 'thousands', label: 'Thousands (nkoto X)', test: (n) => n >= 1000 && n < 1000000 },
+    { key: 'millions', label: 'Millions (commas)', test: (n) => n >= 1000000 },
+  ];
+  function newRuleQuiz() {
+    answered = false;
+    cur = pickRandom();
+    if (cur < 1) cur = 1;
+    const w = lingala(cur);
+    digit.textContent = cur.toLocaleString();
+    renderLnHighlighted(w.ln);
+    phon.textContent = w.phon;
+    pos.textContent = '';
+    document.getElementById('breakdown').innerHTML = '';
+    const opts = document.getElementById('options');
+    opts.innerHTML = '';
+    // Find the highest-magnitude rule that applies (that's the "primary" rule)
+    const correctKey = RULE_OPTIONS.slice().reverse().find((r) => r.test(cur)).key;
+    const pool = RULE_OPTIONS.slice().sort(() => Math.random() - 0.5).slice(0, 4);
+    // Ensure correct is in the pool
+    if (!pool.find((r) => r.key === correctKey)) {
+      pool[0] = RULE_OPTIONS.find((r) => r.key === correctKey);
+      pool.sort(() => Math.random() - 0.5);
+    }
+    pool.forEach((r) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'c-option'; b.textContent = r.label;
+      b.addEventListener('click', () => answerRuleQuiz(b, r.key === correctKey));
+      opts.appendChild(b);
+    });
+    renderControls();
+  }
+  function answerRuleQuiz(btn, isCorrect) {
+    if (answered) return;
+    answered = true;
+    document.getElementById('options').querySelectorAll('.c-option').forEach((b) => b.disabled = true);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      streak++; if (streak > best) { best = streak; lsSet(LS_BEST, String(best)); }
+      markMastered(cur); renderMastery();
+    } else {
+      btn.classList.add('incorrect');
+      card.classList.remove('wrong'); void card.offsetWidth; card.classList.add('wrong');
+      streak = 0;
+    }
+    updateStreak();
+    renderControls();
+  }
+
+  function newListenQuiz() {
+    answered = false;
+    cur = pickRandom();
+    const w = lingala(cur);
+    digit.textContent = '?';
+    ln.textContent = '';   // hidden — they have to listen
+    phon.textContent = '';
+    pos.textContent = '';
+    document.getElementById('breakdown').innerHTML = '';
+    const inp = document.getElementById('listenInput');
+    inp.value = '';
+    inp.classList.remove('correct', 'incorrect');
+    inp.disabled = false;
+    // Force speech ON for this mode so they can hear it. Restore after.
+    const prev = speechOn; speechOn = true; speak(w.ln); speechOn = prev;
+  }
+
+  function showTypeResult(n) {
+    if (!Number.isFinite(n) || n < 0 || n > 999999999) {
+      digit.textContent = '—';
+      ln.textContent = 'Type a number';
+      phon.textContent = '0 to 999,999,999';
+      pos.textContent = '';
+      return;
+    }
+    const w = lingala(n);
+    digit.textContent = n.toLocaleString();
+    renderLnHighlighted(w.ln);
+    phon.textContent = w.phon;
+    pos.textContent = '';
+    renderBreakdown(n);
+    setKubaPattern(n);   // pattern follows typed number too
+    if (n <= max) { markMastered(n); renderMastery(); }
+    speak(w.ln);
+  }
+
+  function setRange(n) {
+    stopAuto();
+    max = n;
+    lsSet(LS_RANGE, String(n));
+    setRangeClass();
+    setStepClass();
+    if (cur > max) cur = max;
+    renderMastery();
+    if (mode === 'count' || mode === 'auto') showNumber(cur);
+    else if (mode === 'quiz-listen') newListenQuiz();
+    else newQuiz();
+  }
+
+  function setStep(s) {
+    stopAuto();
+    step = s;
+    lsSet(LS_STEP, String(s));
+    setStepClass();
+    // Snap cur DOWN to a multiple of step so increments stay clean.
+    if (step > 1) cur = Math.floor(cur / step) * step;
+    if (cur > max) cur = max;
+    // If we landed at the upper bound with no room to advance, back off one
+    // step so the user can still tap Next without having to Prev first.
+    if (cur >= max && max > 0) cur = Math.max(0, max - step);
+    if (cur < 0) cur = 0;
+    if (mode === 'count' || mode === 'auto') { showNumber(cur); renderControls(); }
+  }
+
+  // ——— Wire up tabs ———
+  document.querySelectorAll('#modeTabs .c-mode').forEach((b) => {
+    b.addEventListener('click', () => setMode(b.dataset.mode));
+  });
+
+  // More options toggle — show/hide the Step row
+  document.getElementById('moreToggle').addEventListener('click', (e) => {
+    const open = e.currentTarget.getAttribute('aria-expanded') === 'true';
+    e.currentTarget.setAttribute('aria-expanded', open ? 'false' : 'true');
+    document.querySelectorAll('.c-advanced').forEach((el) => { el.hidden = open; });
+  });
+
+  // "How is this formed?" — derivation panel toggle (persists per session)
+  const LS_DERIV = 'lingala.countDerivOpen';
+  const derivToggle = document.getElementById('derivToggle');
+  const derivPanel = document.getElementById('derivation');
+  function syncDerivOpen(open) {
+    derivToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    derivPanel.hidden = !open;
+  }
+  syncDerivOpen(lsGet(LS_DERIV, '0') === '1');
+  derivToggle.addEventListener('click', () => {
+    const open = derivToggle.getAttribute('aria-expanded') !== 'true';
+    lsSet(LS_DERIV, open ? '1' : '0');
+    syncDerivOpen(open);
+  });
+
+  // —— Saved numbers (favorites) ——
+  const LS_SAVED = 'lingala.countSaved';
+  function loadSaved() {
+    try { return JSON.parse(localStorage.getItem(LS_SAVED) || '[]'); }
+    catch { return []; }
+  }
+  let savedNums = loadSaved();
+  function persistSaved() {
+    try { localStorage.setItem(LS_SAVED, JSON.stringify(savedNums)); } catch {}
+  }
+  function isSaved(n) { return savedNums.indexOf(n) >= 0; }
+  function toggleSaved(n) {
+    if (!Number.isFinite(n) || n < 0) return;
+    const i = savedNums.indexOf(n);
+    if (i >= 0) savedNums.splice(i, 1);
+    else { savedNums.unshift(n); savedNums = savedNums.slice(0, 24); }
+    persistSaved();
+    renderSaved();
+    syncSaveButton();
+  }
+  function syncSaveButton() {
+    const b = document.getElementById('saveBtn');
+    if (!b) return;
+    b.classList.toggle('saved', isSaved(cur));
+  }
+  function renderSaved() {
+    const row = document.getElementById('savedRow');
+    if (!row) return;
+    row.innerHTML = '';
+    if (!savedNums.length) return;
+    const lbl = document.createElement('span');
+    lbl.className = 'c-saved-label';
+    lbl.textContent = (window.LingalaI18n ? LingalaI18n.t('count.saved') : 'Saved');
+    row.appendChild(lbl);
+    savedNums.forEach((n) => {
+      const chip = document.createElement('span');
+      chip.className = 'c-saved-chip' + (n === cur ? ' active' : '');
+      const jumpBtn = document.createElement('button');
+      jumpBtn.type = 'button';
+      jumpBtn.style.cssText = 'background:transparent;border:0;color:inherit;cursor:pointer;padding:0;font:inherit;';
+      jumpBtn.textContent = n.toLocaleString();
+      jumpBtn.title = 'Jump to ' + n.toLocaleString();
+      jumpBtn.addEventListener('click', () => {
+        if (mode === 'count' || mode === 'auto') {
+          // Ensure range can hold it
+          if (n > max) { const next = [10, 100, 1000, 10000, 100000, 1000000].find((m) => m >= n); if (next) setRange(next); }
+          cur = n; showNumber(cur, { flash: true }); renderControls();
+        } else if (mode === 'type') {
+          document.getElementById('typeInput').value = String(n);
+          document.getElementById('typeInput').dispatchEvent(new Event('input'));
+        }
+      });
+      chip.appendChild(jumpBtn);
+      const x = document.createElement('button');
+      x.type = 'button'; x.className = 'c-saved-chip-x'; x.setAttribute('aria-label', 'Remove'); x.textContent = '×';
+      x.addEventListener('click', (e) => { e.stopPropagation(); toggleSaved(n); });
+      chip.appendChild(x);
+      row.appendChild(chip);
+    });
+  }
+  document.getElementById('saveBtn').addEventListener('click', () => toggleSaved(cur));
+
+  // Copy / Share — pull values from the live card
+  function currentCardText() {
+    const d = digit.textContent || '';
+    const l = ln.textContent || '';
+    const p = phon.textContent || '';
+    return { digit: d, ln: l, phon: p };
+  }
+  document.getElementById('copyBtn').addEventListener('click', async (e) => {
+    const t = currentCardText();
+    const txt = `${t.digit} → ${t.ln} (${t.phon}) · Count in Lingala — lingala.artivicolab.com`;
+    try {
+      await navigator.clipboard.writeText(txt);
+      e.currentTarget.classList.add('copied');
+      setTimeout(() => e.currentTarget.classList.remove('copied'), 1200);
+    } catch (err) { /* clipboard not available */ }
+  });
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    const t = currentCardText();
+    const txt = `${t.digit} in Lingala is "${t.ln}" (${t.phon}). Learn to count at lingala.artivicolab.com 🇨🇩`;
+    if (navigator.share) {
+      try { await navigator.share({ title: 'Count in Lingala', text: txt, url: 'https://lingala.artivicolab.com/count.html' }); }
+      catch (err) { /* user dismissed */ }
+    } else {
+      try { await navigator.clipboard.writeText(txt); } catch (err) {}
+    }
+  });
+
+  // Persistent card-flanking arrows for count-up mode
+  document.getElementById('cardPrev').addEventListener('click', () => {
+    if (mode !== 'count') return;
+    if (cur > 0) { cur = Math.max(0, cur - step); showNumber(cur, { flash: true }); renderControls(); }
+  });
+  document.getElementById('cardNext').addEventListener('click', () => {
+    if (mode !== 'count') return;
+    if (cur < max) { cur = Math.min(max, cur + step); showNumber(cur, { flash: true }); renderControls(); }
+  });
+
+  // Print cheat sheet
+  document.getElementById('printBtn').addEventListener('click', () => { window.print(); });
+
+  // Speech toggle
+  $('speechToggle').addEventListener('click', () => {
+    speechOn = !speechOn;
+    lsSet(LS_SPEECH, speechOn ? '1' : '0');
+    syncSpeechButton();
+    if (speechOn && (mode === 'count' || mode === 'auto' || mode === 'type')) {
+      const w = lingala(cur);
+      speak(w.ln);
+    } else if (!speechOn) {
+      try { speechSynthesis.cancel(); } catch (e) {}
+    }
+  });
+
+  // Listen → Type quiz: handle input + replay
+  document.getElementById('listenReplay').addEventListener('click', () => {
+    if (mode !== 'quiz-listen') return;
+    const w = lingala(cur);
+    const prev = speechOn; speechOn = true; speak(w.ln); speechOn = prev;
+  });
+  document.getElementById('listenInput').addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    if (mode !== 'quiz-listen' || answered) return;
+    const v = parseInt(e.target.value.replace(/[^0-9]/g, ''), 10);
+    if (!Number.isFinite(v)) return;
+    answered = true;
+    e.target.disabled = true;
+    const correct = v === cur;
+    e.target.classList.add(correct ? 'correct' : 'incorrect');
+    // Reveal the right answer
+    const w = lingala(cur);
+    digit.textContent = cur.toLocaleString();
+    renderLnHighlighted(w.ln);
+    phon.textContent = w.phon;
+    if (correct) {
+      streak++;
+      if (streak > best) { best = streak; lsSet(LS_BEST, String(best)); }
+      markMastered(cur);
+    } else {
+      card.classList.remove('wrong'); void card.offsetWidth; card.classList.add('wrong');
+      streak = 0;
+    }
+    updateStreak();
+    renderMastery();
+    renderControls();
+  });
+
+  // Live type-a-number lookup. Speech is debounced so each keystroke doesn't
+  // re-speak — only the final value after a short pause. Also: typing literally
+  // "000" is the hidden easter-egg trigger — it shows the maker credit / FB
+  // campaign card instead of rendering as zero.
+  let typeSpeakTimer = null;
+  $('typeInput').addEventListener('input', (e) => {
+    // Keep only digits (input is type=text + pattern guard, but iOS may paste anything).
+    const raw = (e.target.value || '').replace(/[^0-9]/g, '');
+    if (raw !== e.target.value) e.target.value = raw;
+
+    // Easter egg — literal "000" (or longer all-zeros sequence beyond 2 zeros).
+    if (raw === '000') {
+      clearInterstitialStyle();
+      showInterstitial();
+      if (typeSpeakTimer) clearTimeout(typeSpeakTimer);
+      return;
+    }
+    clearInterstitialStyle();
+
+    const v = parseInt(raw, 10);
+    const valid = Number.isFinite(v) && v >= 0 && v <= 999999999;
+    // Always render; suppress immediate speech
+    const prevSpeech = speechOn;
+    speechOn = false;
+    if (valid) { cur = v; showTypeResult(v); } else { showTypeResult(NaN); }
+    speechOn = prevSpeech;
+    // Debounced speech
+    if (typeSpeakTimer) clearTimeout(typeSpeakTimer);
+    if (valid && speechOn) {
+      typeSpeakTimer = setTimeout(() => { speak(lingala(v).ln); }, 600);
+    }
+  });
+  document.querySelectorAll('#rangeSeg button').forEach((b) => {
+    b.addEventListener('click', () => setRange(parseInt(b.dataset.max, 10)));
+  });
+  document.querySelectorAll('#stepSeg button').forEach((b) => {
+    b.addEventListener('click', () => setStep(parseInt(b.dataset.step, 10)));
+  });
+
+  // Keyboard: arrows in count-up; enter to start auto / skip quiz
+  document.addEventListener('keydown', (e) => {
+    if (mode === 'count') {
+      if (e.key === 'ArrowRight' && cur < max) { cur = Math.min(max, cur + step); showNumber(cur, { flash: true }); renderControls(); }
+      if (e.key === 'ArrowLeft' && cur > 0) { cur = Math.max(0, cur - step); showNumber(cur, { flash: true }); renderControls(); }
+    } else if (mode === 'auto') {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); autoTimer ? stopAuto() : startAuto(); }
+    } else if ((mode === 'quiz-ln' || mode === 'quiz-digit') && answered && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault(); answered = false; newQuiz();
+    }
+  });
+
+  // Re-render dynamic strings (Prev/Next/Start/Skip + Voice label) on language change.
+  window.addEventListener('lingala:lang', () => {
+    renderControls();
+    syncSpeechButton();
+  });
+
+  // ——— Daily challenge ———
+  // Deterministic by date — same prompt for everyone on the same day. Six
+  // challenge templates cycle through. Dismissal persists per day.
+  // Each prompt lives in i18n (count.challenge.<n>) so it translates with the
+  // rest of the UI when language switches. Re-rendered on the lingala:lang event.
+  const CHALLENGES = [
+    { kind: 'count',  range: 10,   step: 1,  key: 'count.challenge.0' },
+    { kind: 'count',  range: 100,  step: 1,  key: 'count.challenge.1' },
+    { kind: 'auto',   range: 100,  step: 10, key: 'count.challenge.2' },
+    { kind: 'quiz-listen', range: 100, key: 'count.challenge.3' },
+    { kind: 'quiz-ln', range: 100, key: 'count.challenge.4' },
+    { kind: 'type',   range: 1000, key: 'count.challenge.5' },
+  ];
+  function todayKey() { const d = new Date(); return d.toISOString().slice(0,10); }
+  function dayIndex() {
+    const key = todayKey();
+    let h = 0; for (let i = 0; i < key.length; i++) h = ((h<<5)-h + key.charCodeAt(i))|0;
+    return Math.abs(h) % CHALLENGES.length;
+  }
+  function renderChallengeText() {
+    const c = CHALLENGES[dayIndex()];
+    const txt = (window.LingalaI18n && window.LingalaI18n.t) ? window.LingalaI18n.t(c.key) : c.key;
+    document.getElementById('challengeText').innerHTML = txt;
+  }
+  function setupChallenge() {
+    const dismissed = lsGet('lingala.countChallengeDismiss', '');
+    if (dismissed === todayKey()) return;
+    const c = CHALLENGES[dayIndex()];
+    const banner = document.getElementById('challengeBanner');
+    renderChallengeText();
+    document.getElementById('challengeGo').addEventListener('click', () => {
+      if (c.range && c.range !== max) setRange(c.range);
+      if (c.step) setStep(c.step);
+      setMode(c.kind);
+      banner.hidden = true;
+    });
+    document.getElementById('challengeX').addEventListener('click', () => {
+      banner.hidden = true;
+      lsSet('lingala.countChallengeDismiss', todayKey());
+    });
+    // Re-render text when the language switches
+    window.addEventListener('lingala:lang', renderChallengeText);
+    banner.hidden = false;
+  }
+
+  // ——— First-run hint ———
+  const LS_SEEN = 'lingala.countSeen';
+  const firstHint = document.getElementById('firstHint');
+  const firstHintClose = document.getElementById('firstHintClose');
+  if (firstHint && !lsGet(LS_SEEN, '')) {
+    firstHint.hidden = false;
+  }
+  if (firstHintClose) {
+    firstHintClose.addEventListener('click', () => {
+      firstHint.hidden = true;
+      lsSet(LS_SEEN, '1');
+    });
+  }
+
+  // ——— Keyboard shortcuts overlay ———
+  const kbdBack = document.getElementById('kbdBack');
+  const toggleKbd = (force) => {
+    if (!kbdBack) return;
+    const open = force != null ? force : kbdBack.hidden;
+    kbdBack.hidden = !open;
+  };
+  document.getElementById('kbdClose').addEventListener('click', () => toggleKbd(false));
+  kbdBack.addEventListener('click', (e) => { if (e.target === kbdBack) toggleKbd(false); });
+  document.addEventListener('keydown', (e) => {
+    // Ignore when user is in an input/select
+    const t = e.target;
+    const inField = t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA');
+    if (e.key === '?' && !inField) { e.preventDefault(); toggleKbd(); }
+    if (e.key === 'Escape' && !kbdBack.hidden) { toggleKbd(false); }
+  });
+
+  // ——— Init ———
+  setupChallenge();
+  setModeClass();
+  setRangeClass();
+  setStepClass();
+  syncSpeechButton();
+  updateStreak();
+  renderMastery();
+  renderSaved();
+  if (mode === 'count' || mode === 'auto') { cur = mode === 'auto' ? 0 : 1; showNumber(cur); }
+  else newQuiz();
+  renderControls();
+})();
+</script>
+
+</body>
+</html>

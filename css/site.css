@@ -1,0 +1,297 @@
+/* Lingala — shared editorial design system for static pages (about, privacy,
+   and any future page). Tokens + the 4 DRC-flag themes mirror the homepage so
+   the whole site stays one design. The app (card.html) has its own style.css
+   but uses the same theme token names + values. */
+
+:root {
+  --display: 'Outfit', sans-serif;
+  --serif: 'Fraunces', serif;
+  --body: 'Outfit', sans-serif;
+
+  --terracotta: #C8202A;
+  --terracotta-hover: #D62A34;
+  --gold: #C8202A;
+  --cerulean: #1455A4;
+  --cream: #F0EAD6;
+
+  /* Theme = BLUE (default). */
+  --base: #08182E;
+  --base-mid: #0F2238;
+  --ink: #F0F4FA;
+  --ink-soft: rgba(230,238,250,0.80);
+  --muted: #8298B4;
+  --line: rgba(255,255,255,0.10);
+  --surface: rgba(255,255,255,0.04);
+  --accent: #C8202A;
+}
+html[data-theme='red'] {
+  --base: #1C0A0A; --base-mid: #2A1413; --ink: #FAF0EE;
+  --ink-soft: rgba(250,236,232,0.80); --muted: #BE918C;
+  --line: rgba(255,255,255,0.10); --surface: rgba(255,255,255,0.04); --accent: #C8202A;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+html, body { overflow-x: hidden; max-width: 100vw; width: 100%; }
+
+/* —— DRC-flag scrollbar — blue / yellow / red, the three flag colours —— */
+/* WebKit/Blink (Safari, Chrome, Edge) */
+/* The -webkit-appearance:none lines force custom rendering on macOS Safari,
+   which otherwise overrides the gradient with the system overlay scrollbar. */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background-color: rgba(0,0,0,0.18);
+}
+::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+  background-color: rgba(0,0,0,0.18);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  background-color: #1455A4;   /* fallback when gradient doesn't render */
+  background-image: linear-gradient(180deg, #1455A4 0%, #1455A4 30%, #F4C81E 35%, #F4C81E 65%, #C8202A 70%, #C8202A 100%);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(180deg, #1A6BC9 0%, #1A6BC9 30%, #FFD42E 35%, #FFD42E 65%, #E0303B 70%, #E0303B 100%);
+}
+/* Horizontal scrollbars: flip the gradient so colours go left→right */
+::-webkit-scrollbar-thumb:horizontal {
+  background-image: linear-gradient(90deg, #1455A4 0%, #1455A4 30%, #F4C81E 35%, #F4C81E 65%, #C8202A 70%, #C8202A 100%);
+}
+::-webkit-scrollbar-corner { background-color: rgba(0,0,0,0.2); }
+
+/* Firefox — only single-colour thumb + track supported; use blue thumb on yellow rail */
+html { scrollbar-color: #1455A4 rgba(244,200,30,0.25); scrollbar-width: thin; }
+html { scroll-behavior: smooth; }
+img, svg, video, canvas, iframe { max-width: 100%; height: auto; }
+
+body {
+  background: var(--base);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 400;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 64px;            /* room for the ambient sticky footer */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* —— ambient sticky footer —— */
+@keyframes barAnim { 0% { transform: scaleY(0.25); } 100% { transform: scaleY(1); } }
+.ambient {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+  display: flex; align-items: center; gap: 16px;
+  padding: 9px 24px calc(9px + env(safe-area-inset-bottom));
+  background-color: var(--base);
+  /* Muted DRC flag triad — zigzag chevrons stroked in alternating
+     blue / yellow / red ridges, dim opacity so it reads as texture not noise. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cg fill='none' stroke-width='1' opacity='0.45'%3E%3Cpath stroke='%231A4A8A' d='M0 30 L10 15 L20 30 L30 15 L40 30 L50 15 L60 30 L70 15 L80 30'/%3E%3Cpath stroke='%23B89817' d='M80 30 L90 15 L100 30 L110 15 L120 30 L130 15 L140 30 L150 15 L160 30'/%3E%3Cpath stroke='%23A02530' d='M160 30 L170 15 L180 30 L190 15 L200 30 L210 15 L220 30 L230 15 L240 30'/%3E%3Cpath stroke='%231A4A8A' d='M0 30 L10 45 L20 30 L30 45 L40 30 L50 45 L60 30 L70 45 L80 30'/%3E%3Cpath stroke='%23B89817' d='M80 30 L90 45 L100 30 L110 45 L120 30 L130 45 L140 30 L150 45 L160 30'/%3E%3Cpath stroke='%23A02530' d='M160 30 L170 45 L180 30 L190 45 L200 30 L210 45 L220 30 L230 45 L240 30'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 60px;
+  background-repeat: repeat;
+  background-position: center;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.28);
+  position: fixed;   /* re-stated to keep specificity intact */
+}
+/* Subtle base wash so the pattern doesn't fight the phrase text */
+.ambient::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--base) 0%, transparent 12%, transparent 88%, var(--base) 100%);
+  pointer-events: none;
+  opacity: 0.85;
+}
+.ambient > * { position: relative; z-index: 1; }
+.ambient-prog { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--line); }
+.ambient-prog > div { height: 100%; width: 0; background: var(--accent); transition: width 0.12s linear; }
+.ambient-phrase { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--ink); white-space: nowrap; }
+.ambient-viz { display: flex; align-items: flex-end; gap: 2px; height: 24px; }
+.vbar { display: inline-block; width: 3px; border-radius: 2px; background: var(--accent); transform-origin: bottom; animation: barAnim 0.5s ease-in-out infinite alternate; animation-play-state: paused; }
+.ambient-spacer { flex: 1; }
+.ambient-btn { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--accent); color: #fff; cursor: pointer; font-size: 12px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.ambient-btn:active { transform: translateY(1px); }
+@media (max-width: 600px) { .ambient { gap: 10px; padding-left: 14px; padding-right: 14px; } .ambient-viz { height: 18px; gap: 1.5px; } .vbar { width: 2px; } }
+
+/* grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* —— nav / topbar —— */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  gap: 20px;
+  background: linear-gradient(to bottom, var(--base) 65%, transparent);
+}
+@media (min-width: 720px) { .site-nav { padding: 20px 48px; } }
+.site-logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-right { display: flex; align-items: center; gap: 22px; }
+
+/* —— hamburger toggle (mobile only) —— */
+.nav-toggle {
+  position: relative; z-index: 110;
+  display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+  width: 40px; height: 40px; padding: 0 8px; background: transparent; border: 1px solid var(--line);
+  border-radius: 10px; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (min-width: 720px) { .nav-toggle { display: none; } }
+
+/* —— nav links (inline desktop, drawer mobile) —— */
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-links a {
+  font-family: var(--body); font-size: 0.88rem; color: var(--ink-soft);
+  text-decoration: none; transition: color .15s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.active { color: var(--accent); }
+
+/* Mobile: nav-right becomes a drawer that slides in from the top. Hidden by default. */
+@media (max-width: 719px) {
+  .nav-right {
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+    background: var(--base); padding: 88px 28px 32px;
+    flex-direction: column; align-items: flex-start; gap: 28px;
+    transform: translateY(-100%); transition: transform .25s ease;
+    z-index: 90; overflow-y: auto;
+  }
+  .nav-right.open { transform: translateY(0); }
+  .nav-links { flex-direction: column; align-items: flex-start; gap: 18px; width: 100%; }
+  .nav-links a { font-size: 1.4rem; font-family: var(--serif); }
+  .site-nav { z-index: 100; }
+}
+
+.theme-dots { display: flex; gap: 8px; }
+.theme-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid transparent; padding: 0; cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.theme-dot:hover { transform: scale(1.15); }
+.theme-dot.active { border-color: var(--ink); }
+.t-blue   { background: #1455A4; }
+.t-red    { background: #C8202A; }
+.lang-switch {
+  display: flex; align-items: center; gap: 4px;
+  font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink);
+}
+.lang-switch button {
+  background: none; border: 0; color: inherit; cursor: pointer;
+  font-family: inherit; font-size: inherit; padding: 2px 4px;
+}
+.lang-switch span { opacity: 0.35; }
+
+.site-cta {
+  background: var(--terracotta);
+  color: #FAF7F0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 9px 18px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.site-cta:hover { background: var(--terracotta-hover); }
+
+/* —— content —— */
+.site-main { flex: 1; }
+.prose {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 48px 100px;
+}
+.prose h1 {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.prose h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin: 40px 0 12px;
+}
+.prose p {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.prose p.lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+.prose strong { color: var(--ink); font-weight: 500; }
+.prose em { font-style: italic; }
+.prose a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--line); }
+.prose a:hover { border-color: var(--accent); }
+
+/* —— footer —— */
+.site-footer {
+  padding: 40px 48px calc(40px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--muted); margin-bottom: 14px; }
+.site-footer .footer-links { font-size: 0.85rem; line-height: 1.9; }
+.site-footer .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.site-footer .footer-links a:hover { color: var(--ink); }
+.site-footer .sep { color: var(--line); margin: 0 8px; }
+.site-footer .footer-copyright { font-size: 0.78rem; color: var(--muted); opacity: 0.7; margin-top: 12px; }
+.site-footer .footer-version { font-family: var(--body); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--line); border-radius: 100px; padding: 2px 9px; margin-left: 4px; opacity: 0.85; }
+.site-footer .footer-rights { display: inline-block; margin-top: 8px; font-size: 0.74rem; color: var(--muted); opacity: 0.8; }
+.site-footer .footer-rights a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.15s; }
+.site-footer .footer-rights a:hover { border-bottom-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+@media (max-width: 720px) {
+  .site-nav { padding: 16px 20px; }
+  .nav-right { gap: 14px; }
+  .site-cta { display: none; }
+  .prose { padding: 40px 24px 80px; }
+  .site-footer { padding: 32px 24px; }
+}
+
+/* Pulsing heart (footer) */
+@keyframes heartpulse { 0%, 100% { transform: scale(1); opacity: 0.82; } 50% { transform: scale(1.28); opacity: 1; } }
+.pulse-heart { display: inline-block; margin-left: 5px; color: var(--terracotta, #C8202A); animation: heartpulse 1.15s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .pulse-heart { animation: none; } }

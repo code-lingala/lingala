@@ -1,0 +1,5389 @@
+{
+  "A": [
+    {
+      "en": "he",
+      "lingala": "a",
+      "phonetic": "a"
+    },
+    {
+      "en": "she",
+      "lingala": "a",
+      "phonetic": "a"
+    },
+    {
+      "en": "shy",
+      "lingala": "abangi",
+      "phonetic": "a-ba-ngee"
+    },
+    {
+      "en": "traditional",
+      "lingala": "adj. ya bankoko",
+      "phonetic": "ba-nko-ko"
+    },
+    {
+      "en": "match",
+      "lingala": "alimeti, fofolo",
+      "phonetic": "a-lee-me’-tee, foh-fo’-lo"
+    },
+    {
+      "en": "my",
+      "lingala": "an ngai",
+      "phonetic": "na n-ga’-ee"
+    },
+    {
+      "en": "pineapple",
+      "lingala": "ananasi",
+      "phonetic": "a-na –na-see"
+    },
+    {
+      "en": "even",
+      "lingala": "ata",
+      "phonetic": "a’-ta"
+    },
+    {
+      "en": "same",
+      "lingala": "ata , mei, se , moko",
+      "phonetic": "a-ta’, meh’-ee, she’, mo’-ko’"
+    },
+    {
+      "en": "pear",
+      "lingala": "avoka",
+      "phonetic": "a-vo-ka"
+    },
+    {
+      "en": "april",
+      "lingala": "avril",
+      "phonetic": "avreel"
+    },
+    {
+      "en": "here",
+      "lingala": "awa",
+      "phonetic": "a’-wa"
+    }
+  ],
+  "B": [
+    {
+      "en": "they",
+      "lingala": "ba",
+      "phonetic": "ba"
+    },
+    {
+      "en": "road",
+      "lingala": "balabala, mofali",
+      "phonetic": "ba-la-ba’-la, moh-fa-lee"
+    },
+    {
+      "en": "ball",
+      "lingala": "bale, ndembo",
+      "phonetic": "ba’-leh’, n-deh-mboh"
+    },
+    {
+      "en": "football",
+      "lingala": "bale, ndembo",
+      "phonetic": "ba’-leh’ , n-deh-mboh"
+    },
+    {
+      "en": "them",
+      "lingala": "bango",
+      "phonetic": "ba-ngoh’"
+    },
+    {
+      "en": "wildlife",
+      "lingala": "banyama na bandeke ya zamba",
+      "phonetic": "ba-nya- ma na ba-nde-ke ya za-mba"
+    },
+    {
+      "en": "battery",
+      "lingala": "batiri",
+      "phonetic": "ba-tee-ree"
+    },
+    {
+      "en": "baptism",
+      "lingala": "batisimu",
+      "phonetic": "ba-tee-see-moo"
+    },
+    {
+      "en": "people",
+      "lingala": "bato",
+      "phonetic": "[ ba-toh"
+    },
+    {
+      "en": "afraid",
+      "lingala": "be a. v. kobanga",
+      "phonetic": "koh-ba’-nga"
+    },
+    {
+      "en": "glad",
+      "lingala": "be g. v. kosepela",
+      "phonetic": "koh-she-peh-la"
+    },
+    {
+      "en": "bad",
+      "lingala": "be, mabe",
+      "phonetic": "ma-beh’"
+    },
+    {
+      "en": "flag",
+      "lingala": "bendele, dalapo",
+      "phonetic": "beh-nde-le, da-la-poh"
+    },
+    {
+      "en": "raw",
+      "lingala": "besu, mobesu",
+      "phonetic": "moh-beh’-soo"
+    },
+    {
+      "en": "homemade",
+      "lingala": "bile bya ekolo",
+      "phonetic": "bee-leh’ bya eh-ko’-lo"
+    },
+    {
+      "en": "lunch",
+      "lingala": "bile na moi",
+      "phonetic": "bee-leh’ na moh’-ee"
+    },
+    {
+      "en": "breakfast",
+      "lingala": "bile na ntongo",
+      "phonetic": "bee-leh’ na nto’-ngo"
+    },
+    {
+      "en": "dinner",
+      "lingala": "bile ya mpokwa",
+      "phonetic": "bee-leh’ ya mpoh’-kwa"
+    },
+    {
+      "en": "food",
+      "lingala": "bilei",
+      "phonetic": "bee-leh’ –ee"
+    },
+    {
+      "en": "desert",
+      "lingala": "biliki",
+      "phonetic": "bee-lee-kee"
+    },
+    {
+      "en": "office",
+      "lingala": "bilo, esika ya mosala",
+      "phonetic": "bee-loh, eh-see-ka ya moh-sa-la"
+    },
+    {
+      "en": "baggage",
+      "lingala": "biloko",
+      "phonetic": "bee-lo’-ko"
+    },
+    {
+      "en": "effects",
+      "lingala": "biloko",
+      "phonetic": "bee-lo’-ko"
+    },
+    {
+      "en": "goods",
+      "lingala": "biloko",
+      "phonetic": "bee-lo’-ko"
+    },
+    {
+      "en": "luggage",
+      "lingala": "biloko",
+      "phonetic": "bee-lo’-ko"
+    },
+    {
+      "en": "kettle",
+      "lingala": "birika",
+      "phonetic": "bee-ree-ka"
+    },
+    {
+      "en": "everywhere",
+      "lingala": "bisika binso",
+      "phonetic": "bee-see’-ka’ bee-nso"
+    },
+    {
+      "en": "us",
+      "lingala": "biso",
+      "phonetic": "bee-soh’"
+    },
+    {
+      "en": "bill",
+      "lingala": "biye",
+      "phonetic": "bee-ye"
+    },
+    {
+      "en": "note",
+      "lingala": "biye",
+      "phonetic": "bee-ye"
+    },
+    {
+      "en": "wheat",
+      "lingala": "ble",
+      "phonetic": "bleh"
+    },
+    {
+      "en": "radio station",
+      "lingala": "boakisi na nsango",
+      "phonetic": "boh-a-kee-see na nsa-ngoh"
+    },
+    {
+      "en": "humidity",
+      "lingala": "bobandu",
+      "phonetic": "boh-ba-ndoo’"
+    },
+    {
+      "en": "dance",
+      "lingala": "bobina",
+      "phonetic": "boh-bee-na"
+    },
+    {
+      "en": "peace",
+      "lingala": "boboto",
+      "phonetic": "boh-bo’-to"
+    },
+    {
+      "en": "servant",
+      "lingala": "boi",
+      "phonetic": "bo’-ee"
+    },
+    {
+      "en": "surprise",
+      "lingala": "bokamwi, motatabana",
+      "phonetic": "boh-ka-mwee, moh-ta-ta-ba-na"
+    },
+    {
+      "en": "departure",
+      "lingala": "bokei",
+      "phonetic": "boh-ke-ee"
+    },
+    {
+      "en": "piquant",
+      "lingala": "bokenzu",
+      "phonetic": "boh-ke-nzoo"
+    },
+    {
+      "en": "spicy",
+      "lingala": "bokenzu",
+      "phonetic": "boh-keh-nzoo’"
+    },
+    {
+      "en": "difference",
+      "lingala": "bokeseni",
+      "phonetic": "boh-keh-she-nee"
+    },
+    {
+      "en": "hunting",
+      "lingala": "bokila, bobengi-nyama",
+      "phonetic": "boh-kee-la, boh- beh-ngee nya-ma"
+    },
+    {
+      "en": "brother-in-law",
+      "lingala": "bokilo",
+      "phonetic": "boh-kee-loh’"
+    },
+    {
+      "en": "father-in-law",
+      "lingala": "bokilo mobali",
+      "phonetic": "boh-kee-loh’ moh-ba- lee"
+    },
+    {
+      "en": "mother-in-law",
+      "lingala": "bokilo mwasi",
+      "phonetic": "boh-kee-loh’ mwa’- see"
+    },
+    {
+      "en": "diabetes",
+      "lingala": "bokono bwa sukali",
+      "phonetic": "boh-ko-no bwa soo- ka’-lee"
+    },
+    {
+      "en": "blanket",
+      "lingala": "bolangiti",
+      "phonetic": "boh-la-ngee’-tee"
+    },
+    {
+      "en": "youth",
+      "lingala": "bolenge",
+      "phonetic": "boh-le-nge’"
+    },
+    {
+      "en": "excuse",
+      "lingala": "bolimbisi",
+      "phonetic": "boh-lee-mbee-see"
+    },
+    {
+      "en": "pardon",
+      "lingala": "bolimbisi, palado",
+      "phonetic": "boh-lee-mbee-see, pa- la-do’"
+    },
+    {
+      "en": "love",
+      "lingala": "bolingo",
+      "phonetic": "boh-lee-ngoh"
+    },
+    {
+      "en": "prison",
+      "lingala": "boloko",
+      "phonetic": "boh-loh-koh"
+    },
+    {
+      "en": "sore",
+      "lingala": "bolozi",
+      "phonetic": "boh-loh-zee"
+    },
+    {
+      "en": "pain",
+      "lingala": "bolozi , mpasi",
+      "phonetic": "boh-loh’-zee, mpa’-see"
+    },
+    {
+      "en": "naked",
+      "lingala": "bolumbu",
+      "phonetic": "boh-loo-mboo"
+    },
+    {
+      "en": "life",
+      "lingala": "bomoi",
+      "phonetic": "boh-moh-ee"
+    },
+    {
+      "en": "gun",
+      "lingala": "bondoki",
+      "phonetic": "boh-ndoh’-kee"
+    },
+    {
+      "en": "brain",
+      "lingala": "bongo",
+      "phonetic": "boh-ngoh’"
+    },
+    {
+      "en": "how",
+      "lingala": "boni",
+      "phonetic": "boh’-nee’"
+    },
+    {
+      "en": "choice",
+      "lingala": "boponi",
+      "phonetic": "boh-po-nee"
+    },
+    {
+      "en": "shrine",
+      "lingala": "bosambelelo",
+      "phonetic": "boh-sa- mbe-leh-lo"
+    },
+    {
+      "en": "slippery",
+      "lingala": "boselu",
+      "phonetic": "boh-se’-loo"
+    },
+    {
+      "en": "front",
+      "lingala": "boso, liboso",
+      "phonetic": "lee-boh-soh’"
+    },
+    {
+      "en": "truth",
+      "lingala": "bosolo",
+      "phonetic": "boh-so’-lo’"
+    },
+    {
+      "en": "dirty",
+      "lingala": "bosoto, epotu",
+      "phonetic": "boh-soh-toh, eh-poh-too"
+    },
+    {
+      "en": "bite",
+      "lingala": "boswi",
+      "phonetic": "boh-swee"
+    },
+    {
+      "en": "sightseeing",
+      "lingala": "botali mboka",
+      "phonetic": "boh-ta’-lee m-boh’- ka"
+    },
+    {
+      "en": "tourism",
+      "lingala": "botali mboka",
+      "phonetic": "boh-ta’-lee m-boh’-ka"
+    },
+    {
+      "en": "visit",
+      "lingala": "botali, lipaya",
+      "phonetic": "boh-ta’-lee, lee-pa-ya 2. v. kotala [ koh-ta’-la"
+    },
+    {
+      "en": "sculpture",
+      "lingala": "botendi",
+      "phonetic": "boh-te-ndee"
+    },
+    {
+      "en": "boot",
+      "lingala": "botte",
+      "phonetic": "bot"
+    },
+    {
+      "en": "faith",
+      "lingala": "boyambi fail v. kokwa",
+      "phonetic": "koh-kwa-a"
+    },
+    {
+      "en": "notice",
+      "lingala": "boyebisi",
+      "phonetic": "boh-yeh’-bee-see"
+    },
+    {
+      "en": "arrival",
+      "lingala": "boyei",
+      "phonetic": "boh-yeh’-ee"
+    },
+    {
+      "en": "theft",
+      "lingala": "boyibi",
+      "phonetic": "boh-yee-bee"
+    },
+    {
+      "en": "deep",
+      "lingala": "bozindo",
+      "phonetic": "boh-zee-ndoh"
+    },
+    {
+      "en": "weight",
+      "lingala": "bozito",
+      "phonetic": "boh-zee-toh’"
+    },
+    {
+      "en": "book",
+      "lingala": "buku",
+      "phonetic": "boo’-koo"
+    },
+    {
+      "en": "blue",
+      "lingala": "bulo",
+      "phonetic": "boo-lo"
+    },
+    {
+      "en": "thread",
+      "lingala": "busi",
+      "phonetic": "boo-see"
+    },
+    {
+      "en": "store",
+      "lingala": "butiki, magazini",
+      "phonetic": "boo-tee-kee, ma-ga-zee- nee"
+    },
+    {
+      "en": "night",
+      "lingala": "butu",
+      "phonetic": "boo-too"
+    },
+    {
+      "en": "candle",
+      "lingala": "buzi",
+      "phonetic": "boo-zee"
+    },
+    {
+      "en": "canoe",
+      "lingala": "bwato",
+      "phonetic": "bwa’-toh"
+    }
+  ],
+  "D": [
+    {
+      "en": "turkey",
+      "lingala": "dendon",
+      "phonetic": "den-don"
+    },
+    {
+      "en": "december",
+      "lingala": "desembere",
+      "phonetic": "deh-se-mbe-re"
+    },
+    {
+      "en": "friend",
+      "lingala": "di, moninga, ndeko",
+      "phonetic": "dee, moh-nee-nga, n- deh-koh"
+    },
+    {
+      "en": "diamond",
+      "lingala": "diaman",
+      "phonetic": "dee-a-man"
+    },
+    {
+      "en": "okra",
+      "lingala": "dongodongo",
+      "phonetic": "doh-ngoh-doh-ngoh"
+    },
+    {
+      "en": "customs",
+      "lingala": "douane",
+      "phonetic": "dwan"
+    },
+    {
+      "en": "shower",
+      "lingala": "douche",
+      "phonetic": "doosh"
+    }
+  ],
+  "E": [
+    {
+      "en": "it",
+      "lingala": "e-, yango",
+      "phonetic": "eh, ya-ngoh’"
+    },
+    {
+      "en": "river",
+      "lingala": "ebale",
+      "phonetic": "eh-ba-leh"
+    },
+    {
+      "en": "beginning",
+      "lingala": "ebandeli",
+      "phonetic": "eh-ba-ndeh-lee"
+    },
+    {
+      "en": "ugly",
+      "lingala": "ebe",
+      "phonetic": "eh-beh’"
+    },
+    {
+      "en": "corpse",
+      "lingala": "ebembe",
+      "phonetic": "eh-beh-mbeh’"
+    },
+    {
+      "en": "pigeon",
+      "lingala": "ebenga",
+      "phonetic": "eh-be-nga"
+    },
+    {
+      "en": "parliament",
+      "lingala": "ebimisa-mibeko",
+      "phonetic": "eh-bee-mee-sa mee-beh’-koh"
+    },
+    {
+      "en": "stool",
+      "lingala": "ebonga",
+      "phonetic": "eh-bo-nga"
+    },
+    {
+      "en": "ladder",
+      "lingala": "ebuteli",
+      "phonetic": "eh-boo-te-lee"
+    },
+    {
+      "en": "wall",
+      "lingala": "efelo",
+      "phonetic": "eh-fe-lo"
+    },
+    {
+      "en": "rusty",
+      "lingala": "egugi, ya koguga",
+      "phonetic": "eh-goo-gee, ya koh- goo-ga"
+    },
+    {
+      "en": "accident",
+      "lingala": "ekbelakbela",
+      "phonetic": "eh-kbeh’-la-kbeh-la"
+    },
+    {
+      "en": "yam",
+      "lingala": "ekeke ,esapa",
+      "phonetic": "eh-ke-ke, eh-sa-pa"
+    },
+    {
+      "en": "monument",
+      "lingala": "ekeko",
+      "phonetic": "eh-ke-ko"
+    },
+    {
+      "en": "different",
+      "lingala": "ekeseni",
+      "phonetic": "eh-keh-she-nee"
+    },
+    {
+      "en": "able",
+      "lingala": "Ekoki",
+      "phonetic": "eh-koh-kee"
+    },
+    {
+      "en": "possible",
+      "lingala": "ekoki",
+      "phonetic": "eh-koh-kee"
+    },
+    {
+      "en": "basket",
+      "lingala": "ekolo",
+      "phonetic": "eh-koh-lo’"
+    },
+    {
+      "en": "country",
+      "lingala": "ekolo",
+      "phonetic": "eh-ko’-lo"
+    },
+    {
+      "en": "nationality",
+      "lingala": "ekolo ya moto",
+      "phonetic": "eh-ko’-lo ya moh-toh"
+    },
+    {
+      "en": "bracelet",
+      "lingala": "ekomo",
+      "phonetic": "eh-ko-mo"
+    },
+    {
+      "en": "shoe",
+      "lingala": "ekoto",
+      "phonetic": "eh-koh’-toh’"
+    },
+    {
+      "en": "strom",
+      "lingala": "ekumbaki",
+      "phonetic": "eh-koo-mba-kee"
+    },
+    {
+      "en": "pumpkin",
+      "lingala": "ekutu",
+      "phonetic": "eh-koo-too"
+    },
+    {
+      "en": "partridge",
+      "lingala": "ekwae",
+      "phonetic": "eh-kwa-eh"
+    },
+    {
+      "en": "date",
+      "lingala": "elaka",
+      "phonetic": "eh-la-ka"
+    },
+    {
+      "en": "bedroom",
+      "lingala": "elalelo",
+      "phonetic": "eh-la-leh-loh"
+    },
+    {
+      "en": "cloth",
+      "lingala": "elamba",
+      "phonetic": "eh-la-mba"
+    },
+    {
+      "en": "material",
+      "lingala": "elamba",
+      "phonetic": "eh-la-mba"
+    },
+    {
+      "en": "farm",
+      "lingala": "elanga",
+      "phonetic": "eh-la-nga"
+    },
+    {
+      "en": "than",
+      "lingala": "eleki",
+      "phonetic": "eh-leh-kee"
+    },
+    {
+      "en": "better",
+      "lingala": "eleki malamu",
+      "phonetic": "eh-leh-kee ma-la’-moo"
+    },
+    {
+      "en": "weather",
+      "lingala": "eleko",
+      "phonetic": "eh-leh-koh"
+    },
+    {
+      "en": "during",
+      "lingala": "eleko ya",
+      "phonetic": "eh-leh-koh-ya"
+    },
+    {
+      "en": "summer",
+      "lingala": "eleko ya moi makasi",
+      "phonetic": "eh-leh-koh ya moh’-ee ma-ka-see"
+    },
+    {
+      "en": "winter",
+      "lingala": "eleko ya mpio makasi",
+      "phonetic": "eh-leh-koh ya mpee’-oh ma-ka’-see"
+    },
+    {
+      "en": "age",
+      "lingala": "eleko, mobu",
+      "phonetic": "eh-leh-koh, moh-boo"
+    },
+    {
+      "en": "mad",
+      "lingala": "elema",
+      "phonetic": "eh-leh’-ma’"
+    },
+    {
+      "en": "boy",
+      "lingala": "elenge",
+      "phonetic": "eh-le-nge’/ mwa’-na moh-ba’-lee"
+    },
+    {
+      "en": "girl",
+      "lingala": "elenge",
+      "phonetic": "eh-le-nge’/mwa’-na mwa’-see"
+    },
+    {
+      "en": "young",
+      "lingala": "elenge",
+      "phonetic": "eh-le-nge’"
+    },
+    {
+      "en": "sweet",
+      "lingala": "elengi",
+      "phonetic": "eh-le-ngee"
+    },
+    {
+      "en": "taste",
+      "lingala": "elengi",
+      "phonetic": "eh-le-ngee"
+    },
+    {
+      "en": "hope",
+      "lingala": "elikya",
+      "phonetic": "eh-lee-kya"
+    },
+    {
+      "en": "shadow",
+      "lingala": "elili",
+      "phonetic": "eh-lee-lee"
+    },
+    {
+      "en": "spirit",
+      "lingala": "elimo",
+      "phonetic": "eh-lee-moh"
+    },
+    {
+      "en": "thing",
+      "lingala": "eloko",
+      "phonetic": "eh-lo’-ko"
+    },
+    {
+      "en": "something",
+      "lingala": "eloko moko",
+      "phonetic": "eh-lo-ko mo’-ko’"
+    },
+    {
+      "en": "nothing",
+      "lingala": "eloko te, mpamba",
+      "phonetic": "eh-lo’-ko te’, mpa- mba"
+    },
+    {
+      "en": "face",
+      "lingala": "elongi [ eh-loh-ngee",
+      "phonetic": ""
+    },
+    {
+      "en": "together",
+      "lingala": "elongo",
+      "phonetic": "eh-lo-ngo’"
+    },
+    {
+      "en": "tent",
+      "lingala": "ema",
+      "phonetic": "eh’-ma"
+    },
+    {
+      "en": "train",
+      "lingala": "engbunduka",
+      "phonetic": "eh-ngboo-ndoo-ka"
+    },
+    {
+      "en": "eagle",
+      "lingala": "engondo",
+      "phonetic": "eh-ngoh-ndoh"
+    },
+    {
+      "en": "city",
+      "lingala": "engumba",
+      "phonetic": "eh-ngoo-mba"
+    },
+    {
+      "en": "can",
+      "lingala": "engwongolo",
+      "phonetic": "eh-ngwoh-ngoh-loh"
+    },
+    {
+      "en": "hat",
+      "lingala": "enkoti",
+      "phonetic": "eh-nkoh-tee"
+    },
+    {
+      "en": "pride",
+      "lingala": "enzombo, lofundu",
+      "phonetic": "eh-nzo-mbo, loh-foo- ndoo"
+    },
+    {
+      "en": "side",
+      "lingala": "epai, mopanzi",
+      "phonetic": "eh-pa’-ee, moh-pa-nzee"
+    },
+    {
+      "en": "towel",
+      "lingala": "epangusi mayi",
+      "phonetic": "eh-pa-ngoo-see mah-ee’"
+    },
+    {
+      "en": "passport",
+      "lingala": "epesa nzela",
+      "phonetic": "eh-pe-sa n-zeh-la’"
+    },
+    {
+      "en": "tool",
+      "lingala": "esaleli",
+      "phonetic": "eh-sa’-leh-lee"
+    },
+    {
+      "en": "island",
+      "lingala": "esanga",
+      "phonetic": "eh-sa-nga"
+    },
+    {
+      "en": "gasoline",
+      "lingala": "esanzi",
+      "phonetic": "eh-sa-nzee"
+    },
+    {
+      "en": "petrol",
+      "lingala": "esanzi",
+      "phonetic": "eh-sa-nzee"
+    },
+    {
+      "en": "happiness",
+      "lingala": "esengo, bolamu",
+      "phonetic": "eh-se-ngo , boh-la’- moo"
+    },
+    {
+      "en": "interested",
+      "lingala": "esepelisi",
+      "phonetic": "eh-she-peh-lee-see"
+    },
+    {
+      "en": "place",
+      "lingala": "esika",
+      "phonetic": "eh-see’-ka’"
+    },
+    {
+      "en": "zone",
+      "lingala": "esika",
+      "phonetic": "eh-see’-ka’"
+    },
+    {
+      "en": "elsewhere",
+      "lingala": "esika esusu",
+      "phonetic": "eh-see’-ka’ eh-soo- soo"
+    },
+    {
+      "en": "along with",
+      "lingala": "esika moko",
+      "phonetic": "eh-see-ka moh-ko’"
+    },
+    {
+      "en": "living room",
+      "lingala": "esika ya masolo",
+      "phonetic": "eh-see’-ka’ ya ma- soh-loh’"
+    },
+    {
+      "en": "sitting room",
+      "lingala": "esika ya masolo",
+      "phonetic": "eh-see’-ka’ ya ma- soh-loh’"
+    },
+    {
+      "en": "bridge",
+      "lingala": "etalaka, gbagba",
+      "phonetic": "eh-ta-la-ka, gbagba"
+    },
+    {
+      "en": "bench",
+      "lingala": "etanda",
+      "phonetic": "eh-ta-nda"
+    },
+    {
+      "en": "closet",
+      "lingala": "etandaka",
+      "phonetic": "eh-ta-nda-ka"
+    },
+    {
+      "en": "cupboard",
+      "lingala": "etandaka",
+      "phonetic": "eh-ta-nda-ka"
+    },
+    {
+      "en": "ripe",
+      "lingala": "eteli",
+      "phonetic": "eh-the-lee"
+    },
+    {
+      "en": "piece",
+      "lingala": "eteni",
+      "phonetic": "eh-te’-nee"
+    },
+    {
+      "en": "lake",
+      "lingala": "etima",
+      "phonetic": "eh-tee-ma"
+    },
+    {
+      "en": "plant",
+      "lingala": "etoele",
+      "phonetic": "eh-toh-e’-le’"
+    },
+    {
+      "en": "department",
+      "lingala": "etuka",
+      "phonetic": "eh-too’-ka’"
+    },
+    {
+      "en": "district",
+      "lingala": "etuka enene",
+      "phonetic": "eh-too’-ka’ eh- ne’-ne"
+    },
+    {
+      "en": "zoo",
+      "lingala": "etuka ya banyama ya zamba",
+      "phonetic": "eh-too-ka ya ba-nya-ma ya za’-mba"
+    },
+    {
+      "en": "fight",
+      "lingala": "etumba",
+      "phonetic": "eh-too-mba"
+    },
+    {
+      "en": "war",
+      "lingala": "etumba",
+      "phonetic": "eh-too-mba"
+    },
+    {
+      "en": "answer",
+      "lingala": "eyano",
+      "phonetic": "eh-ya-noh"
+    },
+    {
+      "en": "festival",
+      "lingala": "eyenga",
+      "phonetic": "eh-yeh-nga"
+    },
+    {
+      "en": "holiday",
+      "lingala": "eyenga",
+      "phonetic": "eh-yeh-nga"
+    }
+  ],
+  "F": [
+    {
+      "en": "horse",
+      "lingala": "farasa",
+      "phonetic": "fa-ra’-sa"
+    },
+    {
+      "en": "february",
+      "lingala": "febuary",
+      "phonetic": "feh-boo-a-ree"
+    },
+    {
+      "en": "fever",
+      "lingala": "fefele, molunge",
+      "phonetic": "fe’-fe-le, moh-loo-ngee’"
+    },
+    {
+      "en": "mistake",
+      "lingala": "foti, miko",
+      "phonetic": "foh-tee, mee-koh"
+    },
+    {
+      "en": "photo",
+      "lingala": "foto, elili",
+      "phonetic": "foh-toh’, eh-lee-lee"
+    },
+    {
+      "en": "brake",
+      "lingala": "frein",
+      "phonetic": "fren"
+    },
+    {
+      "en": "flour",
+      "lingala": "fufu, moteke",
+      "phonetic": "foo-foo’, moh-te’-ke"
+    },
+    {
+      "en": "flower",
+      "lingala": "fulele, mbe",
+      "phonetic": "foo-le-le, mbeh"
+    }
+  ],
+  "G": [
+    {
+      "en": "ice",
+      "lingala": "glace",
+      "phonetic": "glas"
+    },
+    {
+      "en": "lazy",
+      "lingala": "goigoi",
+      "phonetic": "go-ee-go’-ee"
+    },
+    {
+      "en": "slow",
+      "lingala": "goigoi, na mbango te",
+      "phonetic": "go-ee-go’-ee, na m- ba-ngoh te’"
+    }
+  ],
+  "I": [
+    {
+      "en": "yes",
+      "lingala": "iyo",
+      "phonetic": "ee’-yoh"
+    },
+    {
+      "en": "ill",
+      "lingala": "I’m ill nazali maladi",
+      "phonetic": "na-za-lee ma-la- dee koh-be’-la"
+    },
+    {
+      "en": "sick",
+      "lingala": "I’m s. nazali kobela",
+      "phonetic": "na-za-lee koh-be’- la"
+    },
+    {
+      "en": "tired",
+      "lingala": "I’m tired. Nalembi",
+      "phonetic": "na-le-mbee"
+    }
+  ],
+  "K": [
+    {
+      "en": "carpenter",
+      "lingala": "kabinda",
+      "phonetic": "ka-bee-nda"
+    },
+    {
+      "en": "restroom",
+      "lingala": "kabine",
+      "phonetic": "ka-bee-ne’"
+    },
+    {
+      "en": "card",
+      "lingala": "kalati",
+      "phonetic": "ka’-la-tee"
+    },
+    {
+      "en": "camel",
+      "lingala": "kamela",
+      "phonetic": "ka-me-la"
+    },
+    {
+      "en": "lorry",
+      "lingala": "kaminio",
+      "phonetic": "ka-mee-nee-o’"
+    },
+    {
+      "en": "truck",
+      "lingala": "kaminio",
+      "phonetic": "ka-mee-nee-o’"
+    },
+    {
+      "en": "tough",
+      "lingala": "kasi , makasi",
+      "phonetic": "ma-ka’-see"
+    },
+    {
+      "en": "but",
+      "lingala": "kasi, ka",
+      "phonetic": "ka-see, ka-a"
+    },
+    {
+      "en": "strong",
+      "lingala": "kasi, makasi",
+      "phonetic": "ma-ka’-see"
+    },
+    {
+      "en": "difficult",
+      "lingala": "kasi, makasi, mpasi",
+      "phonetic": "ma-ka’-see, mpa’-see"
+    },
+    {
+      "en": "coffee",
+      "lingala": "kate, kawa",
+      "phonetic": "ka-feh, ka’-wa"
+    },
+    {
+      "en": "center",
+      "lingala": "kati",
+      "phonetic": "ka-tee"
+    },
+    {
+      "en": "bucket",
+      "lingala": "katini",
+      "phonetic": "ka-tee-nee"
+    },
+    {
+      "en": "notebook",
+      "lingala": "kaye",
+      "phonetic": "ka-yeh"
+    },
+    {
+      "en": "coat",
+      "lingala": "kazaka",
+      "phonetic": "ka-za’-ka"
+    },
+    {
+      "en": "little",
+      "lingala": "ke, moke",
+      "phonetic": "moh-ke’"
+    },
+    {
+      "en": "small",
+      "lingala": "ke, moke",
+      "phonetic": "moh-ke’"
+    },
+    {
+      "en": "class",
+      "lingala": "kelasi",
+      "phonetic": "keh-la’-see"
+    },
+    {
+      "en": "university",
+      "lingala": "kelasi monene",
+      "phonetic": "keh-la-see moh-ne’- ne"
+    },
+    {
+      "en": "school",
+      "lingala": "kelasi, eteyelo",
+      "phonetic": "keh-la-see, eh-the-yeh- loh"
+    },
+    {
+      "en": "mile",
+      "lingala": "kilometele",
+      "phonetic": "kee-loh-me’-te-le"
+    },
+    {
+      "en": "chair",
+      "lingala": "kiti",
+      "phonetic": "kee-tee"
+    },
+    {
+      "en": "beautiful",
+      "lingala": "kitoko",
+      "phonetic": "kee-to’-ko"
+    },
+    {
+      "en": "nice",
+      "lingala": "kitoko",
+      "phonetic": "kee-to’-ko"
+    },
+    {
+      "en": "pretty",
+      "lingala": "kitoko",
+      "phonetic": "kee-to’-ko"
+    },
+    {
+      "en": "therefore",
+      "lingala": "ko, nde",
+      "phonetic": "koh’-n-deh’"
+    },
+    {
+      "en": "add",
+      "lingala": "kobakisa",
+      "phonetic": "koh-ba-kee-sa"
+    },
+    {
+      "en": "marry",
+      "lingala": "kobala, kolonga",
+      "phonetic": "koh-ba’-la, koh-loh-nga"
+    },
+    {
+      "en": "turn",
+      "lingala": "kobalusa",
+      "phonetic": "kok-ba-loo-sa"
+    },
+    {
+      "en": "fix",
+      "lingala": "kobamba",
+      "phonetic": "koh-ba-mba"
+    },
+    {
+      "en": "repair",
+      "lingala": "kobamba",
+      "phonetic": "koh-ba-mba"
+    },
+    {
+      "en": "begin",
+      "lingala": "kobanda",
+      "phonetic": "koh-ba-nda"
+    },
+    {
+      "en": "start",
+      "lingala": "kobanda",
+      "phonetic": "koh-ba-nda"
+    },
+    {
+      "en": "ruin",
+      "lingala": "kobebisa",
+      "phonetic": "koh-beh-bee-sa"
+    },
+    {
+      "en": "pull",
+      "lingala": "kobenda",
+      "phonetic": "koh-beh-nda"
+    },
+    {
+      "en": "call",
+      "lingala": "kobenga",
+      "phonetic": "koh- beh’-nga"
+    },
+    {
+      "en": "beat",
+      "lingala": "kobeta, -te",
+      "phonetic": "koh-be’-te"
+    },
+    {
+      "en": "swim",
+      "lingala": "kobete, -ta mai",
+      "phonetic": "koh-be’-te ma-ee’"
+    },
+    {
+      "en": "save",
+      "lingala": "kobikisa",
+      "phonetic": "koh-bee-kee-sa"
+    },
+    {
+      "en": "bleed",
+      "lingala": "kobima makila",
+      "phonetic": "koh-bee-ma ma-kee-la’"
+    },
+    {
+      "en": "knock",
+      "lingala": "kobola",
+      "phonetic": "koh-boh-la"
+    },
+    {
+      "en": "kill",
+      "lingala": "koboma",
+      "phonetic": "koh-bo’-ma"
+    },
+    {
+      "en": "switch off",
+      "lingala": "koboma",
+      "phonetic": "koh-boh-ma"
+    },
+    {
+      "en": "hide",
+      "lingala": "kobomba",
+      "phonetic": "koh-boh-mba"
+    },
+    {
+      "en": "calm",
+      "lingala": "kobondo",
+      "phonetic": "koh-bo’-ndo"
+    },
+    {
+      "en": "pour",
+      "lingala": "kobonga",
+      "phonetic": "koh-boh-nga"
+    },
+    {
+      "en": "fit",
+      "lingala": "kobonga, kolongobana",
+      "phonetic": "koh-bo-nga, koh-lo- ngo-ba-na"
+    },
+    {
+      "en": "arrange",
+      "lingala": "kobongisa",
+      "phonetic": "koh-boh-ngee-sa"
+    },
+    {
+      "en": "change",
+      "lingala": "kobongola",
+      "phonetic": "koh-boh-ngoh-la"
+    },
+    {
+      "en": "transform",
+      "lingala": "kobongola",
+      "phonetic": "koh-boh-ngo-la"
+    },
+    {
+      "en": "forget",
+      "lingala": "kobosana, kobunga",
+      "phonetic": "koh-boh-sa-na, koh- boo-nga"
+    },
+    {
+      "en": "confiscate",
+      "lingala": "kobotola",
+      "phonetic": "koh-boh-toh-la"
+    },
+    {
+      "en": "undress",
+      "lingala": "kobotolo elamba",
+      "phonetic": "koh-boh-toh-la eh-la- mba"
+    },
+    {
+      "en": "cure",
+      "lingala": "kobowa",
+      "phonetic": "koh-bo-wa"
+    },
+    {
+      "en": "refuse",
+      "lingala": "koboya, kopima",
+      "phonetic": "koh-boh-ya, koh-pee’-ma"
+    },
+    {
+      "en": "break",
+      "lingala": "kobuka, kopaswana",
+      "phonetic": "koh-boo-ka, koh-pa- swa-na"
+    },
+    {
+      "en": "lose",
+      "lingala": "kobungisa",
+      "phonetic": "koh-boo-ngee-sa"
+    },
+    {
+      "en": "reduce",
+      "lingala": "kobunola",
+      "phonetic": "koh-boo-noh-la"
+    },
+    {
+      "en": "climb",
+      "lingala": "kobuta, komata",
+      "phonetic": "koh-boo-ta, koh-ma-ta’"
+    },
+    {
+      "en": "throw",
+      "lingala": "kobwaka",
+      "phonetic": "koh-bwa’-ka"
+    },
+    {
+      "en": "invite",
+      "lingala": "kobyanga",
+      "phonetic": "koh-bya-nga"
+    },
+    {
+      "en": "borrow",
+      "lingala": "kodefa",
+      "phonetic": "koh-deh-fa"
+    },
+    {
+      "en": "insult",
+      "lingala": "kofinga",
+      "phonetic": "koh-fee-nga"
+    },
+    {
+      "en": "shut",
+      "lingala": "kofunga",
+      "phonetic": "koh-foo-nga"
+    },
+    {
+      "en": "open",
+      "lingala": "kofungola , kokangola",
+      "phonetic": "koh-foo-ngoh-la, koh- ka-ngoh-la"
+    },
+    {
+      "en": "pay",
+      "lingala": "kofuta",
+      "phonetic": "koh-foo-ta"
+    },
+    {
+      "en": "hire",
+      "lingala": "kofutela",
+      "phonetic": "koh-foo-the-la"
+    },
+    {
+      "en": "rent",
+      "lingala": "kofutela",
+      "phonetic": "koh-foo-the-la"
+    },
+    {
+      "en": "share",
+      "lingala": "kokaba, kokabola",
+      "phonetic": "koh-ka-ba, koh-ka-boh- la"
+    },
+    {
+      "en": "bargain",
+      "lingala": "kokakola",
+      "phonetic": "koh-ka-koh-la"
+    },
+    {
+      "en": "roast",
+      "lingala": "kokalanga",
+      "phonetic": "koh-ka-la-nga"
+    },
+    {
+      "en": "take",
+      "lingala": "kokamata",
+      "phonetic": "koh-ka-ma-ta"
+    },
+    {
+      "en": "twist",
+      "lingala": "kokamola",
+      "phonetic": "koh-ka-moh-la"
+    },
+    {
+      "en": "catch",
+      "lingala": "kokanga",
+      "phonetic": "koh-ka-nga"
+    },
+    {
+      "en": "close",
+      "lingala": "kokanga, kofunga",
+      "phonetic": "koh-ka-nga, koh-foo- nga"
+    },
+    {
+      "en": "pack",
+      "lingala": "kokanga, koziba",
+      "phonetic": "koh-ka-nga, koh-zee-ba"
+    },
+    {
+      "en": "unpack",
+      "lingala": "kokangola",
+      "phonetic": "koh-ka-ngoh-la"
+    },
+    {
+      "en": "think",
+      "lingala": "kokanisa",
+      "phonetic": "koh-ka-nee-sa"
+    },
+    {
+      "en": "decide",
+      "lingala": "kokata likambo",
+      "phonetic": "koh-ka’-ta lee-kam-boh"
+    },
+    {
+      "en": "cut",
+      "lingala": "kokata, kosesa",
+      "phonetic": "koh-ka’-ta, koh-se-sa"
+    },
+    {
+      "en": "go",
+      "lingala": "kokende",
+      "phonetic": "koh-ke-nde"
+    },
+    {
+      "en": "get down",
+      "lingala": "kokita",
+      "phonetic": "koh-kee-ta"
+    },
+    {
+      "en": "dry",
+      "lingala": "kokoka",
+      "phonetic": "koh-koh’-ka"
+    },
+    {
+      "en": "may",
+      "lingala": "kokoka",
+      "phonetic": "koh-koh-ka"
+    },
+    {
+      "en": "make sth dry",
+      "lingala": "kokokisa",
+      "phonetic": "koh-koh-kee-sa"
+    },
+    {
+      "en": "shave",
+      "lingala": "kokolola",
+      "phonetic": "koh-koh-loh-la"
+    },
+    {
+      "en": "write",
+      "lingala": "kokoma",
+      "phonetic": "koh-koh-ma"
+    },
+    {
+      "en": "sweep",
+      "lingala": "kokombo",
+      "phonetic": "koh-ko-mbo"
+    },
+    {
+      "en": "reach",
+      "lingala": "kokomela",
+      "phonetic": "koh-koh-meh-la"
+    },
+    {
+      "en": "deceive",
+      "lingala": "kokosa",
+      "phonetic": "koh-koh’-sa"
+    },
+    {
+      "en": "rub",
+      "lingala": "kokosa",
+      "phonetic": "koh-koh-sa"
+    },
+    {
+      "en": "enter",
+      "lingala": "kokota, koyingela",
+      "phonetic": "koh-koh’-ta’ , koh-yee- ngeh-la"
+    },
+    {
+      "en": "coconut",
+      "lingala": "kokoti",
+      "phonetic": "koh-koh-tee"
+    },
+    {
+      "en": "die",
+      "lingala": "kokufa , kowa",
+      "phonetic": "koh-koo-fa, koh-wa’"
+    },
+    {
+      "en": "bury",
+      "lingala": "kokunda",
+      "phonetic": "koh-koo-nda"
+    },
+    {
+      "en": "remember",
+      "lingala": "kokundola motema",
+      "phonetic": "koh-boo-ndoh-la moh-the’-ma"
+    },
+    {
+      "en": "find",
+      "lingala": "kokuta",
+      "phonetic": "koh-koo-ta"
+    },
+    {
+      "en": "meet",
+      "lingala": "kokutana",
+      "phonetic": "koh-koo-ta-na"
+    },
+    {
+      "en": "advise",
+      "lingala": "kolaka",
+      "phonetic": "koh-la-ka"
+    },
+    {
+      "en": "show",
+      "lingala": "kolakisa, komonisa",
+      "phonetic": "koh-la-kee-sa, koh- mo’-nee-sa"
+    },
+    {
+      "en": "promise",
+      "lingala": "kolala",
+      "phonetic": "koh-la-ka"
+    },
+    {
+      "en": "sleep",
+      "lingala": "kolala",
+      "phonetic": "koh-la’-la"
+    },
+    {
+      "en": "follow",
+      "lingala": "kolanda",
+      "phonetic": "koh-la-nda"
+    },
+    {
+      "en": "wear",
+      "lingala": "kolata",
+      "phonetic": "koh-la’-ta"
+    },
+    {
+      "en": "pass",
+      "lingala": "koleka",
+      "phonetic": "koh-leh-ka"
+    },
+    {
+      "en": "complain",
+      "lingala": "kolela",
+      "phonetic": "koh-leh-la"
+    },
+    {
+      "en": "cry",
+      "lingala": "kolela",
+      "phonetic": "koh-leh-la"
+    },
+    {
+      "en": "shake",
+      "lingala": "kolenge",
+      "phonetic": "koh-le’-nge"
+    },
+    {
+      "en": "eat",
+      "lingala": "kolia, -liya",
+      "phonetic": "koh-lee-a"
+    },
+    {
+      "en": "want",
+      "lingala": "kolinga",
+      "phonetic": "koh-lee-nga"
+    },
+    {
+      "en": "need",
+      "lingala": "kolinga, kozala na posa",
+      "phonetic": "koh-lee-nga, koh- za-la na poh-sa"
+    },
+    {
+      "en": "love each other",
+      "lingala": "kolingana",
+      "phonetic": "koh-lee-nga-na"
+    },
+    {
+      "en": "allow",
+      "lingala": "kolingisa",
+      "phonetic": "koh-lee-ngee-sa"
+    },
+    {
+      "en": "say",
+      "lingala": "koloba",
+      "phonetic": "koh-loh-ba"
+    },
+    {
+      "en": "speak",
+      "lingala": "koloba",
+      "phonetic": "koh-loh-ba"
+    },
+    {
+      "en": "talk",
+      "lingala": "koloba",
+      "phonetic": "koh-loh-ba"
+    },
+    {
+      "en": "collect",
+      "lingala": "kolokoto",
+      "phonetic": "koh-lo-koh’-toh’"
+    },
+    {
+      "en": "win",
+      "lingala": "kolonga",
+      "phonetic": "koh-loh-nga"
+    },
+    {
+      "en": "awake",
+      "lingala": "kolongola",
+      "phonetic": "koh-loh-ngoh-la"
+    },
+    {
+      "en": "search for",
+      "lingala": "koluka",
+      "phonetic": "koh-loo-ka"
+    },
+    {
+      "en": "try",
+      "lingala": "komeka",
+      "phonetic": "koh-meh-ka"
+    },
+    {
+      "en": "carry",
+      "lingala": "komeme, kokumba",
+      "phonetic": "koh-me-me, koh-koo- mba"
+    },
+    {
+      "en": "repent",
+      "lingala": "komima",
+      "phonetic": "koh-mee-ma"
+    },
+    {
+      "en": "see",
+      "lingala": "komono, -a, kotala",
+      "phonetic": "koh-loo-ka"
+    },
+    {
+      "en": "company",
+      "lingala": "kompani",
+      "phonetic": "koh-mpa-nee"
+    },
+    {
+      "en": "agree",
+      "lingala": "kondima",
+      "phonetic": "koh-ndee- ma"
+    },
+    {
+      "en": "believe",
+      "lingala": "kondima, koyamba",
+      "phonetic": "koh-ndee-ma, koh-ya- mba"
+    },
+    {
+      "en": "shout",
+      "lingala": "konganga",
+      "phonetic": "koh-nga-nga"
+    },
+    {
+      "en": "move",
+      "lingala": "koningana",
+      "phonetic": "koh-nee-nga-na"
+    },
+    {
+      "en": "worry",
+      "lingala": "kopangana",
+      "phonetic": "koh-pa-nga-na"
+    },
+    {
+      "en": "forbid",
+      "lingala": "kopekisa",
+      "phonetic": "koh-peh-kee-sa"
+    },
+    {
+      "en": "give",
+      "lingala": "kopesa, kokaba",
+      "phonetic": "koh-pe’-sa, koh-ko-ka-ba"
+    },
+    {
+      "en": "jump",
+      "lingala": "kopimbwa",
+      "phonetic": "ko-pee-mbwa"
+    },
+    {
+      "en": "bowl",
+      "lingala": "kopo",
+      "phonetic": "ko’-po"
+    },
+    {
+      "en": "cup",
+      "lingala": "kopo",
+      "phonetic": "ko’-po"
+    },
+    {
+      "en": "jug",
+      "lingala": "kopo [ ko’-po",
+      "phonetic": ""
+    },
+    {
+      "en": "choose",
+      "lingala": "kopono",
+      "phonetic": "koh-po-no"
+    },
+    {
+      "en": "prefer",
+      "lingala": "kopono",
+      "phonetic": "koh-po-no"
+    },
+    {
+      "en": "run",
+      "lingala": "kopota",
+      "phonetic": "koh-poh-ta"
+    },
+    {
+      "en": "push",
+      "lingala": "kopusa",
+      "phonetic": "koh-poo’-sa"
+    },
+    {
+      "en": "kiss",
+      "lingala": "kopwepwa",
+      "phonetic": "koh-pwe-pwa"
+    },
+    {
+      "en": "declare",
+      "lingala": "kosakola",
+      "phonetic": "koh-sa-koh-la"
+    },
+    {
+      "en": "do",
+      "lingala": "kosala",
+      "phonetic": "koh-sa’-la"
+    },
+    {
+      "en": "make",
+      "lingala": "kosala, kokela",
+      "phonetic": "koh-sa’-la, koh-keh-la"
+    },
+    {
+      "en": "use",
+      "lingala": "kosalela",
+      "phonetic": "koh-sa’-leh-la"
+    },
+    {
+      "en": "work for",
+      "lingala": "kosalela",
+      "phonetic": "koh-sa’-leh-la"
+    },
+    {
+      "en": "help",
+      "lingala": "kosalisa",
+      "phonetic": "koh-sa-lee-sa"
+    },
+    {
+      "en": "pray",
+      "lingala": "kosambela",
+      "phonetic": "koh-sa-mbeh-la"
+    },
+    {
+      "en": "play",
+      "lingala": "kosana, kosakana",
+      "phonetic": "koh-sa-na , koh-sa-ka- na"
+    },
+    {
+      "en": "vomit",
+      "lingala": "kosanza",
+      "phonetic": "koh-sa-nza"
+    },
+    {
+      "en": "laugh",
+      "lingala": "koseke",
+      "phonetic": "koh-se-ke"
+    },
+    {
+      "en": "ask",
+      "lingala": "kosenga, kotuna",
+      "phonetic": "koh-se’-nga, koh-too’-na"
+    },
+    {
+      "en": "must",
+      "lingala": "kosengela na",
+      "phonetic": "koh-se’-nge’-le na"
+    },
+    {
+      "en": "enjoy",
+      "lingala": "kosepela",
+      "phonetic": "koh-she-peh-la"
+    },
+    {
+      "en": "please",
+      "lingala": "kosepelisa",
+      "phonetic": "koh-she-peh-lee- sa"
+    },
+    {
+      "en": "separate",
+      "lingala": "kosesa",
+      "phonetic": "koh-she-sa"
+    },
+    {
+      "en": "spend",
+      "lingala": "kosilisa mosolo",
+      "phonetic": "koh-see-lee-sa"
+    },
+    {
+      "en": "finish",
+      "lingala": "kosilisa, kosukisa",
+      "phonetic": "koh-see-lee-sa , koh- soo-kee-sa"
+    },
+    {
+      "en": "hold",
+      "lingala": "kosimba",
+      "phonetic": "koh-see-mba"
+    },
+    {
+      "en": "touch",
+      "lingala": "kosimba",
+      "phonetic": "koh-see-mba"
+    },
+    {
+      "en": "buy",
+      "lingala": "kosomba",
+      "phonetic": "koh-soh’-mba"
+    },
+    {
+      "en": "exchange",
+      "lingala": "kosombitinya",
+      "phonetic": "koh-soh-mbee-tee-nya"
+    },
+    {
+      "en": "sew",
+      "lingala": "kosono",
+      "phonetic": "koh-so-no"
+    },
+    {
+      "en": "wash",
+      "lingala": "kosukola",
+      "phonetic": "koh-soo-koh-la"
+    },
+    {
+      "en": "quarrel",
+      "lingala": "koswana",
+      "phonetic": "oh-swa-na"
+    },
+    {
+      "en": "concern",
+      "lingala": "kotala",
+      "phonetic": "koh-ta’-la"
+    },
+    {
+      "en": "look",
+      "lingala": "kotala",
+      "phonetic": "koh-ta’-la"
+    },
+    {
+      "en": "walk",
+      "lingala": "kotambola",
+      "phonetic": "koh-ta’-mboh-la"
+    },
+    {
+      "en": "shine",
+      "lingala": "kotana",
+      "phonetic": "koh-ta-na"
+    },
+    {
+      "en": "count",
+      "lingala": "kotanga",
+      "phonetic": "koh-ta’-nga"
+    },
+    {
+      "en": "read",
+      "lingala": "kotanga",
+      "phonetic": "koh-ta-ga"
+    },
+    {
+      "en": "sell",
+      "lingala": "koteke",
+      "phonetic": "koh-te’-ke"
+    },
+    {
+      "en": "rise",
+      "lingala": "koteleme",
+      "phonetic": "koh-te’-le-me"
+    },
+    {
+      "en": "stop",
+      "lingala": "koteme",
+      "phonetic": "koh-te’-me"
+    },
+    {
+      "en": "teach",
+      "lingala": "koteya, kolakisa",
+      "phonetic": "koh-teh-ya, koh-la-kee- sa"
+    },
+    {
+      "en": "leave",
+      "lingala": "kotika",
+      "phonetic": "koh-tee’-ka"
+    },
+    {
+      "en": "stay",
+      "lingala": "kotikala",
+      "phonetic": "koh-tee’-ka-la"
+    },
+    {
+      "en": "put",
+      "lingala": "kotiya",
+      "phonetic": "koh-tee-ya"
+    },
+    {
+      "en": "cotton",
+      "lingala": "koto",
+      "phonetic": "ko-to"
+    },
+    {
+      "en": "sweat",
+      "lingala": "kotoko",
+      "phonetic": "koh-to’-ko’"
+    },
+    {
+      "en": "send",
+      "lingala": "kotoma, kotinda",
+      "phonetic": "koh-toh’-ma, koh-tee-nda"
+    },
+    {
+      "en": "wish",
+      "lingala": "kotombela",
+      "phonetic": "koh-toh’-mbeh-la"
+    },
+    {
+      "en": "fill",
+      "lingala": "kotondisa",
+      "phonetic": "koh-toh-ndee-sa"
+    },
+    {
+      "en": "thank",
+      "lingala": "kotondo , kosima",
+      "phonetic": "koh-to’-ndoh, koh-see- ma"
+    },
+    {
+      "en": "build",
+      "lingala": "kotonga",
+      "phonetic": "koh-toh-nga"
+    },
+    {
+      "en": "inject",
+      "lingala": "kotuba tonga",
+      "phonetic": "koh-too-ba to-nga"
+    },
+    {
+      "en": "burn",
+      "lingala": "kotumba",
+      "phonetic": "koh-too-mba"
+    },
+    {
+      "en": "pound",
+      "lingala": "kotuta",
+      "phonetic": "koh-too-ta"
+    },
+    {
+      "en": "spit",
+      "lingala": "kotwa",
+      "phonetic": "koh-twa-a"
+    },
+    {
+      "en": "delay",
+      "lingala": "koumela",
+      "phonetic": "koh-oo-meh-la"
+    },
+    {
+      "en": "from",
+      "lingala": "kouta",
+      "phonetic": "koh-oo’-ta"
+    },
+    {
+      "en": "come",
+      "lingala": "koya",
+      "phonetic": "koh-ya-a"
+    },
+    {
+      "en": "receive",
+      "lingala": "koyamba, kozwa",
+      "phonetic": "koh-boh-ya, koh-zwa"
+    },
+    {
+      "en": "know",
+      "lingala": "koyeba",
+      "phonetic": "koh-yeh’-ba"
+    },
+    {
+      "en": "inform",
+      "lingala": "koyebisa",
+      "phonetic": "koh-yeh-bee-sa"
+    },
+    {
+      "en": "tell",
+      "lingala": "koyebisa",
+      "phonetic": "koh-yeh-bee-sa"
+    },
+    {
+      "en": "let sb come",
+      "lingala": "koyeisa",
+      "phonetic": "koh-yeh’-ee-sa"
+    },
+    {
+      "en": "learn",
+      "lingala": "koyekola",
+      "phonetic": "ko-yeh’-koh-la"
+    },
+    {
+      "en": "study",
+      "lingala": "koyekola",
+      "phonetic": "koh-yeh-koh-la"
+    },
+    {
+      "en": "bring",
+      "lingala": "koyela, komemela",
+      "phonetic": "koh-yeh-la, koh-me-me’- la"
+    },
+    {
+      "en": "steal",
+      "lingala": "koyiba",
+      "phonetic": "koh-yee-ba"
+    },
+    {
+      "en": "dislike",
+      "lingala": "koyina",
+      "phonetic": "koh-yee-na"
+    },
+    {
+      "en": "hate",
+      "lingala": "koyina",
+      "phonetic": "koh-yee-na"
+    },
+    {
+      "en": "feel",
+      "lingala": "koyoka",
+      "phonetic": "koh-yoh’-ka"
+    },
+    {
+      "en": "listen",
+      "lingala": "koyoka",
+      "phonetic": "koh-yoh’-ka"
+    },
+    {
+      "en": "understand",
+      "lingala": "koyoka",
+      "phonetic": "koh-yoh’-ka"
+    },
+    {
+      "en": "suffer",
+      "lingala": "koyoka mpasi",
+      "phonetic": "koh-yoh’-ka mpa’-see"
+    },
+    {
+      "en": "be",
+      "lingala": "kozala",
+      "phonetic": "koh-za-la"
+    },
+    {
+      "en": "have",
+      "lingala": "kozala na, kozwa",
+      "phonetic": "koh-za-la na, koh-zwa"
+    },
+    {
+      "en": "live",
+      "lingala": "kozala, kofanda",
+      "phonetic": "koh-yoh’-ka , ko-fa-nda"
+    },
+    {
+      "en": "miss",
+      "lingala": "kozanga",
+      "phonetic": "koh-za-nga"
+    },
+    {
+      "en": "wrap",
+      "lingala": "koziba",
+      "phonetic": "koh-zee-ba"
+    },
+    {
+      "en": "wait",
+      "lingala": "kozila",
+      "phonetic": "koh-zee-la"
+    },
+    {
+      "en": "hurt",
+      "lingala": "kozoka",
+      "phonetic": "koh-zoh-ka"
+    },
+    {
+      "en": "return",
+      "lingala": "kozonga",
+      "phonetic": "koh-zoh’-nga"
+    },
+    {
+      "en": "get",
+      "lingala": "kozwa",
+      "phonetic": "koh-zwa"
+    },
+    {
+      "en": "christ",
+      "lingala": "kristo",
+      "phonetic": "kree-stoh"
+    },
+    {
+      "en": "kitchen",
+      "lingala": "kuku",
+      "phonetic": "koo’-koo"
+    },
+    {
+      "en": "cook",
+      "lingala": "kuku, molambi",
+      "phonetic": "koo’ –koo, moh-la- mbee"
+    },
+    {
+      "en": "president",
+      "lingala": "kumu wa liboso",
+      "phonetic": "koo-moo wa lee-boh- soh’"
+    },
+    {
+      "en": "cross",
+      "lingala": "kuruse",
+      "phonetic": "koo-roo-she"
+    },
+    {
+      "en": "short",
+      "lingala": "kuse, mokuse",
+      "phonetic": "moh-koo’-seh’"
+    },
+    {
+      "en": "leather",
+      "lingala": "kwire",
+      "phonetic": "kwee-re"
+    },
+    {
+      "en": "copper",
+      "lingala": "kwivre, mitako",
+      "phonetic": "kwee-vre, mee-ta-koh"
+    }
+  ],
+  "L": [
+    {
+      "en": "high",
+      "lingala": "lai, molai",
+      "phonetic": "moh-la-ee’"
+    },
+    {
+      "en": "long",
+      "lingala": "lai, molai",
+      "phonetic": "moh-la-ee"
+    },
+    {
+      "en": "tall",
+      "lingala": "lai, molai",
+      "phonetic": "moh-la-ee"
+    },
+    {
+      "en": "asleep",
+      "lingala": "lali",
+      "phonetic": "la’-lee"
+    },
+    {
+      "en": "good",
+      "lingala": "lamu, malamu",
+      "phonetic": "ma-la’-moo"
+    },
+    {
+      "en": "color",
+      "lingala": "langi",
+      "phonetic": "la’-ngee"
+    },
+    {
+      "en": "brown",
+      "lingala": "langi la kawa",
+      "phonetic": "la’-ngee la ka’-wa"
+    },
+    {
+      "en": "younger",
+      "lingala": "leki",
+      "phonetic": "leh-kee"
+    },
+    {
+      "en": "today",
+      "lingala": "lelo",
+      "phonetic": "le-lo’"
+    },
+    {
+      "en": "letter",
+      "lingala": "letele ,mokanda",
+      "phonetic": "le’-te-le , moh-ka-nda’"
+    },
+    {
+      "en": "marriage",
+      "lingala": "libala",
+      "phonetic": "lee-ba’-la"
+    },
+    {
+      "en": "airport",
+      "lingala": "libanda ya pepo",
+      "phonetic": "lee-ba-nda ya"
+    },
+    {
+      "en": "rock",
+      "lingala": "libanga",
+      "phonetic": "lee-ba’-nga"
+    },
+    {
+      "en": "stone",
+      "lingala": "libanga",
+      "phonetic": "lee-ba-nga"
+    },
+    {
+      "en": "bald-headed",
+      "lingala": "libata",
+      "phonetic": "lee-ba-ta’"
+    },
+    {
+      "en": "lemon",
+      "lingala": "libazi, ndimo",
+      "phonetic": "lee-ba-zee, n-dee-moh"
+    },
+    {
+      "en": "hole",
+      "lingala": "libela",
+      "phonetic": "lee-beh-‘la’"
+    },
+    {
+      "en": "breast",
+      "lingala": "libele",
+      "phonetic": "lee-be’-le"
+    },
+    {
+      "en": "snail",
+      "lingala": "libelekete",
+      "phonetic": "lee-be-le’-ke-te"
+    },
+    {
+      "en": "purse",
+      "lingala": "libenga",
+      "phonetic": "lee-beh-nga"
+    },
+    {
+      "en": "pocket",
+      "lingala": "libenga, poketi",
+      "phonetic": "lee-beh-nga, poh-keh’- tee"
+    },
+    {
+      "en": "package",
+      "lingala": "liboke",
+      "phonetic": "lee-boh’-keh’"
+    },
+    {
+      "en": "beach",
+      "lingala": "libongo",
+      "phonetic": "lee-boh-ngoh’"
+    },
+    {
+      "en": "dock",
+      "lingala": "libongo",
+      "phonetic": "le-boh’-ngoh’"
+    },
+    {
+      "en": "shore",
+      "lingala": "libongo",
+      "phonetic": "lee-boh’-ngoh’"
+    },
+    {
+      "en": "gift",
+      "lingala": "libonza",
+      "phonetic": "lee-boh-nza"
+    },
+    {
+      "en": "family",
+      "lingala": "libota",
+      "phonetic": "lee-boh’-ta"
+    },
+    {
+      "en": "toilet",
+      "lingala": "libulu, kabine",
+      "phonetic": "lee-boo-loo, ka-bee- ne’"
+    },
+    {
+      "en": "stomach",
+      "lingala": "libumu",
+      "phonetic": "lee-boo-moo"
+    },
+    {
+      "en": "constipation",
+      "lingala": "libumu likangani",
+      "phonetic": "lee-boo-moo lee- ka-nga-nee"
+    },
+    {
+      "en": "key",
+      "lingala": "lifungola",
+      "phonetic": "lee-foo-ngoh-la"
+    },
+    {
+      "en": "button",
+      "lingala": "lifungu, buto",
+      "phonetic": "lee-foo’-ngoo, boo-to’"
+    },
+    {
+      "en": "payment",
+      "lingala": "lifuta",
+      "phonetic": "lee-foo-ta"
+    },
+    {
+      "en": "danger",
+      "lingala": "likama",
+      "phonetic": "lee-ka-ma"
+    },
+    {
+      "en": "emergency",
+      "lingala": "likama",
+      "phonetic": "lee-ka-ma"
+    },
+    {
+      "en": "problem",
+      "lingala": "likambo",
+      "phonetic": "lee-ka-mboh"
+    },
+    {
+      "en": "matter",
+      "lingala": "likambo, zambi , mpo",
+      "phonetic": "lee-ka- mboh , za-mbee, mpoh"
+    },
+    {
+      "en": "wonderful",
+      "lingala": "likamwisi",
+      "phonetic": "lee-ka-mwee-see"
+    },
+    {
+      "en": "tobacco",
+      "lingala": "likaya , tumbako",
+      "phonetic": "lee-ka-ya, too-mba- koh"
+    },
+    {
+      "en": "egg",
+      "lingala": "likei",
+      "phonetic": "lee-ke-ee"
+    },
+    {
+      "en": "plantain",
+      "lingala": "likemba",
+      "phonetic": "lee-keh-mba"
+    },
+    {
+      "en": "crowd",
+      "lingala": "likita",
+      "phonetic": "lee-kee-ta"
+    },
+    {
+      "en": "sky",
+      "lingala": "likolo",
+      "phonetic": "lee-koh-loh"
+    },
+    {
+      "en": "top",
+      "lingala": "likolo",
+      "phonetic": "lee-koh-loh"
+    },
+    {
+      "en": "orange",
+      "lingala": "lilala, ndimo",
+      "phonetic": "lee-la’-la, n-dee-moh"
+    },
+    {
+      "en": "word",
+      "lingala": "liloba",
+      "phonetic": "lee-loh-ba"
+    },
+    {
+      "en": "magic",
+      "lingala": "liloki",
+      "phonetic": "lee-lo-kee"
+    },
+    {
+      "en": "palm",
+      "lingala": "limbila",
+      "phonetic": "lee-mbee-la"
+    },
+    {
+      "en": "sponge",
+      "lingala": "limbusu",
+      "phonetic": "lee-mboo-soo’"
+    },
+    {
+      "en": "crab",
+      "lingala": "lingato, lingalo",
+      "phonetic": "lee-nga-toh, lee-nga-loh"
+    },
+    {
+      "en": "interpreter",
+      "lingala": "lingisi",
+      "phonetic": "lee-ngee-see"
+    },
+    {
+      "en": "window",
+      "lingala": "lininisa",
+      "phonetic": "lee-nee-nee-sa"
+    },
+    {
+      "en": "tooth",
+      "lingala": "lino",
+      "phonetic": "lee’-noh"
+    },
+    {
+      "en": "bread",
+      "lingala": "lipa",
+      "phonetic": "lee-pa"
+    },
+    {
+      "en": "sandal",
+      "lingala": "lipapa",
+      "phonetic": "lee-pa-pa"
+    },
+    {
+      "en": "wing",
+      "lingala": "lipapu",
+      "phonetic": "lee-pa-poo"
+    },
+    {
+      "en": "twin",
+      "lingala": "lipase",
+      "phonetic": "lee-pa-sa"
+    },
+    {
+      "en": "guava",
+      "lingala": "lipela",
+      "phonetic": "lee-peh’-la"
+    },
+    {
+      "en": "field",
+      "lingala": "lisala",
+      "phonetic": "lee-sa-la"
+    },
+    {
+      "en": "meeting",
+      "lingala": "lisanga, likita",
+      "phonetic": "lee-sa-nga , lee-kee-ta"
+    },
+    {
+      "en": "entertainment",
+      "lingala": "lisano",
+      "phonetic": "lee-sa-noh"
+    },
+    {
+      "en": "game",
+      "lingala": "lisano",
+      "phonetic": "lee-sa-noh"
+    },
+    {
+      "en": "sport",
+      "lingala": "lisano",
+      "phonetic": "lee-sa-noh"
+    },
+    {
+      "en": "comb",
+      "lingala": "lisanola",
+      "phonetic": "lee-sa-noh-la"
+    },
+    {
+      "en": "cartridge",
+      "lingala": "lisasi",
+      "phonetic": "lee-sa-see"
+    },
+    {
+      "en": "horn",
+      "lingala": "liseke",
+      "phonetic": "lee-se-ke"
+    },
+    {
+      "en": "eye",
+      "lingala": "liso",
+      "phonetic": "lee’-soh"
+    },
+    {
+      "en": "interview",
+      "lingala": "lisolo",
+      "phonetic": "lee-soh-loh"
+    },
+    {
+      "en": "again",
+      "lingala": "lisusu",
+      "phonetic": "lee-soo’-soo"
+    },
+    {
+      "en": "cheek",
+      "lingala": "litama",
+      "phonetic": "lee-ta’-ma"
+    },
+    {
+      "en": "scarf",
+      "lingala": "litambala",
+      "phonetic": "lee-ta-mba-la’"
+    },
+    {
+      "en": "lesson",
+      "lingala": "liteya",
+      "phonetic": "lee-the’-ya"
+    },
+    {
+      "en": "grass",
+      "lingala": "lititi",
+      "phonetic": "lee-tee-tee"
+    },
+    {
+      "en": "herb",
+      "lingala": "lititi",
+      "phonetic": "lee-tee’-tee"
+    },
+    {
+      "en": "ear",
+      "lingala": "litoi",
+      "phonetic": "lee-to’-ee"
+    },
+    {
+      "en": "mat",
+      "lingala": "litoko",
+      "phonetic": "lee-to-ko’"
+    },
+    {
+      "en": "corner",
+      "lingala": "litumu",
+      "phonetic": "lee-too’ –moo"
+    },
+    {
+      "en": "onion",
+      "lingala": "litungulu",
+      "phonetic": "lee-too-ngoo-loo"
+    },
+    {
+      "en": "death",
+      "lingala": "liwa , kufa",
+      "phonetic": "lee-wa-a, koo-fa"
+    },
+    {
+      "en": "mushroom",
+      "lingala": "liyebu",
+      "phonetic": "lee-yeh-boo"
+    },
+    {
+      "en": "spring",
+      "lingala": "liziba",
+      "phonetic": "lee-see-ba"
+    },
+    {
+      "en": "oasis",
+      "lingala": "liziba ya biliki",
+      "phonetic": "lee-zee-ba ya bee-lee-kee"
+    },
+    {
+      "en": "chin",
+      "lingala": "lobanga",
+      "phonetic": "loh-ba-nga"
+    },
+    {
+      "en": "yesterday",
+      "lingala": "lobi eleki",
+      "phonetic": "loh’-bee eh-leh-kee"
+    },
+    {
+      "en": "hand",
+      "lingala": "loboko",
+      "phonetic": "loh-bo’-ko"
+    },
+    {
+      "en": "leaf",
+      "lingala": "lokasa",
+      "phonetic": "loh-ka-sa"
+    },
+    {
+      "en": "deaf",
+      "lingala": "loko",
+      "phonetic": "loh-koh"
+    },
+    {
+      "en": "as",
+      "lingala": "lokola",
+      "phonetic": "loh-koh-la"
+    },
+    {
+      "en": "like",
+      "lingala": "lokola",
+      "phonetic": "loh-koh-la"
+    },
+    {
+      "en": "foot",
+      "lingala": "lokolo",
+      "phonetic": "loh-koh-loh"
+    },
+    {
+      "en": "leg",
+      "lingala": "lokolo",
+      "phonetic": "loh-koh-loh"
+    },
+    {
+      "en": "cough",
+      "lingala": "lokosu",
+      "phonetic": "loh-koh-soo’"
+    },
+    {
+      "en": "dialect",
+      "lingala": "lokota",
+      "phonetic": "loh-koh-ta"
+    },
+    {
+      "en": "lie",
+      "lingala": "lokuta",
+      "phonetic": "loh-koo-ta’"
+    },
+    {
+      "en": "voice",
+      "lingala": "lolaka",
+      "phonetic": "loh-la-ka"
+    },
+    {
+      "en": "tongue",
+      "lingala": "lolemu",
+      "phonetic": "loh-leh-moo"
+    },
+    {
+      "en": "proud",
+      "lingala": "lolendo",
+      "phonetic": "loh-le’-ndo"
+    },
+    {
+      "en": "shape",
+      "lingala": "lolenge",
+      "phonetic": "loh-le’-nge"
+    },
+    {
+      "en": "fine",
+      "lingala": "lomande",
+      "phonetic": "loh-ma’-nde"
+    },
+    {
+      "en": "size",
+      "lingala": "lomeko , motango",
+      "phonetic": "loh-meh-koh, moh-ta- ngoh"
+    },
+    {
+      "en": "sunday",
+      "lingala": "lomingo, eyenga",
+      "phonetic": "loh-mee-ngoh, eh-yeh- nga"
+    },
+    {
+      "en": "ring",
+      "lingala": "lompete",
+      "phonetic": "loh-mpe’-te"
+    },
+    {
+      "en": "umbrella",
+      "lingala": "longembu",
+      "phonetic": "loh-ngeh-mboo"
+    },
+    {
+      "en": "plot",
+      "lingala": "lopango",
+      "phonetic": "loh-pa-ngoh"
+    },
+    {
+      "en": "hospital",
+      "lingala": "lopitalo",
+      "phonetic": "loh-pee-ta-loh"
+    },
+    {
+      "en": "skin",
+      "lingala": "loposo, pl. mposo",
+      "phonetic": "loh-poh-soh, mpoh-soh"
+    },
+    {
+      "en": "prayer",
+      "lingala": "losambo",
+      "phonetic": "loh-sa-mboh"
+    },
+    {
+      "en": "rice",
+      "lingala": "loso",
+      "phonetic": "loh’-soh’"
+    },
+    {
+      "en": "hotel",
+      "lingala": "lotele",
+      "phonetic": "loh-te-le"
+    },
+    {
+      "en": "station",
+      "lingala": "loteme",
+      "phonetic": "loh-te’-me"
+    },
+    {
+      "en": "song",
+      "lingala": "loyembo",
+      "phonetic": "loh-yeh’-mboh"
+    },
+    {
+      "en": "spoon",
+      "lingala": "lutu, lokele",
+      "phonetic": "loo-too, loh-ke-le’"
+    }
+  ],
+  "M": [
+    {
+      "en": "earth",
+      "lingala": "mabele",
+      "phonetic": "ma-beh-leh’"
+    },
+    {
+      "en": "floor",
+      "lingala": "mabele",
+      "phonetic": "ma-beh-leh’"
+    },
+    {
+      "en": "ground",
+      "lingala": "mabele",
+      "phonetic": "ma-beh-leh’"
+    },
+    {
+      "en": "land",
+      "lingala": "mabele",
+      "phonetic": "ma-beh-leh’"
+    },
+    {
+      "en": "factory",
+      "lingala": "maboma",
+      "phonetic": "ma-boh-ma"
+    },
+    {
+      "en": "madam",
+      "lingala": "madamu",
+      "phonetic": "ma-da-moo"
+    },
+    {
+      "en": "mrs.",
+      "lingala": "madamu",
+      "phonetic": "ma-da-moo"
+    },
+    {
+      "en": "oil",
+      "lingala": "mafuta",
+      "phonetic": "ma-foo’-ta"
+    },
+    {
+      "en": "pharmacy",
+      "lingala": "magazini ma mino",
+      "phonetic": "ma-ga-zee-nee ma mee-noh’"
+    },
+    {
+      "en": "shop",
+      "lingala": "magazini, butiki",
+      "phonetic": "ma-ga-zee’-nee, boo-tee- kee"
+    },
+    {
+      "en": "may",
+      "lingala": "mai",
+      "phonetic": "me"
+    },
+    {
+      "en": "water",
+      "lingala": "mai",
+      "phonetic": "ma’-ee"
+    },
+    {
+      "en": "snow",
+      "lingala": "mai makangani",
+      "phonetic": "ma’-ee ma-ka-nga-nee"
+    },
+    {
+      "en": "wet",
+      "lingala": "mai-mai",
+      "phonetic": "ma’-ee-m."
+    },
+    {
+      "en": "charcoal",
+      "lingala": "makala",
+      "phonetic": "ma-ka’-la"
+    },
+    {
+      "en": "concubine",
+      "lingala": "makango",
+      "phonetic": "ma-ka’ –ngoh"
+    },
+    {
+      "en": "scissors",
+      "lingala": "makasi",
+      "phonetic": "ma-ka’-see"
+    },
+    {
+      "en": "noise",
+      "lingala": "makelele",
+      "phonetic": "ma-ke-le’-le"
+    },
+    {
+      "en": "blood",
+      "lingala": "makila",
+      "phonetic": "ma-kee-la’"
+    },
+    {
+      "en": "disease",
+      "lingala": "maladi, bokono",
+      "phonetic": "ma-la-dee, boh-ko-no"
+    },
+    {
+      "en": "kind",
+      "lingala": "malamu",
+      "phonetic": "ma-la’-moo"
+    },
+    {
+      "en": "well",
+      "lingala": "malamu",
+      "phonetic": "ma-la’-moo"
+    },
+    {
+      "en": "hammer",
+      "lingala": "malato",
+      "phonetic": "ma-la-toh’"
+    },
+    {
+      "en": "slowly",
+      "lingala": "malembe",
+      "phonetic": "ma-le’-mbe"
+    },
+    {
+      "en": "cemetery",
+      "lingala": "malita",
+      "phonetic": "ma-lee-ta"
+    },
+    {
+      "en": "mother",
+      "lingala": "mama",
+      "phonetic": "ma-ma’"
+    },
+    {
+      "en": "religion",
+      "lingala": "mambi ma Nzambe",
+      "phonetic": "ma-mbee ma N- za’-mbeh"
+    },
+    {
+      "en": "calender",
+      "lingala": "manaka",
+      "phonetic": "ma-na-ka"
+    },
+    {
+      "en": "march",
+      "lingala": "mars",
+      "phonetic": "mars"
+    },
+    {
+      "en": "drink",
+      "lingala": "masanga",
+      "phonetic": "ma-sa-nga"
+    },
+    {
+      "en": "alcohol",
+      "lingala": "masanga ma moto",
+      "phonetic": "ma-sa-nga ma mo’-to"
+    },
+    {
+      "en": "wine",
+      "lingala": "masanga, vinu",
+      "phonetic": "ma-sa-nga, vee-noo"
+    },
+    {
+      "en": "machine",
+      "lingala": "masini",
+      "phonetic": "ma-see-nee"
+    },
+    {
+      "en": "mechanic",
+      "lingala": "masiniki",
+      "phonetic": "ma-see- nee-kee"
+    },
+    {
+      "en": "ship",
+      "lingala": "masuwa",
+      "phonetic": "ma-soo-wa"
+    },
+    {
+      "en": "boat",
+      "lingala": "masuwa, bwato",
+      "phonetic": "ma-soo’- wa, bwa’ – toh"
+    },
+    {
+      "en": "tip",
+      "lingala": "matabisi",
+      "phonetic": "ma-ta-bee’-see"
+    },
+    {
+      "en": "mourning",
+      "lingala": "matanga",
+      "phonetic": "ma-ta’-nga"
+    },
+    {
+      "en": "boil",
+      "lingala": "matungana",
+      "phonetic": "ma-too-nga-na"
+    },
+    {
+      "en": "pity",
+      "lingala": "mawa",
+      "phonetic": "ma-wa"
+    },
+    {
+      "en": "sad",
+      "lingala": "mawa",
+      "phonetic": "ma-wa"
+    },
+    {
+      "en": "sorry",
+      "lingala": "mawa",
+      "phonetic": "ma-wa"
+    },
+    {
+      "en": "mind",
+      "lingala": "mayele",
+      "phonetic": "ma-ye’-le"
+    },
+    {
+      "en": "twice",
+      "lingala": "mbala mibale",
+      "phonetic": "m-ba-la mee-ba-leh’"
+    },
+    {
+      "en": "often",
+      "lingala": "mbala mingi, nokinoki",
+      "phonetic": "m-ba-la mee- ngee, no-kee"
+    },
+    {
+      "en": "once",
+      "lingala": "mbala moko",
+      "phonetic": "m-ba-la mo’-ko’"
+    },
+    {
+      "en": "occasionally",
+      "lingala": "Mbala moko moko",
+      "phonetic": "m-ba-la mo’- ko’"
+    },
+    {
+      "en": "sometimes",
+      "lingala": "mbala na mbala",
+      "phonetic": "m-ba-la na’ m-ba- la"
+    },
+    {
+      "en": "potato",
+      "lingala": "mbala, libenge",
+      "phonetic": "m-ba’-la’, lee-benge’"
+    },
+    {
+      "en": "veranda",
+      "lingala": "mbalasani",
+      "phonetic": "m-ba-la-sa’-nee"
+    },
+    {
+      "en": "quickly",
+      "lingala": "mbango, noki",
+      "phonetic": "no-kee’"
+    },
+    {
+      "en": "early",
+      "lingala": "mbangu",
+      "phonetic": "mba’- ngoo"
+    },
+    {
+      "en": "bamboo",
+      "lingala": "mbanzi, linkeke",
+      "phonetic": "m-ba-nzee, lee-nkeh- keh"
+    },
+    {
+      "en": "almost",
+      "lingala": "mbele",
+      "phonetic": "m-be-le"
+    },
+    {
+      "en": "may be",
+      "lingala": "mbele",
+      "phonetic": "m-be-le"
+    },
+    {
+      "en": "pottery",
+      "lingala": "mbele",
+      "phonetic": "m-be’-le’"
+    },
+    {
+      "en": "knife",
+      "lingala": "mbeli",
+      "phonetic": "m-be-lee"
+    },
+    {
+      "en": "bed",
+      "lingala": "mbeto",
+      "phonetic": "m-be-toh"
+    },
+    {
+      "en": "teapot",
+      "lingala": "mbilika",
+      "phonetic": "m-bee-lee-ka"
+    },
+    {
+      "en": "thick",
+      "lingala": "mbinga",
+      "phonetic": "m-bee-nga"
+    },
+    {
+      "en": "fish",
+      "lingala": "mbisi",
+      "phonetic": "m-bee’-see"
+    },
+    {
+      "en": "village",
+      "lingala": "mboka",
+      "phonetic": "m-boh’-ka"
+    },
+    {
+      "en": "town",
+      "lingala": "mboka enene, engumba",
+      "phonetic": "m-boh-‘ka eh-ne’- ne, eh-ngoo-mba"
+    },
+    {
+      "en": "gazelle",
+      "lingala": "mboloko",
+      "phonetic": "m-boh’-loh’-koh’"
+    },
+    {
+      "en": "antelope",
+      "lingala": "mboloko, mbuli",
+      "phonetic": "m-boh-loh’- koh’, m- boo-lee"
+    },
+    {
+      "en": "money",
+      "lingala": "mbongo, mosolo",
+      "phonetic": "m-bo’-ngo, moh-so-lo"
+    },
+    {
+      "en": "birth",
+      "lingala": "mbotama",
+      "phonetic": "m-boh’-ta-ma"
+    },
+    {
+      "en": "rate",
+      "lingala": "mbotana, taux",
+      "phonetic": "mboh-ta-na, toh"
+    },
+    {
+      "en": "corn",
+      "lingala": "mboto",
+      "phonetic": "m-boh’ –toh"
+    },
+    {
+      "en": "maize",
+      "lingala": "mboto",
+      "phonetic": "m-boh’-toh"
+    },
+    {
+      "en": "sea",
+      "lingala": "mbu",
+      "phonetic": "mboo’"
+    },
+    {
+      "en": "rain",
+      "lingala": "mbula",
+      "phonetic": "m-boo-la"
+    },
+    {
+      "en": "year",
+      "lingala": "mbula, mobu",
+      "phonetic": "m-boo’-la, moh-boo"
+    },
+    {
+      "en": "fruit",
+      "lingala": "mbuma",
+      "phonetic": "m-boo-ma"
+    },
+    {
+      "en": "dog",
+      "lingala": "mbwa",
+      "phonetic": "m-bwa’"
+    },
+    {
+      "en": "valley",
+      "lingala": "mbwaku",
+      "phonetic": "m-bwa-koo"
+    },
+    {
+      "en": "gray",
+      "lingala": "mbwi",
+      "phonetic": "m-bwee"
+    },
+    {
+      "en": "sheep",
+      "lingala": "meme, mpata",
+      "phonetic": "me’-me’, mpa-ta’"
+    },
+    {
+      "en": "table",
+      "lingala": "mesa",
+      "phonetic": "meh’-sa"
+    },
+    {
+      "en": "waterfall",
+      "lingala": "meta, boeta",
+      "phonetic": "meh-ta, goh-eh-ta"
+    },
+    {
+      "en": "climate",
+      "lingala": "mikili",
+      "phonetic": "mee-kee-lee"
+    },
+    {
+      "en": "wrong",
+      "lingala": "miko",
+      "phonetic": "mee-koh"
+    },
+    {
+      "en": "always",
+      "lingala": "mikolo minso",
+      "phonetic": "mee-ko-lo mee-nso"
+    },
+    {
+      "en": "everyday",
+      "lingala": "mikolo nyonso",
+      "phonetic": "mee-ko-lo nyo’- nso"
+    },
+    {
+      "en": "milk",
+      "lingala": "miliki, mabele",
+      "phonetic": "mee-lee-kee, ma-be’-le"
+    },
+    {
+      "en": "rheumatism",
+      "lingala": "mingai",
+      "phonetic": "mee-nga-ee"
+    },
+    {
+      "en": "very",
+      "lingala": "mingi",
+      "phonetic": "mee-nge"
+    },
+    {
+      "en": "urine",
+      "lingala": "minya, masuba",
+      "phonetic": "mee-nya, ma-soo-ba"
+    },
+    {
+      "en": "mass",
+      "lingala": "misa",
+      "phonetic": "mee-sa"
+    },
+    {
+      "en": "music",
+      "lingala": "miziki",
+      "phonetic": "mee-zee-kee"
+    },
+    {
+      "en": "husband",
+      "lingala": "mobali",
+      "phonetic": "moh-ba’-lee"
+    },
+    {
+      "en": "mr.",
+      "lingala": "mobali",
+      "phonetic": "moh-ba’-lee"
+    },
+    {
+      "en": "law",
+      "lingala": "mobeko",
+      "phonetic": "moh-beh-koh"
+    },
+    {
+      "en": "marsh",
+      "lingala": "mobela",
+      "phonetic": "moh-be-la"
+    },
+    {
+      "en": "traveler",
+      "lingala": "mobembi",
+      "phonetic": "moh-beh-mbee"
+    },
+    {
+      "en": "travel",
+      "lingala": "mobembo",
+      "phonetic": "moh-beh-mboh"
+    },
+    {
+      "en": "green",
+      "lingala": "mobesu",
+      "phonetic": "moh-beh’-soo"
+    },
+    {
+      "en": "everything",
+      "lingala": "mobimba, nyonso",
+      "phonetic": "moh-bee- mba , nyo’-nso"
+    },
+    {
+      "en": "poor",
+      "lingala": "mobola",
+      "phonetic": "moh-boh-la"
+    },
+    {
+      "en": "parent",
+      "lingala": "moboti",
+      "phonetic": "moh-boh-tee"
+    },
+    {
+      "en": "midwife",
+      "lingala": "mobotisi",
+      "phonetic": "moh-boh-tee-see"
+    },
+    {
+      "en": "turbulent",
+      "lingala": "mobulu",
+      "phonetic": "moh-boo-loo"
+    },
+    {
+      "en": "shorts",
+      "lingala": "mogondo",
+      "phonetic": "moh-‘-goh-ndoh"
+    },
+    {
+      "en": "sun",
+      "lingala": "moi, mwese",
+      "phonetic": "moh’-ee, mwe’-se"
+    },
+    {
+      "en": "dark",
+      "lingala": "moindo, molili",
+      "phonetic": "moh-ee-ndoh, moh-lee-lee"
+    },
+    {
+      "en": "paper",
+      "lingala": "mokanda",
+      "phonetic": "moh-ka-nda"
+    },
+    {
+      "en": "fly",
+      "lingala": "mokangi",
+      "phonetic": "moh-ka-ngee"
+    },
+    {
+      "en": "barber",
+      "lingala": "mokati-nsuki",
+      "phonetic": "moh-ka-tee nsoo-kee"
+    },
+    {
+      "en": "narrow",
+      "lingala": "moke",
+      "phonetic": "moh-ke’"
+    },
+    {
+      "en": "thin",
+      "lingala": "moke",
+      "phonetic": "moh-ke’"
+    },
+    {
+      "en": "watchman",
+      "lingala": "mokengeli, sinzili",
+      "phonetic": "moh-keh’-nge-lee, see-nzee-lee"
+    },
+    {
+      "en": "babysitter",
+      "lingala": "mokengeli-mwana",
+      "phonetic": "moh-ke-nge-lee"
+    },
+    {
+      "en": "sparrow",
+      "lingala": "mokengemboka",
+      "phonetic": "moh-ke’-nge-mboh’-ka"
+    },
+    {
+      "en": "world",
+      "lingala": "mokili",
+      "phonetic": "moh-kee-lee"
+    },
+    {
+      "en": "swamp",
+      "lingala": "mokili potopoto",
+      "phonetic": "moh-kee-lee po-to-po-to"
+    },
+    {
+      "en": "refugee",
+      "lingala": "mokimeli",
+      "phonetic": "moh-kee-meh-lee"
+    },
+    {
+      "en": "some",
+      "lingala": "moko",
+      "phonetic": "mo’-ko’"
+    },
+    {
+      "en": "each",
+      "lingala": "moko, yonso",
+      "phonetic": "mo’-ko’, yo’-nso"
+    },
+    {
+      "en": "paint",
+      "lingala": "mokobo",
+      "phonetic": "moh-ko’-bo"
+    },
+    {
+      "en": "day",
+      "lingala": "mokolo",
+      "phonetic": "moh-ko-lo"
+    },
+    {
+      "en": "history",
+      "lingala": "mokolo",
+      "phonetic": "moh-koh-‘-loh’"
+    },
+    {
+      "en": "never",
+      "lingala": "mokolo moko te",
+      "phonetic": "moh-ko-lo mo’-ko’ te’"
+    },
+    {
+      "en": "monday",
+      "lingala": "mokolo ya liboso",
+      "phonetic": "moh-ko-lo ya lee-boh- soh’"
+    },
+    {
+      "en": "tuesday",
+      "lingala": "mokolo ya mibale",
+      "phonetic": "moh-ko-lo ya me-ba- leh’"
+    },
+    {
+      "en": "wednesday",
+      "lingala": "mokolo ya misato",
+      "phonetic": "moh-ko-lo ya mee-sa’-toh"
+    },
+    {
+      "en": "friday",
+      "lingala": "mokolo ya mitano",
+      "phonetic": "moh-ko-lo ya mee-ta’- noh"
+    },
+    {
+      "en": "thursday",
+      "lingala": "mokolo yaminei",
+      "phonetic": "moh-ko-lo ya mee- neh-ee"
+    },
+    {
+      "en": "line",
+      "lingala": "mokoloto",
+      "phonetic": "moh-koh-loh-toh"
+    },
+    {
+      "en": "tail",
+      "lingala": "mokondo",
+      "phonetic": "moh-koh-ndoh’"
+    },
+    {
+      "en": "nurse",
+      "lingala": "mokongeli-mokoni",
+      "phonetic": "moh-koh-ngeh-lee moh-ko-nee"
+    },
+    {
+      "en": "back",
+      "lingala": "mokongo",
+      "phonetic": "moh-ko-ngo"
+    },
+    {
+      "en": "disabled",
+      "lingala": "mokoni",
+      "phonetic": "moh-koh-nee"
+    },
+    {
+      "en": "patient",
+      "lingala": "mokoni",
+      "phonetic": "moh-ko-nee"
+    },
+    {
+      "en": "king",
+      "lingala": "mokonzi mobali",
+      "phonetic": "moh-koh-nzee moh-ba’- lee"
+    },
+    {
+      "en": "queen",
+      "lingala": "mokonzi mwasi",
+      "phonetic": "moh-koh-nzee mwa’-see"
+    },
+    {
+      "en": "itch",
+      "lingala": "mokosa",
+      "phonetic": "moh-ko-sa"
+    },
+    {
+      "en": "rope",
+      "lingala": "mokulu",
+      "phonetic": "moh-koo-loo"
+    },
+    {
+      "en": "bone",
+      "lingala": "mokuwa",
+      "phonetic": "mo-koo-wa"
+    },
+    {
+      "en": "teacher",
+      "lingala": "molakisi",
+      "phonetic": "moh-la-kee-see"
+    },
+    {
+      "en": "camping",
+      "lingala": "molako",
+      "phonetic": "moh-la-koh"
+    },
+    {
+      "en": "bottle",
+      "lingala": "molangi",
+      "phonetic": "moh-la-ngee"
+    },
+    {
+      "en": "suit",
+      "lingala": "molato",
+      "phonetic": "moh-la-toh"
+    },
+    {
+      "en": "dress",
+      "lingala": "molato, elamba",
+      "phonetic": "moh-la-toh, eh-la-mba"
+    },
+    {
+      "en": "easy",
+      "lingala": "molembu, pasi te",
+      "phonetic": "moh-leh-mboo’ , pa’ - see te’"
+    },
+    {
+      "en": "soul",
+      "lingala": "molimo",
+      "phonetic": "moh-lee-moh"
+    },
+    {
+      "en": "smoke",
+      "lingala": "molinga",
+      "phonetic": "moh-lee-nga"
+    },
+    {
+      "en": "flu",
+      "lingala": "mollunge mabe mpe ketuketu",
+      "phonetic": "moh-loo-nge’ ma-beh’ mpeh keh-too-keh-too"
+    },
+    {
+      "en": "blind",
+      "lingala": "mololanda",
+      "phonetic": "moh-lo-la-nda"
+    },
+    {
+      "en": "street",
+      "lingala": "mololo, balabala",
+      "phonetic": "moh-loh-loh, ba-la-ba’- la"
+    },
+    {
+      "en": "brook",
+      "lingala": "moluka",
+      "phonetic": "moh-loo’-ka’"
+    },
+    {
+      "en": "heat",
+      "lingala": "molunge",
+      "phonetic": "moh-loo-nge’"
+    },
+    {
+      "en": "warm",
+      "lingala": "molunge",
+      "phonetic": "moh-loo-nge’"
+    },
+    {
+      "en": "toothpick",
+      "lingala": "mombai",
+      "phonetic": "moh-mba-ee"
+    },
+    {
+      "en": "frog",
+      "lingala": "mombemba",
+      "phonetic": "moh-mbeh-mba"
+    },
+    {
+      "en": "business",
+      "lingala": "mombongo",
+      "phonetic": "mph-mbo’-ngo"
+    },
+    {
+      "en": "trade",
+      "lingala": "mombongo",
+      "phonetic": "moh-mbo’-ngo"
+    },
+    {
+      "en": "custom",
+      "lingala": "momeseno",
+      "phonetic": "moh-me-se-noh"
+    },
+    {
+      "en": "rainbow",
+      "lingala": "monama",
+      "phonetic": "moh-na-ma"
+    },
+    {
+      "en": "bet",
+      "lingala": "mondenge",
+      "phonetic": "moh-nde-nge’"
+    },
+    {
+      "en": "fat",
+      "lingala": "monene",
+      "phonetic": "moh-ne’-ne"
+    },
+    {
+      "en": "wide",
+      "lingala": "monene",
+      "phonetic": "moh-ne’-ne"
+    },
+    {
+      "en": "tremendous",
+      "lingala": "monene mpe kitoko",
+      "phonetic": "moh-ne’-ne’ mpeh kee-to’-ko’"
+    },
+    {
+      "en": "doctor",
+      "lingala": "monganga",
+      "phonetic": "moh’-nga-nga"
+    },
+    {
+      "en": "throat",
+      "lingala": "mongongo",
+      "phonetic": "moh-ngoh’-ngoh’"
+    },
+    {
+      "en": "enemy",
+      "lingala": "monguna",
+      "phonetic": "moh-ngoo-na"
+    },
+    {
+      "en": "salt",
+      "lingala": "mongwa, monana",
+      "phonetic": "moh-ngwa , moh-na-ma"
+    },
+    {
+      "en": "electricity",
+      "lingala": "monili, lotriki",
+      "phonetic": "moh-nee-lee, loh-tree- kee"
+    },
+    {
+      "en": "lightning",
+      "lingala": "monkalali",
+      "phonetic": "moh-nka-la-lee"
+    },
+    {
+      "en": "mosquito",
+      "lingala": "monkungi, mbembele",
+      "phonetic": "moh-nkoo-ngee, m-be’-mbe’-le’"
+    },
+    {
+      "en": "worm",
+      "lingala": "monkusu",
+      "phonetic": "moh-nkoo’-soo’"
+    },
+    {
+      "en": "mouth",
+      "lingala": "monoko",
+      "phonetic": "moh-no-ko"
+    },
+    {
+      "en": "language",
+      "lingala": "monoko, lokota",
+      "phonetic": "moh-no-ko, loh-ko’-ta"
+    },
+    {
+      "en": "toe",
+      "lingala": "monsai",
+      "phonetic": "moh-nsa-ee"
+    },
+    {
+      "en": "make-up",
+      "lingala": "monzele",
+      "phonetic": "mo-nze’-le’"
+    },
+    {
+      "en": "mustache",
+      "lingala": "monzomba",
+      "phonetic": "moh-nzoh-mba"
+    },
+    {
+      "en": "star",
+      "lingala": "monzoto",
+      "phonetic": "moh-nzo’-to"
+    },
+    {
+      "en": "sting",
+      "lingala": "monzube",
+      "phonetic": "moh-nzoo-beh"
+    },
+    {
+      "en": "coast",
+      "lingala": "mopanzi",
+      "phonetic": "moh-pa-nzee"
+    },
+    {
+      "en": "stranger",
+      "lingala": "mopaya",
+      "phonetic": "moh-pa-ya"
+    },
+    {
+      "en": "visitor",
+      "lingala": "mopaya",
+      "phonetic": "moh-pa-ya"
+    },
+    {
+      "en": "foreign",
+      "lingala": "mopaya, libanda",
+      "phonetic": "moh-pa-ya, lee-ba- nda"
+    },
+    {
+      "en": "pipe",
+      "lingala": "mopepe",
+      "phonetic": "moh-pe’-pe’"
+    },
+    {
+      "en": "wind",
+      "lingala": "mopepe",
+      "phonetic": "moh-pe-pe"
+    },
+    {
+      "en": "monsoon",
+      "lingala": "mopepe ya molunge kilikili",
+      "phonetic": "moh-pe-pe ya moh-loo-nge’ kee-lee-kee-lee"
+    },
+    {
+      "en": "pygmy",
+      "lingala": "mopoto, motwa",
+      "phonetic": "moh-poh-toh’, moh-twa’"
+    },
+    {
+      "en": "sharp",
+      "lingala": "mopotu",
+      "phonetic": "moh-poh-too"
+    },
+    {
+      "en": "work",
+      "lingala": "mosala",
+      "phonetic": "moh-sa’-la"
+    },
+    {
+      "en": "trademan",
+      "lingala": "mosali mombongo",
+      "phonetic": "moh-sa-lee"
+    },
+    {
+      "en": "maid",
+      "lingala": "mosalisi mwasi",
+      "phonetic": "moh-sa’ lee-see mwa’-see"
+    },
+    {
+      "en": "saint",
+      "lingala": "mosantu",
+      "phonetic": "moh-sa-ntoo"
+    },
+    {
+      "en": "finger",
+      "lingala": "mosapi",
+      "phonetic": "moh-sa-pee"
+    },
+    {
+      "en": "far",
+      "lingala": "mosika",
+      "phonetic": "moh-see-ka"
+    },
+    {
+      "en": "mosquito net",
+      "lingala": "mosikitele",
+      "phonetic": "moh-see-kee-te’-le"
+    },
+    {
+      "en": "file",
+      "lingala": "mosiyo",
+      "phonetic": "moh-see-yoh"
+    },
+    {
+      "en": "dowry",
+      "lingala": "mosolo, likonza",
+      "phonetic": "moh-so-lo, lee-koh-nza"
+    },
+    {
+      "en": "buyer",
+      "lingala": "mosombi",
+      "phonetic": "moh-soh-mbee"
+    },
+    {
+      "en": "number",
+      "lingala": "motango",
+      "phonetic": "moh-ta-ngoh"
+    },
+    {
+      "en": "soft",
+      "lingala": "motau, petepete",
+      "phonetic": "moh-ta-oo, pe-te-pe-te"
+    },
+    {
+      "en": "seller",
+      "lingala": "moteki",
+      "phonetic": "moh-te’-kee"
+    },
+    {
+      "en": "butcher",
+      "lingala": "moteki-nyama",
+      "phonetic": "moh-te’-kee nya-ma"
+    },
+    {
+      "en": "engine",
+      "lingala": "motele",
+      "phonetic": "moh-te’-le"
+    },
+    {
+      "en": "heart",
+      "lingala": "motema",
+      "phonetic": "moh-the’-ma"
+    },
+    {
+      "en": "carving",
+      "lingala": "motende",
+      "phonetic": "moh-te-ndeh"
+    },
+    {
+      "en": "lame",
+      "lingala": "motengoli",
+      "phonetic": "moh-te-ngo-lee"
+    },
+    {
+      "en": "fire",
+      "lingala": "moto",
+      "phonetic": "mo’-to"
+    },
+    {
+      "en": "head",
+      "lingala": "moto",
+      "phonetic": "moh-toh’"
+    },
+    {
+      "en": "man",
+      "lingala": "moto",
+      "phonetic": "moh-toh"
+    },
+    {
+      "en": "stubborn",
+      "lingala": "moto makasi",
+      "phonetic": "moh-to’ ma-ka’-see"
+    },
+    {
+      "en": "nobody",
+      "lingala": "moto moko te",
+      "phonetic": "moh-toh mo’-ko’ te’"
+    },
+    {
+      "en": "farmer",
+      "lingala": "moto wa bilanga",
+      "phonetic": "moh-toh wa bee-la- nga"
+    },
+    {
+      "en": "businessman",
+      "lingala": "moto wa mombongo",
+      "phonetic": "moh-toh wa"
+    },
+    {
+      "en": "hot",
+      "lingala": "moto, molunge",
+      "phonetic": "mo’-to, moh-loo-nge’"
+    },
+    {
+      "en": "roof",
+      "lingala": "motondo",
+      "phonetic": "moh-to’-ndo"
+    },
+    {
+      "en": "builder",
+      "lingala": "motongi-ndako",
+      "phonetic": "moh-toh-ngee n- da’-koh"
+    },
+    {
+      "en": "rubber",
+      "lingala": "motope",
+      "phonetic": "moh-toh’-peh"
+    },
+    {
+      "en": "question",
+      "lingala": "motuna",
+      "phonetic": "moh-too-na"
+    },
+    {
+      "en": "shock",
+      "lingala": "motutano",
+      "phonetic": "moh-too-ta-noh"
+    },
+    {
+      "en": "price",
+      "lingala": "motuya, talo",
+      "phonetic": "koo-moo wa lee-boh- soh’"
+    },
+    {
+      "en": "manager",
+      "lingala": "moyangeli",
+      "phonetic": "moh-ya-ngeh-lee"
+    },
+    {
+      "en": "student",
+      "lingala": "moyekoli",
+      "phonetic": "moh-ye-ko-lee"
+    },
+    {
+      "en": "singer",
+      "lingala": "moyembi",
+      "phonetic": "moh-yeh-mbee"
+    },
+    {
+      "en": "thief",
+      "lingala": "moyibi",
+      "phonetic": "moh-yee-bee"
+    },
+    {
+      "en": "pot",
+      "lingala": "mozaka",
+      "phonetic": "moh-za-ka"
+    },
+    {
+      "en": "empty",
+      "lingala": "mpamba",
+      "phonetic": "mpa-mba"
+    },
+    {
+      "en": "free",
+      "lingala": "mpamba, nsomi",
+      "phonetic": "mpa-mba, nso-mee"
+    },
+    {
+      "en": "difficulty",
+      "lingala": "mpasi, matata",
+      "phonetic": "mpa’-see, ma-ta’-ta"
+    },
+    {
+      "en": "shovel",
+      "lingala": "mpau",
+      "phonetic": "mpa-oo"
+    },
+    {
+      "en": "also",
+      "lingala": "mpe",
+      "phonetic": "mpeh"
+    },
+    {
+      "en": "too",
+      "lingala": "mpe",
+      "phonetic": "mpeh"
+    },
+    {
+      "en": "with",
+      "lingala": "mpe,na",
+      "phonetic": "mpeh, na"
+    },
+    {
+      "en": "air",
+      "lingala": "mpema",
+      "phonetic": "mpeh’-ma"
+    },
+    {
+      "en": "ivory",
+      "lingala": "mpembe",
+      "phonetic": "mpe’-mbe’"
+    },
+    {
+      "en": "earring",
+      "lingala": "mpete",
+      "phonetic": "mpe’-te/m-boo- ma ya ma-to’-yee"
+    },
+    {
+      "en": "cold",
+      "lingala": "mpio, malili",
+      "phonetic": "mpee-oh, ma-lee-lee"
+    },
+    {
+      "en": "because",
+      "lingala": "mpo",
+      "phonetic": "mpoh"
+    },
+    {
+      "en": "rat",
+      "lingala": "mpo",
+      "phonetic": "mpoh’-oh"
+    },
+    {
+      "en": "for",
+      "lingala": "mpo na",
+      "phonetic": "mpoh-na"
+    },
+    {
+      "en": "mouse",
+      "lingala": "mpoko",
+      "phonetic": "m-po’-ko"
+    },
+    {
+      "en": "afternoon",
+      "lingala": "mpokwa",
+      "phonetic": "mpoh’-kwa"
+    },
+    {
+      "en": "evening",
+      "lingala": "mpokwa",
+      "phonetic": "mpoh’-kwa"
+    },
+    {
+      "en": "cassava leaves",
+      "lingala": "mpondu, sakasaka",
+      "phonetic": "mpo- ndoo , sa-ka-sa-ka"
+    },
+    {
+      "en": "sleepy",
+      "lingala": "mpongi",
+      "phonetic": "mpo-ngee"
+    },
+    {
+      "en": "appetite",
+      "lingala": "mposa",
+      "phonetic": "mpoh’-sa’"
+    },
+    {
+      "en": "thirst",
+      "lingala": "mposa",
+      "phonetic": "mpoh’-sa’"
+    },
+    {
+      "en": "week",
+      "lingala": "mposo",
+      "phonetic": "mpo’-so"
+    },
+    {
+      "en": "saturday",
+      "lingala": "mposo, sabala",
+      "phonetic": "mpo’-so, sa-ba-la"
+    },
+    {
+      "en": "wound",
+      "lingala": "mpota",
+      "phonetic": "mpoh’-ta’"
+    },
+    {
+      "en": "donkey",
+      "lingala": "mpunda",
+      "phonetic": "mpoo-nda"
+    },
+    {
+      "en": "powder",
+      "lingala": "mputulu",
+      "phonetic": "mpoo-too-loo’"
+    },
+    {
+      "en": "lamb",
+      "lingala": "mwa mpata",
+      "phonetic": "mwa-a mpata"
+    },
+    {
+      "en": "next",
+      "lingala": "mwa pene ekoya",
+      "phonetic": "mwa-a pe-ne, eh-koh-ya- a"
+    },
+    {
+      "en": "baby",
+      "lingala": "mwana",
+      "phonetic": "mwa’-na"
+    },
+    {
+      "en": "child",
+      "lingala": "mwana",
+      "phonetic": "mwa’-na"
+    },
+    {
+      "en": "citizen",
+      "lingala": "mwana ekolo",
+      "phonetic": "mwa’-na eh-ko’-lo"
+    },
+    {
+      "en": "son",
+      "lingala": "mwana mobali",
+      "phonetic": "mwa’-na moh-ba’-lee"
+    },
+    {
+      "en": "daughter",
+      "lingala": "mwana mwasi",
+      "phonetic": "mwa’ -na mwa’ –see"
+    },
+    {
+      "en": "woman",
+      "lingala": "mwasi",
+      "phonetic": "mwa’-see"
+    },
+    {
+      "en": "wife",
+      "lingala": "mwasi wa libala",
+      "phonetic": "mwa’-see wa lee- ba’-la"
+    },
+    {
+      "en": "widow",
+      "lingala": "mwasi ya mokbya",
+      "phonetic": "mwa’-see wa moh- kbya"
+    },
+    {
+      "en": "tree",
+      "lingala": "mwete",
+      "phonetic": "mweh-the’"
+    },
+    {
+      "en": "lamp",
+      "lingala": "mwinda",
+      "phonetic": "mwee’-nda"
+    },
+    {
+      "en": "light",
+      "lingala": "mwinda",
+      "phonetic": "mwee-nda"
+    }
+  ],
+  "N": [
+    {
+      "en": "rest",
+      "lingala": "n. bopemi",
+      "phonetic": "boh-peh-mee"
+    },
+    {
+      "en": "across",
+      "lingala": "na",
+      "phonetic": "na"
+    },
+    {
+      "en": "i",
+      "lingala": "na",
+      "phonetic": "na"
+    },
+    {
+      "en": "mine",
+      "lingala": "na",
+      "phonetic": "na/ ya n-ga’-ee"
+    },
+    {
+      "en": "through",
+      "lingala": "Na",
+      "phonetic": "na’"
+    },
+    {
+      "en": "towards",
+      "lingala": "na",
+      "phonetic": "na"
+    },
+    {
+      "en": "by",
+      "lingala": "na , o",
+      "phonetic": "na, oh"
+    },
+    {
+      "en": "to",
+      "lingala": "Na , o",
+      "phonetic": "na, oh"
+    },
+    {
+      "en": "alive",
+      "lingala": "na bomoi",
+      "phonetic": "na boh-moh-ee"
+    },
+    {
+      "en": "tonight",
+      "lingala": "na butu",
+      "phonetic": "na boo-too’"
+    },
+    {
+      "en": "inside",
+      "lingala": "na kati",
+      "phonetic": "na-ka’-tee"
+    },
+    {
+      "en": "middle",
+      "lingala": "na kati",
+      "phonetic": "ka’-tee"
+    },
+    {
+      "en": "above",
+      "lingala": "Na likolo",
+      "phonetic": "na-lee-koh-loh’"
+    },
+    {
+      "en": "quick",
+      "lingala": "na mbango",
+      "phonetic": "na m-ba-ngoh"
+    },
+    {
+      "en": "bellow",
+      "lingala": "na nse",
+      "phonetic": "na-nseh"
+    },
+    {
+      "en": "down",
+      "lingala": "na nse",
+      "phonetic": "na nseh"
+    },
+    {
+      "en": "under",
+      "lingala": "na nse",
+      "phonetic": "na nseh"
+    },
+    {
+      "en": "then",
+      "lingala": "na nsima",
+      "phonetic": "na nsee-ma"
+    },
+    {
+      "en": "his",
+      "lingala": "na ye",
+      "phonetic": "na yeh’"
+    },
+    {
+      "en": "and",
+      "lingala": "Na, mpe",
+      "phonetic": "na, mpeh"
+    },
+    {
+      "en": "at",
+      "lingala": "na, o",
+      "phonetic": "na, oh"
+    },
+    {
+      "en": "already",
+      "lingala": "naino, kalakala",
+      "phonetic": "na-ee-noh, ka-la"
+    },
+    {
+      "en": "yet",
+      "lingala": "naino,se",
+      "phonetic": "na-ee-noh, she’"
+    },
+    {
+      "en": "building",
+      "lingala": "ndako",
+      "phonetic": "n-da’-koh"
+    },
+    {
+      "en": "home",
+      "lingala": "ndako",
+      "phonetic": "n-da’-koh"
+    },
+    {
+      "en": "honey",
+      "lingala": "ndako",
+      "phonetic": "n-zo’-ee"
+    },
+    {
+      "en": "house",
+      "lingala": "ndako",
+      "phonetic": "n-da’-koh"
+    },
+    {
+      "en": "palace",
+      "lingala": "ndako ya bakonzi",
+      "phonetic": "n-da’-koh ya ba-koh- nzee"
+    },
+    {
+      "en": "museum",
+      "lingala": "ndako ya ntoki",
+      "phonetic": "n-da’-ko ya nto’-kee"
+    },
+    {
+      "en": "church",
+      "lingala": "ndako-nzambe",
+      "phonetic": "n-da’-koh n-za’-mbeh"
+    },
+    {
+      "en": "temple",
+      "lingala": "ndako-Nzambe",
+      "phonetic": "n-da’-koh N-za’-mbeh"
+    },
+    {
+      "en": "bit",
+      "lingala": "ndambo",
+      "phonetic": "nda-mboh"
+    },
+    {
+      "en": "part",
+      "lingala": "ndambo",
+      "phonetic": "n-da-mboh"
+    },
+    {
+      "en": "bird",
+      "lingala": "ndeke",
+      "phonetic": "n-de-ke"
+    },
+    {
+      "en": "broom",
+      "lingala": "ndeko",
+      "phonetic": "n-deh-koh"
+    },
+    {
+      "en": "cousin",
+      "lingala": "ndeko",
+      "phonetic": "n-deh-koh"
+    },
+    {
+      "en": "sister",
+      "lingala": "ndeko mwasi",
+      "phonetic": "n-de-koh mwa’-see"
+    },
+    {
+      "en": "border",
+      "lingala": "ndelo",
+      "phonetic": "n-deh-lo"
+    },
+    {
+      "en": "wright",
+      "lingala": "ndenge elongobani",
+      "phonetic": "ndeh-ngeh eh-loh-ngoh-ba-nee"
+    },
+    {
+      "en": "beard",
+      "lingala": "ndole, ndefu",
+      "phonetic": "n-doh-leh, n-deh-foo"
+    },
+    {
+      "en": "dream",
+      "lingala": "ndoto",
+      "phonetic": "n-do’-to"
+    },
+    {
+      "en": "ceremony",
+      "lingala": "ndulu",
+      "phonetic": "n-doo’-loo"
+    },
+    {
+      "en": "single",
+      "lingala": "nduma, mozemba",
+      "phonetic": "n-doo- mba, moh-zeh-mba"
+    },
+    {
+      "en": "vegetables",
+      "lingala": "ndunda",
+      "phonetic": "n-doo’-nda"
+    },
+    {
+      "en": "big",
+      "lingala": "nene, monene",
+      "phonetic": "moh-ne’-ne"
+    },
+    {
+      "en": "important",
+      "lingala": "nene, monene",
+      "phonetic": "moh-ne’-ne"
+    },
+    {
+      "en": "large",
+      "lingala": "nene, monene",
+      "phonetic": "moh-ne’-ne"
+    },
+    {
+      "en": "me",
+      "lingala": "ngai",
+      "phonetic": "n-ga’-ee’"
+    },
+    {
+      "en": "alone",
+      "lingala": "ngai moko",
+      "phonetic": "n-ga-ee mo’-ko’"
+    },
+    {
+      "en": "myself",
+      "lingala": "ngai moko",
+      "phonetic": "mo’-ko’"
+    },
+    {
+      "en": "tower",
+      "lingala": "ngala",
+      "phonetic": "n-ga-la"
+    },
+    {
+      "en": "fetish priest",
+      "lingala": "nganga-nkisi",
+      "phonetic": "n-ga-nga nkee-see"
+    },
+    {
+      "en": "poison",
+      "lingala": "ngenge",
+      "phonetic": "n-ge-nge"
+    },
+    {
+      "en": "red",
+      "lingala": "ngola",
+      "phonetic": "n-goh’-la"
+    },
+    {
+      "en": "hill",
+      "lingala": "ngomba",
+      "phonetic": "n-goh’-mba’"
+    },
+    {
+      "en": "mountain",
+      "lingala": "ngomba",
+      "phonetic": "n-goh’-mba’"
+    },
+    {
+      "en": "volcano",
+      "lingala": "ngomba-moto",
+      "phonetic": "n-goh-mba mo’-to"
+    },
+    {
+      "en": "cow",
+      "lingala": "ngombe",
+      "phonetic": "n-go’ – mbeh"
+    },
+    {
+      "en": "concert",
+      "lingala": "ngombi",
+      "phonetic": "n-gih-mbee"
+    },
+    {
+      "en": "bell",
+      "lingala": "ngonga",
+      "phonetic": "n-goh-nga"
+    },
+    {
+      "en": "clock",
+      "lingala": "ngonga",
+      "phonetic": "n-goh-nga"
+    },
+    {
+      "en": "groundnut",
+      "lingala": "nguba",
+      "phonetic": "n-goo-ba"
+    },
+    {
+      "en": "peanut",
+      "lingala": "nguba, nkalamga",
+      "phonetic": "n-goo-ba, nka-la-nga"
+    },
+    {
+      "en": "pig",
+      "lingala": "ngulu",
+      "phonetic": "n-goo-loo"
+    },
+    {
+      "en": "eggplant",
+      "lingala": "ngungutu",
+      "phonetic": "n-goo-ngoo- too"
+    },
+    {
+      "en": "why",
+      "lingala": "nini, mpo nini",
+      "phonetic": "nee’-nee’ mpoh nee’-nee"
+    },
+    {
+      "en": "thunder",
+      "lingala": "nkaki",
+      "phonetic": "nka’-kee"
+    },
+    {
+      "en": "anger",
+      "lingala": "nkanda",
+      "phonetic": "nka-nda"
+    },
+    {
+      "en": "fork",
+      "lingala": "nkanya",
+      "phonetic": "nkanya"
+    },
+    {
+      "en": "bicycle",
+      "lingala": "nkinga, velo",
+      "phonetic": "nkee-nga, veh-loh"
+    },
+    {
+      "en": "neck",
+      "lingala": "nkingo",
+      "phonetic": "nkee’-ngoh’"
+    },
+    {
+      "en": "medicine",
+      "lingala": "nkisi, mono",
+      "phonetic": "nkee-see, moh-noh’"
+    },
+    {
+      "en": "tortoise",
+      "lingala": "nkoba",
+      "phonetic": "nko’-ba"
+    },
+    {
+      "en": "marabout",
+      "lingala": "nkoko",
+      "phonetic": "nko’-ko"
+    },
+    {
+      "en": "owner",
+      "lingala": "nkolo",
+      "phonetic": "nko-loh"
+    },
+    {
+      "en": "name",
+      "lingala": "nkombo",
+      "phonetic": "nkoh’-boh’"
+    },
+    {
+      "en": "parrot",
+      "lingala": "nkoso",
+      "phonetic": "nko-so’"
+    },
+    {
+      "en": "beans",
+      "lingala": "nkunde, madesu",
+      "phonetic": "nkoo-ndeh, ma-deh’- soo"
+    },
+    {
+      "en": "immediately",
+      "lingala": "noki, sikawa",
+      "phonetic": "no-kee’ , see-ka’-wa"
+    },
+    {
+      "en": "soon",
+      "lingala": "noki, sikawa",
+      "phonetic": "no-kee, see-ka’-wa"
+    },
+    {
+      "en": "uncle",
+      "lingala": "noko",
+      "phonetic": "no’-ko’"
+    },
+    {
+      "en": "north",
+      "lingala": "nordi",
+      "phonetic": "nor-dee"
+    },
+    {
+      "en": "november",
+      "lingala": "novembere",
+      "phonetic": "noh-ve-mbe-re"
+    },
+    {
+      "en": "bottom",
+      "lingala": "nse",
+      "phonetic": "nseh"
+    },
+    {
+      "en": "harbor",
+      "lingala": "nsele",
+      "phonetic": "nseh-leh"
+    },
+    {
+      "en": "rabbit",
+      "lingala": "nsimbiliki",
+      "phonetic": "n-see-mbee-lee-kee"
+    },
+    {
+      "en": "smell",
+      "lingala": "nsolo",
+      "phonetic": "nso-lo"
+    },
+    {
+      "en": "awful",
+      "lingala": "nsomo",
+      "phonetic": "nso’-mo"
+    },
+    {
+      "en": "fear",
+      "lingala": "nsomo",
+      "phonetic": "nso’-mo"
+    },
+    {
+      "en": "cassava",
+      "lingala": "nsongo",
+      "phonetic": "nsoh-ngoh’"
+    },
+    {
+      "en": "chicken",
+      "lingala": "nsoso",
+      "phonetic": "nsoh’-soh’"
+    },
+    {
+      "en": "hen",
+      "lingala": "nsoso mwasi",
+      "phonetic": "nsoh’-soh’ mwa’-see"
+    },
+    {
+      "en": "end",
+      "lingala": "nsuka",
+      "phonetic": "nsoo’-ka"
+    },
+    {
+      "en": "limit",
+      "lingala": "nsuka",
+      "phonetic": "nsoo-ka"
+    },
+    {
+      "en": "hair",
+      "lingala": "nswei , nsuki",
+      "phonetic": "nsweh’-ee’, nsoo-kee"
+    },
+    {
+      "en": "distance",
+      "lingala": "ntaka",
+      "phonetic": "nta-ka"
+    },
+    {
+      "en": "tax",
+      "lingala": "ntako",
+      "phonetic": "nta’-koh"
+    },
+    {
+      "en": "expensive",
+      "lingala": "ntalo mingi , ya motuya",
+      "phonetic": "nta’-loh mee-ngee, ya moh-too’-ya"
+    },
+    {
+      "en": "value",
+      "lingala": "ntalo, motuya",
+      "phonetic": "nta’-loh ‘ moh-too-ya"
+    },
+    {
+      "en": "half",
+      "lingala": "ntei, ndambo",
+      "phonetic": "nteh-ee, n-da-mboh"
+    },
+    {
+      "en": "banana",
+      "lingala": "ntela",
+      "phonetic": "nteh-la"
+    },
+    {
+      "en": "doubt",
+      "lingala": "ntembe",
+      "phonetic": "nte-mbe"
+    },
+    {
+      "en": "reason",
+      "lingala": "ntina, mayele",
+      "phonetic": "ntee-na, ma-ye’- le"
+    },
+    {
+      "en": "fast",
+      "lingala": "ntingo",
+      "phonetic": "ntee-ngoh"
+    },
+    {
+      "en": "art",
+      "lingala": "ntoki",
+      "phonetic": "nto-kee"
+    },
+    {
+      "en": "needle",
+      "lingala": "ntonga",
+      "phonetic": "nto-nga"
+    },
+    {
+      "en": "daily",
+      "lingala": "ntongo nyonso",
+      "phonetic": "nto’-ngo’ nyo’-nso"
+    },
+    {
+      "en": "animal",
+      "lingala": "nyama",
+      "phonetic": "nya-ma"
+    },
+    {
+      "en": "meat",
+      "lingala": "nyama",
+      "phonetic": "nya-ma"
+    },
+    {
+      "en": "mutton",
+      "lingala": "nyama ya mpata",
+      "phonetic": "nya-ma ya mpa-ta’"
+    },
+    {
+      "en": "beef",
+      "lingala": "nyama ya ngombe",
+      "phonetic": "nya-ma ya n-go’-mbeh"
+    },
+    {
+      "en": "pork",
+      "lingala": "nyama ya ngulu",
+      "phonetic": "nya-ma ya n-goo-loo"
+    },
+    {
+      "en": "bushmeat",
+      "lingala": "nyama ya zamba",
+      "phonetic": "nya-ma (mo- soo-nee) ya za-mba"
+    },
+    {
+      "en": "quiet",
+      "lingala": "nye",
+      "phonetic": "nye"
+    },
+    {
+      "en": "quite",
+      "lingala": "nye",
+      "phonetic": "nye’-e"
+    },
+    {
+      "en": "stools",
+      "lingala": "nyei, selles",
+      "phonetic": "nyeh’-ee, sel"
+    },
+    {
+      "en": "snake",
+      "lingala": "nyoka",
+      "phonetic": "nyoh’-ka"
+    },
+    {
+      "en": "hunger",
+      "lingala": "nzala",
+      "phonetic": "n-za-la"
+    },
+    {
+      "en": "god",
+      "lingala": "Nzambe",
+      "phonetic": "n-za’-mbeh"
+    },
+    {
+      "en": "path",
+      "lingala": "nzela",
+      "phonetic": "n-zeh-la’"
+    },
+    {
+      "en": "way",
+      "lingala": "nzela",
+      "phonetic": "n-zeh-la’"
+    },
+    {
+      "en": "footpath",
+      "lingala": "nzela ya makolo",
+      "phonetic": "n-zeh-la’ ya ma-koh- loh"
+    },
+    {
+      "en": "witness",
+      "lingala": "nzeneneke",
+      "phonetic": "n-ze’-ne’-ne’-ke’"
+    },
+    {
+      "en": "stick",
+      "lingala": "nzete",
+      "phonetic": "n-zeh-teh’"
+    },
+    {
+      "en": "wood",
+      "lingala": "nzete , mwete",
+      "phonetic": "n-zeh-the’,mweh-the’"
+    },
+    {
+      "en": "glass",
+      "lingala": "nzinzi",
+      "phonetic": "n-zee-nzee"
+    },
+    {
+      "en": "nail",
+      "lingala": "nzongolongo",
+      "phonetic": "n-zoh’-ngoh’-loh’-ngoh’"
+    },
+    {
+      "en": "body",
+      "lingala": "nzoto",
+      "phonetic": "n-zoh’-to"
+    }
+  ],
+  "O": [
+    {
+      "en": "you",
+      "lingala": "o",
+      "phonetic": "oh"
+    },
+    {
+      "en": "between",
+      "lingala": "o ntaka",
+      "phonetic": "oh nta-ka"
+    },
+    {
+      "en": "on",
+      "lingala": "o, na",
+      "phonetic": "oh, na"
+    },
+    {
+      "en": "in",
+      "lingala": "o, na, na kati",
+      "phonetic": "oh, na, na-ka-tee"
+    },
+    {
+      "en": "august",
+      "lingala": "ogusiti",
+      "phonetic": "o-goo-see-tee"
+    },
+    {
+      "en": "occupied",
+      "lingala": "okipe",
+      "phonetic": "o-kee-peh’"
+    },
+    {
+      "en": "bus",
+      "lingala": "otobisi",
+      "phonetic": "oh-toh-bee-see"
+    }
+  ],
+  "P": [
+    {
+      "en": "grapefruit",
+      "lingala": "pamplemousse",
+      "phonetic": "pa-mple-mous"
+    },
+    {
+      "en": "easter",
+      "lingala": "Pasika",
+      "phonetic": "pa’-see-ka"
+    },
+    {
+      "en": "pants",
+      "lingala": "patalo",
+      "phonetic": "pa-ta-lo"
+    },
+    {
+      "en": "trousers",
+      "lingala": "patalo",
+      "phonetic": "pa-ta-lo"
+    },
+    {
+      "en": "white",
+      "lingala": "pembe",
+      "phonetic": "mpe-mbe"
+    },
+    {
+      "en": "near",
+      "lingala": "penepene, pembeni",
+      "phonetic": "pe-ne-pe-ne, pe- mbe’-nee"
+    },
+    {
+      "en": "pin",
+      "lingala": "pengele",
+      "phonetic": "pe’-nge-le"
+    },
+    {
+      "en": "airplane",
+      "lingala": "pepo, avio",
+      "phonetic": "mpeh’-poh, a-vee-o"
+    },
+    {
+      "en": "clean",
+      "lingala": "petwa",
+      "phonetic": "pe’-twa’"
+    },
+    {
+      "en": "barrel",
+      "lingala": "pipa",
+      "phonetic": "pee-pa"
+    },
+    {
+      "en": "kerosene",
+      "lingala": "pitolo",
+      "phonetic": "pee-to-lo"
+    },
+    {
+      "en": "clear",
+      "lingala": "polele, saa",
+      "phonetic": "poh-leh’-leh’, saa"
+    },
+    {
+      "en": "door",
+      "lingala": "polte, monoko ya ndako",
+      "phonetic": "po’l-te, moh-no-ko ya n-da’-koh"
+    },
+    {
+      "en": "mud",
+      "lingala": "potopoto",
+      "phonetic": "po-to-po-to"
+    },
+    {
+      "en": "dysentery",
+      "lingala": "pulupulu ya makila",
+      "phonetic": "poo-loo-poo-loo ya ma-kee-la"
+    },
+    {
+      "en": "cholera",
+      "lingala": "pulupulu ya nsomo",
+      "phonetic": "poo-loo-poo-loo ya nso’-ma"
+    },
+    {
+      "en": "police",
+      "lingala": "pulusi",
+      "phonetic": "poo-loo-see"
+    },
+    {
+      "en": "cat",
+      "lingala": "pusi, nkondoko",
+      "phonetic": "poo-see, nkoh’-ndo-koh"
+    },
+    {
+      "en": "dust",
+      "lingala": "putulu",
+      "phonetic": "poo-too-loo’"
+    }
+  ],
+  "R": [
+    {
+      "en": "radio",
+      "lingala": "radio",
+      "phonetic": "ra-dee-oh"
+    },
+    {
+      "en": "curtain",
+      "lingala": "rido",
+      "phonetic": "ree-doh"
+    }
+  ],
+  "S": [
+    {
+      "en": "watch",
+      "lingala": "sa",
+      "phonetic": "sa’-a"
+    },
+    {
+      "en": "soap",
+      "lingala": "saboni",
+      "phonetic": "sa-bo’-nee"
+    },
+    {
+      "en": "bag",
+      "lingala": "saki, libenga",
+      "phonetic": "sa’-kee, lee-beh-nga"
+    },
+    {
+      "en": "box",
+      "lingala": "sanduku",
+      "phonetic": "sa-ndoo’-koo"
+    },
+    {
+      "en": "news",
+      "lingala": "sango",
+      "phonetic": "nsa-ngoh"
+    },
+    {
+      "en": "priest",
+      "lingala": "sango, nganga-Nzambe",
+      "phonetic": "sa’-ngoh’, n-ga- nga N-za’-mbeh"
+    },
+    {
+      "en": "plate",
+      "lingala": "sani",
+      "phonetic": "sa’-nee"
+    },
+    {
+      "en": "luck",
+      "lingala": "sanse, konzo",
+      "phonetic": "sa’-nseh, koh-nzoh"
+    },
+    {
+      "en": "month",
+      "lingala": "sanza",
+      "phonetic": "sa’-nza’"
+    },
+    {
+      "en": "moon",
+      "lingala": "sanza",
+      "phonetic": "sa’-nza’"
+    },
+    {
+      "en": "slippers",
+      "lingala": "sapato",
+      "phonetic": "sa-pa-toh"
+    },
+    {
+      "en": "rosary",
+      "lingala": "sapele",
+      "phonetic": "sa-pe-le’"
+    },
+    {
+      "en": "still",
+      "lingala": "se, naino",
+      "phonetic": "she’, na-ee-noh"
+    },
+    {
+      "en": "chief",
+      "lingala": "sefu, mokonzi",
+      "phonetic": "she-foo, moh-koh-nzee"
+    },
+    {
+      "en": "comfortable",
+      "lingala": "sei",
+      "phonetic": "she-ee"
+    },
+    {
+      "en": "century",
+      "lingala": "sekulo",
+      "phonetic": "se-koo-lo"
+    },
+    {
+      "en": "direct",
+      "lingala": "semba",
+      "phonetic": "she-mba"
+    },
+    {
+      "en": "straight",
+      "lingala": "semba",
+      "phonetic": "seh-mba"
+    },
+    {
+      "en": "right",
+      "lingala": "sembo , molamu",
+      "phonetic": "she-mboh, moh-la’-moo"
+    },
+    {
+      "en": "sister-in-law",
+      "lingala": "semeki, bokilo",
+      "phonetic": "se-me’-kee, boh-kee- loh’"
+    },
+    {
+      "en": "shirt",
+      "lingala": "semisi",
+      "phonetic": "se-mee’-see"
+    },
+    {
+      "en": "september",
+      "lingala": "septembere",
+      "phonetic": "sep-te-mbe-re"
+    },
+    {
+      "en": "now",
+      "lingala": "sikoyo, sikawa, sasapi",
+      "phonetic": "see-koh’-yoh, see- ka-wa, sa-sa-pee"
+    },
+    {
+      "en": "after",
+      "lingala": "sima",
+      "phonetic": "nsee-ma"
+    },
+    {
+      "en": "movies",
+      "lingala": "sinema",
+      "phonetic": "see-neh-ma’"
+    },
+    {
+      "en": "string",
+      "lingala": "singa [ nsee-nga 0",
+      "phonetic": ""
+    },
+    {
+      "en": "yellow",
+      "lingala": "so, mosuku",
+      "phonetic": "soh, moh-soo-koo"
+    },
+    {
+      "en": "soldier",
+      "lingala": "soda",
+      "phonetic": "so-da’"
+    },
+    {
+      "en": "driver",
+      "lingala": "sofele, motambwisi-motuka",
+      "phonetic": "soh-feh’-leh, moh-ta’-mbwee-see moh-too-ka"
+    },
+    {
+      "en": "axe",
+      "lingala": "soka",
+      "phonetic": "so’-ka"
+    },
+    {
+      "en": "if",
+      "lingala": "soki",
+      "phonetic": "so’-kee"
+    },
+    {
+      "en": "about",
+      "lingala": "soko",
+      "phonetic": "so’ –ko’"
+    },
+    {
+      "en": "sure",
+      "lingala": "solo",
+      "phonetic": "so’-lo’"
+    },
+    {
+      "en": "true",
+      "lingala": "solo, mpenza",
+      "phonetic": "so’-lo’, mpeh-nza’"
+    },
+    {
+      "en": "ashamed",
+      "lingala": "soni",
+      "phonetic": "nsoh-nee"
+    },
+    {
+      "en": "socks",
+      "lingala": "soseti",
+      "phonetic": "soh-se’-tee"
+    },
+    {
+      "en": "sugar",
+      "lingala": "sukali",
+      "phonetic": "soo –ka-lee"
+    },
+    {
+      "en": "room",
+      "lingala": "suku",
+      "phonetic": "soo-koo"
+    },
+    {
+      "en": "sin",
+      "lingala": "sumuki",
+      "phonetic": "soo-moo-kee"
+    }
+  ],
+  "T": [
+    {
+      "en": "goat",
+      "lingala": "taba",
+      "phonetic": "nta-ba"
+    },
+    {
+      "en": "mirror",
+      "lingala": "talatala",
+      "phonetic": "ta-la-ta’-la"
+    },
+    {
+      "en": "spectacles",
+      "lingala": "talatala",
+      "phonetic": "ta-la-ta’-la"
+    },
+    {
+      "en": "ginger",
+      "lingala": "tangawisi",
+      "phonetic": "ta-nga-wee-see"
+    },
+    {
+      "en": "time",
+      "lingala": "tango",
+      "phonetic": "nta’-ngoh"
+    },
+    {
+      "en": "when",
+      "lingala": "tango",
+      "phonetic": "ta’-ngoh"
+    },
+    {
+      "en": "hour",
+      "lingala": "tango, ngonga",
+      "phonetic": "nta’-ngoh, n-goh-nga"
+    },
+    {
+      "en": "father",
+      "lingala": "tata",
+      "phonetic": "ta-ta’"
+    },
+    {
+      "en": "grandfather",
+      "lingala": "tata nkoko",
+      "phonetic": "ta-ta’ nko-ko"
+    },
+    {
+      "en": "weak",
+      "lingala": "tau, motau",
+      "phonetic": "moh-ta-oo"
+    },
+    {
+      "en": "not",
+      "lingala": "te",
+      "phonetic": "te’"
+    },
+    {
+      "en": "without",
+      "lingala": "te, tango",
+      "phonetic": "te’, ta-ngoh"
+    },
+    {
+      "en": "until",
+      "lingala": "tee kino",
+      "phonetic": "the’-eh’ kee-noh"
+    },
+    {
+      "en": "television",
+      "lingala": "televizyo",
+      "phonetic": "teh-leh-vee-zyo’"
+    },
+    {
+      "en": "tea",
+      "lingala": "ti",
+      "phonetic": "tee’"
+    },
+    {
+      "en": "ticket",
+      "lingala": "tike",
+      "phonetic": "tee-ke’"
+    },
+    {
+      "en": "or",
+      "lingala": "to",
+      "phonetic": "toh-oh"
+    },
+    {
+      "en": "we",
+      "lingala": "to",
+      "phonetic": "toh"
+    },
+    {
+      "en": "tomato",
+      "lingala": "tomati",
+      "phonetic": "toh-ma-tee"
+    },
+    {
+      "en": "full",
+      "lingala": "tondi",
+      "phonetic": "toh’-ndee"
+    },
+    {
+      "en": "morning",
+      "lingala": "tongo",
+      "phonetic": "nto’-ngo’"
+    },
+    {
+      "en": "court",
+      "lingala": "tribunali , esambelo",
+      "phonetic": "tree-boo-na-lee, eh- sa-mbeh-loh"
+    }
+  ],
+  "U": [
+    {
+      "en": "late",
+      "lingala": "umeli",
+      "phonetic": "oo-meh-lee"
+    },
+    {
+      "en": "from",
+      "lingala": "uta",
+      "phonetic": "oo-ta"
+    },
+    {
+      "en": "since",
+      "lingala": "uta , banda",
+      "phonetic": "oo-ta, ba-nda"
+    }
+  ],
+  "V": [
+    {
+      "en": "car",
+      "lingala": "vatiri, motuka",
+      "phonetic": "va-tee-ree , moh-too-ka"
+    }
+  ],
+  "W": [
+    {
+      "en": "there",
+      "lingala": "wana",
+      "phonetic": "wa’-a-na’"
+    },
+    {
+      "en": "gold",
+      "lingala": "wolo",
+      "phonetic": "who-loh"
+    }
+  ],
+  "Y": [
+    {
+      "en": "their",
+      "lingala": "ya bango",
+      "phonetic": "ya ba-ngoh’"
+    },
+    {
+      "en": "romantic",
+      "lingala": "ya bolingo",
+      "phonetic": "ya boh-lee-ngoh"
+    },
+    {
+      "en": "old",
+      "lingala": "ya kala",
+      "phonetic": "ya ka-la’"
+    },
+    {
+      "en": "special",
+      "lingala": "ya lolenge",
+      "phonetic": "ya loh-le’-nge’"
+    },
+    {
+      "en": "quarter",
+      "lingala": "ya minei",
+      "phonetic": "ya mee’-neh- ee"
+    },
+    {
+      "en": "right",
+      "lingala": "ya mobili",
+      "phonetic": "ya moh-ba’- lee"
+    },
+    {
+      "en": "usual",
+      "lingala": "ya momeseno",
+      "phonetic": "ya moh-me-se-noh"
+    },
+    {
+      "en": "dear",
+      "lingala": "ya motuya , ntalo mingi",
+      "phonetic": "ya moh-too-ya, nta’-loh mee’-ngee"
+    },
+    {
+      "en": "cheap",
+      "lingala": "ya motuya te, mobobe",
+      "phonetic": "ya moh-too-ya te’ , moh-boh-beh’"
+    },
+    {
+      "en": "left",
+      "lingala": "ya mwasi",
+      "phonetic": "ya mwa’-see"
+    },
+    {
+      "en": "last",
+      "lingala": "ya nsuka",
+      "phonetic": "ya nsoo-k"
+    },
+    {
+      "en": "new",
+      "lingala": "ya sika",
+      "phonetic": "ya see-ka"
+    },
+    {
+      "en": "useful",
+      "lingala": "ya tina",
+      "phonetic": "ya tee-na"
+    },
+    {
+      "en": "wild",
+      "lingala": "ya zamba, mosenzi",
+      "phonetic": "ya za-mba, moh-se’- nzee"
+    },
+    {
+      "en": "yard",
+      "lingala": "yadi",
+      "phonetic": "ya’-dee"
+    },
+    {
+      "en": "elder",
+      "lingala": "yaya, nkulutu",
+      "phonetic": "ya-ya’ , nkoo-loo’-too"
+    },
+    {
+      "en": "him",
+      "lingala": "ye",
+      "phonetic": "yeh’"
+    },
+    {
+      "en": "jesus",
+      "lingala": "Yesu",
+      "phonetic": "yeh-zoo"
+    },
+    {
+      "en": "wheel",
+      "lingala": "yika",
+      "phonetic": "yee-ka"
+    },
+    {
+      "en": "black",
+      "lingala": "yindo, moyindo",
+      "phonetic": "moh-yee-ndoh"
+    },
+    {
+      "en": "yourself",
+      "lingala": "yo moko",
+      "phonetic": "mo’-ko’"
+    },
+    {
+      "en": "every",
+      "lingala": "yonso",
+      "phonetic": "nyo’-nso, nyo’-so"
+    },
+    {
+      "en": "july",
+      "lingala": "yuli",
+      "phonetic": "yoo-lee"
+    },
+    {
+      "en": "june",
+      "lingala": "yuni",
+      "phonetic": "yoo-nee"
+    }
+  ],
+  "Z": [
+    {
+      "en": "devil",
+      "lingala": "zabolo, satana",
+      "phonetic": "za’-boh-loh , sa-ta-na"
+    },
+    {
+      "en": "forest",
+      "lingala": "zamba",
+      "phonetic": "za-mba"
+    },
+    {
+      "en": "bush",
+      "lingala": "zamba, esobe",
+      "phonetic": "za-mba, eh-soh-beh"
+    },
+    {
+      "en": "science",
+      "lingala": "zebi",
+      "phonetic": "zeh-bee"
+    },
+    {
+      "en": "zoology",
+      "lingala": "zebi za banyama na bandeke",
+      "phonetic": "zeh-bee za ba-nya-ma na ba-nde-ke"
+    },
+    {
+      "en": "archaeology",
+      "lingala": "zebi za biloko bwa kala",
+      "phonetic": "zeh-bee za bee-lo-ko bwa ka-la"
+    },
+    {
+      "en": "geology",
+      "lingala": "zebi za mabanga",
+      "phonetic": "zeh-bee za ma-ba’- nga’"
+    },
+    {
+      "en": "geography",
+      "lingala": "zebi za mokili",
+      "phonetic": "zeh-bee za moh-kee- lee"
+    },
+    {
+      "en": "botany",
+      "lingala": "zeby za bitwele",
+      "phonetic": "zeh-bee za bee-twe’- le’"
+    },
+    {
+      "en": "sand",
+      "lingala": "zelo",
+      "phonetic": "zeh-lo"
+    },
+    {
+      "en": "pregnancy",
+      "lingala": "zemi",
+      "phonetic": "zeh’-mee"
+    },
+    {
+      "en": "heavy",
+      "lingala": "zito, mozito",
+      "phonetic": "moh-zee-to"
+    },
+    {
+      "en": "nose",
+      "lingala": "zolo",
+      "phonetic": "zoh’-loh"
+    },
+    {
+      "en": "rotten",
+      "lingala": "zolongano",
+      "phonetic": "zoh-loh-nga-noh"
+    },
+    {
+      "en": "decade",
+      "lingala": "zomi",
+      "phonetic": "zoh-mee"
+    },
+    {
+      "en": "around",
+      "lingala": "zongazonga",
+      "phonetic": "zoh’-nga-zoh’-ga"
+    },
+    {
+      "en": "jealousy",
+      "lingala": "zuwa",
+      "phonetic": "zoo-wa"
+    }
+  ]
+}
