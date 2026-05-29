@@ -342,7 +342,8 @@ function screenToday() {
     wrap.appendChild(el('div', { class: 'spotlight-tag', text: '★ ' + t('spotlight') }));
   }
 
-  wrap.appendChild(directionBar());
+  // Direction picker removed — the foreign language is now driven by the
+  // interface language picked in the site nav.
   wrap.appendChild(previewCard(phrase, idx));
 
   // Primary actions.
@@ -586,7 +587,7 @@ async function init() {
     }
   }
 
-  state.direction = localStorage.getItem('lingala.direction') || DEFAULT_DIR[state.settings.lang] || 'fr-ln';
+  state.direction = DEFAULT_DIR[state.settings.lang] || 'ln-en';
   const streak = await reconcileStreak(state.now);
 
   render();
@@ -598,7 +599,7 @@ async function init() {
     if (lang === state.settings.lang) return;
     if (lang !== 'en' && lang !== 'fr' && lang !== 'ln') return;
     state.settings = await saveSettings({ lang });
-    state.direction = localStorage.getItem('lingala.direction') || DEFAULT_DIR[lang] || 'fr-ln';
+    state.direction = DEFAULT_DIR[lang] || 'ln-en';
     render();
   });
 
