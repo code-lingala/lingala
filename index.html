@@ -92,7 +92,7 @@
   }
 
   /* —— NAV —— */
-  nav {
+  nav, .site-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
@@ -103,7 +103,7 @@
     background: linear-gradient(to bottom, var(--base) 0%, transparent 100%);
   }
 
-  .nav-logo {
+  .nav-logo, .site-logo {
     font-family: var(--display);
     font-weight: 800;
     font-size: 1.1rem;
@@ -112,6 +112,35 @@
     text-decoration: none;
     text-transform: uppercase;
   }
+
+  /* Hamburger toggle — visible on mobile only. */
+  .nav-toggle {
+    position: relative; z-index: 110;
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 40px; height: 40px; padding: 0 8px;
+    background: transparent; border: 1px solid var(--line);
+    border-radius: 10px; cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s, opacity .2s; }
+  .nav-toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (min-width: 720px) { .nav-toggle { display: none; } }
+
+  .site-cta {
+    background: var(--terracotta);
+    color: #FAF7F0;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-family: var(--body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .site-cta:hover { background: var(--terracotta-hover); }
 
   .nav-right { display: flex; align-items: center; gap: 24px; }
 
@@ -1104,9 +1133,34 @@
 
   /* —— RESPONSIVE —— */
   @media (max-width: 900px) {
-    nav { padding: 16px 20px; }
+    nav, .site-nav { padding: 16px 20px; }
+  }
+
+  /* Mobile hamburger drawer: .nav-right slides in from the top when .open */
+  @media (max-width: 719px) {
+    .nav-right {
+      position: fixed;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: var(--base);
+      padding: 88px 28px 32px;
+      flex-direction: column; align-items: flex-start; gap: 28px;
+      transform: translateY(-100%); transition: transform .25s ease;
+      z-index: 90; overflow-y: auto;
+    }
+    .nav-right.open { transform: translateY(0); }
+    .nav-links {
+      flex-direction: column; align-items: flex-start; gap: 18px;
+      width: 100%; display: flex !important;
+    }
+    .nav-links a { font-size: 1.4rem; font-family: var(--serif); }
+    .site-cta { align-self: stretch; text-align: center; }
+  }
+
+  @media (max-width: 900px) and (min-width: 720px) {
     .nav-right { gap: 16px; }
     .nav-links { display: none; }
+  }
+  @media (max-width: 900px) {
 
     .hero {
       grid-template-columns: 1fr;
@@ -1190,10 +1244,10 @@
 <body data-title-i18n="title.home">
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="/">Lingala</a>
+<nav class="site-nav">
+  <a class="site-logo" href="/">Lingala</a>
   <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
-  <div class="nav-right" id="navRight">
+  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><a href="/count.html" data-i18n="nav.count">Count</a><a href="/name.html" data-i18n="nav.name">Find your name</a><a href="/about.html" data-i18n="nav.about">About</a></div>
     <div class="theme-dots" role="group" aria-label="Colour theme" data-i18n-attr="aria-label:aria.theme">
       <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue" data-i18n-attr="aria-label:aria.blue"></button>
       <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red" data-i18n-attr="aria-label:aria.red"></button>
@@ -1205,14 +1259,7 @@
       <span aria-hidden="true">/</span>
       <button data-lang-btn="ln" type="button">LN</button>
     </div>
-    <ul class="nav-links">
-      <li><a href="#about" data-i18n="nav.about">About</a></li>
-      <li><a href="#how" data-i18n="nav.how">How it works</a></li>
-      <li><a href="#community" data-i18n="nav.community">Community</a></li>
-      <li><a href="/name.html" data-i18n="nav.name">Find your name</a></li>
-      <li><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a></li>
-      <li><a href="/card.html" class="nav-cta" data-i18n="nav.cta">Open today's  card</a></li>
-    </ul>
+    <a class="site-cta" href="/card.html" data-i18n="nav.cta">Open today's card</a>
   </div>
 </nav>
 
@@ -1257,20 +1304,32 @@
 <div class="statement-strip">
   <div class="strip-track">
     <div class="strip-group">
-      <span class="strip-text" data-i18n="strip.nologin">No login</span>
-      <span class="strip-text" data-i18n="strip.noads">No ads</span>
-      <span class="strip-text" data-i18n="strip.nodata">No data collected</span>
-      <span class="strip-text" data-i18n="strip.free">Free forever</span>
-      <span class="strip-text" data-i18n="strip.offline">Works offline</span>
-      <span class="strip-text" data-i18n="strip.made">Congolese-made</span>
+      <a class="strip-text" href="/verbs/kolingana.html">kolingana</a>
+      <a class="strip-text" href="/verbs/kolia.html">kolia</a>
+      <a class="strip-text" href="/verbs/kosala.html">kosala</a>
+      <a class="strip-text" href="/verbs/koyeba.html">koyeba</a>
+      <a class="strip-text" href="/verbs/kozala.html">kozala</a>
+      <a class="strip-text" href="/verbs/koya.html">koya</a>
+      <a class="strip-text" href="/verbs/kokende.html">kokende</a>
+      <a class="strip-text" href="/verbs/kolata.html">kolata</a>
+      <a class="strip-text" href="/verbs/kosomba.html">kosomba</a>
+      <a class="strip-text" href="/verbs/koteka.html">koteka</a>
+      <a class="strip-text" href="/verbs/kotanga.html">kotanga</a>
+      <a class="strip-text" href="/verbs/koma.html">koma</a>
     </div>
     <div class="strip-group" aria-hidden="true">
-      <span class="strip-text" data-i18n="strip.nologin">No login</span>
-      <span class="strip-text" data-i18n="strip.noads">No ads</span>
-      <span class="strip-text" data-i18n="strip.nodata">No data collected</span>
-      <span class="strip-text" data-i18n="strip.free">Free forever</span>
-      <span class="strip-text" data-i18n="strip.offline">Works offline</span>
-      <span class="strip-text" data-i18n="strip.made">Congolese-made</span>
+      <a class="strip-text" href="/verbs/kolingana.html">kolingana</a>
+      <a class="strip-text" href="/verbs/kolia.html">kolia</a>
+      <a class="strip-text" href="/verbs/kosala.html">kosala</a>
+      <a class="strip-text" href="/verbs/koyeba.html">koyeba</a>
+      <a class="strip-text" href="/verbs/kozala.html">kozala</a>
+      <a class="strip-text" href="/verbs/koya.html">koya</a>
+      <a class="strip-text" href="/verbs/kokende.html">kokende</a>
+      <a class="strip-text" href="/verbs/kolata.html">kolata</a>
+      <a class="strip-text" href="/verbs/kosomba.html">kosomba</a>
+      <a class="strip-text" href="/verbs/koteka.html">koteka</a>
+      <a class="strip-text" href="/verbs/kotanga.html">kotanga</a>
+      <a class="strip-text" href="/verbs/koma.html">koma</a>
     </div>
   </div>
 </div>
