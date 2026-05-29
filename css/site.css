@@ -128,7 +128,7 @@ body {
 .ambient-spacer { flex: 1; }
 .ambient-btn { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--accent); color: #fff; cursor: pointer; font-size: 12px; line-height: 1; display: flex; align-items: center; justify-content: center; }
 .ambient-btn:active { transform: translateY(1px); }
-@media (max-width: 600px) { .ambient { gap: 10px; padding-left: 14px; padding-right: 14px; } .ambient-viz { height: 18px; gap: 1.5px; } .vbar { width: 2px; } }
+@media (max-width: 600px) { html { font-size: 17px; } .ambient { gap: 10px; padding-left: 14px; padding-right: 14px; } .ambient-viz { height: 18px; gap: 1.5px; } .vbar { width: 2px; } }
 
 /* grain */
 body::before {

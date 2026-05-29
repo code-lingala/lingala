@@ -36,6 +36,11 @@
   let actx = null, masterG = null, comp = null, playing = false, ticker = null;
   let sessionStart = 0, startTime = 0, nextBarTime = 0, curBar = 0, barBase = 0;
   let snareBuf = null, hatBuf = null, congaBuf = null;
+  // iOS silent-switch workaround: an <audio> element fed by a MediaStream of the
+  // Web Audio output routes through the device's MEDIA channel, which ignores
+  // the ring/silent switch. Without this, iOS treats raw Web Audio as "ambient"
+  // and mutes it whenever the phone is on silent.
+  let routerAudio = null, streamDest = null;
 
   // E-rooted pentatonic/diatonic note bank for the sebene's bass + guitars.
   const N = {
@@ -221,7 +226,21 @@
     // A compressor glues the mix and keeps dense peaks off the clipping ceiling.
     comp = ctx.createDynamicsCompressor();
     comp.threshold.value = -18; comp.knee.value = 6; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.2;
-    comp.connect(masterG); masterG.connect(ctx.destination);
+    comp.connect(masterG);
+    // Route through both ctx.destination (desktop fidelity) AND a MediaStream
+    // played by an <audio> element (so iOS ignores the silent switch).
+    masterG.connect(ctx.destination);
+    if (typeof ctx.createMediaStreamDestination === 'function') {
+      try {
+        streamDest = ctx.createMediaStreamDestination();
+        masterG.connect(streamDest);
+        routerAudio = new Audio();
+        routerAudio.playsInline = true;
+        routerAudio.setAttribute('playsinline', '');
+        routerAudio.srcObject = streamDest.stream;
+        await routerAudio.play().catch(() => {});
+      } catch (e) { /* fall back to ctx.destination only */ }
+    }
 
     snareBuf = noise(0.02); hatBuf = noise(0.005); congaBuf = noise(0.04);
 
@@ -257,6 +276,7 @@
       } catch (e) { /* ignore */ }
     }
     setUI(false);
+    if (routerAudio) { try { routerAudio.pause(); } catch (e) { /* ignore */ } }
     // An auto-stop (5-min timeout) must NOT persist 'off', or the next page load
     // would never re-arm autoplay. Only an explicit pause (below) stays off.
     if (prog) setTimeout(() => { prog.style.width = '0%'; }, auto ? 1200 : 400);
