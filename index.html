@@ -1292,6 +1292,19 @@
   .deeplinks-col a { font-family: var(--serif); font-size: 0.98rem; color: var(--ink); text-decoration: none; opacity: 0.85; transition: opacity 0.15s, color 0.15s; }
   .deeplinks-col a:hover { opacity: 1; color: var(--accent); }
   .deeplinks-col a em { font-style: italic; color: var(--accent); opacity: 0.9; font-size: 0.9rem; margin-left: 6px; }
+
+  /* —— Paper theme shadow softening ——
+     Default shadows assume a dark background. On pure white they smudge;
+     replace with soft, low-alpha layered shadows that work against white. */
+  html[data-theme='paper'] .card {
+    box-shadow: 0 16px 40px rgba(0,0,0,0.10), 0 4px 10px rgba(0,0,0,0.06);
+  }
+  html[data-theme='paper'] .culture-card-demo {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 3px 8px rgba(0,0,0,0.05);
+  }
+  html[data-theme='paper'] .ambient {
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.06), 0 -8px 24px rgba(0,0,0,0.04);
+  }
 </style>
 <style>@keyframes heartpulse{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.28);opacity:1}}.pulse-heart{display:inline-block;margin-left:5px;color:var(--terracotta,#C8202A);animation:heartpulse 1.15s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.pulse-heart{animation:none}}</style>
 <!-- SEO:start -->

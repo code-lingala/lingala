@@ -321,3 +321,11 @@ body::before {
 @keyframes heartpulse { 0%, 100% { transform: scale(1); opacity: 0.82; } 50% { transform: scale(1.28); opacity: 1; } }
 .pulse-heart { display: inline-block; margin-left: 5px; color: var(--terracotta, #C8202A); animation: heartpulse 1.15s ease-in-out infinite; will-change: transform; }
 @media (prefers-reduced-motion: reduce) { .pulse-heart { animation: none; } }
+
+/* —— Paper theme shadow softening ——
+   The default shadows are tuned for dark themes (rgba(0,0,0,0.28+)). On the
+   pure-white paper theme those read as dirty grey smudges; replace with soft,
+   low-alpha shadows that work against white. */
+html[data-theme='paper'] .ambient {
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.06), 0 -8px 24px rgba(0,0,0,0.04);
+}

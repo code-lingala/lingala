@@ -610,3 +610,13 @@ html { scrollbar-color: #1455A4 rgba(244,200,30,0.25); scrollbar-width: thin; }
 .lang-switch { display: flex; align-items: center; gap: 4px; font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink); }
 .lang-switch button { background: none; border: 0; color: inherit; cursor: pointer; font-family: inherit; font-size: inherit; padding: 2px 4px; }
 .lang-switch span { opacity: 0.35; }
+
+/* —— Paper theme shadow softening ——
+   Default shadows assume a dark background. On pure white they smudge; replace
+   with soft, low-alpha layered shadows. */
+html[data-theme='paper'] .ambient {
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.06), 0 -8px 24px rgba(0,0,0,0.04);
+}
+html[data-theme='paper'] .card {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.05);
+}
