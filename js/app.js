@@ -381,9 +381,13 @@ function screenSettings() {
   const group = (labelKey, control) =>
     el('div', { class: 'set-group' }, [el('label', { class: 'set-label', text: t(labelKey) }), control]);
 
-  // Interface language.
+  // Interface language. Also pushes the choice into the site-wide i18n
+  // system so the footer + topbar lang chip stay in sync.
   const langSel = el('select', { class: 'set-control', onchange: async (e) => {
     state.settings = await saveSettings({ lang: e.target.value });
+    if (window.LingalaI18n && window.LingalaI18n.set) {
+      window.LingalaI18n.set(e.target.value);
+    }
     render();
   } }, [
     el('option', { value: 'en', text: 'English', ...(state.settings.lang === 'en' ? { selected: '' } : {}) }),
@@ -486,7 +490,9 @@ function suggestForm() {
 // --- shell + view switching -------------------------------------------------
 function render() {
   document.documentElement.setAttribute('data-theme', state.settings.theme);
-  document.documentElement.lang = state.settings.lang;
+  // When i18n-site.js is loaded it owns <html lang>; only touch it when
+  // running standalone (older fallback path).
+  if (!window.LingalaI18n) document.documentElement.lang = state.settings.lang;
 
   const nav = document.getElementById('nav');
   nav.replaceChildren(...['today', 'archive', 'settings'].map((v) =>
@@ -519,10 +525,34 @@ async function init() {
   const savedTheme = localStorage.getItem('lingala.theme');
   if (savedTheme) state.settings.theme = savedTheme;
   else localStorage.setItem('lingala.theme', state.settings.theme);
+
+  // Sync with the site-wide language picker (?lang= URL param or topbar
+  // EN/FR/LN buttons via i18n-site.js). The card app only authors chrome
+  // for EN and FR, so clamp LN → EN for app strings; meanwhile the page's
+  // data-i18n elements (footer) still translate to LN correctly.
+  if (window.LingalaI18n && window.LingalaI18n.detect) {
+    const siteLang = window.LingalaI18n.detect();
+    const appLang = siteLang === 'fr' ? 'fr' : 'en';
+    if (appLang !== state.settings.lang) {
+      state.settings = await saveSettings({ lang: appLang });
+    }
+  }
+
   state.direction = localStorage.getItem('lingala.direction') || DEFAULT_DIR[state.settings.lang] || 'fr-ln';
   const streak = await reconcileStreak(state.now);
 
   render();
+
+  // Re-render the card content when the user switches language via the
+  // topbar EN/FR/LN switcher.
+  window.addEventListener('lingala:lang', async (e) => {
+    const lang = (e && e.detail) || (window.LingalaI18n && window.LingalaI18n.detect && window.LingalaI18n.detect()) || 'en';
+    const appLang = lang === 'fr' ? 'fr' : 'en';
+    if (appLang === state.settings.lang) return;
+    state.settings = await saveSettings({ lang: appLang });
+    state.direction = localStorage.getItem('lingala.direction') || DEFAULT_DIR[appLang] || 'fr-ln';
+    render();
+  });
 
   // Streak badge in the header.
   const badge = document.getElementById('streakBadge');
