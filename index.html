@@ -1138,6 +1138,15 @@
     .site-footer { padding-left: 20px; padding-right: 20px; }
   }
 
+  /* Unified DRC-flag scrollbar — matches css/site.css used by other pages. */
+  ::-webkit-scrollbar { -webkit-appearance: none; width: 14px; height: 14px; background-color: rgba(0,0,0,0.18); }
+  ::-webkit-scrollbar-track { -webkit-appearance: none; background-color: rgba(0,0,0,0.18); }
+  ::-webkit-scrollbar-thumb { -webkit-appearance: none; background-color: #1455A4; background-image: linear-gradient(180deg, #1455A4 0%, #1455A4 30%, #F4C81E 35%, #F4C81E 65%, #C8202A 70%, #C8202A 100%); border-radius: 100px; }
+  ::-webkit-scrollbar-thumb:hover { background-image: linear-gradient(180deg, #1A6BC9 0%, #1A6BC9 30%, #FFD42E 35%, #FFD42E 65%, #E0303B 70%, #E0303B 100%); }
+  ::-webkit-scrollbar-thumb:horizontal { background-image: linear-gradient(90deg, #1455A4 0%, #1455A4 30%, #F4C81E 35%, #F4C81E 65%, #C8202A 70%, #C8202A 100%); }
+  ::-webkit-scrollbar-corner { background-color: rgba(0,0,0,0.2); }
+  html { scrollbar-color: #1455A4 rgba(244,200,30,0.25); scrollbar-width: thin; }
+
   /* TOOLS / WHAT'S INSIDE — added section showcasing dictionary, verbs, count, name */
   .tools-section { max-width: 1200px; margin: 0 auto; padding: 90px 24px 60px; }
   .tools-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 44px; }
@@ -1501,7 +1510,7 @@
     <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
     <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
   </div>
-  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.53</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.54</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
 </footer>
 
 <!-- Ambient sticky footer: a warm Lingala welcome + the Likembe ambient piece. -->
