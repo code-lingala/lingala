@@ -163,86 +163,132 @@ export function renderCard(phrase, opts = {}) {
   const cat = CATEGORIES[phrase.category];
   const catLabel = ((cat && (lang === 'fr' ? cat.fr : cat.en)) || phrase.category).toUpperCase();
 
-  // Vertical layout. Story format gets more breathing room top and bottom.
   const cx = W / 2;
-  let y = format === 'story' ? 430 : 250;
-
-  // Category label.
   ctx.textAlign = 'center';
-  ctx.fillStyle = pal.accent;
-  ctx.font = `bold 30px ${BODY}`;
-  ctx.save();
-  // letter-spaced uppercase, drawn char by char for tracking.
-  drawTracked(ctx, catLabel, cx, y, 30, 8);
-  ctx.restore();
-  y += 40;
-  diamondStrip(ctx, cx - 110, y, 220, pal.accent, 7);
-  y += format === 'story' ? 90 : 70;
 
-  // Lingala phrase — the hero. Cap at 2 lines so multi-word phrases don't
-  // stack one word per line and shove the cultural note off the canvas.
+  // Bottom-anchored wordmark + URL — reserved space.
+  const wmY = H - (format === 'story' ? 150 : 96);
+
+  // ----- Pre-measure every section so we can vertically centre the whole
+  //       composition between the inset frame top and the wordmark. Each
+  //       piece is laid out from a computed startY rather than a fixed y. -----
   const phraseFit = fitText(ctx, phrase.lingala, {
-    maxWidth: W - M * 2,
-    maxLines: 2,
-    start: 130,
-    min: 56,
-    weight: '900',
-    family: DISPLAY,
+    maxWidth: W - M * 2, maxLines: 2, start: 130, min: 56,
+    weight: '900', family: DISPLAY,
   });
-  ctx.fillStyle = pal.text;
-  ctx.font = `900 ${phraseFit.size}px ${DISPLAY}`;
-  const phraseLH = phraseFit.size * 1.06;
-  for (const line of phraseFit.lines) {
-    ctx.fillText(line, cx, y + phraseFit.size * 0.8);
-    y += phraseLH;
-  }
-  y += 28;
-
-  // English / French translation.
   const transFit = fitText(ctx, translation, {
-    maxWidth: W - M * 2,
-    maxLines: 2,
-    start: 56,
-    min: 34,
-    weight: '600',
-    family: BODY,
+    maxWidth: W - M * 2, maxLines: 2, start: 56, min: 34,
+    weight: '600', family: BODY,
   });
-  ctx.fillStyle = pal.text;
-  ctx.font = `600 ${transFit.size}px ${BODY}`;
-  for (const line of transFit.lines) {
-    ctx.fillText(line, cx, y + transFit.size * 0.8);
-    y += transFit.size * 1.18;
-  }
-  y += 14;
 
-  // Phonetic pronunciation — muted tertiary treatment.
-  ctx.fillStyle = pal.muted;
-  ctx.font = `italic 40px ${BODY}`;
-  ctx.fillText(phrase.phonetic, cx, y + 30);
-  y += 70;
+  const phraseLH = phraseFit.size * 1.06;
+  const transLH  = transFit.size  * 1.18;
+  // Section heights (gap above each element baked in).
+  const catH        = 30;
+  const stripGapTop = 40;
+  const stripH      = 8;
+  const stripGapBot = format === 'story' ? 90 : 70;
+  const phraseBlockH = phraseFit.lines.length * phraseLH;
+  const phraseGap    = 28;
+  const transBlockH  = transFit.lines.length * transLH;
+  const transGap     = 14;
+  const phonH        = 50;   // baseline + descender room
+  const phonGap      = 60;   // space between phonetic and note diamond strip
 
-  // Cultural note. Anchor it to the lower region for a stable composition.
-  const noteTop = format === 'story' ? H - 560 : H - 360;
-  y = Math.max(y + 20, noteTop);
-  diamondStrip(ctx, cx - 150, y, 300, pal.soft, 11);
-  y += 56;
+  const topSectionH =
+    catH + stripGapTop + stripH + stripGapBot +
+    phraseBlockH + phraseGap + transBlockH + transGap + phonH;
 
-  ctx.fillStyle = pal.muted;
-  ctx.font = `400 34px ${BODY}`;
   // Pick the cultural note in the active interface language with EN fallback.
   const noteText = (lang === 'fr' && phrase.noteFr) ? phrase.noteFr
                  : (lang === 'ln' && phrase.noteLn) ? phrase.noteLn
                  : phrase.note;
-  const noteLines = wrapLines(ctx, noteText, W - M * 2);
-  for (const line of noteLines.slice(0, 5)) {
-    ctx.fillText(line, cx, y);
-    y += 46;
+  const NOTE_PAD_BOTTOM = 40; // gap between last note line and the wordmark
+  const DIAMOND_GAP = 50;     // strip + spacing before the first text line
+
+  // Available vertical span for the whole content block (everything above the
+  // wordmark + URL). The inset frame top sits at M*0.55 ≈ 46, but we leave a
+  // visible top breathing room equal to the bottom margin so it looks balanced.
+  const TOP_LIMIT = M * 1.1;
+  const BOTTOM_LIMIT = wmY - NOTE_PAD_BOTTOM;
+  const availableH = BOTTOM_LIMIT - TOP_LIMIT;
+
+  // Choose note font size adaptively given remaining space after top section.
+  const noteAreaH0 = availableH - topSectionH - phonGap;
+  let noteSize = 34, noteLH = 46, noteLines = [];
+  for (; noteSize >= 22; noteSize -= 2) {
+    noteLH = Math.round(noteSize * 1.35);
+    ctx.font = `400 ${noteSize}px ${BODY}`;
+    noteLines = wrapLines(ctx, noteText, W - M * 2);
+    const block = DIAMOND_GAP + noteLines.length * noteLH;
+    if (block <= noteAreaH0) break;
+  }
+  // If still overflowing at min size, truncate.
+  const maxNoteLines = Math.max(1, Math.floor((noteAreaH0 - DIAMOND_GAP) / noteLH));
+  if (noteLines.length > maxNoteLines) {
+    noteLines = noteLines.slice(0, maxNoteLines);
+    const last = noteLines[noteLines.length - 1].replace(/[\s.,;:!?-]+$/, '');
+    noteLines[noteLines.length - 1] = last + '…';
+  }
+  const noteBlockH = DIAMOND_GAP + noteLines.length * noteLH;
+
+  // Centre the full content block (top section + gap + note) in the available
+  // vertical band. Extra padding splits evenly above the category label and
+  // below the last note line.
+  const fullH = topSectionH + phonGap + noteBlockH;
+  const startY = TOP_LIMIT + Math.max(0, (availableH - fullH) / 2);
+
+  // ----- Now draw, advancing y as we go -----
+  let y = startY;
+
+  // Category label.
+  ctx.fillStyle = pal.accent;
+  ctx.font = `bold 30px ${BODY}`;
+  drawTracked(ctx, catLabel, cx, y, 30, 8);
+  y += catH + stripGapTop;
+  diamondStrip(ctx, cx - 110, y, 220, pal.accent, 7);
+  y += stripH + stripGapBot;
+
+  // Lingala phrase.
+  ctx.fillStyle = pal.text;
+  ctx.font = `900 ${phraseFit.size}px ${DISPLAY}`;
+  for (const line of phraseFit.lines) {
+    ctx.fillText(line, cx, y + phraseFit.size * 0.8);
+    y += phraseLH;
+  }
+  y += phraseGap;
+
+  // Translation.
+  ctx.fillStyle = pal.text;
+  ctx.font = `600 ${transFit.size}px ${BODY}`;
+  for (const line of transFit.lines) {
+    ctx.fillText(line, cx, y + transFit.size * 0.8);
+    y += transLH;
+  }
+  y += transGap;
+
+  // Phonetic pronunciation.
+  ctx.fillStyle = pal.muted;
+  ctx.font = `italic 40px ${BODY}`;
+  ctx.fillText(phrase.phonetic, cx, y + 30);
+  y += phonH;
+
+  // Cultural note — placed immediately below the top section with the
+  // diamond divider on top. Spacing and sizes were already pre-measured
+  // above so the whole composition is balanced vertically.
+  y += phonGap - 50;   // pull the diamond strip 50px up because noteY starts here
+  diamondStrip(ctx, cx - 150, y, 300, pal.soft, 11);
+  let noteY = y + DIAMOND_GAP;
+  ctx.fillStyle = pal.muted;
+  ctx.font = `400 ${noteSize}px ${BODY}`;
+  for (const line of noteLines) {
+    ctx.fillText(line, cx, noteY);
+    noteY += noteLH;
   }
 
   // Watermark wordmark — passive marketing, bottom of the card.
   ctx.fillStyle = pal.text;
   ctx.font = `800 38px ${DISPLAY}`;
-  const wmY = H - (format === 'story' ? 150 : 96);
   drawTracked(ctx, 'LINGALA', cx, wmY, 38, 6);
   ctx.fillStyle = pal.muted;
   ctx.font = `500 24px ${BODY}`;
