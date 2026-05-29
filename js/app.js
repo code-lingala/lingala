@@ -110,7 +110,13 @@ const t = (k) => (T[state.settings?.lang] || T.en)[k] || k;
 // The product teaches both ways for two pairs: Lingala↔French and Lingala↔
 // English. `direction` is "from-to"; the non-Lingala side is the foreign gloss
 // shown on the card. Interface language (chrome/note) is a separate setting.
-const DIR_NAMES = { ln: 'Lingala', fr: 'Français', en: 'English' };
+// Language names shown on the direction picker, localised per interface.
+const DIR_NAMES_BY_LANG = {
+  en: { ln: 'Lingala', fr: 'French',    en: 'English'  },
+  fr: { ln: 'Lingala', fr: 'Français',  en: 'Anglais'  },
+  ln: { ln: 'Lingala', fr: 'Falanse',   en: 'Anglais'  },
+};
+const dirNames = () => DIR_NAMES_BY_LANG[state.settings?.lang] || DIR_NAMES_BY_LANG.en;
 // Lingala is the source of truth — users want to read it and learn the
 // foreign meaning, not the other way. Default to ln→foreign for every
 // interface language. The flip button still lets them reverse to practice.
@@ -123,7 +129,8 @@ const foreignOf = (direction) => {
 const foreignText = (phrase, direction) => (foreignOf(direction) === 'fr' ? phrase.fr : phrase.en);
 const dirLabel = (direction) => {
   const [from, to] = direction.split('-');
-  return `${DIR_NAMES[from]} → ${DIR_NAMES[to]}`;
+  const N = dirNames();
+  return `${N[from]} → ${N[to]}`;
 };
 
 function setDirection(direction) {
@@ -136,9 +143,10 @@ function setDirection(direction) {
 function directionBar() {
   const foreign = foreignOf(state.direction);
   const learningLn = state.direction.endsWith('-ln');
+  const N = dirNames();
   const seg = el('div', { class: 'dir-seg' },
     ['fr', 'en'].map((f) => el('button', {
-      class: 'dir-segbtn' + (foreign === f ? ' active' : ''), type: 'button', text: DIR_NAMES[f],
+      class: 'dir-segbtn' + (foreign === f ? ' active' : ''), type: 'button', text: N[f],
       onclick: () => setDirection(learningLn ? `${f}-ln` : `ln-${f}`),
     })));
   const now = el('div', { class: 'dir-now' }, [
