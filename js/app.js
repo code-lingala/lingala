@@ -127,6 +127,21 @@ const foreignOf = (direction) => {
   return from === 'ln' ? to : from;
 };
 const foreignText = (phrase, direction) => (foreignOf(direction) === 'fr' ? phrase.fr : phrase.en);
+
+// Cultural note + extended note in the active interface language.
+// Falls back to English when the FR / LN translation hasn't been authored yet.
+const noteFor = (phrase) => {
+  const lang = state.settings?.lang;
+  if (lang === 'fr' && phrase.noteFr) return phrase.noteFr;
+  if (lang === 'ln' && phrase.noteLn) return phrase.noteLn;
+  return phrase.note;
+};
+const longFor = (phrase) => {
+  const lang = state.settings?.lang;
+  if (lang === 'fr' && phrase.longFr) return phrase.longFr;
+  if (lang === 'ln' && phrase.longLn) return phrase.longLn;
+  return phrase.long;
+};
 const dirLabel = (direction) => {
   const [from, to] = direction.split('-');
   const N = dirNames();
@@ -233,7 +248,7 @@ function captionFor(phrase) {
     state.settings.lang === 'fr' ? `🇫🇷 ${phrase.fr}` : null,
     `🗣️ ${phrase.phonetic}`,
     '',
-    phrase.note,
+    noteFor(phrase),
     '',
     'Share this with someone who speaks Lingala 🇨🇩',
     'Daily Lingala phrase from lingala.artivicolab.com',
@@ -244,7 +259,7 @@ function captionFor(phrase) {
 }
 
 function whatsappFor(phrase) {
-  return `*${phrase.lingala}*\n${foreignText(phrase, state.direction)}\n_${phrase.phonetic}_\n\n${phrase.note}\n\n— lingala.artivicolab.com`;
+  return `*${phrase.lingala}*\n${foreignText(phrase, state.direction)}\n_${phrase.phonetic}_\n\n${noteFor(phrase)}\n\n— lingala.artivicolab.com`;
 }
 
 // Advance the streak on a real action and refresh the badge.
@@ -285,11 +300,13 @@ function previewCard(phrase, dayIndex) {
   card.appendChild(pron);
   card.appendChild(pronPanel);
 
-  // Cultural note + read-more expansion.
-  const note = el('p', { class: 'card-note', text: phrase.note });
+  // Cultural note + read-more expansion (translated when available).
+  const noteText = noteFor(phrase);
+  const longText = longFor(phrase);
+  const note = el('p', { class: 'card-note', text: noteText });
   card.appendChild(note);
-  if (phrase.long && phrase.long !== phrase.note) {
-    const long = el('p', { class: 'card-long', text: phrase.long });
+  if (longText && longText !== noteText) {
+    const long = el('p', { class: 'card-long', text: longText });
     const more = el('button', { class: 'read-more', type: 'button', text: t('readMore') });
     more.addEventListener('click', () => {
       const open = long.classList.toggle('open');
@@ -428,8 +445,9 @@ function screenSettings() {
   ]);
   wrap.appendChild(group('langLabel', langSel));
 
-  // Card colour theme.
-  const themes = [['green', 'green'], ['blue', 'blue'], ['yellow', 'yellow'], ['red', 'red']];
+  // Card colour theme. Green and yellow were retired site-wide; the only
+  // active themes are blue (default) and red.
+  const themes = [['blue', 'blue'], ['red', 'red']];
   const themeRow = el('div', { class: 'theme-row' },
     themes.map(([val, key]) => {
       const g = gradientFor(val, indexForDate(state.now));

@@ -228,7 +228,12 @@ export function renderCard(phrase, opts = {}) {
 
   ctx.fillStyle = pal.muted;
   ctx.font = `400 34px ${BODY}`;
-  const noteLines = wrapLines(ctx, phrase.note, W - M * 2);
+  // Pick the cultural note in the active interface language with EN fallback.
+  const lang = opts.lang;
+  const noteText = (lang === 'fr' && phrase.noteFr) ? phrase.noteFr
+                 : (lang === 'ln' && phrase.noteLn) ? phrase.noteLn
+                 : phrase.note;
+  const noteLines = wrapLines(ctx, noteText, W - M * 2);
   for (const line of noteLines.slice(0, 5)) {
     ctx.fillText(line, cx, y);
     y += 46;

@@ -314,7 +314,11 @@ export const PHRASES = [
     phonetic: 'NZAM-be a-pam-BO-la yo',
     category: 'spiritual',
     note: 'God bless you — woven into goodbyes, thanks, and everyday wishes.',
+    noteFr: 'Que Dieu te bénisse — tissée dans les adieux, les remerciements, et les vœux du quotidien.',
+    noteLn: 'Nzambe apambola yo — liloba oyo etyolami na maloba ya kokabwana, ya botondi, mpe ya mokolo na mokolo.',
     long: 'Faith runs through everyday Lingala, and “Nzambe apambola yo” — God bless you — is everywhere: closing a phone call, thanking a stranger, sending someone on their way. “Nzambe” is God; “apambola” is may he bless. Even among the not-especially-religious, the phrase persists as a warm, ordinary way to wish someone well.',
+    longFr: 'La foi traverse le lingala de tous les jours, et « Nzambe apambola yo » — Que Dieu te bénisse — est partout : pour clore un appel téléphonique, pour remercier un inconnu, pour accompagner quelqu’un qui part. « Nzambe » signifie Dieu ; « apambola » veut dire qu’il bénisse. Même chez les moins religieux, la phrase persiste comme une manière chaleureuse et ordinaire de souhaiter du bien.',
+    longLn: 'Kondima ezali kati na Lingala ya mikolo nyonso, mpe « Nzambe apambola yo » ezali bisika nyonso : na kokangaka telefone, na kopesa botondi epai ya mopaya, na kotinda moto na mobembo. « Nzambe » elimboli Nzambe ; « apambola » elimboli ete apambola. Ata epai ya bato oyo bazali na kondima makasi te, liloba etikalaki lokola lolenge ya molunge mpe ya mokolo na mokolo ya kosenga bolamu.',
     level: 'intermediate',
   },
   {
