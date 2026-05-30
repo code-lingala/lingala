@@ -6,6 +6,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // GDPR / Consent Mode v2: default to denied; consent.js flips to granted on opt-in.
+  gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update:500 });
+  try { if (localStorage.getItem('lingala.consent') === 'granted') gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); } catch(e){}
   gtag('js', new Date());
   gtag('config', 'G-4C44NPN87W');
 </script>
@@ -128,5 +131,7 @@ Kanga = the imperative of kokanga (to close); mbanga = the jaw apparatus, here a
 <script src="/js/i18n-site.js"></script>
 <script src="/js/speech.js"></script>
 <script src="/js/ambient.js"></script>
+<script src="/js/consent.js" defer></script>
+<script src="/js/install.js" defer></script>
 </body>
 </html>

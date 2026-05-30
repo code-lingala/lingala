@@ -6,6 +6,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // GDPR / Consent Mode v2: default to denied; consent.js flips to granted on opt-in.
+  gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update:500 });
+  try { if (localStorage.getItem('lingala.consent') === 'granted') gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); } catch(e){}
   gtag('js', new Date());
   gtag('config', 'G-4C44NPN87W');
 </script>
@@ -510,5 +513,7 @@ Basaleli yango mpo na biloko oyo etungisaka, makambo oyo eumeli, mpe bato oyo ba
 
 
 <script id="verb-back-script">(function(){var l=document.getElementById("verb-back-link");if(!l)return;var LABELS={en:"\u2190 Back to verbs",fr:"\u2190 Retour aux verbes",ln:"\u2190 Zonga na maverbe"};function paint(){var lang=document.documentElement.lang||"en";l.textContent=LABELS[lang]||LABELS.en;}paint();window.addEventListener("lingala:lang",paint);})();</script>
+<script src="/js/consent.js" defer></script>
+<script src="/js/install.js" defer></script>
 </body>
 </html>
