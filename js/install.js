@@ -36,7 +36,7 @@
     cta.removeAttribute('href');
     cta.style.cursor = 'pointer';
     cta.setAttribute('role', 'button');
-    cta.setAttribute('aria-label', 'Install Losako as an app');
+    cta.setAttribute('aria-label', 'Install Lingala as an app');
   }
 
   function restoreCta() {

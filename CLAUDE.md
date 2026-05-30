@@ -4,10 +4,10 @@ Guidance for AI assistants (and humans) working in this repo.
 
 ## What this is
 
-**Losako** (working codename: `lingala`) is a zero-backend Progressive Web App
-for the Congolese diaspora. It surfaces **one Lingala phrase per day**, renders
-it as a downloadable "culture card" image to share, and tracks a streak — with
-no login, no server, and no build step.
+**Lingala** is a zero-backend Progressive Web App for the Congolese diaspora.
+It surfaces **one Lingala phrase per day**, renders it as a downloadable
+"culture card" image to share, and tracks a streak — with no login, no server,
+and no build step.
 
 > The language is the packaging. The identity is the gift.
 
@@ -37,7 +37,7 @@ deterministic `EPOCH` the daily engine counts from.
 
 ```
 index.html         the app shell (Today / Archive / Settings live in one page)
-about.html         what Losako is
+about.html         what Lingala is
 privacy.html       data handling
 manifest.json      PWA manifest (icons referenced here don't exist yet)
 sw.js              service worker (offline support)

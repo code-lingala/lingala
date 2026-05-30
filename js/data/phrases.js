@@ -1,4 +1,4 @@
-// Losako — phrase database (the heart of the product).
+// Lingala — phrase database (the heart of the product).
 //
 // CONTENT STATUS: this is a SEED set written to ship the engine, the design,
 // and the experience. Every Lingala phrase, French translation, phonetic
@@ -50,7 +50,7 @@ export const PHRASES = [
     phonetic: 'lo-SA-ko',
     category: 'greetings',
     note: 'Losako is the warm, respectful way to announce yourself and greet — the gesture of someone genuinely glad to be in front of you.',
-    long: 'Losako carries more weight than a casual “hi.” It is the kind of greeting you offer when you arrive somewhere with respect — to a home, to elders, to a gathering. It says: I see you, I honour this moment, I come in peace. This is the phrase the whole app is named for, because it is the spirit we want every card to carry — language as a way of acknowledging one another with warmth.',
+    long: 'Losako carries more weight than a casual “hi.” It is the kind of greeting you offer when you arrive somewhere with respect — to a home, to elders, to a gathering. It says: I see you, I honour this moment, I come in peace. It is the spirit we hope every card carries — language as a way of acknowledging one another with warmth.',
     level: 'beginner',
   },
   {

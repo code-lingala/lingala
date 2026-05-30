@@ -1,4 +1,4 @@
-// Losako — local storage layer. Everything the app remembers lives here, on
+// Lingala — local storage layer. Everything the app remembers lives here, on
 // the device, in IndexedDB. Three stores: streak (one row), settings (one row),
 // and archive (one row per day the user has viewed a card). Nothing is ever
 // sent anywhere — this file makes no network calls and never will.

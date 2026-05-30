@@ -227,9 +227,10 @@
     comp = ctx.createDynamicsCompressor();
     comp.threshold.value = -18; comp.knee.value = 6; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.2;
     comp.connect(masterG);
-    // Route through both ctx.destination (desktop fidelity) AND a MediaStream
-    // played by an <audio> element (so iOS ignores the silent switch).
-    masterG.connect(ctx.destination);
+    // Route the output through EXACTLY ONE destination. Doubling up
+    // (ctx.destination + MediaStream) produced a comb-filter "in a room"
+    // artifact because the two paths have slightly different latencies.
+    let routedViaStream = false;
     if (typeof ctx.createMediaStreamDestination === 'function') {
       try {
         streamDest = ctx.createMediaStreamDestination();
@@ -238,9 +239,15 @@
         routerAudio.playsInline = true;
         routerAudio.setAttribute('playsinline', '');
         routerAudio.srcObject = streamDest.stream;
-        await routerAudio.play().catch(() => {});
-      } catch (e) { /* fall back to ctx.destination only */ }
+        await routerAudio.play();
+        routedViaStream = true;
+      } catch (e) {
+        // Stream path failed — tear it down and fall through to ctx.destination.
+        try { masterG.disconnect(streamDest); } catch (e2) {}
+        streamDest = null; routerAudio = null;
+      }
     }
+    if (!routedViaStream) masterG.connect(ctx.destination);
 
     snareBuf = noise(0.02); hatBuf = noise(0.005); congaBuf = noise(0.04);
 
