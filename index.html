@@ -471,7 +471,25 @@
   /* Rotating content for the auto-carousel — the intro/outro. */
   .card-rot { transition: opacity 0.5s ease, transform 0.5s ease; }
   .card-rot.out { opacity: 0; transform: translateY(10px) scale(0.985); }
-  /* Clamp the note so the card height stays steady as phrases change. */
+  /* Clamp every variable line so the card height stays steady as phrases
+     change — otherwise the section below shifts every cycle. */
+  .card-rot .card-phrase {
+    min-height: 1.05em;   /* one line at line-height 1.02 */
+  }
+  .card-rot .card-translation {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.4em;
+  }
+  .card-rot .card-phonetic {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 1.2em;
+  }
   .card-rot .card-note {
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -480,6 +498,8 @@
     overflow: hidden;
     min-height: 6.4em;
   }
+  /* Lock the whole card to a stable height so the section below never moves. */
+  .card-wrapper { min-height: 520px; }
 
   .card-translation {
     font-family: var(--serif);
