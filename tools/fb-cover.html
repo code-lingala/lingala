@@ -84,8 +84,9 @@
   }
 
   function drawFlagDots(x, y, r, p) {
-    // Three DRC-flag dots: cerulean, gold, terracotta.
-    const colors = ['#1455A4', '#E0AF1E', '#C8202A'];
+    // Four-dot mark: cerulean, gold, terracotta, mascot-pink — same palette
+    // as the donkey badge logo.
+    const colors = ['#1455A4', '#F4C81E', '#C8202A', '#E91E63'];
     colors.forEach((c, i) => {
       ctx.fillStyle = c;
       ctx.beginPath();
@@ -93,6 +94,15 @@
       ctx.fill();
     });
   }
+
+  // Preload the real logo image (the donkey badge) — used as the hero visual
+  // and the small top-left brand mark.
+  const logo = new Image();
+  logo.crossOrigin = 'anonymous';
+  let logoReady = false;
+  logo.onload = () => { logoReady = true; render(); };
+  logo.onerror = () => { logoReady = false; render(); };
+  logo.src = '/icon-512.png';
 
   function render() {
     const size = SIZES[document.getElementById('preset').value];
@@ -108,12 +118,12 @@
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, size.w, size.h);
 
-    // Decorative scattered chevrons in the DRC triad (faint, texture not pattern).
+    // Decorative scattered chevrons — full mascot palette (4 colors now).
     ctx.save();
     ctx.globalAlpha = 0.10;
-    const ridges = ['#1455A4', '#E0AF1E', '#C8202A'];
+    const ridges = ['#1455A4', '#F4C81E', '#C8202A', '#E91E63'];
     for (let i = 0; i < 60; i++) {
-      ctx.strokeStyle = ridges[i % 3];
+      ctx.strokeStyle = ridges[i % 4];
       ctx.lineWidth = 2;
       const cx = Math.random() * size.w;
       const cy = Math.random() * size.h;
@@ -133,53 +143,66 @@
     ctx.fillStyle = radial;
     ctx.fillRect(0, 0, size.w, size.h);
 
-    // —— TEXT BLOCK ——
-    const cx = size.w / 2;
+    // —— HERO LOGO (left side) ——
+    // Roughly fits a square logo into the left ~38% of the cover.
+    const logoSize = Math.round(Math.min(size.h * 0.78, size.w * 0.38));
+    const logoX = Math.round(size.w * 0.10);
+    const logoY = Math.round((size.h - logoSize) / 2);
+    if (logoReady) {
+      ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+    } else {
+      // Fallback while the image loads — a circle placeholder.
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
+      ctx.beginPath();
+      ctx.arc(logoX + logoSize / 2, logoY + logoSize / 2, logoSize / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // —— TEXT BLOCK (right side, vertically centered) ——
+    const textCx = Math.round(size.w * 0.66);
     const cy = size.h / 2;
 
     // Headline (Fraunces serif, large).
     ctx.fillStyle = p.ink;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    const headSize = Math.round(size.h * 0.22);
+    const headSize = Math.round(size.h * 0.20);
     ctx.font = `600 ${headSize}px Fraunces, Georgia, serif`;
-    ctx.fillText(headline, cx, cy - headSize * 0.25);
+    ctx.fillText(headline, textCx, cy - headSize * 0.25);
 
     // Gold underline accent under the headline.
     const lineY = cy + headSize * 0.32;
-    ctx.fillStyle = '#E0AF1E';
-    ctx.fillRect(cx - 80, lineY, 160, 4);
+    ctx.fillStyle = '#F4C81E';
+    ctx.fillRect(textCx - 80, lineY, 160, 4);
 
-    // Subhead (Inter, medium).
+    // Subhead (Fraunces italic, medium).
     if (subhead) {
       const subSize = Math.round(size.h * 0.045);
       ctx.fillStyle = p.soft;
       ctx.font = `400 italic ${subSize}px Fraunces, Georgia, serif`;
-      ctx.fillText(subhead, cx, cy + headSize * 0.55);
+      ctx.fillText(subhead, textCx, cy + headSize * 0.55);
     }
 
-    // —— TOP-LEFT brand mark: dots + wordmark ——
-    drawFlagDots(80, 80, 14, p);
+    // —— TOP-LEFT brand mark: small logo + wordmark ——
+    const markSize = Math.round(size.h * 0.075);
+    if (logoReady) {
+      ctx.drawImage(logo, 64, 56, markSize, markSize);
+    }
     ctx.fillStyle = p.ink;
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    ctx.font = `800 ${Math.round(size.h * 0.035)}px Inter, -apple-system, sans-serif`;
-    ctx.letterSpacing = '0.18em';
-    ctx.fillText('LINGALA', 80, 130);
-
-    // Tiny subtitle under the wordmark.
+    ctx.font = `800 ${Math.round(size.h * 0.032)}px Inter, -apple-system, sans-serif`;
+    ctx.fillText('LINGALA', 64 + markSize + 14, 56 + markSize * 0.42);
     ctx.fillStyle = p.soft;
-    ctx.font = `500 ${Math.round(size.h * 0.022)}px Inter, sans-serif`;
-    ctx.fillText('by Artivicolab', 80, 162);
+    ctx.font = `500 ${Math.round(size.h * 0.020)}px Inter, sans-serif`;
+    ctx.fillText('by Artivicolab', 64 + markSize + 14, 56 + markSize * 0.78);
 
-    // —— BOTTOM-RIGHT URL ——
+    // —— BOTTOM-RIGHT URL + 4-color flag dots ——
     ctx.textAlign = 'right';
     ctx.fillStyle = p.soft;
     ctx.font = `500 ${Math.round(size.h * 0.028)}px Inter, sans-serif`;
-    ctx.fillText('lingala.artivicolab.com', size.w - 80, size.h - 70);
-
-    // Three flag dots, bottom right, above the URL.
-    drawFlagDots(size.w - 200, size.h - 110, 8, p);
+    ctx.fillText('lingala.artivicolab.com', size.w - 64, size.h - 64);
+    drawFlagDots(size.w - 240, size.h - 110, 8, p);
 
     // —— Risograph grain pass (subtle). ——
     applyGrain(size.w, size.h, 0.035);

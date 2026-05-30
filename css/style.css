@@ -14,6 +14,10 @@
   --line: rgba(255,255,255,0.10);
   --accent: #C8202A;   /* terracotta — primary actions */
   --drc-gold: #C8202A;
+  /* Mascot palette — pink + bright gold from the donkey badge. */
+  --mascot-pink: #E91E63;
+  --mascot-pink-hover: #F23070;
+  --gold-bright: #F4C81E;
 }
 html[data-theme='red']    { --page:#1C0A0A; --panel:#2A1413; --ink:#FAF0EE; --ink-soft:rgba(250,236,232,0.80); --line:rgba(255,255,255,0.10); --accent:#C8202A; --drc-gold:#C8202A; }
 /* Paper — editorial black-and-white: cream field, near-black ink, with the

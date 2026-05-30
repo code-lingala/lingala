@@ -13,6 +13,12 @@
   --gold: #C8202A;
   --cerulean: #1455A4;
   --cream: #F0EAD6;
+  /* Mascot palette — the pink donkey badge introduces magenta as a 5th
+     accent alongside the DRC flag triad. Use sparingly: brand moments,
+     mascot-adjacent UI, never as primary CTA (terracotta stays primary). */
+  --mascot-pink: #E91E63;
+  --mascot-pink-hover: #F23070;
+  --gold-bright: #F4C81E;   /* the saturated stars/ring yellow */
 
   /* Theme = BLUE (default). */
   --base: #08182E;
