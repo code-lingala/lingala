@@ -522,7 +522,8 @@ main { flex: 1; }
 }
 .footer-tag { font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
 .footer-links { font-size: 13px; }
-.footer-links a { color: var(--ink-soft); text-decoration: none; }
+.footer-links a,
+.footer-links a:visited { color: var(--ink-soft); text-decoration: none; }
 .footer-links a:hover { color: var(--ink); }
 .sep { color: var(--line); margin: 0 6px; }
 .footer-copyright { font-size: 12px; color: var(--ink-soft); opacity: 0.6; margin-top: 12px; }
@@ -532,7 +533,8 @@ main { flex: 1; }
 .site-footer .footer-logo { width: 52px; height: 52px; display: block; margin: 0 auto 18px; border-radius: 10px; opacity: 0.9; }
 .site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 14px; }
 .site-footer .footer-links { font-family: var(--body); font-size: 0.85rem; line-height: 1.9; }
-.site-footer .footer-links a { color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+.site-footer .footer-links a,
+.site-footer .footer-links a:visited { color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
 .site-footer .footer-links a:hover { color: var(--ink); }
 .site-footer .sep { color: var(--line); margin: 0 8px; }
 .site-footer .footer-copyright { font-family: var(--body); font-size: 0.78rem; color: var(--ink-soft); opacity: 0.7; margin-top: 12px; }

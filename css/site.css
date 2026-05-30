@@ -296,13 +296,15 @@ body::before {
 .site-footer .footer-logo { width: 52px; height: 52px; display: block; margin: 0 auto 18px; border-radius: 10px; opacity: 0.9; }
 .site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--muted); margin-bottom: 14px; }
 .site-footer .footer-links { font-size: 0.85rem; line-height: 1.9; }
-.site-footer .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.site-footer .footer-links a,
+.site-footer .footer-links a:visited { color: var(--muted); text-decoration: none; transition: color 0.2s; }
 .site-footer .footer-links a:hover { color: var(--ink); }
 .site-footer .sep { color: var(--line); margin: 0 8px; }
 .site-footer .footer-copyright { font-size: 0.78rem; color: var(--muted); opacity: 0.7; margin-top: 12px; }
 .site-footer .footer-version { font-family: var(--body); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--line); border-radius: 100px; padding: 2px 9px; margin-left: 4px; opacity: 0.85; }
 .site-footer .footer-rights { display: inline-block; margin-top: 8px; font-size: 0.74rem; color: var(--muted); opacity: 0.8; }
-.site-footer .footer-rights a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.15s; }
+.site-footer .footer-rights a,
+.site-footer .footer-rights a:visited { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.15s; }
 .site-footer .footer-rights a:hover { border-bottom-color: var(--accent); }
 
 @media (prefers-reduced-motion: reduce) {

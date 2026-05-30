@@ -1092,7 +1092,8 @@
   .site-footer .footer-logo { width: 52px; height: 52px; display: block; margin: 0 auto 18px; border-radius: 10px; opacity: 0.9; }
   .site-footer .footer-tagline { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--muted); margin-bottom: 14px; }
   .site-footer .footer-links { font-family: var(--body); font-size: 0.85rem; line-height: 1.9; }
-  .site-footer .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .site-footer .footer-links a,
+  .site-footer .footer-links a:visited { color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .site-footer .footer-links a:hover { color: var(--ink); }
   .site-footer .sep { color: var(--line); margin: 0 8px; }
   .site-footer .footer-copyright { font-family: var(--body); font-size: 0.78rem; color: var(--muted); opacity: 0.7; margin-top: 12px; }
@@ -1297,6 +1298,14 @@
   .deeplinks-col a { font-family: var(--serif); font-size: 0.98rem; color: var(--ink); text-decoration: none; opacity: 0.85; transition: opacity 0.15s, color 0.15s; }
   .deeplinks-col a:hover { opacity: 1; color: var(--accent); }
   .deeplinks-col a em { font-style: italic; color: var(--accent); opacity: 0.9; font-size: 0.9rem; margin-left: 6px; }
+  /* Mobile: the Jump-in section ran small. Bump the four offender sizes. */
+  @media (max-width: 600px) {
+    .deeplinks-eyebrow { font-size: 0.88rem; letter-spacing: 0.2em; }
+    .deeplinks-col h3 { font-size: 0.92rem; letter-spacing: 0.14em; }
+    .deeplinks-col a { font-size: 1.12rem; }
+    .deeplinks-col a em { font-size: 1rem; }
+    .deeplinks-col li { padding: 12px 0; }
+  }
 
   /* —— Paper theme shadow softening ——
      Default shadows assume a dark background. On pure white they smudge;
