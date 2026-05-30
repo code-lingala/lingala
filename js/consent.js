@@ -20,19 +20,19 @@
   const T = {
     en: {
       title: 'A note on cookies',
-      body: 'We use Google Analytics to understand how Losako is used. Nothing personal — just aggregate visits. You can decline; it doesn’t change anything for you.',
+      body: 'We use Google Analytics to understand how Lingala is used. Nothing personal — just aggregate visits. You can decline; it doesn’t change anything for you.',
       accept: 'Accept',
       decline: 'Decline',
     },
     fr: {
       title: 'Au sujet des cookies',
-      body: 'Nous utilisons Google Analytics pour comprendre comment Losako est utilisé. Aucune donnée personnelle — uniquement des visites agrégées. Vous pouvez refuser ; cela ne change rien pour vous.',
+      body: 'Nous utilisons Google Analytics pour comprendre comment Lingala est utilisé. Aucune donnée personnelle — uniquement des visites agrégées. Vous pouvez refuser ; cela ne change rien pour vous.',
       accept: 'Accepter',
       decline: 'Refuser',
     },
     ln: {
       title: 'Liloba mpo na « cookies »',
-      body: 'Tosaleli Google Analytics mpo na koyeba ndenge Losako esalaka. Bato moko te bakoyebana — kaka motango ya bato bayei. Okoki koboya ; ekobongola eloko te mpo na yo.',
+      body: 'Tosaleli Google Analytics mpo na koyeba ndenge Lingala esalaka. Bato moko te bakoyebana — kaka motango ya bato bayei. Okoki koboya ; ekobongola eloko te mpo na yo.',
       accept: 'Endima',
       decline: 'Boya',
     },
