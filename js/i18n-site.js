@@ -25,6 +25,7 @@
       'nav.dictionary': 'Dictionary',
       'nav.count': 'Count',
       'nav.verbs': 'Verbs',
+      'nav.memory': 'Memory',
 
       // 404 page
       'title.notFound': 'Page not found — Lingala',
@@ -126,6 +127,7 @@
       'footer.tagline': 'Keep Lingala alive — for Congolese everywhere · 🇨🇩',
       'footer.about': 'About',
       'footer.privacy': 'Privacy',
+      'footer.install': 'Install app',
       'footer.contact': 'Contact',
       'footer.made': 'Made by a Congolese, for Congolese everywhere',
 
@@ -281,6 +283,7 @@
       'nav.dictionary': 'Dictionnaire',
       'nav.count': 'Compter',
       'nav.verbs': 'Verbes',
+      'nav.memory': 'Mémoire',
 
       'title.notFound': 'Page introuvable — Lingala',
       'nf.eyebrow':     'Page introuvable',
@@ -372,6 +375,7 @@
       'footer.tagline': 'Gardez le lingala vivant — pour les Congolais partout · 🇨🇩',
       'footer.about': 'À propos',
       'footer.privacy': 'Confidentialité',
+      'footer.install': 'Installer l’app',
       'footer.contact': 'Contact',
       'footer.made': 'Fait par un Congolais, pour les Congolais partout',
 
@@ -523,6 +527,7 @@
       'nav.dictionary': 'Buku ya maloba',
       'nav.count': 'Tanga',
       'nav.verbs': 'Maverbe',
+      'nav.memory': 'Mwango',
 
       'title.notFound': 'Lokasa ezangi — Lingala',
       'nf.eyebrow':     'Lokasa ezangi',
@@ -614,6 +619,7 @@
       'footer.tagline': 'Tobatela Lingala mpo na bato ya Congo bipai nyonso · 🇨🇩',
       'footer.about': 'Na ntina',
       'footer.privacy': 'Bobateli',
+      'footer.install': 'Tia app',
       'footer.contact': 'Benga biso',
       'footer.made': 'Esalemi na bolingo na moto ya Congo, mpo na bato ya Congo nyonso',
 

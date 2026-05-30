@@ -234,6 +234,31 @@ if ('serviceWorker' in navigator) {
     buildButton();
   }
 
+  // —— Footer "Install app" re-entry. Lets the user bring the FAB back after
+  //    they dismissed it. Any element with [data-action="install-app"] works. ——
+  function wireReopenLinks() {
+    document.querySelectorAll('[data-action="install-app"]').forEach((el) => {
+      if (el._installWired) return;
+      el._installWired = true;
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        try { localStorage.removeItem(KEY_DISMISSED); } catch (e) {}
+        if (!document.getElementById('install-fab-wrap')) buildButton();
+        // Scroll the FAB into the viewport on long pages so the user sees it.
+        const fab = document.getElementById('install-fab-wrap');
+        if (fab) fab.animate(
+          [ { transform: 'scale(0.85)', opacity: 0.6 }, { transform: 'scale(1.08)' }, { transform: 'scale(1)', opacity: 1 } ],
+          { duration: 360, easing: 'ease-out' }
+        );
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireReopenLinks);
+  } else {
+    wireReopenLinks();
+  }
+
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferred = e;

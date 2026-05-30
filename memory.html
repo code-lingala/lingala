@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4C44NPN87W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // GDPR / Consent Mode v2: default to denied; consent.js flips to granted on opt-in.
+  gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update:500 });
+  try { if (localStorage.getItem('lingala.consent') === 'granted') gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); } catch(e){}
+  gtag('js', new Date());
+  gtag('config', 'G-4C44NPN87W');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lingala — Memory match</title>
+<meta name="description" content="A memory match game in Lingala — flip the cards, find the pairs, learn the words. Free, no login, made for the Congolese diaspora.">
+<link rel="canonical" href="https://lingala.artivicolab.com/memory.html">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<meta name="theme-color" content="#08182E">
+
+<!-- Theme preset before paint (matches the rest of the site). -->
+<script>try{var _t=localStorage.getItem('lingala.theme');if(_t==='green'||_t==='yellow'||!_t)_t='blue';document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+
+<!-- Site font stack: Inter (body), Outfit (display), Fraunces (serif). Same URL the rest of the site loads. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+
+<style>
+  /* —— Memory match — single DOM that reflows from one column (mobile) to a
+       three-column grid (desktop). No duplicate "mobile-only" elements. —— */
+  :root {
+    --game-bg: #0A1628;
+    --game-border: rgba(255,255,255,0.08);
+    --game-border-2: rgba(255,255,255,0.14);
+    --game-text: #FFFFFF;
+    --game-text-2: rgba(255,255,255,0.78);
+    --game-text-3: rgba(255,255,255,0.48);
+    --card-blue: #1455A4;
+    --card-bot:  #0A3880;
+    --game-crimson: var(--terracotta, #C8202A);
+    --game-crimson-h: var(--terracotta-hover, #D62A34);
+    --game-gold: var(--gold-bright, #F4C81E);
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,85,164,0.18) 0%, transparent 60%),
+      var(--game-bg);
+    color: var(--game-text);
+    user-select: none; -webkit-user-select: none;
+    overflow-x: hidden;
+    padding-bottom: 0;
+  }
+
+  /* —— LAYOUT — single grid, reflows from one column to three at 1000px+ —— */
+  .game {
+    display: grid;
+    gap: 18px;
+    padding: 18px 16px 28px;
+    max-width: 540px; margin: 0 auto;
+    min-height: calc(100vh - 64px);
+    grid-template-areas:
+      "header"
+      "diff"
+      "stats"
+      "board"
+      "words"
+      "controls";
+  }
+
+  /* —— HEADER —— */
+  .g-header { grid-area: header; }
+  .eyebrow {
+    font-family: var(--body); font-size: 0.7rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--game-crimson);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .eyebrow::before { content: ''; display: block; width: 18px; height: 1px; background: var(--game-crimson); }
+  .eyebrow .li {
+    font-family: var(--serif); font-style: italic;
+    text-transform: none; letter-spacing: 0;
+    color: rgba(200,32,42,0.7); font-size: 0.85rem; font-weight: 400;
+  }
+  .g-title {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.55rem; line-height: 1.1; color: var(--game-text);
+    letter-spacing: -0.005em; margin: 0;
+  }
+  .g-title em { font-style: italic; font-weight: 400; color: var(--game-crimson); }
+
+  /* —— DIFFICULTY —— */
+  .g-difficulty {
+    grid-area: diff;
+    display: flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--game-border);
+    border-radius: 100px; padding: 4px;
+    width: fit-content;
+  }
+  .diff-chip {
+    padding: 9px 16px; border-radius: 100px;
+    font-family: var(--body); font-size: 0.82rem; font-weight: 500;
+    color: var(--game-text-3); cursor: pointer; transition: all 0.18s;
+    border: none; background: transparent;
+    white-space: nowrap;
+  }
+  .diff-chip:hover:not(.on) { color: var(--game-text-2); background: rgba(255,255,255,0.04); }
+  .diff-chip.on {
+    background: var(--game-crimson); color: #fff; font-weight: 600;
+    box-shadow: 0 2px 8px rgba(200,32,42,0.35);
+  }
+
+  /* —— PANELS (stats card + words panel share this base) —— */
+  .panel {
+    background: linear-gradient(165deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 100%);
+    border: 1px solid var(--game-border);
+    border-radius: 16px; padding: 20px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 24px rgba(0,0,0,0.18);
+  }
+  .panel-label {
+    font-family: var(--body); font-size: 0.62rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--game-gold); margin: 0 0 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .panel-label::before {
+    content: ''; display: block; width: 14px; height: 1px;
+    background: var(--game-gold); opacity: 0.6;
+  }
+
+  /* —— STATS —— */
+  .g-stats { grid-area: stats; }
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--game-border);
+    border-radius: 12px; padding: 14px 10px; text-align: center;
+  }
+  .stat-num {
+    font-family: var(--display); font-weight: 800; font-size: 1.65rem;
+    line-height: 1; color: var(--game-text); margin-bottom: 6px;
+    font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  }
+  .stat-num.gold    { color: var(--game-gold); }
+  .stat-num.crimson { color: var(--game-crimson); }
+  .stat-label {
+    font-family: var(--body); font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--game-text-3); font-weight: 500;
+  }
+
+  /* —— BOARD —— */
+  .g-board { grid-area: board; display: flex; justify-content: center; align-items: center; }
+  .board {
+    display: grid; gap: 10px;
+    width: 100%; max-width: 480px;
+  }
+  .board.size-12 { grid-template-columns: repeat(3,1fr); aspect-ratio: 3/4; }
+  .board.size-20 { grid-template-columns: repeat(4,1fr); aspect-ratio: 4/5; }
+  .board.size-30 { grid-template-columns: repeat(5,1fr); aspect-ratio: 5/6; }
+
+  /* —— CARD (3D flip — NO transform on hover, NO filter on .card) —— */
+  .card {
+    position: relative; cursor: pointer;
+    border-radius: 14px;
+    transition: transform 0.45s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .card.matched { cursor: default; }
+
+  .card-face {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 14px; padding: 8px;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    overflow: hidden; text-align: center;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+  }
+
+  .card-back {
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.14) 0%, transparent 50%),
+      linear-gradient(155deg, var(--card-blue) 0%, var(--card-bot) 100%);
+    border: 1px solid var(--game-border-2);
+    transition: filter 0.2s;
+  }
+  .card:not(.matched):hover .card-back { filter: brightness(1.1); }
+  .card-back::after {
+    content: ''; position: absolute; inset: 8px;
+    border: 1px solid rgba(244,200,30,0.2);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+  .card-back-mark {
+    font-family: var(--display); font-weight: 800;
+    font-size: 1.1rem; letter-spacing: 0.18em;
+    color: rgba(244,200,30,0.9); text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .card-front {
+    background: linear-gradient(155deg, #1A65C8 0%, #0D47A0 50%, #0A3880 100%);
+    border: 1px solid var(--game-border-2);
+    transform: rotateY(180deg);
+  }
+  .card-front-text {
+    color: #fff; line-height: 1.15;
+  }
+  .card-front-text.lingala {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(0.9rem, 4vw, 1.4rem);
+    letter-spacing: -0.01em;
+  }
+  .card-front-text.english {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(0.8rem, 3.5vw, 1.15rem);
+    color: rgba(255,255,255,0.92);
+  }
+
+  .card.matched .card-front {
+    background: linear-gradient(155deg, #B88813 0%, #8C6A0F 100%);
+    border-color: var(--game-gold);
+    animation: matchPulse 0.5s ease;
+  }
+  @keyframes matchPulse {
+    0%   { transform: rotateY(180deg) scale(1); }
+    50%  { transform: rotateY(180deg) scale(1.06); }
+    100% { transform: rotateY(180deg) scale(1); }
+  }
+  .card.wrong .card-front {
+    border-color: var(--game-crimson);
+    animation: wrongShake 0.4s ease;
+  }
+  @keyframes wrongShake {
+    0%,100% { transform: rotateY(180deg) translateX(0); }
+    25%     { transform: rotateY(180deg) translateX(-6px); }
+    75%     { transform: rotateY(180deg) translateX(6px); }
+  }
+
+  /* —— WORDS panel —— */
+  .g-words { grid-area: words; display: flex; flex-direction: column; }
+  .matched-list {
+    display: flex; flex-direction: column; gap: 6px;
+    overflow-y: auto; min-height: 120px; max-height: 360px;
+    margin-right: -6px; padding-right: 6px;
+  }
+  .matched-list::-webkit-scrollbar { width: 4px; }
+  .matched-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  .matched-item {
+    background: rgba(244,200,30,0.06);
+    border: 1px solid rgba(244,200,30,0.18);
+    border-left: 2px solid var(--game-gold);
+    border-radius: 0 8px 8px 0;
+    padding: 9px 12px;
+    animation: slideIn 0.3s ease;
+  }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+  .matched-lingala { font-family: var(--display); font-weight: 700; font-size: 0.95rem; color: var(--game-text); line-height: 1.2; }
+  .matched-english { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 0.8rem; color: var(--game-text-3); margin-top: 2px; }
+  .matched-empty {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 24px 16px; line-height: 1.55; gap: 16px;
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: 0.95rem; color: var(--game-text-3);
+    flex: 1; min-height: 160px;
+  }
+  .matched-empty::before {
+    content: 'LN'; display: flex; align-items: center; justify-content: center;
+    width: 72px; height: 72px; border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, rgba(244,200,30,0.4), transparent 55%),
+      linear-gradient(155deg, rgba(20,85,164,0.7) 0%, rgba(10,56,128,0.7) 100%);
+    border: 1px solid rgba(244,200,30,0.3);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.32);
+    font-family: var(--display); font-weight: 800; font-style: normal;
+    font-size: 1rem; letter-spacing: 0.18em;
+    color: rgba(244,200,30,0.92);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .matched-counter {
+    font-family: var(--body); font-size: 0.62rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--game-text-3); margin-top: 14px;
+    padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .matched-counter b { color: var(--game-gold); font-weight: 700; font-family: var(--display); }
+
+  /* —— CONTROLS —— */
+  .g-controls { grid-area: controls; display: flex; gap: 10px; }
+  .btn {
+    font-family: var(--body); font-weight: 600;
+    font-size: 0.95rem; letter-spacing: 0.02em;
+    padding: 14px 24px; border-radius: 12px;
+    cursor: pointer; transition: all 0.18s;
+    border: 1px solid transparent;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-primary {
+    background: var(--game-crimson); color: #fff; flex: 1;
+    box-shadow: 0 4px 14px rgba(200,32,42,0.32), inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .btn-primary:hover {
+    background: var(--game-crimson-h);
+    box-shadow: 0 6px 18px rgba(200,32,42,0.42), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .btn-ghost { background: rgba(255,255,255,0.03); color: var(--game-text-3); border-color: var(--game-border-2); }
+  .btn-ghost:hover { color: var(--game-text); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); }
+  .btn-icon { padding: 12px 14px; flex: 0 0 auto; }
+
+  /* —— DESKTOP — three-column grid, board fills the center —— */
+  @media (min-width: 1000px) {
+    .game {
+      max-width: 1700px;
+      padding: 36px 48px 48px;
+      grid-template-columns: 320px minmax(0, 1fr) 340px;
+      grid-template-rows: auto auto auto 1fr;
+      grid-template-areas:
+        "header   board  words"
+        "diff     board  words"
+        "stats    board  words"
+        "controls board  words";
+      gap: 22px 36px;
+    }
+    .g-board   { grid-area: board; align-self: stretch; }
+    .g-words   { grid-area: words; align-self: stretch; }
+    .g-title   { font-size: 1.95rem; }
+    .board     { max-width: none; }
+    .board.size-12 { max-width: 780px; gap: 14px; }
+    .board.size-20 { max-width: 820px; gap: 12px; }
+    .board.size-30 { max-width: 880px; gap: 10px; }
+    .matched-list  { max-height: none; flex: 1; }
+    .card-front-text.lingala { font-size: clamp(1.2rem, 1.9vw, 1.9rem); }
+    .card-front-text.english { font-size: clamp(1rem, 1.5vw, 1.45rem); }
+    .card-back-mark { font-size: 1.3rem; }
+  }
+
+  /* —— XL widescreen —— */
+  @media (min-width: 1500px) {
+    .game {
+      max-width: 1820px; gap: 26px 44px;
+      grid-template-columns: 360px minmax(0, 1fr) 380px;
+      padding: 44px 64px 56px;
+    }
+    .board.size-12 { max-width: 920px; }
+    .board.size-20 { max-width: 960px; }
+    .board.size-30 { max-width: 1020px; }
+    .g-title { font-size: 2.15rem; }
+    .stat-num { font-size: 2rem; }
+  }
+
+  /* —— WIN overlay —— */
+  .overlay { position: fixed; inset: 0; z-index: 200; background: rgba(10,22,40,0.85); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px; }
+  .overlay.show { display: flex; animation: overlayIn 0.3s ease; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+  .win-card { background: linear-gradient(165deg, rgba(20,40,70,0.95) 0%, rgba(10,22,40,1) 100%); border: 1px solid var(--game-gold); border-radius: 20px; padding: 36px 32px; max-width: 420px; width: 100%; text-align: center; position: relative; overflow: hidden; }
+  .win-card::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); pointer-events: none; }
+  .win-eyebrow { font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--game-gold); margin-bottom: 14px; position: relative; }
+  .win-title   { font-family: var(--serif); font-weight: 500; font-size: 2.2rem; line-height: 1.05; color: var(--game-text); margin-bottom: 8px; position: relative; }
+  .win-title em { font-style: italic; color: var(--game-gold); }
+  .win-sub     { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1rem; color: var(--game-text-2); margin-bottom: 24px; line-height: 1.5; position: relative; }
+  .win-stats   { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 24px; position: relative; }
+  .win-stat    { background: rgba(255,255,255,0.04); border: 1px solid var(--game-border); border-radius: 10px; padding: 14px 8px; }
+  .win-stat-num { font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--game-gold); line-height: 1; font-variant-numeric: tabular-nums; }
+  .win-stat-label { font-family: var(--body); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--game-text-3); margin-top: 4px; }
+  .win-actions { display: flex; gap: 8px; position: relative; }
+  .win-actions .btn { flex: 1; }
+
+  .confetti { position: fixed; width: 8px; height: 8px; pointer-events: none; z-index: 300; top: -20px; }
+</style>
+</head>
+<body data-title-i18n="title.memory">
+
+<noscript>
+  <div style="position:fixed;inset:0;z-index:99999;background:#FFFFFF;color:#000;padding:48px 24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:auto">
+    <div style="max-width:520px">
+      <h1 style="font-size:24px;margin:0 0 16px;line-height:1.25">JavaScript is required</h1>
+      <p style="font-size:16px;line-height:1.55;margin:0 0 20px;color:#333">Losako runs entirely in your browser — there is no backend. Please enable JavaScript and reload the page to continue.</p>
+      <hr style="border:0;border-top:1px solid #ddd;margin:24px 0">
+      <p lang="fr" style="font-size:15px;line-height:1.55;margin:0 0 12px;color:#333"><strong>JavaScript est requis.</strong> Losako fonctionne entièrement dans votre navigateur. Activez JavaScript et rechargez la page pour continuer.</p>
+      <p lang="ln" style="font-size:15px;line-height:1.55;margin:0;color:#333"><strong>Esengeli JavaScript.</strong> Losako esalaka kati ya navigateur na yo. Fungola JavaScript mpe zongisa lokasa mpo na kokoba.</p>
+    </div>
+  </div>
+</noscript>
+
+<nav class="site-nav">
+  <a class="site-logo" href="/"><img src="/android-icon-192x192.png" alt="" class="site-logo-mark" width="28" height="28">Lingala</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right" id="navRight">
+    <div class="nav-links">
+      <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a>
+      <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a>
+      <a href="/count.html" data-i18n="nav.count">Count</a>
+      <a href="/memory.html" class="active">Memory</a>
+      <a href="/name.html" data-i18n="nav.name">Find your name</a>
+      <a href="/about.html" data-i18n="nav.about">About</a>
+    </div>
+    <div class="theme-dots" role="group" aria-label="Theme">
+      <button class="theme-dot t-blue active"  data-theme="blue"  aria-label="Blue theme"></button>
+      <button class="theme-dot t-red"           data-theme="red"   aria-label="Red theme"></button>
+      <button class="theme-dot t-paper"         data-theme="paper" aria-label="Paper theme"></button>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang-btn="en" type="button">EN</button><span>/</span>
+      <button data-lang-btn="fr" type="button">FR</button><span>/</span>
+      <button data-lang-btn="ln" type="button">LN</button>
+    </div>
+    <a class="site-cta" href="/card.html" data-i18n="nav.cta">Open today's card</a>
+  </div>
+</nav>
+
+<div class="game">
+
+  <header class="g-header">
+    <p class="eyebrow">Memory match <span class="li">· mwango ya bokundoli</span></p>
+    <h1 class="g-title">Match the pairs. <em>Learn the words.</em></h1>
+  </header>
+
+  <div class="g-difficulty">
+    <button class="diff-chip on" onclick="setDifficulty(12,this)">Easy · 6</button>
+    <button class="diff-chip"    onclick="setDifficulty(20,this)">Medium · 10</button>
+    <button class="diff-chip"    onclick="setDifficulty(30,this)">Hard · 15</button>
+  </div>
+
+  <section class="panel g-stats">
+    <p class="panel-label">This game</p>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-num gold"    id="railMatches">0</div><div class="stat-label">Matches</div></div>
+      <div class="stat"><div class="stat-num"         id="railMoves">0</div>  <div class="stat-label">Moves</div></div>
+      <div class="stat"><div class="stat-num crimson" id="railStreak">0</div> <div class="stat-label">Streak</div></div>
+      <div class="stat"><div class="stat-num"         id="railTime">0:00</div><div class="stat-label">Time</div></div>
+    </div>
+  </section>
+
+  <div class="g-board">
+    <div class="board size-12" id="board"></div>
+  </div>
+
+  <section class="panel g-words">
+    <p class="panel-label">Words learned this game</p>
+    <div class="matched-list" id="matchedList">
+      <div class="matched-empty"><span>Tap two cards to find a pair — words you match will appear here.</span></div>
+    </div>
+    <div class="matched-counter" id="matchedCounter"><b>0</b> / <span id="matchedTotal">6</span> learned</div>
+  </section>
+
+  <div class="g-controls">
+    <button class="btn btn-primary" onclick="newGame()">New game</button>
+    <button class="btn btn-ghost btn-icon" onclick="toggleAudio()" id="audioBtn" aria-label="Toggle sound">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<!-- WIN OVERLAY -->
+<div class="overlay" id="winOverlay">
+  <div class="win-card">
+    <p class="win-eyebrow">Elonga · Victory</p>
+    <h2 class="win-title">Well played. <em>You matched them all.</em></h2>
+    <p class="win-sub">A kid who plays this twice a week absorbs thirty words in a month. You just took a real step.</p>
+    <div class="win-stats">
+      <div class="win-stat"><div class="win-stat-num" id="winMatches">0</div><div class="win-stat-label">Pairs</div></div>
+      <div class="win-stat"><div class="win-stat-num" id="winMoves">0</div>  <div class="win-stat-label">Moves</div></div>
+      <div class="win-stat"><div class="win-stat-num" id="winTime">0:00</div><div class="win-stat-label">Time</div></div>
+    </div>
+    <div class="win-actions">
+      <button class="btn btn-ghost"   onclick="closeOverlay()">Review words</button>
+      <button class="btn btn-primary" onclick="closeOverlay(); newGame();">Play again</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* —————————————————————————————————————————————————————————
+   WORD POOL — kid-appropriate, broadly useful
+————————————————————————————————————————————————————————— */
+const POOL = [
+  { lingala:"mama",      english:"mother",    phonetic:"MA-ma" },
+  { lingala:"tata",      english:"father",    phonetic:"TA-ta" },
+  { lingala:"mwana",     english:"child",     phonetic:"MWA-na" },
+  { lingala:"ndako",     english:"house",     phonetic:"n-DA-ko" },
+  { lingala:"mai",       english:"water",     phonetic:"MA-i" },
+  { lingala:"moi",       english:"sun",       phonetic:"MO-i" },
+  { lingala:"sanza",     english:"moon",      phonetic:"SA-nza" },
+  { lingala:"mbisi",     english:"fish",      phonetic:"m-BI-si" },
+  { lingala:"nyama",     english:"animal",    phonetic:"NYA-ma" },
+  { lingala:"motema",    english:"heart",     phonetic:"mo-TE-ma" },
+  { lingala:"mbote",     english:"hello",     phonetic:"m-BO-teh" },
+  { lingala:"bilei",     english:"food",      phonetic:"bi-LE-i" },
+  { lingala:"bolingo",   english:"love",      phonetic:"bo-LIN-go" },
+  { lingala:"esengo",    english:"joy",       phonetic:"e-SEN-go" },
+  { lingala:"bomoi",     english:"life",      phonetic:"bo-MO-i" },
+  { lingala:"libota",    english:"family",    phonetic:"li-BO-ta" },
+  { lingala:"molingami", english:"friend",    phonetic:"mo-lin-GA-mi" },
+  { lingala:"matondi",   english:"thanks",    phonetic:"ma-TON-di" },
+  { lingala:"mosala",    english:"work",      phonetic:"mo-SA-la" },
+  { lingala:"kitoko",    english:"beautiful", phonetic:"kee-TO-ko" },
+];
+
+/* —— STATE —— */
+let boardSize = 12;
+let cards = [];
+let firstPick = null, secondPick = null, locked = false;
+let matches = 0, moves = 0, streak = 0;
+let startTime = null, timerInterval = null;
+let audioOn = true;
+
+/* —— AUDIO —— */
+let actx = null;
+function getAudio() {
+  if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+  if (actx.state === 'suspended') actx.resume();
+  return actx;
+}
+function playPluck(freq) {
+  if (!audioOn) return;
+  const ctx = getAudio();
+  const o = ctx.createOscillator(), g = ctx.createGain();
+  o.type = 'triangle'; o.frequency.setValueAtTime(freq, ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(freq * 0.99, ctx.currentTime + 0.25);
+  g.gain.setValueAtTime(0, ctx.currentTime);
+  g.gain.linearRampToValueAtTime(0.18, ctx.currentTime + 0.005);
+  g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+  o.connect(g); g.connect(ctx.destination);
+  o.start(); o.stop(ctx.currentTime + 0.55);
+}
+function playMatch() {
+  if (!audioOn) return;
+  const ctx = getAudio();
+  [523.25, 659.25, 783.99].forEach((f, i) => {
+    const t = ctx.currentTime + i * 0.08;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine'; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.22, t + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t); o.stop(t + 0.6);
+  });
+}
+function playWrong() {
+  if (!audioOn) return;
+  const ctx = getAudio();
+  const o = ctx.createOscillator(), g = ctx.createGain();
+  o.type = 'sine'; o.frequency.setValueAtTime(200, ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.22);
+  g.gain.setValueAtTime(0.16, ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
+  o.connect(g); g.connect(ctx.destination);
+  o.start(); o.stop(ctx.currentTime + 0.3);
+}
+function playWin() {
+  if (!audioOn) return;
+  const ctx = getAudio();
+  [392, 523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+    const t = ctx.currentTime + i * 0.13;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'triangle'; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.22, t + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.8);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t); o.stop(t + 0.85);
+  });
+}
+function speakLingala(word) {
+  if (!audioOn || !('speechSynthesis' in window)) return;
+  const u = new SpeechSynthesisUtterance(word);
+  const voices = speechSynthesis.getVoices();
+  const v = voices.find(x => x.lang.startsWith('it') || x.lang.startsWith('es'));
+  if (v) u.voice = v;
+  u.rate = 0.85;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+/* —— GAME LOGIC —— */
+function newGame() {
+  matches = 0; moves = 0; streak = 0;
+  firstPick = null; secondPick = null; locked = false;
+  document.getElementById('matchedList').innerHTML =
+    '<div class="matched-empty"><span>Tap two cards to find a pair — words you match will appear here.</span></div>';
+  const totalEl = document.getElementById('matchedTotal');
+  if (totalEl) totalEl.textContent = boardSize / 2;
+  updateStats();
+
+  const pairCount = boardSize / 2;
+  const picked = [...POOL].sort(() => Math.random() - 0.5).slice(0, pairCount);
+  cards = [];
+  picked.forEach((w, pairId) => {
+    cards.push({ id: pairId + '-l', pairId, side: 'lingala', word: w, matched: false });
+    cards.push({ id: pairId + '-e', pairId, side: 'english', word: w, matched: false });
+  });
+  cards.sort(() => Math.random() - 0.5);
+  renderBoard();
+
+  startTime = Date.now();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 250);
+}
+
+function renderBoard() {
+  const board = document.getElementById('board');
+  board.className = 'board size-' + boardSize;
+  board.innerHTML = '';
+  cards.forEach((c) => {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.dataset.id = c.id;
+    el.innerHTML =
+      '<div class="card-face card-back"><div class="card-back-mark">LN</div></div>' +
+      '<div class="card-face card-front">' +
+        '<div class="card-front-text ' + (c.side === 'lingala' ? 'lingala' : 'english') + '">' +
+          (c.side === 'lingala' ? c.word.lingala : c.word.english) +
+        '</div>' +
+      '</div>';
+    el.onclick = () => flipCard(c, el);
+    board.appendChild(el);
+  });
+}
+
+function flipCard(c, el) {
+  if (locked || c.matched || el.classList.contains('flipped')) return;
+  el.classList.add('flipped');
+  if (c.side === 'lingala') speakLingala(c.word.lingala);
+  else playPluck(440 + (c.pairId * 25) % 200);
+
+  if (!firstPick) { firstPick = { card: c, el }; return; }
+  secondPick = { card: c, el };
+  moves++;
+  checkMatch();
+}
+
+function checkMatch() {
+  locked = true;
+  const a = firstPick, b = secondPick;
+  if (a.card.pairId === b.card.pairId && a.card.side !== b.card.side) {
+    setTimeout(() => {
+      a.el.classList.add('matched'); b.el.classList.add('matched');
+      a.card.matched = true; b.card.matched = true;
+      matches++; streak++;
+      playMatch(); addToMatchedList(a.card.word); updateStats();
+      firstPick = null; secondPick = null; locked = false;
+      if (matches === boardSize / 2) setTimeout(handleWin, 700);
+    }, 350);
+  } else {
+    setTimeout(() => {
+      a.el.classList.add('wrong'); b.el.classList.add('wrong');
+      playWrong(); streak = 0; updateStats();
+      setTimeout(() => {
+        a.el.classList.remove('flipped', 'wrong');
+        b.el.classList.remove('flipped', 'wrong');
+        firstPick = null; secondPick = null; locked = false;
+      }, 700);
+    }, 600);
+  }
+}
+
+function addToMatchedList(word) {
+  const list = document.getElementById('matchedList');
+  if (list.querySelector('.matched-empty')) list.innerHTML = '';
+  const item = document.createElement('div');
+  item.className = 'matched-item';
+  item.innerHTML =
+    '<div class="matched-lingala">' + word.lingala + '</div>' +
+    '<div class="matched-english">' + word.english + ' · ' + word.phonetic + '</div>';
+  list.prepend(item);
+}
+
+function updateStats() {
+  ['railMatches','mobMatches'].forEach((id) => { const el = document.getElementById(id); if (el) el.textContent = matches; });
+  ['railMoves','mobMoves'].forEach((id) => { const el = document.getElementById(id); if (el) el.textContent = moves; });
+  ['railStreak','mobStreak'].forEach((id) => { const el = document.getElementById(id); if (el) el.textContent = streak; });
+  const counter = document.getElementById('matchedCounter');
+  if (counter) counter.querySelector('b').textContent = matches;
+}
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const min = Math.floor(elapsed / 60), sec = elapsed % 60;
+  const formatted = min + ':' + sec.toString().padStart(2, '0');
+  const el = document.getElementById('railTime');
+  if (el) el.textContent = formatted;
+}
+
+function handleWin() {
+  clearInterval(timerInterval);
+  playWin(); fireConfetti();
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const min = Math.floor(elapsed / 60), sec = elapsed % 60;
+  document.getElementById('winMatches').textContent = matches;
+  document.getElementById('winMoves').textContent = moves;
+  document.getElementById('winTime').textContent = min + ':' + sec.toString().padStart(2, '0');
+  document.getElementById('winOverlay').classList.add('show');
+}
+
+function closeOverlay() { document.getElementById('winOverlay').classList.remove('show'); }
+
+function setDifficulty(n, btn) {
+  boardSize = n;
+  document.querySelectorAll('.diff-chip').forEach((c) => c.classList.remove('on'));
+  btn.classList.add('on');
+  newGame();
+}
+
+function toggleAudio() {
+  audioOn = !audioOn;
+  document.querySelectorAll('#audioBtn, .btn-icon').forEach((b) => { b.style.opacity = audioOn ? '1' : '0.5'; });
+}
+
+/* —— CONFETTI —— */
+function fireConfetti() {
+  const colors = ['#F4C81E','#1455A4','#C8202A','#2D9A4A','#FAF7F0','#E91E63'];
+  for (let i = 0; i < 50; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = (Math.random() * 100) + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    const dur = 1.8 + Math.random() * 1.5;
+    const drift = (Math.random() - 0.5) * 240;
+    c.animate([
+      { transform: 'translateY(0) translateX(0) rotate(0deg)', opacity: 1 },
+      { transform: 'translateY(110vh) translateX(' + drift + 'px) rotate(' + (Math.random() * 720) + 'deg)', opacity: 0 },
+    ], { duration: dur * 1000, easing: 'cubic-bezier(.3,.6,.7,1)' });
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), dur * 1000);
+  }
+}
+
+newGame();
+if ('speechSynthesis' in window) speechSynthesis.getVoices();
+</script>
+
+<footer class="site-footer">
+  <img src="/android-icon-192x192.png" alt="Lingala" class="footer-logo" width="52" height="52">
+  <p class="footer-tagline" data-i18n="footer.tagline">Keep Lingala alive — for Congolese everywhere · 🇨🇩</p>
+  <div class="footer-links">
+    <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
+    <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span><a href="#" data-action="install-app" data-i18n="footer.install">Install app</a><span class="sep">·</span>
+    <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span><a href="/memory.html" data-i18n="nav.memory">Memory</a><span class="sep">·</span>
+    <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
+    <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
+    <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
+  </div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.71</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+</footer>
+
+<script src="/js/theme-site.js"></script>
+<script src="/js/site-nav.js" defer></script>
+<script src="/js/i18n-site.js"></script>
+<script src="/js/consent.js" defer></script>
+<script src="/js/install.js" defer></script>
+</body>
+</html>
