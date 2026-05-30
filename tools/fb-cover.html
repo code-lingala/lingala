@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lingala — Facebook cover generator</title>
+<!-- Same font stack as the rest of the site. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #1a1a1a; color: #eee; font-family: Inter, system-ui, sans-serif; padding: 24px; }
+  h1 { font-family: Fraunces, serif; font-weight: 600; font-size: 22px; margin: 0 0 8px; }
+  p { margin: 4px 0 16px; color: #aaa; font-size: 14px; }
+  .controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 16px 0 20px; }
+  .controls label { font-size: 13px; color: #aaa; display: flex; align-items: center; gap: 6px; }
+  select, button { background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 6px; padding: 8px 14px; font: inherit; cursor: pointer; }
+  button.primary { background: #C8202A; border-color: #C8202A; color: #fff; font-weight: 600; }
+  button:hover { filter: brightness(1.1); }
+  canvas { display: block; max-width: 100%; height: auto; border: 1px solid #333; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+  .hint { font-size: 12px; color: #777; margin-top: 8px; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>Lingala — Facebook cover generator</h1>
+<p>Renders a cover image in your site's DRC palette + grain. Pick a preset, tweak the text, click download.</p>
+
+<div class="controls">
+  <label>Size
+    <select id="preset">
+      <option value="group" selected>Group (1640×856)</option>
+      <option value="page">Page (1640×624)</option>
+      <option value="event">Event (1920×1005)</option>
+    </select>
+  </label>
+  <label>Theme
+    <select id="theme">
+      <option value="blue" selected>Blue (DRC cerulean)</option>
+      <option value="red">Red (terracotta)</option>
+      <option value="paper">Paper (white + ink)</option>
+    </select>
+  </label>
+  <label>Headline
+    <input id="headline" value="Mbote!" style="background:#2a2a2a;color:#eee;border:1px solid #444;border-radius:6px;padding:8px;font:inherit;width:140px">
+  </label>
+  <label>Subhead
+    <input id="subhead" value="Un mot de Lingala par jour." style="background:#2a2a2a;color:#eee;border:1px solid #444;border-radius:6px;padding:8px;font:inherit;width:260px">
+  </label>
+  <button id="render">Render</button>
+  <button id="download" class="primary">Download PNG</button>
+</div>
+
+<canvas id="c" width="1640" height="856" style="background:#000"></canvas>
+<p class="hint">Facebook crops covers differently on desktop / mobile / square previews. The safe zone (center 820×312 for Pages, center ~1200×630 for Groups) is outlined in green when rendering — keep your headline inside it.</p>
+
+<script>
+(function () {
+  const cvs = document.getElementById('c');
+  const ctx = cvs.getContext('2d');
+
+  // DRC flag palette (matches css/site.css + js/card.js).
+  const PALETTES = {
+    blue:  { base: '#08182E', mid: '#0F2238', ink: '#F0F4FA', soft: 'rgba(230,238,250,0.78)', accent: '#C8202A', gold: '#E0AF1E', dot: '#1455A4' },
+    red:   { base: '#1C0A0A', mid: '#2A1413', ink: '#FAF0EE', soft: 'rgba(250,236,232,0.78)', accent: '#E0AF1E', gold: '#E0AF1E', dot: '#C8202A' },
+    paper: { base: '#FFFFFF', mid: '#F4F4F4', ink: '#000000', soft: 'rgba(0,0,0,0.72)',     accent: '#C8202A', gold: '#E0AF1E', dot: '#1455A4' },
+  };
+
+  const SIZES = {
+    group: { w: 1640, h: 856 },
+    page:  { w: 1640, h: 624 },
+    event: { w: 1920, h: 1005 },
+  };
+
+  function applyGrain(w, h, alpha) {
+    // Risograph-style fine grain, same idea as js/card.js applyGrain.
+    const img = ctx.getImageData(0, 0, w, h);
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (Math.random() - 0.5) * alpha * 255;
+      d[i]     = Math.max(0, Math.min(255, d[i]     + n));
+      d[i + 1] = Math.max(0, Math.min(255, d[i + 1] + n));
+      d[i + 2] = Math.max(0, Math.min(255, d[i + 2] + n));
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function drawFlagDots(x, y, r, p) {
+    // Three DRC-flag dots: cerulean, gold, terracotta.
+    const colors = ['#1455A4', '#E0AF1E', '#C8202A'];
+    colors.forEach((c, i) => {
+      ctx.fillStyle = c;
+      ctx.beginPath();
+      ctx.arc(x + i * (r * 2.4), y, r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function render() {
+    const size = SIZES[document.getElementById('preset').value];
+    const p = PALETTES[document.getElementById('theme').value];
+    const headline = document.getElementById('headline').value || 'Mbote!';
+    const subhead = document.getElementById('subhead').value || '';
+    cvs.width = size.w; cvs.height = size.h;
+
+    // Background — diagonal gradient between base and mid.
+    const g = ctx.createLinearGradient(0, 0, size.w, size.h);
+    g.addColorStop(0, p.base);
+    g.addColorStop(1, p.mid);
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, size.w, size.h);
+
+    // Decorative scattered chevrons in the DRC triad (faint, texture not pattern).
+    ctx.save();
+    ctx.globalAlpha = 0.10;
+    const ridges = ['#1455A4', '#E0AF1E', '#C8202A'];
+    for (let i = 0; i < 60; i++) {
+      ctx.strokeStyle = ridges[i % 3];
+      ctx.lineWidth = 2;
+      const cx = Math.random() * size.w;
+      const cy = Math.random() * size.h;
+      const s = 30 + Math.random() * 40;
+      ctx.beginPath();
+      ctx.moveTo(cx - s, cy);
+      ctx.lineTo(cx, cy - s * 0.5);
+      ctx.lineTo(cx + s, cy);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Big translucent accent disc, lower-left — gives the eye a focal anchor.
+    const radial = ctx.createRadialGradient(size.w * 0.18, size.h * 0.7, 20, size.w * 0.18, size.h * 0.7, size.h * 0.6);
+    radial.addColorStop(0, 'rgba(20,85,164,0.35)');
+    radial.addColorStop(1, 'rgba(20,85,164,0)');
+    ctx.fillStyle = radial;
+    ctx.fillRect(0, 0, size.w, size.h);
+
+    // —— TEXT BLOCK ——
+    const cx = size.w / 2;
+    const cy = size.h / 2;
+
+    // Headline (Fraunces serif, large).
+    ctx.fillStyle = p.ink;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const headSize = Math.round(size.h * 0.22);
+    ctx.font = `600 ${headSize}px Fraunces, Georgia, serif`;
+    ctx.fillText(headline, cx, cy - headSize * 0.25);
+
+    // Gold underline accent under the headline.
+    const lineY = cy + headSize * 0.32;
+    ctx.fillStyle = '#E0AF1E';
+    ctx.fillRect(cx - 80, lineY, 160, 4);
+
+    // Subhead (Inter, medium).
+    if (subhead) {
+      const subSize = Math.round(size.h * 0.045);
+      ctx.fillStyle = p.soft;
+      ctx.font = `400 italic ${subSize}px Fraunces, Georgia, serif`;
+      ctx.fillText(subhead, cx, cy + headSize * 0.55);
+    }
+
+    // —— TOP-LEFT brand mark: dots + wordmark ——
+    drawFlagDots(80, 80, 14, p);
+    ctx.fillStyle = p.ink;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.font = `800 ${Math.round(size.h * 0.035)}px Inter, -apple-system, sans-serif`;
+    ctx.letterSpacing = '0.18em';
+    ctx.fillText('LINGALA', 80, 130);
+
+    // Tiny subtitle under the wordmark.
+    ctx.fillStyle = p.soft;
+    ctx.font = `500 ${Math.round(size.h * 0.022)}px Inter, sans-serif`;
+    ctx.fillText('by Artivicolab', 80, 162);
+
+    // —— BOTTOM-RIGHT URL ——
+    ctx.textAlign = 'right';
+    ctx.fillStyle = p.soft;
+    ctx.font = `500 ${Math.round(size.h * 0.028)}px Inter, sans-serif`;
+    ctx.fillText('lingala.artivicolab.com', size.w - 80, size.h - 70);
+
+    // Three flag dots, bottom right, above the URL.
+    drawFlagDots(size.w - 200, size.h - 110, 8, p);
+
+    // —— Risograph grain pass (subtle). ——
+    applyGrain(size.w, size.h, 0.035);
+
+    // —— Safe-zone outline (green, won't be in download). ——
+    // Drawn LAST as overlay, removed before export.
+  }
+
+  function download() {
+    render();
+    const url = cvs.toDataURL('image/png');
+    const a = document.createElement('a');
+    const sizeName = document.getElementById('preset').value;
+    a.href = url;
+    a.download = `lingala-fb-${sizeName}.png`;
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  document.getElementById('render').addEventListener('click', render);
+  document.getElementById('download').addEventListener('click', download);
+  document.getElementById('preset').addEventListener('change', render);
+  document.getElementById('theme').addEventListener('change', render);
+  document.getElementById('headline').addEventListener('input', render);
+  document.getElementById('subhead').addEventListener('input', render);
+
+  // Wait for fonts then render.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(render);
+  } else {
+    setTimeout(render, 400);
+  }
+})();
+</script>
+</body>
+</html>
