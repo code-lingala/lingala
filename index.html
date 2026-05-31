@@ -721,6 +721,42 @@
     color: var(--accent);
   }
 
+  /* —— STORY (Where Lingala comes from) —— */
+  .story-section { padding-top: 40px; padding-bottom: 40px; }
+  .story {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .story-text em,
+  .story-text .about-body em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .story-stats-col { padding-top: 60px; display: flex; flex-direction: column; gap: 28px; }
+  .story-caption {
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: 1.05rem; line-height: 1.7; color: var(--muted);
+    border-left: 2px solid var(--accent); padding-left: 18px;
+  }
+
+  /* Live "babies born today" ticker — counts up locally based on time of day. */
+  .stat-live .stat-number { display: inline-flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; }
+  .live-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: #2D9A4A; box-shadow: 0 0 0 0 rgba(45,154,74,0.5);
+    animation: livePulse 1.8s ease-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes livePulse {
+    0%   { box-shadow: 0 0 0 0 rgba(45,154,74,0.55); }
+    70%  { box-shadow: 0 0 0 10px rgba(45,154,74,0); }
+    100% { box-shadow: 0 0 0 0 rgba(45,154,74,0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+  @media (max-width: 900px) {
+    .story { grid-template-columns: 1fr; gap: 40px; }
+    .story-stats-col { padding-top: 0; }
+  }
+
   /* —— ABOUT —— */
   .about {
     display: grid;
@@ -1391,7 +1427,7 @@
 <nav class="site-nav">
   <a class="site-logo" href="/"><img src="/android-icon-192x192.png" alt="" class="site-logo-mark" width="28" height="28">Lingala</a>
   <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
-  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><a href="/count.html" data-i18n="nav.count">Count</a><a href="/memory.html" data-i18n="nav.memory">Memory</a><a href="/name.html" data-i18n="nav.name">Find your name</a><a href="/about.html" data-i18n="nav.about">About</a></div>
+  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><a href="/count.html" data-i18n="nav.count">Count</a><a href="/memory.html" data-i18n="nav.memory">Memory</a><a href="/map.html" data-i18n="nav.map">Map</a><a href="/name.html" data-i18n="nav.name">Find your name</a><a href="/about.html" data-i18n="nav.about">About</a></div>
     <div class="theme-dots" role="group" aria-label="Colour theme" data-i18n-attr="aria-label:aria.theme">
       <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue" data-i18n-attr="aria-label:aria.blue"></button>
       <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red" data-i18n-attr="aria-label:aria.red"></button>
@@ -1543,6 +1579,42 @@
   </div>
 </section>
 
+<!-- STORY · Where Lingala comes from -->
+<section id="story" class="story-section">
+  <div class="story">
+    <div class="story-text">
+      <p class="section-eyebrow fade-up" data-i18n="story.eyebrow">Where Lingala comes from</p>
+      <h2 class="section-title fade-up fade-up-delay-1" data-i18n="story.title">A language born on the river.<br><em>Carried by the people.</em></h2>
+      <p class="about-body fade-up fade-up-delay-2" data-i18n="story.body1">The <strong>Bangala</strong> — <em>“the river people”</em> — live along the great northern bends of the Congo River, the world's second-largest river by volume. The Bobangi, Boloki, Mabale and other riverine communities were the merchants of the upper Congo: traders of palm oil, fish, salt, and pottery, moving goods up and down a 4,700-kilometer water highway.</p>
+      <p class="about-body fade-up fade-up-delay-3" data-i18n="story.body2">Out of that trade, a shared language emerged. Built on Bobangi roots and tuned for commerce between many tongues, it became the speech of the riverbanks. The prefix <em>Li-</em> marks a language; <em>ngala</em> names the people. So: <strong>Lingala — the language of the river people.</strong></p>
+      <p class="about-body fade-up fade-up-delay-4" data-i18n="story.body3">When Kinshasa grew into one of the world's great megacities — straddling the river, facing the Bakongo lands to the south — it was Congolese rumba, sung in Lingala by river musicians, that carried the language into the heart of the capital and onto the radios of Africa. Today Lingala is the sound of Kinshasa, of the music, and of every Congolese household in the diaspora that still hums <em>esengo nayoki na ngai.</em></p>
+    </div>
+
+    <div class="story-stats-col fade-up fade-up-delay-2">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">45<span>M+</span></div>
+          <div class="stat-label" data-i18n="story.stat1">Lingala speakers across DRC, Republic of Congo, Angola &amp; CAR</div>
+        </div>
+        <div class="stat stat-live">
+          <div class="stat-number"><span class="live-dot" aria-hidden="true"></span><span id="storyBabyTicker">0</span></div>
+          <div class="stat-label" data-i18n="story.stat2">Congolese babies born today · in DRC</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">17<span>M</span></div>
+          <div class="stat-label" data-i18n="story.stat3">Kinshasa metro — the largest Francophone city in the world</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4,700<span>km</span></div>
+          <div class="stat-label" data-i18n="story.stat4">The Congo River — the language's first highway</div>
+        </div>
+      </div>
+
+      <p class="story-caption fade-up fade-up-delay-3" data-i18n="story.caption">Four river provinces — Équateur, Mongala, Nord-Ubangi, Sud-Ubangi — are the Bangala heartland. From there, Lingala flowed downstream into Kinshasa, into the music, and into the diaspora.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="about">
@@ -1555,25 +1627,6 @@
     </div>
 
     <div class="about-right fade-up fade-up-delay-2">
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-number" id="statPhrases">56</div>
-          <div class="stat-label" data-i18n="stat.phrases">Lingala phrases so far · growing to 365</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" id="statCategories">12</div>
-          <div class="stat-label" data-i18n="stat.categories">Cultural categories</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">0<span>€</span></div>
-          <div class="stat-label" data-i18n="stat.cost">Cost to use, forever</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">&lt;30<span>s</span></div>
-          <div class="stat-label" data-i18n="stat.speed">From open to shared</div>
-        </div>
-      </div>
-
       <div class="pull-quote" data-i18n="about.quote">“When someone in my family says this word, it carries thirty years of history. Now I can share that.”</div>
     </div>
   </div>
@@ -1734,7 +1787,7 @@
     <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
     <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span><a href="#" data-action="install-app" data-i18n="footer.install">Install app</a><span class="sep">·</span>
     <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
-    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span><a href="/memory.html" data-i18n="nav.memory">Memory</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span><a href="/memory.html" data-i18n="nav.memory">Memory</a><span class="sep">·</span><a href="/map.html" data-i18n="nav.map">Map</a><span class="sep">·</span>
     <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
     <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
     <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
@@ -1788,6 +1841,28 @@
   const set = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
   set('statPhrases', PHRASES.length);
   set('statCategories', Object.keys(CATEGORIES).length);
+</script>
+
+<!-- Live "Congolese babies born today" ticker.
+     ~3.9M annual births in DRC = 10,685/day = one every ~8.1 seconds.
+     Counts up locally from the user's own midnight so the number is "live"
+     without any network call, matching the no-backend project rule. -->
+<script>
+(function () {
+  const el = document.getElementById('storyBabyTicker');
+  if (!el) return;
+  const BIRTHS_PER_DAY = 10685;
+  const SECONDS_PER_DAY = 86400;
+  const fmt = (n) => n.toLocaleString();
+  function tick() {
+    const now = new Date();
+    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const secs = (now - midnight) / 1000;
+    el.textContent = fmt(Math.floor((secs / SECONDS_PER_DAY) * BIRTHS_PER_DAY));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
 </script>
 
 <!-- Hero carousel — auto-cycles real phrases with an intro/outro. No buttons,

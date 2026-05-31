@@ -75,6 +75,13 @@
   .d-chip { flex-shrink: 0; padding: 9px 16px; background: var(--surface-2, rgba(255,255,255,0.04)); border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.84rem; border-radius: 100px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
   .d-chip:hover:not(.active) { border-color: var(--accent); }
   .d-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  /* Phrase chip — distinct tier from word-bank entries. Uses the DRC-flag gold
+     accent so it reads as a different kind of content (curated daily cards),
+     not just another category. */
+  .d-chip.tier-phrase { border-color: var(--accent-warm, #E0AF1E); color: var(--accent-warm, #E0AF1E); }
+  .d-chip.tier-phrase:hover:not(.active) { border-color: var(--accent-warm, #E0AF1E); background: rgba(224, 175, 30, 0.08); }
+  .d-chip.tier-phrase.active { background: var(--accent-warm, #E0AF1E); border-color: var(--accent-warm, #E0AF1E); color: #1a1a1a; }
+  .d-chip.tier-phrase.active .d-chip-count { background: rgba(0,0,0,0.18); color: #1a1a1a; }
   .d-chip-count { display: inline-block; margin-left: 6px; padding: 1px 7px; font-size: 0.72rem; font-weight: 600; background: rgba(255,255,255,0.08); border-radius: 100px; opacity: 0.85; }
   .d-chip.active .d-chip-count { background: rgba(255,255,255,0.22); opacity: 1; }
   .d-explicit { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: transparent; border: 1px solid var(--line); color: var(--ink); font-family: var(--body); font-size: 0.78rem; border-radius: 100px; cursor: pointer; transition: all .2s; user-select: none; white-space: nowrap; }
@@ -92,9 +99,25 @@
   .d-seg button.active { background: var(--accent); color: #fff; }
 
   /* A–Z letter strip — scrolls horizontally on phone, wraps on wide screens. */
-  .d-letters { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
-  @media (min-width: 980px) { .d-letters { flex-wrap: wrap; overflow-x: visible; } }
+  .d-letters-wrap { position: relative; min-width: 0; width: 100%; }
+  .d-letters { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 0 28px 4px 0; scroll-behavior: smooth; }
+  @media (min-width: 980px) { .d-letters { flex-wrap: wrap; overflow-x: visible; padding-right: 0; } }
   .d-letters::-webkit-scrollbar { display: none; }
+  /* Same bouncing "more →" hint as the filter chips, for the letter strip. */
+  .d-letters-hint {
+    position: absolute; right: 0; top: 0; bottom: 4px;
+    display: flex; align-items: center; justify-content: flex-end;
+    width: 40px; padding-right: 4px; pointer-events: none;
+    color: var(--accent);
+    background: linear-gradient(to right, transparent, var(--base) 60%);
+    opacity: 1; transition: opacity .2s ease;
+  }
+  .d-letters-wrap.at-end .d-letters-hint { opacity: 0; }
+  .d-letters-hint svg { animation: filterNudge 1.2s ease-in-out infinite; }
+  @media (min-width: 980px) { .d-letters-hint { display: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .d-letters-hint svg { animation: none; }
+  }
   .d-letter { flex-shrink: 0; min-width: 36px; height: 36px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center;
     background: transparent; border: 1px solid var(--line); border-radius: 8px;
     color: var(--ink); font-family: var(--body); font-size: 0.82rem; font-weight: 600;
@@ -245,7 +268,7 @@
 <nav class="site-nav">
   <a class="site-logo" href="/"><img src="/android-icon-192x192.png" alt="" class="site-logo-mark" width="28" height="28">Lingala</a>
   <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
-  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><a href="/count.html" data-i18n="nav.count">Count</a><a href="/memory.html" data-i18n="nav.memory">Memory</a><a href="/name.html" data-i18n="nav.name">Find your name</a><a href="/about.html" data-i18n="nav.about">About</a></div>
+  <div class="nav-right" id="navRight"><div class="nav-links"><a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><a href="/count.html" data-i18n="nav.count">Count</a><a href="/memory.html" data-i18n="nav.memory">Memory</a><a href="/map.html" data-i18n="nav.map">Map</a><a href="/name.html" data-i18n="nav.name">Find your name</a><a href="/about.html" data-i18n="nav.about">About</a></div>
     <div class="theme-dots" role="group" aria-label="Colour theme" data-i18n-attr="aria-label:aria.theme">
       <button class="theme-dot t-blue" data-theme-btn="blue" type="button" aria-label="Blue" data-i18n-attr="aria-label:aria.blue"></button>
       <button class="theme-dot t-red" data-theme-btn="red" type="button" aria-label="Red" data-i18n-attr="aria-label:aria.red"></button>
@@ -292,7 +315,12 @@
         </div>
       </div>
     </div>
-    <div class="d-letters" id="letterRow" role="tablist" aria-label="Jump to letter"></div>
+    <div class="d-letters-wrap" id="letterWrap">
+      <div class="d-letters" id="letterRow" role="tablist" aria-label="Jump to letter"></div>
+      <div class="d-letters-hint" id="letterHint" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      </div>
+    </div>
   </div>
 
   <div class="dict-grid" id="dictList"></div>
@@ -306,7 +334,7 @@
     <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
     <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span><a href="#" data-action="install-app" data-i18n="footer.install">Install app</a><span class="sep">·</span>
     <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
-    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span><a href="/memory.html" data-i18n="nav.memory">Memory</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span><a href="/memory.html" data-i18n="nav.memory">Memory</a><span class="sep">·</span><a href="/map.html" data-i18n="nav.map">Map</a><span class="sep">·</span>
     <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
     <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
     <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
@@ -406,8 +434,8 @@
   }
 
   // Category labels: curated CATEGORIES keys + the word-bank-only keys below.
-  const WB_CAT = { 'General': 'general', 'Food': 'food', 'Travel': 'travel', 'Family': 'family', 'Time': 'time', 'Celebration': 'celebration', 'Daily Life': 'daily', 'Nature': 'nature', 'Body': 'body', 'Greetings': 'greetings', 'Comfort': 'comfort', 'Essentials': 'essentials' };
-  const EXTRA = { general: { en: 'General', fr: 'Général' }, travel: { en: 'Travel', fr: 'Voyage' }, daily: { en: 'Daily life', fr: 'Vie quotidienne' }, nature: { en: 'Nature', fr: 'Nature' }, body: { en: 'Body', fr: 'Corps' }, comfort: { en: 'Comfort', fr: 'Réconfort' }, essentials: { en: 'Essentials', fr: 'Essentiels' }, vulgar: { en: 'Vulgar', fr: 'Vulgaire', ln: 'Masókó' }, slang: { en: 'Slang', fr: 'Argot', ln: 'Lingomba' }, Animal: { en: 'Animal', fr: 'Animal', ln: 'Nyama' }, Number: { en: 'Number', fr: 'Nombre', ln: 'Motángó' } };
+  const WB_CAT = { 'General': 'general', 'Food': 'food', 'Travel': 'travel', 'Family': 'family', 'Time': 'time', 'Celebration': 'celebration', 'Daily Life': 'daily', 'Nature': 'nature', 'Body': 'body', 'Greetings': 'greetings', 'Comfort': 'comfort', 'Essentials': 'essentials', 'Expressions': 'expressions', 'Numbers': 'numbers' };
+  const EXTRA = { general: { en: 'General', fr: 'Général' }, travel: { en: 'Travel', fr: 'Voyage' }, daily: { en: 'Daily life', fr: 'Vie quotidienne' }, nature: { en: 'Nature', fr: 'Nature' }, body: { en: 'Body', fr: 'Corps' }, comfort: { en: 'Comfort', fr: 'Réconfort' }, essentials: { en: 'Essentials', fr: 'Essentiels' }, vulgar: { en: 'Vulgar', fr: 'Vulgaire', ln: 'Masókó' }, slang: { en: 'Slang', fr: 'Argot', ln: 'Lingomba' }, Animal: { en: 'Animal', fr: 'Animal', ln: 'Nyama' }, Number: { en: 'Number', fr: 'Nombre', ln: 'Motángó' }, expressions: { en: 'Expressions', fr: 'Expressions', ln: 'Maloba' }, numbers: { en: 'Numbers', fr: 'Nombres', ln: 'Motángo' } };
   const catLabel = (key) => {
     if (key === 'Animal') { const c = EXTRA.Animal; return c[uiLang()] || c.en; }
     if (key === 'Number') { const c = EXTRA.Number; return c[uiLang()] || c.en; }
@@ -484,6 +512,44 @@
     'mumpulu','liyoyo-ya-elanga','ndongondongo-moindo','nzinzi-mabe',
     'nzoloko','esele-ya-ndako','lokonga','ganga-pembe','monzombo-moke',
     'liyebe-ya-nzete',
+    // Batch 25 — insects & creepy-crawlers (Supplemental)
+    'nzoi','ndonzi','lingbongbolo','ntonzi','mpasá','mpasa',
+    'likwanga nzala','ekongolo','nkusu','esunzu','mpesemone','nzinzimbenga',
+    'mofotiya mampa','mumpulukuku','mpeseya zamba','likalinganyama',
+    'ndundumbasi','ekandandeke','singayambangya','nzinziya ngombe',
+    'likongoli','makangaya mabele','kingungwasi','likwanga','mpesemoke',
+    'nkungiya mai','limfumbeya mai','nzoinene','esunzuya ebale',
+    'likelele','ekonda',
+    // Batch 27 & 28 — mammals, birds, reptiles, aquatic
+    'singamboka','pongo','mbengi','nsimba','punda ya milongo','ngubu',
+    'nsoko','ndeke ya mafuta','esende','koikoi','mbelekete','limfunda',
+    'ngando ya moke','mbisi ya mikuwa','mompende','likonzi','nioka ya pembe',
+    'mbwampoka','niau ya zamba',
+    'ndeke ya mpongo','ngulu ya mai','mbisi ya kazaka','nkosi ya mai',
+    'nkoo ya moke','limfunda monene','esele ya nzete','mpongo monene',
+    'ganga moindo','koikoi ya pembe','esunzu ya mposo','menga','mbisi ya fufu',
+    'niau ya ndako','mbuta ya nyama','pongo mobali','taba ya zamba',
+    'soso ya zamba','punda ya zelo','pakasa ya moke','singamboka monene',
+    'ngandu ya mai','kigwa ya kitoko','liyebe monene','nioka ya moindo',
+    // Polysemy resolution — homonym nouns + correct pangolin spelling
+    'simba','kanga','likwaga',
+    // Batch 29 — more insects & crawlers
+    'kingongolo','likongolambwa','linzambalakata','mpeseyamabele','ntonzimoke',
+    'nzoiyazamba','ndonzimoke','lingbongboloyamai','mpasayambila',
+    'ndongondongoyamai','nyamankasimoke','nsongoyamabele','ekongoloyazamba',
+    'nkusuya mampa','esunzuya ngombe','mpesemone ya kuku','nzinzimbengamoke',
+    'mofotiya mbisi','mumpulukukuya mbeto','likalinganyamaya zamba',
+    'ndundumbasiya efelo','ekandandekeya soso','singayambangyamoke',
+    'nzinziya mbwa','likongoli ya potopoto',
+    // Batch 30 — mammals (selected, with refused entries omitted: tsetse, kamela ya milongo, mpakasa, nzinzi, kamundele)
+    'nkoso ya zamba','mboka ya nzete','mboloko mobali','mbenge','pongo mwasi',
+    'simba moindo','punda ya makasi','ngubu monene','nsoko mobali','esende monene',
+    'ngulu ya sika','mbwampoka moke','niau moke','ngulube','likaku ya zamba',
+    'ndoki ya nyama','ngembo','linzoko','mbuloko','mbalapi','likoba','ntatabi',
+    'noko ya zamba','eloli ya zamba','mbuta ya zamba',
+    // Batch 31 — reptiles
+    'ekanya','imba','kimbamba','libawu','likunda','lobefu','mboma','mbwembwe',
+    'nkanga','nsasa','ntulu','nyasa','nzofi','pili',
   ].map(s => s.toLowerCase()));
   function isAnimal(w) {
     const ln = (w.lingala || '').toLowerCase();
@@ -715,14 +781,20 @@
 
   function render() {
     const t = searchTerm.trim().toLowerCase();
+    const isPhrase = (w) => w.tier === 'phrase';
     let rows = WORDS.filter((w) => {
-      const matchCat = activeFilter === 'All'
-        ? true
+      // Phrases are a separate content tier — they ONLY surface under the
+      // explicit "Phrase" chip. All / Animal / Number / category chips show
+      // word-bank entries only, never phrases.
+      const matchCat = activeFilter === 'Phrase'
+        ? isPhrase(w)
+        : activeFilter === 'All'
+        ? !isPhrase(w)
         : activeFilter === 'Animal'
-        ? isAnimal(w)
+        ? (!isPhrase(w) && isAnimal(w))
         : activeFilter === 'Number'
-        ? isNumber(w)
-        : w.catKey === activeFilter;
+        ? (!isPhrase(w) && isNumber(w))
+        : (!isPhrase(w) && w.catKey === activeFilter);
       const matchLetter = activeLetter === 'All' || (w.lingala || '').charAt(0).toLowerCase() === activeLetter;
       const matchSearch = !t ||
         w.lingala.toLowerCase().includes(t) ||
@@ -749,7 +821,10 @@
 
     currentList = rows;  // cache so modal prev/next can walk it
     const total = rows.length;
-    $('dictCount').textContent = `${total.toLocaleString()} ${total === 1 ? 'word' : 'words'}${activeFilter !== 'All' ? ' in ' + catLabel(activeFilter) : ''}`;
+    const isPhraseFilter = activeFilter === 'Phrase';
+    const unit = isPhraseFilter ? (total === 1 ? 'phrase' : 'phrases') : (total === 1 ? 'word' : 'words');
+    const suffix = activeFilter === 'All' ? '' : (isPhraseFilter ? '' : ' in ' + catLabel(activeFilter));
+    $('dictCount').textContent = `${total.toLocaleString()} ${unit}${suffix}`;
 
     const list = $('dictList');
     list.innerHTML = '';
@@ -774,10 +849,18 @@
   function buildChips() {
     // Always count all words so Vulgar / Slang chips are always visible.
     // Clicking a taboo chip auto-enables the 🔞 toggle.
+    // Phrases (curated rich entries from phrases.js) live in their own "Phrase"
+    // chip and are EXCLUDED from per-category counts/filter — they're a
+    // different content tier from word-bank entries and shouldn't double-up.
+    const isPhraseW = (w) => w.tier === 'phrase';
     const counts = {};
-    WORDS.forEach((w) => { counts[w.catKey] = (counts[w.catKey] || 0) + 1; });
-    const animalCount = WORDS.filter(isAnimal).length;
-    const numberCount = WORDS.filter(isNumber).length;
+    WORDS.forEach((w) => {
+      if (isPhraseW(w)) return;
+      counts[w.catKey] = (counts[w.catKey] || 0) + 1;
+    });
+    const phraseCount = WORDS.filter(isPhraseW).length;
+    const animalCount = WORDS.filter((w) => !isPhraseW(w) && isAnimal(w)).length;
+    const numberCount = WORDS.filter((w) => !isPhraseW(w) && isNumber(w)).length;
     let keys = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
     // Hide vulgar / slang chips entirely until the user opts into explicit content.
     if (!showTaboo) keys = keys.filter((k) => k !== 'vulgar' && k !== 'slang');
@@ -785,21 +868,24 @@
     row.innerHTML = '';
     const chipKeys = [
       'All',
+      ...(phraseCount ? ['Phrase'] : []),
       ...(animalCount ? ['Animal'] : []),
       ...(numberCount ? ['Number'] : []),
       ...keys,
     ];
     if (!chipKeys.includes(activeFilter)) { activeFilter = 'All'; lsSet(LS_FILTER, 'All'); }
-    const allCount = WORDS.filter((w) => showTaboo || !w.taboo).length;
+    // "All" counts word-bank entries only (phrases live under their own chip).
+    const allCount = WORDS.filter((w) => !isPhraseW(w) && (showTaboo || !w.taboo)).length;
     const countFor = (key) => {
       if (key === 'All') return allCount;
+      if (key === 'Phrase') return phraseCount;
       if (key === 'Animal') return animalCount;
       if (key === 'Number') return numberCount;
       return counts[key] || 0;
     };
     chipKeys.forEach((key) => {
       const chip = el('button', {
-        class: 'd-chip' + (key === activeFilter ? ' active' : ''), type: 'button',
+        class: 'd-chip' + (key === activeFilter ? ' active' : '') + (key === 'Phrase' ? ' tier-phrase' : ''), type: 'button',
         onclick: () => {
           activeFilter = key; lsSet(LS_FILTER, key); shown = BATCH;
           // Clicking Vulgar / Slang auto-unlocks explicit content
@@ -810,6 +896,8 @@
           }
           row.querySelectorAll('.d-chip').forEach((c) => c.classList.remove('active'));
           chip.classList.add('active');
+          // Re-build the A–Z strip so its counts reflect the tier (words vs phrases).
+          buildLetters();
           render();
         },
       });
@@ -831,8 +919,14 @@
     const row = $('letterRow');
     if (!row) return;
     const taboo = (w) => showTaboo || !w.taboo;
+    // The letter strip counts whatever tier the user is currently filtering on:
+    // phrases when "Phrase" is active, words otherwise. Keeps the A–Z totals
+    // consistent with the dictionary list below.
+    const phraseOnly = activeFilter === 'Phrase';
     const counts = {};
     WORDS.forEach((w) => {
+      const isPhrase = w.tier === 'phrase';
+      if (phraseOnly ? !isPhrase : isPhrase) return;
       if (!taboo(w) || !w.lingala) return;
       const c = w.lingala.charAt(0).toLowerCase();
       counts[c] = (counts[c] || 0) + 1;
@@ -840,7 +934,10 @@
     const present = Object.keys(counts).sort();
     const letters = ['All', ...present];
     if (!letters.includes(activeLetter)) { activeLetter = 'All'; lsSet(LS_LETTER, 'All'); }
-    const allCount = WORDS.filter(taboo).length;
+    const allCount = WORDS.filter((w) => {
+      const isPhrase = w.tier === 'phrase';
+      return (phraseOnly ? isPhrase : !isPhrase) && taboo(w);
+    }).length;
     row.innerHTML = '';
     letters.forEach((L) => {
       const btn = el('button', {
@@ -860,6 +957,7 @@
       btn.appendChild(el('span', { class: 'd-letter-count', text: String(n) }));
       row.appendChild(btn);
     });
+    syncLetterHint();
   }
 
   // Hide the bouncing right-arrow hint once the user has scrolled to the end
@@ -872,10 +970,20 @@
     const noOverflow = row.scrollWidth <= row.clientWidth + 1;
     wrap.classList.toggle('at-end', atEnd || noOverflow);
   }
+  function syncLetterHint() {
+    const row = $('letterRow');
+    const wrap = $('letterWrap');
+    if (!row || !wrap) return;
+    const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+    const noOverflow = row.scrollWidth <= row.clientWidth + 1;
+    wrap.classList.toggle('at-end', atEnd || noOverflow);
+  }
   document.addEventListener('DOMContentLoaded', () => {
-    const row = $('filterRow');
-    if (row) row.addEventListener('scroll', syncFilterHint, { passive: true });
-    window.addEventListener('resize', syncFilterHint);
+    const fr = $('filterRow');
+    if (fr) fr.addEventListener('scroll', syncFilterHint, { passive: true });
+    const lr = $('letterRow');
+    if (lr) lr.addEventListener('scroll', syncLetterHint, { passive: true });
+    window.addEventListener('resize', () => { syncFilterHint(); syncLetterHint(); });
   });
 
   // Map a raw word-bank row to a unified entry.

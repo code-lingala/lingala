@@ -26,9 +26,11 @@
       'nav.count': 'Count',
       'nav.verbs': 'Verbs',
       'nav.memory': 'Memory',
+      'nav.map': 'Map',
 
       // 404 page
       'title.notFound': 'Page not found — Lingala',
+      'title.map': 'Map of the Congo — Lingala',
       'nf.eyebrow':     'Page not found',
       'nf.title':       "This path doesn't exist.",
       'nf.sub':         'The page you are looking for may have moved, been renamed, or never existed. The good news is the rest of Lingala is still right here.',
@@ -76,6 +78,18 @@
       'stat.cost': 'Cost to use, forever',
       'stat.speed': 'From open to shared',
       'about.quote': '“When someone in my family says this word, it carries thirty years of history. Now I can share that.”',
+
+      // story (Where Lingala comes from)
+      'story.eyebrow': 'Where Lingala comes from',
+      'story.title': 'A language born on the river.<br><em>Carried by the people.</em>',
+      'story.body1': 'The <strong>Bangala</strong> — <em>“the river people”</em> — live along the great northern bends of the Congo River, the world\'s second-largest river by volume. The Bobangi, Boloki, Mabale and other riverine communities were the merchants of the upper Congo: traders of palm oil, fish, salt, and pottery, moving goods up and down a 4,700-kilometer water highway.',
+      'story.body2': 'Out of that trade, a shared language emerged. Built on Bobangi roots and tuned for commerce between many tongues, it became the speech of the riverbanks. The prefix <em>Li-</em> marks a language; <em>ngala</em> names the people. So: <strong>Lingala — the language of the river people.</strong>',
+      'story.body3': 'When Kinshasa grew into one of the world\'s great megacities — straddling the river, facing the Bakongo lands to the south — it was Congolese rumba, sung in Lingala by river musicians, that carried the language into the heart of the capital and onto the radios of Africa. Today Lingala is the sound of Kinshasa, of the music, and of every Congolese household in the diaspora that still hums <em>esengo nayoki na ngai.</em>',
+      'story.stat1': 'Lingala speakers across DRC, Republic of Congo, Angola &amp; CAR',
+      'story.stat2': 'Congolese babies born today · live count, in DRC',
+      'story.stat3': 'Kinshasa metro — the largest Francophone city in the world',
+      'story.stat4': 'The Congo River — the language\'s first highway',
+      'story.caption': 'Four river provinces — Équateur, Mongala, Nord-Ubangi, Sud-Ubangi — are the Bangala heartland. From there, Lingala flowed downstream into Kinshasa, into the music, and into the diaspora.',
 
       // how it works
       'how.eyebrow': 'How it works',
@@ -284,8 +298,10 @@
       'nav.count': 'Compter',
       'nav.verbs': 'Verbes',
       'nav.memory': 'Mémoire',
+      'nav.map': 'Carte',
 
       'title.notFound': 'Page introuvable — Lingala',
+      'title.map': 'Carte du Congo — Lingala',
       'nf.eyebrow':     'Page introuvable',
       'nf.title':       "Ce chemin n'existe pas.",
       'nf.sub':         'La page que vous cherchez a peut-être été déplacée, renommée, ou n\'a jamais existé. La bonne nouvelle : le reste de Lingala est toujours ici.',
@@ -329,6 +345,18 @@
       'stat.cost': 'Coût d’utilisation, à jamais',
       'stat.speed': 'De l’ouverture au partage',
       'about.quote': '« Quand quelqu’un de ma famille dit ce mot, il porte trente ans d’histoire. Maintenant, je peux partager ça. »',
+
+      // story
+      'story.eyebrow': 'D’où vient le Lingala',
+      'story.title': 'Une langue née sur le fleuve.<br><em>Portée par le peuple.</em>',
+      'story.body1': 'Les <strong>Bangala</strong> — <em>« le peuple du fleuve »</em> — vivent le long des grands méandres septentrionaux du fleuve Congo, le deuxième fleuve du monde par son débit. Les Bobangi, Boloki, Mabale et d’autres communautés riveraines étaient les marchands du Haut-Congo : commerçants d’huile de palme, de poisson, de sel et de poterie, déplaçant les marchandises sur une voie d’eau de 4 700 kilomètres.',
+      'story.body2': 'De ce commerce est née une langue commune. Construite sur des racines bobangi et façonnée pour le commerce entre de nombreuses langues, elle est devenue la parole des berges. Le préfixe <em>Li-</em> désigne une langue ; <em>ngala</em> nomme le peuple. Donc : <strong>Lingala — la langue du peuple du fleuve.</strong>',
+      'story.body3': 'Quand Kinshasa est devenue l’une des grandes mégapoles du monde — à cheval sur le fleuve, face aux terres bakongo au sud — c’est la rumba congolaise, chantée en lingala par les musiciens du fleuve, qui a porté la langue au cœur de la capitale et sur les ondes d’Afrique. Aujourd’hui le lingala est le son de Kinshasa, de la musique, et de chaque foyer congolais de la diaspora qui fredonne encore <em>esengo nayoki na ngai.</em>',
+      'story.stat1': 'Locuteurs du lingala — RDC, Congo-Brazzaville, Angola, RCA',
+      'story.stat2': 'Bébés congolais nés aujourd’hui · compteur en direct, RDC',
+      'story.stat3': 'Kinshasa métropole — la plus grande ville francophone du monde',
+      'story.stat4': 'Le fleuve Congo — la première autoroute de la langue',
+      'story.caption': 'Quatre provinces fluviales — Équateur, Mongala, Nord-Ubangi, Sud-Ubangi — forment le cœur du pays bangala. De là, le lingala a coulé vers Kinshasa, vers la musique, et vers la diaspora.',
 
       'how.eyebrow': 'Comment ça marche',
       'how.title': 'Ouvrez. Téléchargez. <em>Partagez vos racines.</em>',
@@ -528,8 +556,10 @@
       'nav.count': 'Tanga',
       'nav.verbs': 'Maverbe',
       'nav.memory': 'Mwango',
+      'nav.map': 'Karte ya mboka',
 
       'title.notFound': 'Lokasa ezangi — Lingala',
+      'title.map': 'Karte ya Congo — Lingala',
       'nf.eyebrow':     'Lokasa ezangi',
       'nf.title':       'Nzela oyo ezali te.',
       'nf.sub':         'Lokasa oyo ozali koluka mbala mosusu elongwaki, ebongolami nkombo, to ezalaki ata moko te. Likambo ya malamu: oyo etikali ya Lingala ezali kaka awa.',
@@ -573,6 +603,18 @@
       'stat.cost': 'Talo ya kosalela, mpo na libela',
       'stat.speed': 'Banda kofungola tii kokabola',
       'about.quote': '« Tango moto ya libota na ngai alobaka liloba oyo, ememaka mibu tuku misato ya lisolo. Sikoyo nakoki kokabola yango. »',
+
+      // story (Esika Lingala euti)
+      'story.eyebrow': 'Esika Lingala euti',
+      'story.title': 'Monoko ebotami na ebale.<br><em>Ememami na bato.</em>',
+      'story.body1': 'Ba-<strong>Bangala</strong> — <em>« bato ya ebale »</em> — bavandaka pembeni ya mabongo monene ya ebale Kongo na nord, ebale ya mibale na monene na mokili mobimba. Bobangi, Boloki, Mabale na bituluku mosusu ya ebale bazalaki bato ya mombongo ya Kongo ya likolo : batekaka mafuta ya mbila, mbisi, mongwa, na mbeki, bamemaka biloko na nzela ya mai ya kilomɛtɛlɛ 4 700.',
+      'story.body2': 'Na mombongo wana, monoko moko ya kosangana ebimaki. Etongami na misisa ya Bobangi mpe ebongisamaki mpo na mombongo kati na minoko ebele, ekomaki monoko ya bisika ya ebale. Liyokeli <em>Li-</em> elakisi monoko ; <em>ngala</em> elakisi bato. Yango wana : <strong>Lingala — monoko ya bato ya ebale.</strong>',
+      'story.body3': 'Tango Kinshasa ekomaki engumba moko ya minene ya mokili — etɛlɛmi likoló ya ebale, etalami na mabele ya Bakongo na sud — ezalaki rumba ya Kongo, oyo bayembi ya ebale bayembaka na Lingala, nde ememaki monoko na kati ya mboka-mokonzi mpe na radio ya Afrika mobimba. Lelo Lingala ezali mongongo ya Kinshasa, ya miziki, mpe ya ndako nyonso ya bato ya Kongo na diaspora oyo bayembaka kaka <em>esengo nayoki na ngai.</em>',
+      'story.stat1': 'Bato bayebi Lingala — RDC, Congo-Brazzaville, Angola, RCA',
+      'story.stat2': 'Bana ya Kongo babotami lelo · motango ezali kotambola, na RDC',
+      'story.stat3': 'Kinshasa — engumba ya monene ya bafrancophones na mokili',
+      'story.stat4': 'Ebale Kongo — nzela ya liboso ya monoko',
+      'story.caption': 'Bitúká minei ya ebale — Équateur, Mongala, Nord-Ubangi, Sud-Ubangi — ezali motema ya mboka ya Bangala. Banda kuna, Lingala etiyolaki na Kinshasa, na miziki, mpe na diaspora.',
 
       'how.eyebrow': 'Ndenge esalaka',
       'how.title': 'Fungola. Télécharger. <em>Kabola misisa na yo.</em>',

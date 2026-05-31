@@ -61,6 +61,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://lingala.artivicolab.com/map.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lingala.artivicolab.com/map.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lingala.artivicolab.com/map.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ln" href="https://lingala.artivicolab.com/map.html?lang=ln"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lingala.artivicolab.com/map.html"/>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://lingala.artivicolab.com/card.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://lingala.artivicolab.com/card.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lingala.artivicolab.com/card.html?lang=fr"/>

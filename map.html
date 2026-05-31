@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4C44NPN87W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied', wait_for_update:500 });
+  try { if (localStorage.getItem('lingala.consent') === 'granted') gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' }); } catch(e){}
+  gtag('js', new Date());
+  gtag('config', 'G-4C44NPN87W');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Map of the Congo — Lingala</title>
+<meta name="description" content="An interactive map of the DRC's twenty-six provinces — tap one to see its capital, languages, and place in the story Lingala tells.">
+<link rel="canonical" href="https://lingala.artivicolab.com/map.html">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<meta name="theme-color" content="#08182E">
+
+<script>try{var _t=localStorage.getItem('lingala.theme');if(_t==='green'||_t==='yellow'||!_t)_t='blue';document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+
+<style>
+.map-stage {
+  --m-bg:#0A1628; --m-bg-soft:#0F1D33;
+  --m-border:rgba(255,255,255,0.07); --m-border-2:rgba(255,255,255,0.12);
+  --m-text:#FFFFFF; --m-text-2:rgba(255,255,255,0.75); --m-text-3:rgba(255,255,255,0.45);
+  --m-crimson:#D03A30; --m-gold:#D4A017;
+  background: var(--m-bg);
+  color: var(--m-text);
+  padding: 24px 16px 32px;
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  position: relative;
+}
+.map-stage::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.map-stage > * { position: relative; z-index: 1; }
+
+.map-stage .header-block{max-width:680px}
+.map-stage .eyebrow{font-family:var(--display);font-size:0.72rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--m-crimson);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.map-stage .eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--m-crimson)}
+.map-stage .eyebrow .li{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;color:rgba(208,58,48,0.7);font-size:0.82rem;font-weight:400}
+.map-stage .h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.8rem);line-height:1.05;color:var(--m-text);margin:0 0 12px}
+.map-stage .h1 em{font-style:italic;font-weight:400;color:var(--m-crimson)}
+.map-stage .subhead{font-size:0.96rem;line-height:1.6;color:var(--m-text-2);font-weight:300;max-width:560px;margin:0}
+
+.map-stage .map-layout{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+.map-stage .map-frame{position:relative;background:linear-gradient(165deg,rgba(20,40,70,0.42) 0%,rgba(10,22,40,0.65) 100%);border:1px solid var(--m-border-2);border-radius:20px;overflow:hidden;aspect-ratio:4/3;width:100%}
+.map-stage .map-frame::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;border-radius:inherit;z-index:1}
+.map-stage canvas{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;z-index:2}
+
+.map-stage .map-label{position:absolute;pointer-events:none;font-family:var(--display);font-weight:700;font-size:0.6rem;letter-spacing:0.03em;color:rgba(255,255,255,0.85);text-shadow:0 1px 3px rgba(0,0,0,0.85),0 0 8px rgba(0,0,0,0.6);transform:translate(-50%,-50%);z-index:3;transition:opacity 0.25s,font-size 0.25s;white-space:nowrap}
+.map-stage .map-label.zoomed{font-size:1.3rem;color:var(--m-gold);font-weight:800}
+.map-stage .map-label.faded{opacity:0.18}
+.map-stage .map-label.hidden{opacity:0}
+.map-stage .map-label.neighbor{font-family:var(--display);font-weight:400;font-size:0.65rem;color:rgba(122,140,160,0.7);text-shadow:0 1px 3px rgba(0,0,0,0.85);letter-spacing:0.12em;text-transform:uppercase;font-style:italic}
+.map-stage .map-label.river{font-family:var(--serif);font-style:italic;font-weight:300;font-size:0.7rem;color:rgba(110,170,210,0.75);text-shadow:0 1px 3px rgba(0,0,0,0.85);letter-spacing:0.02em}
+.map-stage .map-label.lake{font-family:var(--serif);font-style:italic;font-weight:300;font-size:0.6rem;color:rgba(110,170,210,0.85);text-shadow:0 1px 3px rgba(0,0,0,0.85);letter-spacing:0.02em}
+
+.map-stage .map-meta{position:absolute;bottom:14px;left:14px;z-index:4;display:flex;align-items:center;gap:14px;font-family:var(--display);font-size:0.7rem;color:var(--m-text-3);letter-spacing:0.08em}
+.map-stage .map-meta svg{opacity:0.6}
+
+.map-stage .map-credit{position:absolute;bottom:14px;right:14px;z-index:4;font-family:var(--serif);font-style:italic;font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.02em;background:rgba(10,22,40,0.6);padding:5px 10px;border-radius:6px;backdrop-filter:blur(6px)}
+.map-stage .map-credit a{color:var(--m-gold);text-decoration:none;font-style:normal;font-family:var(--display);font-weight:400;transition:color 0.15s}
+.map-stage .map-credit a:hover{color:#E5B028;text-decoration:underline;text-underline-offset:2px}
+
+.map-stage .zoom-controls{position:absolute;top:14px;left:14px;z-index:4;display:flex;gap:8px}
+.map-stage .zoom-btn{background:rgba(10,22,40,0.85);border:1px solid var(--m-border-2);border-radius:8px;padding:8px 14px;color:var(--m-text-2);font-family:var(--display);font-size:0.78rem;cursor:pointer;backdrop-filter:blur(8px);transition:all 0.15s;display:flex;align-items:center;gap:6px}
+.map-stage .zoom-btn:hover{color:var(--m-text);border-color:rgba(255,255,255,0.25)}
+.map-stage .zoom-btn.hidden{display:none}
+.map-stage .zoom-btn svg{width:14px;height:14px}
+
+.map-stage .zoom-hint{position:absolute;top:14px;left:14px;z-index:4;background:rgba(10,22,40,0.85);border:1px solid var(--m-border-2);border-radius:100px;padding:6px 14px;font-family:var(--display);font-size:0.72rem;color:var(--m-text-3);backdrop-filter:blur(8px);opacity:0;transition:opacity 0.3s}
+.map-stage .zoom-hint.show{opacity:1}
+
+.map-stage .label-toggles{position:absolute;top:14px;right:14px;z-index:4;display:flex;flex-direction:column;gap:6px;background:rgba(10,22,40,0.88);border:1px solid var(--m-border-2);border-radius:10px;padding:10px 12px;backdrop-filter:blur(8px)}
+.map-stage .label-toggle{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:0.74rem;color:var(--m-text-2);cursor:pointer;user-select:none}
+.map-stage .label-toggle:hover{color:var(--m-text)}
+.map-stage .label-toggle input{display:none}
+.map-stage .toggle-switch{position:relative;width:30px;height:16px;background:rgba(255,255,255,0.12);border-radius:100px;transition:background 0.2s;flex-shrink:0}
+.map-stage .toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:12px;height:12px;background:rgba(255,255,255,0.6);border-radius:50%;transition:all 0.2s}
+.map-stage .label-toggle input:checked + .toggle-switch{background:rgba(212,160,23,0.5)}
+.map-stage .label-toggle input:checked + .toggle-switch::after{left:16px;background:var(--m-gold)}
+
+.map-stage .disclaimer{margin-top:14px;padding:10px 14px;background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.18);border-left:2px solid var(--m-gold);border-radius:0 8px 8px 0;font-family:var(--serif);font-style:italic;font-size:0.82rem;color:var(--m-text-2);line-height:1.6}
+
+.map-stage .info-panel{background:rgba(255,255,255,0.025);border:1px solid var(--m-border);border-radius:16px;padding:24px;min-height:320px;position:relative}
+.map-stage .info-panel.has-province{border-color:rgba(212,160,23,0.3)}
+.map-stage .info-eyebrow{font-family:var(--display);font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--m-gold);margin:0 0 10px}
+.map-stage .info-empty{font-family:var(--serif);font-style:italic;font-weight:300;font-size:1rem;color:var(--m-text-3);line-height:1.6;text-align:center;padding:60px 12px}
+.map-stage .info-empty svg{display:block;margin:0 auto 14px;opacity:0.4}
+.map-stage .info-name{font-family:var(--serif);font-weight:500;font-size:1.8rem;line-height:1.1;color:var(--m-text);margin:0 0 4px}
+.map-stage .info-type{font-family:var(--display);font-size:0.78rem;color:var(--m-text-3);letter-spacing:0.05em;margin:0 0 18px}
+.map-stage .info-row{display:flex;gap:8px;align-items:baseline;padding:10px 0;border-top:1px solid var(--m-border)}
+.map-stage .info-row:first-of-type{border-top:none}
+.map-stage .info-row-label{font-family:var(--display);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--m-text-3);min-width:90px;flex-shrink:0}
+.map-stage .info-row-val{font-family:var(--display);font-size:0.92rem;color:var(--m-text);font-weight:400}
+.map-stage .info-row-val.gold{color:var(--m-gold);font-weight:500}
+.map-stage .info-note{margin-top:16px;padding:14px 16px;background:rgba(208,58,48,0.06);border:1px solid rgba(208,58,48,0.18);border-left:2px solid var(--m-crimson);border-radius:0 8px 8px 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:0.9rem;line-height:1.65;color:var(--m-text-2)}
+
+.map-stage .province-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:16px;max-height:340px;overflow-y:auto;padding-right:6px}
+.map-stage .province-grid::-webkit-scrollbar{width:4px}
+.map-stage .province-grid::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px}
+.map-stage .province-btn{padding:9px 12px;text-align:left;background:rgba(255,255,255,0.03);border:1px solid var(--m-border);border-radius:8px;cursor:pointer;transition:all 0.15s;font-family:var(--display);font-size:0.8rem;color:var(--m-text-2)}
+.map-stage .province-btn:hover{background:rgba(212,160,23,0.08);border-color:rgba(212,160,23,0.3);color:var(--m-text)}
+.map-stage .province-btn.on{background:rgba(212,160,23,0.15);border-color:var(--m-gold);color:var(--m-text);font-weight:500}
+
+@media (min-width:900px){
+  .map-stage .map-layout{grid-template-columns:1.4fr 1fr;gap:32px}
+  .map-stage .map-frame{aspect-ratio:5/4}
+  .map-stage .map-label{font-size:0.7rem}
+  .map-stage .map-label.neighbor{font-size:0.7rem}
+  .map-stage .map-label.river{font-size:0.8rem}
+  .map-stage .map-label.lake{font-size:0.66rem}
+}
+@media (min-width:1200px){
+  .map-stage .map-layout{grid-template-columns:1.6fr 1fr;gap:40px}
+}
+
+body { background: var(--m-bg, #0A1628); }
+</style>
+</head>
+<body data-title-i18n="title.map">
+<noscript>
+  <div style="position:fixed;inset:0;z-index:99999;background:#FFFFFF;color:#000;padding:48px 24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:auto">
+    <div style="max-width:520px">
+      <h1 style="font-size:24px;margin:0 0 16px;line-height:1.25">JavaScript is required</h1>
+      <p style="font-size:16px;line-height:1.55;margin:0 0 20px;color:#333">Lingala runs entirely in your browser — there is no backend. Please enable JavaScript and reload to view the map.</p>
+    </div>
+  </div>
+</noscript>
+
+<nav class="site-nav">
+  <a class="site-logo" href="/"><img src="/android-icon-192x192.png" alt="" class="site-logo-mark" width="28" height="28">Lingala</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-controls="navRight" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-right" id="navRight">
+    <div class="nav-links">
+      <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a>
+      <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a>
+      <a href="/count.html" data-i18n="nav.count">Count</a>
+      <a href="/memory.html" data-i18n="nav.memory">Memory</a>
+      <a href="/map.html" class="active" data-i18n="nav.map">Map</a>
+      <a href="/name.html" data-i18n="nav.name">Find your name</a>
+      <a href="/about.html" data-i18n="nav.about">About</a>
+    </div>
+    <div class="theme-dots" role="group" aria-label="Theme">
+      <button class="theme-dot t-blue active"  data-theme="blue"  aria-label="Blue theme"></button>
+      <button class="theme-dot t-red"           data-theme="red"   aria-label="Red theme"></button>
+      <button class="theme-dot t-paper"         data-theme="paper" aria-label="Paper theme"></button>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang-btn="en" type="button">EN</button><span>/</span>
+      <button data-lang-btn="fr" type="button">FR</button><span>/</span>
+      <button data-lang-btn="ln" type="button">LN</button>
+    </div>
+    <a class="site-cta" href="/card.html" data-i18n="nav.cta">Open today's card</a>
+  </div>
+</nav>
+
+<main class="map-stage">
+
+  <div class="header-block">
+    <p class="eyebrow">The country <span class="li">· mboka</span></p>
+    <h1 class="h1">Map of the Congo. <em>Tap a province to enter it.</em></h1>
+    <p class="subhead">Twenty-six provinces, the Congo River cutting a great arc through the heart of it, the Great Lakes along the eastern wall — each region with its own voice, its own everyday speech, and its own place in the story Lingala tells.</p>
+    <div class="disclaimer">Note · Province borders are traced from a high-resolution cartographic source.</div>
+  </div>
+
+  <div class="map-layout">
+
+    <div class="map-frame" id="mapFrame">
+      <canvas id="map"></canvas>
+
+      <div class="map-meta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M5 9l7-7 7 7"/>
+        </svg>
+        <span>N</span>
+      </div>
+
+      <div class="map-credit">
+        Map by <a href="https://artivicolab.com" target="_blank" rel="noopener">Gradi Kayamba</a> · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a>
+      </div>
+
+      <div class="zoom-hint" id="zoomHint">Tap a province to zoom in</div>
+
+      <div class="zoom-controls">
+        <button class="zoom-btn hidden" id="zoomOutBtn" onclick="zoomOut()">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/>
+          </svg>
+          Show whole country
+        </button>
+      </div>
+
+      <div class="label-toggles">
+        <label class="label-toggle">
+          <input type="checkbox" id="toggleProvinces" checked onchange="toggleLabel('provinces', this.checked)">
+          <span class="toggle-switch"></span>
+          <span>Province names</span>
+        </label>
+        <label class="label-toggle">
+          <input type="checkbox" id="toggleCountries" checked onchange="toggleLabel('countries', this.checked)">
+          <span class="toggle-switch"></span>
+          <span>Country names</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="info-panel" id="infoPanel">
+      <div class="info-empty" id="infoEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+        </svg>
+        Tap a province on the map or pick one from the list — the view will zoom in and you'll see its capital, the languages spoken there, and how it fits into Lingala's story.
+      </div>
+      <div id="infoContent" style="display:none">
+        <p class="info-eyebrow">Province</p>
+        <h2 class="info-name" id="provName">—</h2>
+        <p class="info-type" id="provType">—</p>
+        <div class="info-row">
+          <span class="info-row-label">Capital</span>
+          <span class="info-row-val gold" id="provCapital">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Population</span>
+          <span class="info-row-val" id="provPop">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Spoken</span>
+          <span class="info-row-val" id="provLang">—</span>
+        </div>
+        <div class="info-note" id="provNote">—</div>
+      </div>
+
+      <div class="province-grid" id="provinceGrid"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <img src="/android-icon-192x192.png" alt="Lingala" class="footer-logo" width="52" height="52">
+  <p class="footer-tagline" data-i18n="footer.tagline">Keep Lingala alive — for Congolese everywhere · 🇨🇩</p>
+  <div class="footer-links">
+    <a href="/about.html" data-i18n="footer.about">About</a><span class="sep">·</span>
+    <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a><span class="sep">·</span>
+    <a href="#" data-action="install-app" data-i18n="footer.install">Install app</a><span class="sep">·</span>
+    <a href="/name.html" data-i18n="nav.name">Find your name</a><span class="sep">·</span>
+    <a href="/count.html" data-i18n="nav.count">Count</a><span class="sep">·</span>
+    <a href="/memory.html" data-i18n="nav.memory">Memory</a><span class="sep">·</span>
+    <a href="/map.html" data-i18n="nav.map">Map</a><span class="sep">·</span>
+    <a href="/verbs.html" data-i18n="nav.verbs">Verbs</a><span class="sep">·</span>
+    <a href="/dictionary.html" data-i18n="nav.dictionary">Dictionary</a><span class="sep">·</span>
+    <a href="mailto:artivicolab@gmail.com" data-i18n="footer.contact">Contact</a>
+  </div>
+  <div class="footer-copyright">© <span id="year">2026</span> · <span data-i18n="footer.made">Made by a Congolese, for Congolese everywhere</span> <span class="pulse-heart" aria-hidden="true">♥</span> · <span class="footer-version">v2.71</span><br><span class="footer-rights">All rights reserved · <a href="https://artivicolab.com" target="_blank" rel="noopener">artivicolab.com</a> · by Gradi Kayamba</span></div>
+</footer>
+
+<script src="/js/theme-site.js"></script>
+<script src="/js/site-nav.js" defer></script>
+<script src="/js/i18n-site.js"></script>
+<script src="/js/consent.js" defer></script>
+<script src="/js/install.js" defer></script>
+
+<script src="/js/map-data.js"></script>
+<script src="/js/map.js"></script>
+
+</body>
+</html>
