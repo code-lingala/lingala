@@ -101,7 +101,13 @@ js/
   innerHTML templating for app UI. Follow that pattern.
 - Mobile-first, one-thumb use. Test at phone widths.
 - Cultural notes are the soul of the product: warm, like a Congolese elder
-  speaking with pride — never textbook-dry.
+  speaking with pride, never textbook-dry.
+- **No em-dashes (—) in any text the AI writes.** Use commas, parentheses,
+  colons, or split into two sentences instead. This applies to titles, meta
+  descriptions, cultural notes, UI copy, commit messages, and chat replies.
+  Existing em-dashes in seed data (phrase entries, dictionary headwords like
+  "madesu — beans") are content already shipped, leave them alone, but do not
+  introduce new ones.
 
 ## Adding a phrase (the common task)
 
