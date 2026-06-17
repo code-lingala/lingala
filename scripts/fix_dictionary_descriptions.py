@@ -24,6 +24,7 @@ import html
 import json
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -172,6 +173,13 @@ def main(argv: list[str]) -> int:
         print('\nSamples:')
         for name, desc in samples:
             print(f'  {name}: ({len(desc)}c) {desc}')
+
+    if changed:
+        print('\nSyncing modified_time / dateModified / sitemap <lastmod>...')
+        subprocess.run(
+            [sys.executable, str(ROOT / 'scripts' / 'sync_dates.py')],
+            cwd=ROOT, check=False,
+        )
     return 0
 
 
