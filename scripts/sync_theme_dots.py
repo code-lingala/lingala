@@ -49,6 +49,8 @@ def main():
     print(f"Added:     {swapped}")
     print(f"Unchanged: {unchanged}")
     print(f"No red btn: {nored}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

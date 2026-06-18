@@ -51,6 +51,8 @@ def main():
     print(f"Nav swapped:   {swapped}")
     print(f"Unchanged:     {unchanged}")
     print(f"No nav-links:  {nonav}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

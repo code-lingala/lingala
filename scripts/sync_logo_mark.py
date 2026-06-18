@@ -62,6 +62,8 @@ def main():
     print(f"Scanned:        {len(paths)}")
     print(f"Nav logos:      {nav_added}")
     print(f"Footer logos:   {footer_added}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

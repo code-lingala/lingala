@@ -100,6 +100,8 @@ def main():
     print(f"Scanned:           {len(paths)}")
     print(f"Favicon installed: {fav_added}")
     print(f"Theme btn swapped: {theme_swapped}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

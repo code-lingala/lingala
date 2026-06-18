@@ -60,6 +60,8 @@ def main():
     print(f"Footer swapped: {swapped}")
     print(f"Unchanged:      {unchanged}")
     print(f"No footer:      {nofooter}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

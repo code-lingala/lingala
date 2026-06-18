@@ -1036,6 +1036,8 @@ def main():
     print(f"HTML patched:    {patched}")
     print(f"HTML missing:    {missing}")
     print(f"Total verbs:     {len(verbs)}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

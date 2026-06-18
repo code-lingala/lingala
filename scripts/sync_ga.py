@@ -50,6 +50,8 @@ def main():
     print(f"Added:   {added}")
     print(f"Already: {already}")
     print(f"Skipped: {skipped}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()

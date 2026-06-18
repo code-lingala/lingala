@@ -34,6 +34,8 @@ def main():
             updated += 1
     print(f"Scanned: {len(paths)}")
     print(f"Updated: {updated}")
+    from _run_sync_dates import run
+    run()
 
 if __name__ == "__main__":
     main()
