@@ -13430,4 +13430,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://lingala.artivicolab.com/dictionary/engambe-edo.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lingala.artivicolab.com/dictionary/engambe-edo.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lingala.artivicolab.com/dictionary/engambe-edo.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ln" href="https://lingala.artivicolab.com/dictionary/engambe-edo.html?lang=ln"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lingala.artivicolab.com/dictionary/engambe-edo.html"/>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

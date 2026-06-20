@@ -28203,6 +28203,25 @@
       ],
       "culturalNote": "Matiti — plural for grass, leaves, brush, weeds. The general word for the green ground cover: lawn, scrub at the forest edge, the tall grass after the rains. Singular form is lititi. Hidden in the matiti is where children warn each other about snakes.",
       "verified": true
+    },
+    {
+      "id": "engambe-edo",
+      "lingala": "engambe edo",
+      "english": "the boss, the big shot (affectionate Congolese honorific)",
+      "french": "le chef, le grand (terme affectueux et respectueux)",
+      "phonetic": "e-NGA-mbe E-do",
+      "partOfSpeech": "noun",
+      "category": "Expressions",
+      "register": "colloquial",
+      "examples": [
+        {
+          "lingala": "Mbote engambe edo, sango nini lelo?",
+          "english": "Hello boss, what's the news today?",
+          "french": "Bonjour le chef, quoi de neuf aujourd'hui?"
+        }
+      ],
+      "culturalNote": "Engambe edo, an affectionate, respectful Congolese honorific for an older or respected man. Engambe carries the figurative sense of \"the big one\" (literally tall, large), and Edo is a familiar nickname for Édouard. Heard in casual greetings, in Congolese rumba lyrics, and when paying respect to a senior male figure.",
+      "verified": true
     }
   ]
 }
